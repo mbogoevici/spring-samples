@@ -1,4 +1,4 @@
-package org.springsource.samples.webflow.gettingstarted;
+package org.springsource.templates.webflow;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
