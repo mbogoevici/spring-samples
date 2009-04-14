@@ -2,7 +2,18 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-	
+
+	<!-- Enables clean URLs with JSP views e.g. /welcome instead of /app/welcome -->
+	<filter>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+		
 	<!-- The front controller of this Spring MVC application, responsible for handling all application requests -->
 	<servlet>
 		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
