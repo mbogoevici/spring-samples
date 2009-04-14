@@ -60,11 +60,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>
-			<artifactId>spring-js</artifactId>
-			<version>${webflow.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-webflow</artifactId>
 			<version>${webflow.version}</version>
 		</dependency>
