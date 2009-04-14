@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Spring Web Flow Project Template</title>
+	<title>Spring Project Template</title>
 </head>
 <body>
 <h1>
