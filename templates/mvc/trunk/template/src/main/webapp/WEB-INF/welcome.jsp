@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Spring Project Template</title>
+	<title>Welcome</title>
 </head>
 <body>
 <h1>
