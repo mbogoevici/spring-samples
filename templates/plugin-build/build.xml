@@ -1,0 +1,4 @@
+<project>
+        <property file="${basedir}/../build.properties"/>
+        <import file="spring-build/standard/default.xml"/>
+</project>
