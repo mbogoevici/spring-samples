@@ -11,6 +11,11 @@
 		</layout>
 	</appender>>
 	
+	<!-- Application Loggers -->
+	<logger name="org.springframework.templates.mvc">
+		<level value="debug" />
+	</logger>
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="debug" />
