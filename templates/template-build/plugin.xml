@@ -2,6 +2,8 @@
 		<property name="ivy.cache.dir" value="${basedir}/../../../template-build/ivy-cache" />
 		<property name="integration.repo.dir" value="${basedir}/../../../template-build/integration-repo" />
 		<property name="ivy.settings.file" value="${basedir}/../../../template-build/ivysettings.xml" />
+		<property name="template.dir" value="${basedir}/../template"/>
+		<property name="template.zip" value="template.zip"/>
         <import file="${basedir}/../../../template-build/spring-build/standard/default.xml" />
 
 	<target name="jar" depends="ivy.init, jar.init"
@@ -15,7 +17,9 @@
 			<fileset dir="${main.resources.dir}"/>
 		</copy>
 
-		<!-- ZIP HERE -->
+		<zip destfile="${main.output.dir}/${template.zip}">
+			<zipfileset dir="${template.dir}"/>
+		</zip>
 
 		<jar destfile="${jar.output.file}" basedir="${main.output.dir}" index="true" filesetmanifest="merge">
 			<manifest>
