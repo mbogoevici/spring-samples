@@ -1,8 +1,8 @@
 <project name="plugin-build" xmlns:ivy="antlib:org.apache.ivy.ant">
-		<property name="ivy.cache.dir" value="${basedir}/../../../plugin-build/ivy-cache" />
-		<property name="integration.repo.dir" value="${basedir}/../../../plugin-build/integration-repo" />
-		<property name="ivy.settings.file" value="${basedir}/../../../plugin-build/ivysettings.xml" />
-        <import file="${basedir}/../../../plugin-build/spring-build/standard/default.xml" />
+		<property name="ivy.cache.dir" value="${basedir}/../../../template-build/ivy-cache" />
+		<property name="integration.repo.dir" value="${basedir}/../../../template-build/integration-repo" />
+		<property name="ivy.settings.file" value="${basedir}/../../../template-build/ivysettings.xml" />
+        <import file="${basedir}/../../../template-build/spring-build/standard/default.xml" />
 
 	<target name="jar" depends="ivy.init, jar.init"
 			description="Creates a JAR file containing the output of a compilation of the source tree.">
