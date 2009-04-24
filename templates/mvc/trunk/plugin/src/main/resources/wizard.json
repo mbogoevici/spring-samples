@@ -3,7 +3,7 @@
 		"elements" : {
 			"element" :	[
 				{
-					"name" : "projectName",
+					"name" : "org.springframework.templates.mvc",
 					"description" : "Please enter your project name",
 					"type" : "java.lang.String",
 					"page" : 0,
