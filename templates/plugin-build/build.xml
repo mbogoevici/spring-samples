@@ -1,6 +1,36 @@
-<project name="plugin-build">
+<project name="plugin-build" xmlns:ivy="antlib:org.apache.ivy.ant">
 		<property name="ivy.cache.dir" value="${basedir}/../../../plugin-build/ivy-cache" />
 		<property name="integration.repo.dir" value="${basedir}/../../../plugin-build/integration-repo" />
 		<property name="ivy.settings.file" value="${basedir}/../../../plugin-build/ivysettings.xml" />
         <import file="${basedir}/../../../plugin-build/spring-build/standard/default.xml" />
+
+	<target name="jar" depends="ivy.init, jar.init"
+			description="Creates a JAR file containing the output of a compilation of the source tree.">
+		<delete quiet="true" file="${ivy.output.file}"/>
+		<mkdir dir="${ivy.output.dir}"/>
+		<delete quiet="true" file="${jar.output.file}"/>
+		<mkdir dir="${jar.output.dir}"/>
+		<delete quiet="true" file="${source-jar.output.file}"/>
+		<mkdir dir="${source-jar.output.dir}"/>
+
+		<echo message="Ready for modification" />
+
+		<!--compile classpath.id="compile.classpath" input.dir="${main.java.dir}" output.dir="${main.output.dir}"
+				resources.dir="${main.resources.dir}"/-->
+		<jar destfile="${jar.output.file}" basedir="${main.output.dir}" index="true" filesetmanifest="merge">
+			<manifest>
+				<attribute name="Bundle-ManifestVersion" value="2"/>
+				<attribute name="Bundle-Version" value="${bundle.version}"/>
+				<attribute name="Implementation-Title" value="${implementation.title}"/>
+				<attribute name="Implementation-Version" value="${implementation.version}"/>
+			</manifest>
+		</jar>
+		<!--antcall target="bundlor"/-->
+		<!--jar destfile="${source-jar.output.file}" basedir="${main.java.dir}" index="true"/-->
+		<ivy:publish resolver="integration" pubdate="${timestamp}" status="${release.type}">
+			<artifacts pattern="${ivy.output.dir}/[artifact].[ext]"/>
+			<artifacts pattern="${jar.output.dir}/[artifact].[ext]"/>
+			<artifacts pattern="${source-jar.output.dir}/[artifact].[ext]"/>
+		</ivy:publish>
+	</target>
 </project>

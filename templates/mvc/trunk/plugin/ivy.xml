@@ -18,8 +18,4 @@
 		<artifact name="${ant.project.name}-sources" type="src" ext="jar"/>
 	</publications>
 
-	<dependencies>
-		
-	</dependencies>
-
 </ivy-module>

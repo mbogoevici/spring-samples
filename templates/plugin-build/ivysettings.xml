@@ -6,11 +6,21 @@
 	<settings defaultResolver="external-lookup" defaultLatestStrategy="latest-lexico"/>
 
 	<caches resolutionCacheDir="${ivy.cache.dir}/resolution" repositoryCacheDir="${ivy.cache.dir}/repository"
-			ivyPattern="[organisation]/[module]/[revision]/[artifact]_[revision].[ext]"
-			artifactPattern="[organisation]/[module]/[revision]/[artifact]_[revision].[ext]"
+			ivyPattern="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"
+			artifactPattern="[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"
 			useOrigin="true" checkUpToDate="false"/>
 
 	<macrodef name="s3repo">
+		<attribute name="bucket"/>
+		<attribute name="artifact.type"/>
+		<attribute name="release.type"/>
+		<s3 descriptor="required" accessKey="${accessKey}" secretKey="${secretKey}">
+			<ivy pattern="s3://@{bucket}/ivy/@{artifact.type}/@{release.type}/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
+			<artifact pattern="s3://@{bucket}/ivy/@{artifact.type}/@{release.type}/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
+		</s3>
+	</macrodef>
+
+	<macrodef name="s3repo-underscore">
 		<attribute name="bucket"/>
 		<attribute name="artifact.type"/>
 		<attribute name="release.type"/>
@@ -45,8 +55,8 @@
 		</chain>
 
 <!-- Publishing repositories -->
-		<s3repo name="spring-portfolio-bundle-publish"	bucket="${publish.bucket}"	artifact.type="bundles" 	release.type="${adjusted.release.type}"/>
-		<s3repo name="spring-portfolio-library-publish"	bucket="${publish.bucket}"	artifact.type="libraries"	release.type="${adjusted.release.type}"/>
+		<s3repo-underscore name="spring-portfolio-bundle-publish"	bucket="${publish.bucket}"	artifact.type="bundles" 	release.type="${adjusted.release.type}"/>
+		<s3repo-underscore name="spring-portfolio-library-publish"	bucket="${publish.bucket}"	artifact.type="libraries"	release.type="${adjusted.release.type}"/>
 	</resolvers>
 
 	<modules>
