@@ -1,4 +1,6 @@
-<project>
-        <property file="${basedir}/../build.properties"/>
-        <import file="spring-build/standard/default.xml"/>
+<project name="plugin-build">
+		<property name="ivy.cache.dir" value="${basedir}/../../../plugin-build/ivy-cache" />
+		<property name="integration.repo.dir" value="${basedir}/../../../plugin-build/integration-repo" />
+		<property name="ivy.settings.file" value="${basedir}/../../../plugin-build/ivysettings.xml" />
+        <import file="${basedir}/../../../plugin-build/spring-build/standard/default.xml" />
 </project>
