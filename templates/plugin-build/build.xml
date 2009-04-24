@@ -10,13 +10,13 @@
 		<mkdir dir="${ivy.output.dir}"/>
 		<delete quiet="true" file="${jar.output.file}"/>
 		<mkdir dir="${jar.output.dir}"/>
-		<delete quiet="true" file="${source-jar.output.file}"/>
-		<mkdir dir="${source-jar.output.dir}"/>
 
-		<echo message="Ready for modification" />
+		<copy todir="${main.output.dir}">
+			<fileset dir="${main.resources.dir}"/>
+		</copy>
 
-		<!--compile classpath.id="compile.classpath" input.dir="${main.java.dir}" output.dir="${main.output.dir}"
-				resources.dir="${main.resources.dir}"/-->
+		<!-- ZIP HERE -->
+
 		<jar destfile="${jar.output.file}" basedir="${main.output.dir}" index="true" filesetmanifest="merge">
 			<manifest>
 				<attribute name="Bundle-ManifestVersion" value="2"/>
@@ -25,12 +25,12 @@
 				<attribute name="Implementation-Version" value="${implementation.version}"/>
 			</manifest>
 		</jar>
-		<!--antcall target="bundlor"/-->
-		<!--jar destfile="${source-jar.output.file}" basedir="${main.java.dir}" index="true"/-->
+
+		<ivy:resolve id="all.classpath" log="download-only"/>
 		<ivy:publish resolver="integration" pubdate="${timestamp}" status="${release.type}">
 			<artifacts pattern="${ivy.output.dir}/[artifact].[ext]"/>
 			<artifacts pattern="${jar.output.dir}/[artifact].[ext]"/>
-			<artifacts pattern="${source-jar.output.dir}/[artifact].[ext]"/>
 		</ivy:publish>
 	</target>
+
 </project>
