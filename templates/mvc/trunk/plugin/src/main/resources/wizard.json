@@ -4,12 +4,21 @@
 			"element" :	[
 				{
 					"name" : "org.springframework.templates.mvc",
-					"description" : "Please enter your project name",
+					"description" : "Please enter the name of your project (recommended format: [org].[project] e.g. com.springsource.example)",
 					"type" : "java.lang.String",
 					"page" : 0,
 					"order" : 1,
 					"required" : true
-				}
+				},
+				{
+					"name" : "topLevelPackage",
+					"description" : "Please enter the top-level package name (recommended format: [org].[project] e.g. com.springsource.example)",
+					"type" : "java.lang.String",
+					"page" : 0,
+					"order" : 2,
+					"required" : true,
+					"pattern" : "\\w+\\.\\w+(\\.\\w+)+";
+				}				
 			]
 		},
 		
