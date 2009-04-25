@@ -1,4 +1,4 @@
-package org.springframework.templates.mvc;
+package mytld.mycompany.myapp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
