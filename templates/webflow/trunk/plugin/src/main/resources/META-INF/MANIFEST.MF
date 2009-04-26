@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 
+Bundle-Name: Spring Web Flow Project Template
+Bundle-SymbolicName: org.springframework.templates.webflow;singleton:=true
+Bundle-Version: 
+Bundle-Vendor: SpringSource
+Require-Bundle: com.springsource.sts.wizard
