@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 
+Bundle-Name: Spring Faces Project Template
+Bundle-SymbolicName: org.springframework.templates.faces;singleton:=true
+Bundle-Version: 
+Bundle-Vendor: SpringSource
+Require-Bundle: com.springsource.sts.wizard
