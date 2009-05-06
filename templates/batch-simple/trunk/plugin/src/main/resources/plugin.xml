@@ -5,8 +5,8 @@
 		<template_project
 			id="org.springframework.samples.batch.simple" name="Simple Spring Batch Project"
 			description="A simple project that shows how to use Spring Batch"
-			template_path="template/simple/simple-cli.json"
-			zipped_path="template/simple/simple-cli.zip">
+			template_path="wizard.json"
+			zipped_path="template.zip">
 		</template_project>
 	</extension>
 </plugin>
