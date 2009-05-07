@@ -4,10 +4,10 @@ import java.util.Collection;
 
 public interface OwnerRepository {
 
-	Collection<Owner> findOwnersByLastName(String lastName);
+	Collection<OwnerSummary> findOwnersByLastName(String lastName);
 
-	Owner getOwner(Long id);
+	OwnerForm getOwner(Long id);
 
-	Long saveOwner(Owner owner);
+	Long saveOwner(OwnerForm owner);
 
 }

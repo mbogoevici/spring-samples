@@ -7,15 +7,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class StubOwnerRepository implements OwnerRepository {
 
-	public Collection<Owner> findOwnersByLastName(String lastName) {
+	public Collection<OwnerSummary> findOwnersByLastName(String lastName) {
 		return null;
 	}
 
-	public Owner getOwner(Long id) {
-		return new Owner(id);
+	public OwnerForm getOwner(Long id) {
+		return new OwnerForm(id);
 	}
 
-	public Long saveOwner(Owner owner) {
+	public Long saveOwner(OwnerForm owner) {
 		return 1L;
 	}
 

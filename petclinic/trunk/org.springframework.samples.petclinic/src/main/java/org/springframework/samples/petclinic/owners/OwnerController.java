@@ -26,12 +26,12 @@ public class OwnerController {
 	}
 	
 	@RequestMapping(value="/edit", method=RequestMethod.GET)
-	public Owner getEditForm(@PathVariable Long owner) {
+	public OwnerForm getEditForm(@PathVariable Long owner) {
 		return repository.getOwner(owner);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public void put(Owner owner, ExternalContext response) {
+	public void put(OwnerForm owner, ExternalContext response) {
 		repository.saveOwner(owner);
 		response.redirect(owner.getId());
 	}	

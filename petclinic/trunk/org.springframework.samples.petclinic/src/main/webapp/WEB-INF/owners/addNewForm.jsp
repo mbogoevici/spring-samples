@@ -4,12 +4,10 @@
 
 <form:form id="addNewForm" action="${pageContext.request.contextPath}/owners" modelAttribute="owner" method="post">
 	<form:label for="firstName" path="firstName">
-		First Name
-		<form:input path="firstName" />
+		First Name <form:input path="firstName" />
 	</form:label>
 	<form:label for="lastName" path="lastName">
-		Last Name
-		<form:input path="lastName" />
+		Last Name <form:input path="lastName" />
 	</form:label>
 	<input type="submit" value="Add" />	
 </form:form>

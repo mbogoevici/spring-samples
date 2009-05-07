@@ -25,17 +25,17 @@ public class OwnersController {
 	}
 	
 	@RequestMapping(value="/search", method = RequestMethod.GET)
-	public Collection<Owner> getSearchResults(@RequestParam String lastName) {
+	public Collection<OwnerSummary> getSearchResults(@RequestParam String lastName) {
 		return repository.findOwnersByLastName(lastName);
 	}
 	
 	@RequestMapping(value="/new", method = RequestMethod.GET)
-	public Owner getNewForm() {
-		return new Owner();
+	public OwnerForm getNewForm() {
+		return new OwnerForm();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String post(Owner owner) {
+	public String post(OwnerForm owner) {
 		Long ownerId = repository.saveOwner(owner);
 		return "redirect:/owners/" + ownerId;
 	}	
