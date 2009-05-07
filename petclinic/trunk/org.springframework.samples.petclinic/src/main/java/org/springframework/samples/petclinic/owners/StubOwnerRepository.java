@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.owners;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.springframework.stereotype.Repository;
 
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public class StubOwnerRepository implements OwnerRepository {
 
 	public Collection<OwnerSummary> findOwnersByLastName(String lastName) {
-		return null;
+		return Collections.emptySet();
 	}
 
 	public OwnerForm getOwner(Long id) {

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 public class StubPetRepository implements PetRepository {
 
 	public Pet getPet(Long owner, String name) {
-		return null;
+		return new Pet();
 	}
 
 	public void savePet(Pet pet) {
