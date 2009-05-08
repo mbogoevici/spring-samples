@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 	<properties>
-		<spring.version>3.0.0.M3</spring.version>
+		<spring.version>3.0.0.BUILD-SNAPSHOT</spring.version>
 	</properties>	
 	<dependencies>
 		<!-- Compile dependencies -->
@@ -117,8 +117,8 @@
 	<repositories>
 		<repository>
 			<id>org.springsource.maven.snapshot</id>
-			<name>SpringSource Maven Central-compatible Milestone Repository</name>
-			<url>http://maven.springframework.org/milestone</url>
+			<name>SpringSource Maven Central-compatible Snapshot Repository</name>
+			<url>http://maven.springframework.org/snapshot</url>
 		</repository>	
 	</repositories>
 	<build>

@@ -24,19 +24,21 @@ public class AppointmentsController {
 		return appointmentBook.getAppointmentsForToday();
 	}
 
+	// TODO order should not matter
+	
+	@RequestMapping(value="/new", method = RequestMethod.GET)
+	public AppointmentForm getNewForm() {
+		return new AppointmentForm();
+	}
+
 	@RequestMapping(value="/{day}", method = RequestMethod.GET)
 	public Appointments getForDay(@PathVariable Date day) {
 		return appointmentBook.getAppointmentsForDay(day);
 	}
 
-	@RequestMapping(value="/new", method = RequestMethod.GET)
-	public AppointmentForm getNewForm() {
-		return new AppointmentForm();
-	}
-	
 	@RequestMapping(method = RequestMethod.POST)
 	public String post(AppointmentForm form) {
 		appointmentBook.createAppointment(form);
 		return "redirect:/appointments";
-	}	
+	}
 }

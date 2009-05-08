@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <h2>Add New Appointment</h2>
 
-<form:form id="addNewForm" action="${pageContext.request.contextPath}/appointments" modelAttribute="appointment" method="post">
+<form:form id="addNewForm" action="${pageContext.request.contextPath}/appointments" modelAttribute="appointmentForm" method="post">
 	<form:label for="doctor" path="doctor">
 		Doctor <form:input path="doctor" />
 	</form:label>
@@ -21,5 +21,5 @@
 	<form:label for="notes" path="notes">
 		Notes <form:input path="notes" />
 	</form:label>
-	<input type="submit" value="Add" />	
+	<input type="submit" value="Add" />
 </form:form>
