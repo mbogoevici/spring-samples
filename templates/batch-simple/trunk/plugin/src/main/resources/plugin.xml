@@ -4,7 +4,7 @@
 	<extension point="com.springsource.sts.wizard.templates">
 		<template_project
 			id="org.springframework.samples.batch.simple" name="Simple Spring Batch Project"
-			description="A simple project that shows how to use Spring Batch"
+			description="A simple project that shows how to use Spring Batch with a reader and a writer in a single step job"
 			template_path="wizard.json"
 			zipped_path="template.zip">
 		</template_project>
