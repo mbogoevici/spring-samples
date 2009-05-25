@@ -3,7 +3,7 @@
 		"elements" : {
 			"element" :	[
 				{
-					"name" : "spring-batch-simple",
+					"name" : "projectName",
 					"description" : "Please specify the project name e.g. myproject",
 					"type" : "java.lang.String",
 					"page" : 0,
