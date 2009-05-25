@@ -20,7 +20,7 @@
 	</description>
 	<properties>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
-		<spring.framework.version>2.5.6.A</spring.framework.version>
+		<spring.framework.version>2.5.6</spring.framework.version>
 	</properties>
 	<profiles>
 		<profile>
@@ -59,69 +59,62 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.junit</groupId>
-			<artifactId>com.springsource.org.junit</artifactId>
-			<version>4.4.0</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.test</artifactId>
+			<artifactId>spring-test</artifactId>
 			<version>${spring.framework.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>org.springframework.jdbc</artifactId>
+			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.framework.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.batch</groupId>
-			<artifactId>org.springframework.batch.core</artifactId>
-			<version>${pom.version}</version>
+			<artifactId>spring-batch-core</artifactId>
+			<version>2.0.0.RELEASE</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>com.springsource.org.apache.commons.dbcp</artifactId>
-			<version>1.2.2.osgi</version>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.2.2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>com.springsource.org.apache.commons.io</artifactId>
-			<version>1.4.0</version>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
 		</dependency>
 		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>com.springsource.org.hsqldb</artifactId>
-			<version>1.8.0.9</version>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.7</version>
 		</dependency>
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>com.springsource.org.aspectj.runtime</artifactId>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
 			<version>1.5.4</version>
 		</dependency>
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>com.springsource.org.aspectj.weaver</artifactId>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
 			<version>1.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<extensions>
-			<extension>
-				<groupId>org.springframework.build.aws</groupId>
-				<artifactId>org.springframework.build.aws.maven</artifactId>
-				<version>2.0.0.RELEASE</version>
-			</extension>
-		</extensions>
 		<pluginManagement>
 			<plugins>
-				<plugin>
-					<groupId>com.springsource.bundlor</groupId>
-					<artifactId>com.springsource.bundlor.maven</artifactId>
-					<version>1.0.0.M1B</version>
-				</plugin>
 				<plugin>
 					<artifactId>maven-assembly-plugin</artifactId>
 					<inherited>false</inherited>
@@ -141,20 +134,6 @@
 					<source>1.5</source>
 					<target>1.5</target>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.springsource.bundlor</groupId>
-				<artifactId>com.springsource.bundlor.maven</artifactId>
-				<executions>
-					<execution>
-						<id>bundlor-transform</id>
-						<!-- This isn't necessary, but Q4E barfs without it. -->
-						<phase>package</phase>
-						<goals>
-							<goal>transform</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -217,26 +196,6 @@
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>com.springsource.repository.bundles.release</id>
-			<name>SpringSource Enterprise Bundle Repository -
-				SpringSource Bundle Releases</name>
-			<url>http://repository.springsource.com/maven/bundles/release</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>com.springsource.repository.bundles.external</id>
-			<name>SpringSource Enterprise Bundle Repository -
-				External Bundle Releases</name>
-			<url>http://repository.springsource.com/maven/bundles/external</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>Codehaus</id>
@@ -244,21 +203,6 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>com.springsource.repository.bundles.milestone</id>
-			<name>SpringSource Enterprise Bundle Repository -
-				SpringSource Bundle Milestones</name>
-			<url>http://repository.springsource.com/maven/bundles/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>com.springsource.repository.bundles.snapshots</id>
-			<name>SpringSource Enterprise Bundle Repository -
-				SpringSource Bundle Snapshots</name>
-			<url>http://repository.springsource.com/maven/bundles/snapshot</url>
 		</pluginRepository>
 	</pluginRepositories>
 	<distributionManagement>
