@@ -3,7 +3,9 @@ package org.springframework.samples.petclinic.appointments;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.samples.petclinic.util.ExternalContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,21 +21,27 @@ public class AppointmentsController {
 		this.appointmentBook = appointmentBook;
 	}
 
+	// /appointments
 	@RequestMapping(method = RequestMethod.GET)
 	public Appointments get() {
 		return appointmentBook.getAppointmentsForToday();
 	}
 
-	// TODO order should not matter
-	
+	// /appointments/2009-5-27
+	@RequestMapping(value="/{day}", method = RequestMethod.GET)
+	public void getForDay(@PathVariable Date day, ExternalContext context) {
+		Appointments appts = appointmentBook.getAppointmentsForDay(day);
+		context.getModel().addAttribute(appts);
+		context.selectView("appointments");
+		if (context.isAjaxRequest()) {
+			//could activate a ViewHelper for component associated with main
+			context.renderFragment("main");
+		}
+	}
+
 	@RequestMapping(value="/new", method = RequestMethod.GET)
 	public AppointmentForm getNewForm() {
 		return new AppointmentForm();
-	}
-
-	@RequestMapping(value="/{day}", method = RequestMethod.GET)
-	public Appointments getForDay(@PathVariable Date day) {
-		return appointmentBook.getAppointmentsForDay(day);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

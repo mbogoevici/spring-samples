@@ -23,7 +23,7 @@
 	
 	<!-- Resolves view names to tiles definitions in /WEB-INF/tiles.xml -->
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<property name="viewClass" value="org.springframework.samples.petclinic.util.TilesView" />
 	</bean>
 		
 	<!-- Initializes the Apache Tiles CompositeView system -->

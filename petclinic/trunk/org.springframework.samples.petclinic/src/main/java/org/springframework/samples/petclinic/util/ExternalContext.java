@@ -19,4 +19,6 @@ public interface ExternalContext {
 
 	Object getNativeResponse();
 
+	boolean isAjaxRequest();
+
 }
