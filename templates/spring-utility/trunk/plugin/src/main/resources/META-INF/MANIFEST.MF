@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Spring Utility Template Plug-in
+Bundle-SymbolicName: org.springframework.samples.spring.utility;singleton:=true
+Bundle-Version: 1.0.0.RELEASE
+Bundle-Vendor: SpringSource
+Require-Bundle: com.springsource.sts.wizard

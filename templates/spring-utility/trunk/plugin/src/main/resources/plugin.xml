@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="com.springsource.sts.wizard.templates">
+		<template_project
+			id="org.springframework.samples.spring.utility" name="Simple Spring Utility Project"
+			description="A simple jar project that has some Spring configuration and an integration test"
+			template_path="wizard.json"
+			zipped_path="template.zip">
+		</template_project>
+	</extension>
+</plugin>
