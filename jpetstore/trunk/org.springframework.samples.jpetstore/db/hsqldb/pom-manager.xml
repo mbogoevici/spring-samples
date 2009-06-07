@@ -1,9 +1,13 @@
+<!-- POM to run manager. 
+     Ideally, we won't need a separate pom-manager.xml. However, since the use of two different ids and phase 
+     described at http://article.gmane.org/gmane.comp.java.maven-plugins.mojo.user/1307 doesn't seem to work 
+	 (the configuration element is ignored), we have to resort to using a separate file. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                              http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.samples.jpetstore</groupId>
-	<artifactId>org.springframework.samples.jpetstore.hsqldb.server</artifactId>
+	<artifactId>org.springframework.samples.jpetstore.hsqldb.manager</artifactId>
 	<name>org.springframework.samples.jpetstore.hsqldb</name>
 	<version>1.0.0-SNAPSHOT</version>
 
@@ -28,15 +32,12 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>org.hsqldb.Server</mainClass>
+					<mainClass>org.hsqldb.util.DatabaseManager</mainClass>
 					<arguments>
-						<argument>-database</argument>
-						<argument>${db.file}</argument>
-						<argument>-port</argument>
-						<argument>9002</argument>
-						<argument>-trace</argument>
-						<argument>true</argument>
+						<argument>--url</argument>
+						<argument>jdbc:hsqldb:hsql://localhost:9002</argument>
 					</arguments>
+					
 				</configuration>
 			</plugin>
 		</plugins>

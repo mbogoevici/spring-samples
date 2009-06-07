@@ -1,2 +1,2 @@
-"%JAVA_HOME%/bin/java" -classpath ..\..\..\..\lib\hsqldb\hsqldb.jar org.hsqldb.util.DatabaseManager
+mvn -f %~dp0pom-manager.xml -Ddb.file=%~dp0jpetstore exec:java
 

@@ -1,1 +1,1 @@
-java -cp ../../../../lib/hsqldb/hsqldb.jar org.hsqldb.util.DatabaseManager
+mvn -f pom-manager.xml exec:java
