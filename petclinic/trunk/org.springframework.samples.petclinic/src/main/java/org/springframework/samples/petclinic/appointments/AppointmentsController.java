@@ -45,7 +45,7 @@ public class AppointmentsController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String post(AppointmentForm form) {
-		appointmentBook.createAppointment(form);
+		appointmentBook.createAppointment(form.createAppointment());
 		return "redirect:/appointments";
 	}
 }

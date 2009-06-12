@@ -8,6 +8,6 @@ public interface AppointmentBook {
 	
 	Appointments getAppointmentsForDay(Date day);
 
-	Long createAppointment(AppointmentForm form);
+	Long createAppointment(Appointment form);
 
 }

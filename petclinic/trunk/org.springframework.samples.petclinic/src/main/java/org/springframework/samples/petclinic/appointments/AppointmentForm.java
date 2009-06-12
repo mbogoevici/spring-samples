@@ -63,5 +63,10 @@ public class AppointmentForm {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-
+	
+	
+	public Appointment createAppointment(){
+		//TODO: Add phone
+		return new Appointment(this.owner.toString(),null,this.pet,this.notes,this.date);
+	}
 }

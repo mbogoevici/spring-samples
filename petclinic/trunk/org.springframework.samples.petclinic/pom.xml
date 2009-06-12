@@ -44,11 +44,23 @@
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-core</artifactId>
 			<version>2.0.7</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
 			<version>2.0.7</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- Clean URLs with JSPs -->		
 		<dependency>
@@ -74,8 +86,29 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+			 <exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+    	  			<artifactId>slf4j-jdk14</artifactId>
+				</exclusion>
+			 </exclusions> 
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.caucho</groupId>
+					<artifactId>burlap</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.caucho</groupId>
+					<artifactId>hessian</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -92,7 +125,25 @@
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-js</artifactId>
 			<version>2.0.7.RELEASE</version>
-		</dependency>		
+		</dependency>	
+		<!-- Hibernate Project dependencies -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.4.0.GA</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Slf4j to Commons Logging Bridge, needed because hibernate uses slf4j --> 
+		<dependency>
+			<groupId>org.slf4j</groupId>
+      		<artifactId>slf4j-jcl</artifactId>
+      		<version>1.4.2</version>
+		</dependency>
 		<!-- Container-provided dependencies-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -112,7 +163,12 @@
 			<artifactId>junit</artifactId>
 			<version>4.5</version>
 			<scope>test</scope>
-		</dependency>			
+		</dependency>	
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
