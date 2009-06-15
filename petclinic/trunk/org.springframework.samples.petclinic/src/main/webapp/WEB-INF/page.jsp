@@ -1,15 +1,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page session="false" %>
-<html>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<title><tiles:insertAttribute name="title"/></title>
+	<style type="text/css" media="screen">
+        @import url("${pageContext.request.contextPath}/resources/css-framework/css/tools.css");
+        @import url("${pageContext.request.contextPath}/resources/css-framework/css/typo.css");
+        @import url("${pageContext.request.contextPath}/resources/css-framework/css/forms.css");
+        @import url("${pageContext.request.contextPath}/resources/css-framework/css/layout-navleft-1col.css");        
+        @import url("${pageContext.request.contextPath}/resources/css-framework/css/layout.css");
+    </style>
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/styles/main.css"/>
 </head>
 <body id="page-body">
 	<div id="page">
-		<div id="header">
-			<ul id="signin">
+		<div id="header" class="clearfix spring">
+			<div id="signin">
 				<c:choose>
 					<c:when test="${pageContext.request.userPrincipal != null}">
 						<p>Welcome ${pageContext.request.userPrincipal.name}</p>
@@ -19,7 +28,15 @@
 						<li><a href="<c:url value="/account/signin"/>">Sign In</a></li>		
 					</c:otherwise>
 				</c:choose>
-			</ul>
+			</div>
+			<div id="branding" class="spring">
+				<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/images/banner-graphic.png" alt="Spring Petclinic" /></a>
+			</div>
+		</div>
+		<div id="content" class="clearfix">
+			<div id="main">
+				<tiles:insertAttribute name="content"/>
+			</div>
 			<div id="nav">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}">Home</a></li>
@@ -28,15 +45,13 @@
 				</ul>
 			</div>
 		</div>
-		<div id="content">
-			<tiles:insertAttribute name="content"/>
-		</div>
-		<div id="footer">
+		<div id="footer" class="clearfix">
 			<ul id="legal">
 				<li>Privacy Policy</li>
 				<li>Terms of Service</li>
+				<li><a href="http://www.springsource.org"><img src="${pageContext.request.contextPath}/resources/images/springsource-logo.png" alt="Powered by SpringSource" /></a> </li>
 			</ul>	
-			<p>(c) 2009 <a href="http://www.springsource.org">springsource.org</a></p>
+			
 		</div>
 	</div>
 </body>

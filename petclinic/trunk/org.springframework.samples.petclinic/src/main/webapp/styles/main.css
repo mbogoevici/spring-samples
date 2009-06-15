@@ -1,0 +1,29 @@
+div#header {
+	background-color: transparent;
+	margin: 0 0 1em 0;
+	padding: 0 0;
+	text-align: center;
+}
+
+div#branding {
+	float: none;
+	padding: 0px 0px 0px 0px;
+	margin: 10px 0 0 0;
+	width: 100%;
+	text-align: none;
+}
+
+div#signin {
+	text-align: right;
+}
+
+ul#legal li {
+	list-style-type: none;
+	display: inline;
+	content: "|";
+}
+
+div#footer {
+	background-color: transparent;
+	color: black;
+}

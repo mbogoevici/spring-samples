@@ -1,10 +1,15 @@
 package org.springframework.samples.petclinic.appointments;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.samples.petclinic.util.ExternalContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.binding.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +19,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AppointmentsController {
 
 	private AppointmentBook appointmentBook;
+	
+	@InitBinder
+	public void configureBinder(WebDataBinder binder){
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format,false));
+		format = new SimpleDateFormat("hh:ss");
+		binder.registerCustomEditor(Date.class, "time",new CustomDateEditor(format,false));
+	}
 	
 	@Autowired
 	public AppointmentsController(AppointmentBook appointmentBook) {
