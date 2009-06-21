@@ -7,15 +7,15 @@
 	<description>Example job to get you started. It provides a
 		skeleton for a typical batch application.</description>
 
-	<batch:job id="job1">
-		<batch:step id="step1" parent="simpleStep">
-			<batch:tasklet>
-				<batch:chunk reader="reader" writer="writer"/>
-			</batch:tasklet>
-		</batch:step>
-	</batch:job>
+	<job id="job1" xmlns="http://www.springframework.org/schema/batch">
+		<step id="step1" parent="simpleStep">
+			<tasklet>
+				<chunk reader="reader" writer="writer"/>
+			</tasklet>
+		</step>
+	</job>
 
-	<bean id="reader" class="org.springframework.sample.batch.example.ExampleItemReader" />
+	<bean id="reader" class="org.springframework.sample.batch.example.ExampleItemReader"/>
 	<bean id="writer" class="org.springframework.sample.batch.example.ExampleItemWriter" />
 
 	<bean id="simpleStep"
