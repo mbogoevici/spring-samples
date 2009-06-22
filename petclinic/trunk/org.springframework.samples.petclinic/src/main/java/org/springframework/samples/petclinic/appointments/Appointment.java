@@ -31,7 +31,7 @@ public class Appointment {
 	
 	@SuppressWarnings("unused")
 	private Appointment(){
-		//Needed by ORM Engines
+		// Needed by ORM Engines
 	}
 	
 	public Appointment(String owner, String ownerPhone, String pet, String notes, Date dateTime) {

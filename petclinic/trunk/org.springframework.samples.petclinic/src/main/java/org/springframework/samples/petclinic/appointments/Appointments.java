@@ -10,7 +10,6 @@ public class Appointments {
 	private Map<String, List<Appointment>> vetAppointments = new LinkedHashMap<String, List<Appointment>>();
 	
 	public Appointments(List<Appointment> appointmentList) {
-		
 		//TODO: We need to do this in the DB, holding here until its clear we need this
 		for (Appointment appointment : appointmentList) {
 			if(vetAppointments.containsKey(appointment.getPet())){
