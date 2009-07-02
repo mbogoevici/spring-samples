@@ -5,8 +5,12 @@
 
 <tiles-definitions>
 
+	<definition name="owners.layout" extends="page">
+		<put-attribute name="localNavigation" value="/WEB-INF/owners/localNavigation.jsp" type="template"/>
+	</definition>
+
 	<!-- SEARCH PAGE -->
-	<definition name="owners" extends="page">
+	<definition name="owners" extends="owners.layout">
 		<put-attribute name="title" value="Owners" type="string" />
 		<put-attribute name="content" value="owners.content" type="definition" />
 	</definition>
@@ -16,7 +20,7 @@
 	</definition>
 
 	<!-- ADD NEW PAGE -->
-	<definition name="owners/new" extends="page">
+	<definition name="owners/new" extends="owners.layout">
 		<put-attribute name="title" value="Add New Owner" type="string" />
 		<put-attribute name="content" value="owners/new.content" type="definition" />
 	</definition>
@@ -26,7 +30,7 @@
 	</definition>
 
 	<!-- SEARCH RESULTS PAGE -->
-	<definition name="owners/search" extends="page">
+	<definition name="owners/search" extends="owners.layout">
 		<put-attribute name="title" value="Owner Search" type="string" />
 		<put-attribute name="content" value="owners/search.content" type="definition" />
 	</definition>
@@ -36,7 +40,7 @@
 	</definition>
 	
 	<!-- DETAIL PAGE -->
-	<definition name="owner" extends="page">
+	<definition name="owner" extends="owners.layout">
 		<put-attribute name="title" value="Owner" type="string" />
 		<put-attribute name="content" value="owner.content" type="definition" />
 	</definition>

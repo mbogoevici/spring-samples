@@ -14,6 +14,7 @@
 	<definition name="home" extends="page">
 		<put-attribute name="title" value="Welcome to Petclinic" type="string" />
 		<put-attribute name="content" value="/WEB-INF/home.jsp" type="template" />
+		<put-attribute name="localNavigation" value="" type="string"/>
 	</definition>
 		
 </tiles-definitions>

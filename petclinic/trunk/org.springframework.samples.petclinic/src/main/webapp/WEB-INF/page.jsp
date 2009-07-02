@@ -6,14 +6,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<title><tiles:insertAttribute name="title"/></title>
-	<style type="text/css" media="screen">
-        @import url("${pageContext.request.contextPath}/resources/css-framework/css/tools.css");
-        @import url("${pageContext.request.contextPath}/resources/css-framework/css/typo.css");
-        @import url("${pageContext.request.contextPath}/resources/css-framework/css/forms.css");
-        @import url("${pageContext.request.contextPath}/resources/css-framework/css/layout-navleft-1col.css");        
-        @import url("${pageContext.request.contextPath}/resources/css-framework/css/layout.css");
-    </style>
-	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/styles/main.css"/>
+
+	<link href="${pageContext.request.contextPath}/resources/css-framework/css/tools.css"  rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.request.contextPath}/resources/css-framework/css/typo.css"  rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.request.contextPath}/resources/css-framework/css/forms.css"  rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.request.contextPath}/resources/css-framework/css/layout-navtop-localleft.css" rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.request.contextPath}/resources/css-framework/css/layout.css"  rel="stylesheet" type="text/css"/>
+	<link href="${pageContext.request.contextPath}/resources/styles/main.css"  rel="stylesheet" type="text/css"/>
 </head>
 <body id="page-body">
 	<div id="page">
@@ -36,6 +35,9 @@
 		<div id="content" class="clearfix">
 			<div id="main">
 				<tiles:insertAttribute name="content"/>
+			</div>
+			<div id="local">
+				<tiles:insertAttribute name="localNavigation"/>
 			</div>
 			<div id="nav">
 				<ul>

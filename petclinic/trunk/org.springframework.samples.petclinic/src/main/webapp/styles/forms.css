@@ -1,0 +1,41 @@
+form div,form p {
+	padding: 0px;
+	margin: 0 0 .5em 0;
+}
+
+.field {
+	float: left;
+}
+
+.field .label {
+	float: left;
+	padding-top: 5px;
+	padding-right: 5px;
+	font-weight: bold;
+	width: 150px;
+	text-align: right;
+}
+
+.field .input {
+	float: left;
+	width: 250px;
+	text-align: left;
+}
+
+.field .output {
+	float: left;
+	width: 250px;
+	padding-top: 5px;
+	text-align: left;
+}
+
+.buttonGroup {
+	clear: both;
+	text-align: right;
+}
+
+.buttonGroup input[type="submit"],.buttonGroup input[type="button"],.buttonGroup button,.buttonGroup a
+	{
+	margin-left: 5px;
+	margin-right: 5px;
+}
