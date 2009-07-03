@@ -1,6 +1,8 @@
-package org.springframework.samples.petclinic.appointments;
+package org.springframework.samples.petclinic.appointments.web;
 
 import java.util.Date;
+
+import org.springframework.samples.petclinic.appointments.Appointment;
 
 public class AppointmentForm {
 	
@@ -15,6 +17,16 @@ public class AppointmentForm {
 	private Date time;
 	
 	private String notes;
+	
+	private String phone;
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public Long getDoctor() {
 		return doctor;
@@ -64,9 +76,7 @@ public class AppointmentForm {
 		this.notes = notes;
 	}
 	
-	
 	public Appointment createAppointment(){
-		//TODO: Add phone
-		return new Appointment(this.owner.toString(),null,this.pet,this.notes,this.date);
+		return new Appointment(this.owner.toString(),this.phone,this.pet,this.notes,this.date);
 	}
 }
