@@ -1,1 +1,1 @@
-mvn exec:java
+mvn -e -Ddb.file=jpetstore exec:java
