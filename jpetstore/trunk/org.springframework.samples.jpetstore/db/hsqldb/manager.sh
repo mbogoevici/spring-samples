@@ -1,1 +1,2 @@
-mvn -f pom-manager.xml exec:java
+cd `dirname $0`
+mvn -e -f pom-manager.xml exec:java
