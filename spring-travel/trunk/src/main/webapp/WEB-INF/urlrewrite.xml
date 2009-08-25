@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN" "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+<urlrewrite default-match-type="wildcard">
+	
+	<rule>
+		<from>/</from>
+		<to>/index.html</to>
+	</rule>
+	
+	<rule>
+		<from>/index.html</from>
+		<to>/index.html</to>
+	</rule>
+	
+	<rule>
+		<from>/resources/**</from>
+		<to>/resources/$1</to>
+	</rule>
+	
+	<rule>
+		<from>/**</from>
+		<to>/spring/$1</to>
+	</rule>
+	
+</urlrewrite>
