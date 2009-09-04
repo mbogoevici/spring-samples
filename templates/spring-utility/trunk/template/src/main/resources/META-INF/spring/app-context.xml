@@ -3,9 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<description>Example config to get you started.</description>
+	<description>Example configuration to get you started.</description>
 
-	<bean id="service"
-		class="org.springframework.sample.service.ExampleService" />
+	<bean id="service" class="mytld.mycompany.myapp.ExampleService" />
 
 </beans>

@@ -1,4 +1,4 @@
-package org.springframework.sample.service;
+package mytld.mycompany.myapp;
 
 
 /**

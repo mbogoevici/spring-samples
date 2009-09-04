@@ -1,5 +1,6 @@
-package org.springframework.sample.service;
+package mytld.mycompany.myapp;
 
+import mytld.mycompany.myapp.ExampleService;
 import junit.framework.TestCase;
 
 public class ExampleServiceTests extends TestCase {
