@@ -2,7 +2,7 @@
 	<descriptor id="org.springframework.samples.spring.utility"
 		name="Simple Spring Utility Project"
 		kind="template"
-		version="1.0.0">
+		version="2.2.0">
 		<description>
 			A simple jar project that has some Spring configuration and an integration test
 		</description>
