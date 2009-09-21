@@ -1,0 +1,12 @@
+<template>
+	<descriptor id="org.springframework.templates.faces"
+		name="Spring Faces Project"
+		kind="template"
+		version="1.0.0">
+		<description>
+			A new Spring and JavaServerFaces web application development project
+		</description>
+	</descriptor>
+	<project path="template.zip"/>
+	<json path="wizard.json"/>
+</template>

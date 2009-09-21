@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 
-Bundle-Name: Spring MVC Project Template
-Bundle-SymbolicName: org.springframework.templates.mvc;singleton:=true
-Bundle-Version: 
-Bundle-Vendor: SpringSource
-Require-Bundle: com.springsource.sts.wizard

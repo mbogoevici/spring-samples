@@ -1,0 +1,30 @@
+{
+	"info" : {
+		"elements" : {
+			"element" :	[
+				{
+					"name" : "topLevelPackage",
+					"description" : "Please specify the top-level package e.g. com.mycompany.travel or com.mycompany.travel.booking",
+					"type" : "java.lang.String",
+					"page" : 0,
+					"required" : true,
+					"pattern" : "\\w+\\.\\w+(\\.\\w+)+",
+					"replaceKind" : "topLevelPackage"
+				}
+			]
+		},
+
+		"topLevelPackage" : "mytld.mycompany.myapp.mysubsystem",
+
+		"projectName" : "projectName",
+
+		"pages" : {
+			"page" : [
+					{
+					"order" : 0,
+					"description" : "Project Settings"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"info" : {
+
+		"projectName" : "projectName",
+
+		"pages" : {
+			"page" : [
+			{
+				"order" : 0,
+				"description" : "Project Settings"
+			}
+			]
+		}
+	}
+}

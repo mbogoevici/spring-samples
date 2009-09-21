@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Spring Batch Simple Template Plug-in
-Bundle-SymbolicName: org.springframework.samples.batch.simple;singleton:=true
-Bundle-Version: 2.0.0.RELEASE
-Bundle-Vendor: SpringSource
-Require-Bundle: com.springsource.sts.wizard
