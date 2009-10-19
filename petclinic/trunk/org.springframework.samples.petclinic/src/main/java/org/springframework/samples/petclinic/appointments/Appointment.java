@@ -1,62 +1,57 @@
 package org.springframework.samples.petclinic.appointments;
 
-import java.util.Date;
+import org.joda.time.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity
 public class Appointment {
-	
-	@Id
-	@GeneratedValue
-	private Long id;
-	
-	private String owner;
-	
-	private String ownerPhone;
-	
-	private String pet;
-	
+
+	private DateTime dateTime;
+
+	private String doctor;
+
+	private String client;
+
+	private String clientPhone;
+
+	private String patient;
+
 	private String notes;
-	
-	private Date dateTime;
-	
-	@SuppressWarnings("unused")
-	private Appointment(){
-		// Needed by ORM Engines
-	}
-	
-	public Appointment(String owner, String ownerPhone, String pet, String notes, Date dateTime) {
-		this.owner = owner;
-		this.ownerPhone = ownerPhone;
-		this.pet = pet;
-		this.notes = notes;
-		this.dateTime = dateTime;
-	}
-	
-	public String getOwner() {
-		return owner;
-	}
-	
-	public String getOwnerPhone() {
-		return ownerPhone;
+
+	Appointment() {
+
 	}
 
-	public String getPet() {
-		return pet;
+	public Appointment(DateTime dateTime, String doctor, String client,
+			String clientPhone, String patient, String notes) {
+		this.dateTime = dateTime;
+		this.doctor = doctor;
+		this.client = client;
+		this.clientPhone = clientPhone;
+		this.patient = patient;
+		this.notes = notes;
 	}
-	
-	public Date getDateTime() {
+
+	public DateTime getDateTime() {
 		return dateTime;
+	}
+
+	public String getDoctor() {
+		return doctor;
+	}
+
+	public String getClient() {
+		return client;
+	}
+
+	public String getClientPhone() {
+		return clientPhone;
+	}
+
+	public String getPatient() {
+		return patient;
 	}
 
 	public String getNotes() {
 		return notes;
 	}
-	
-	public Long getId() {
-		return id;
-	}
+
 }

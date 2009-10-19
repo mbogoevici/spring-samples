@@ -1,13 +1,13 @@
 package org.springframework.samples.petclinic.appointments;
 
-import java.util.Date;
+import org.joda.time.LocalDate;
 
 public interface AppointmentBook {
 
 	Appointments getAppointmentsForToday();
-	
-	Appointments getAppointmentsForDay(Date day);
 
-	Long createAppointment(Appointment form);
+	Appointments getAppointmentsForDay(LocalDate day);
+
+	Long createAppointment(Appointment appointment);
 
 }

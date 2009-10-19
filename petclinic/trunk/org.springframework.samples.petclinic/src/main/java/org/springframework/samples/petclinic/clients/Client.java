@@ -1,6 +1,6 @@
-package org.springframework.samples.petclinic.owners;
+package org.springframework.samples.petclinic.clients;
 
-public class OwnerForm {
+public class Client {
 
 	private Long id;
 
@@ -13,23 +13,21 @@ public class OwnerForm {
 	private String city;
 
 	private String state;
-	
+
 	private String zip;
-	
+
 	private String country;
-	
+
 	private String phone;
-	
-	private Long vet;
-	
-	public OwnerForm() {
-		
+
+	public Client() {
+
 	}
-	
-	public OwnerForm(Long id) {
+
+	public Client(Long id) {
 		this.id = id;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -65,7 +63,7 @@ public class OwnerForm {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
+
 	public String getState() {
 		return state;
 	}
@@ -96,14 +94,6 @@ public class OwnerForm {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public Long getVet() {
-		return vet;
-	}
-
-	public void setVet(Long vet) {
-		this.vet = vet;
 	}
 
 }

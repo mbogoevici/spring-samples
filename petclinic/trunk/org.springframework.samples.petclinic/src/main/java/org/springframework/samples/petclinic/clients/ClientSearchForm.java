@@ -1,6 +1,6 @@
-package org.springframework.samples.petclinic.owners;
+package org.springframework.samples.petclinic.clients;
 
-public class OwnerSearchForm {
+public class ClientSearchForm {
 	
 	private String lastName;
 

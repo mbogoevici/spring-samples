@@ -1,6 +1,6 @@
-package org.springframework.samples.petclinic.owners;
+package org.springframework.samples.petclinic.clients;
 
-public class OwnerSummary {
+public class ClientSummary {
 	
 	private Long id;
 	
