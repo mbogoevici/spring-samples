@@ -17,7 +17,14 @@
 	<!-- REGISTERED HANDLER TYPES -->
 
 	<!-- Enables annotated @Controllers; responsible for invoking an annotated POJO @Controller when one is mapped. -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<!-- Configures Spring MVC DataBinder instances globally -->
+		<property name="webBindingInitializer">
+			<bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+				<property name="formatterRegistry" ref="formatterRegistry" />
+	        </bean>
+		</property>
+	</bean>
 
 	<!--  VIEW RESOLUTION AND RENDERING -->
 	
@@ -37,9 +44,12 @@
 		</property>
 	</bean>
 
-	<!-- Configures Apache Commons Fileupload -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
- 		<property name="maxUploadSize" value="10000000"/>
-	</bean>
+	<!-- TYPE CONVERSION AND PROPERTY FORMATTING -->
+	
+	<!-- Enables the Spring 3 core.convert Type Coersion system -->
+	<bean id="conversionService" class="org.springframework.core.convert.support.DefaultConversionService"/>
+	
+	<!-- Enables the Spring 3 ui.format Property Formatting system as a simpler alternative to PropertyEditors -->
+	<bean id="formatterRegistry" class="org.springframework.samples.petclinic.util.PetclinicFormatterRegistry" />
 	
 </beans>

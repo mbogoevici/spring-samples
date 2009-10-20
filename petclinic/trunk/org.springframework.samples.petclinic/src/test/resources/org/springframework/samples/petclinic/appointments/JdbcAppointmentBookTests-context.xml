@@ -9,7 +9,7 @@
 
 
 	<!-- Scans within the base package of the application for @Components to configure as beans -->
-	<context:component-scan base-package="org.springframework.samples.petclinic" />
+	<context:component-scan base-package="org.springframework.samples.petclinic.appointments" />
 
 	<jdbc:embedded-database id="dataSource" type="H2">
 		<jdbc:script location="classpath:schema.sql"/>

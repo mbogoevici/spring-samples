@@ -1,7 +1,5 @@
 package org.springframework.samples.petclinic.appointments;
 
-import java.util.Comparator;
-
 import org.joda.time.DateTime;
 import org.springframework.core.style.ToStringCreator;
 
