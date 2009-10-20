@@ -23,6 +23,11 @@
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>com.springsource.javax.validation</artifactId>
+			<version>1.0.0.GA</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.log4j</groupId>
 			<artifactId>com.springsource.org.apache.log4j</artifactId>
 			<version>1.2.15</version>
@@ -65,7 +70,13 @@
 			<groupId>org.joda</groupId>
 			<artifactId>com.springsource.org.joda.time</artifactId>
 			<version>1.6.0</version>
-		</dependency>		
+		</dependency>
+		<!-- For frameworks that use sl4j logging API; allows implementation to be backed by commons-logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>com.springsource.slf4j.jcl</artifactId>
+			<version>1.5.6</version>
+		</dependency>
 		<!-- Spring Framework Project libraries -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -113,6 +124,11 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>com.springsource.org.hibernate.ejb</artifactId>
 			<version>3.4.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>com.springsource.org.hibernate.validator</artifactId>
+			<version>4.0.0.GA</version>
 		</dependency>
 		<!-- Container-provided dependencies-->
 		<dependency>

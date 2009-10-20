@@ -1,18 +1,25 @@
 package org.springframework.samples.petclinic.appointments;
 
+import javax.validation.constraints.NotNull;
+
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
 public class AppointmentForm {
 
+	@NotNull
 	private Long doctor;
 
+	@NotNull
 	private Long client;
 
+	@NotNull
 	private Long patient;
 
+	@NotNull
 	private LocalDate date;
 
+	@NotNull
 	private LocalTime time;
 
 	private String notes;

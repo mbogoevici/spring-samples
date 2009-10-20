@@ -22,6 +22,7 @@
 		<property name="webBindingInitializer">
 			<bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
 				<property name="formatterRegistry" ref="formatterRegistry" />
+				<property name="validator" ref="validator" />
 	        </bean>
 		</property>
 	</bean>
@@ -44,12 +45,15 @@
 		</property>
 	</bean>
 
-	<!-- TYPE CONVERSION AND PROPERTY FORMATTING -->
+	<!-- TYPE CONVERSION, PROPERTY FORMATTING, AND VALIDATION -->
 	
 	<!-- Enables the Spring 3 core.convert Type Coersion system -->
 	<bean id="conversionService" class="org.springframework.core.convert.support.DefaultConversionService"/>
 	
 	<!-- Enables the Spring 3 ui.format Property Formatting system as a simpler alternative to PropertyEditors -->
 	<bean id="formatterRegistry" class="org.springframework.samples.petclinic.util.PetclinicFormatterRegistry" />
+
+	<!-- Configures JSR-303 Declarative Validation with default provider on classpath (Hibernate Validator) -->
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 	
 </beans>

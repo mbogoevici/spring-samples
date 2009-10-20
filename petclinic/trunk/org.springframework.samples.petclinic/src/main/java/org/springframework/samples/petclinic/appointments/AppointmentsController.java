@@ -1,9 +1,12 @@
 package org.springframework.samples.petclinic.appointments;
 
+import javax.validation.Valid;
+
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,8 +29,7 @@ public class AppointmentsController {
 
 	@RequestMapping(value = "/{day}", method = RequestMethod.GET)
 	public String getForDay(@PathVariable LocalDate day, Model model) {
-		DoctorAppointments appointments = appointmentBook
-				.getAppointmentsForDay(day);
+		DoctorAppointments appointments = appointmentBook.getAppointmentsForDay(day);
 		model.addAttribute(appointments);
 		return "appointments";
 	}
@@ -38,7 +40,10 @@ public class AppointmentsController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String add(AppointmentForm appointment) {
+	public String add(@Valid AppointmentForm appointment, BindingResult result) {
+		if (result.hasErrors()) {
+			return "appointments/new";
+		}
 		appointmentBook.addAppointment(appointment);
 		return "redirect:/appointments";
 	}
