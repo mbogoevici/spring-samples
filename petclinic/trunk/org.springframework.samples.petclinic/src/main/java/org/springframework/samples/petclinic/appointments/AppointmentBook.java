@@ -4,10 +4,8 @@ import org.joda.time.LocalDate;
 
 public interface AppointmentBook {
 
-	Appointments getAppointmentsForToday();
+	DoctorAppointments getAppointmentsForDay(LocalDate day);
 
-	Appointments getAppointmentsForDay(LocalDate day);
-
-	Long createAppointment(Appointment appointment);
+	void addAppointment(AppointmentForm appointment);
 
 }

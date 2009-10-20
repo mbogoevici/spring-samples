@@ -20,25 +20,26 @@ public class AppointmentsController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Appointments get() {
-		return appointmentBook.getAppointmentsForToday();
+	public DoctorAppointments get() {
+		return appointmentBook.getAppointmentsForDay(new LocalDate());
 	}
 
 	@RequestMapping(value = "/{day}", method = RequestMethod.GET)
 	public String getForDay(@PathVariable LocalDate day, Model model) {
-		Appointments appointments = appointmentBook.getAppointmentsForDay(day);
+		DoctorAppointments appointments = appointmentBook
+				.getAppointmentsForDay(day);
 		model.addAttribute(appointments);
 		return "appointments";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public Appointment getNewForm() {
-		return new Appointment();
+	public AppointmentForm getNewForm() {
+		return new AppointmentForm();
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(Appointment appointment) {
-		appointmentBook.createAppointment(appointment);
+	public String add(AppointmentForm appointment) {
+		appointmentBook.addAppointment(appointment);
 		return "redirect:/appointments";
 	}
 }

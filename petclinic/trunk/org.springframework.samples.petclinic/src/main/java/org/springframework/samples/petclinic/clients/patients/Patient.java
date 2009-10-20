@@ -8,12 +8,12 @@ public class Patient {
 
 	private String name;
 
+	private Gender gender;
+
 	private String species;
 
 	private String breed;
-
-	private Gender gender;
-
+	
 	private DateMidnight birthDate;
 
 	private Measurement weight;
@@ -22,16 +22,16 @@ public class Patient {
 		return name;
 	}
 
+	public Gender getGender() {
+		return gender;
+	}
+
 	public String getSpecies() {
 		return species;
 	}
 
 	public String getBreed() {
 		return breed;
-	}
-
-	public Gender getGender() {
-		return gender;
 	}
 
 	public DateMidnight getBirthDate() {
