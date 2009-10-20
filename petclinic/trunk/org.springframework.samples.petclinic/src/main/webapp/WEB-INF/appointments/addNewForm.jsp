@@ -6,7 +6,6 @@
 	action="${pageContext.request.contextPath}/appointments"
 	modelAttribute="appointmentForm" method="post">
 	<fieldset>
-		<legend>Appointment data</legend> 
 		<div class="field">
 			<form:label	for="doctor" path="doctor" cssClass="label">
 				Doctor <form:input path="doctor" cssClass="input"/>
@@ -14,14 +13,14 @@
 		</div>
 		
 		<div class="field">
-			<form:label for="owner" path="owner" cssClass="label">
-				Owner <form:input path="owner" cssClass="input"/>
+			<form:label for="client" path="client" cssClass="label">
+				Client <form:input path="client" cssClass="input"/>
 			</form:label> 
 		</div>
 		
 		<div class="field">
-			<form:label for="pet" path="pet" cssClass="label">
-				Pet <form:input path="pet" cssClass="input"/>
+			<form:label for="patient" path="patient" cssClass="label">
+				Patient <form:input path="patient" cssClass="input"/>
 			</form:label>
 		</div> 
 		

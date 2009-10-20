@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="clients.layout" extends="page">
+		<put-attribute name="localNavigation" value="/WEB-INF/clients/localNavigation.jsp" type="template"/>
+	</definition>
+
+	<!-- SEARCH PAGE -->
+	<definition name="clients" extends="clients.layout">
+		<put-attribute name="title" value="Clients" type="string" />
+		<put-attribute name="content" value="clients.content" type="definition" />
+	</definition>
+
+	<definition name="clients.content" template="/WEB-INF/clients/content.jsp">
+		<put-attribute name="main" value="/WEB-INF/clients/searchForm.jsp" type="template" />
+	</definition>
+
+	<!-- ADD NEW PAGE -->
+	<definition name="clients/new" extends="clients.layout">
+		<put-attribute name="title" value="Add New Client" type="string" />
+		<put-attribute name="content" value="clients/new.content" type="definition" />
+	</definition>
+
+	<definition name="clients/new.content" template="/WEB-INF/clients/content.jsp">
+		<put-attribute name="main" value="/WEB-INF/clients/addNewForm.jsp" type="template" />
+	</definition>
+
+	<!-- SEARCH RESULTS PAGE -->
+	<definition name="clients/search" extends="clients.layout">
+		<put-attribute name="title" value="Client Search" type="string" />
+		<put-attribute name="content" value="clients/search.content" type="definition" />
+	</definition>
+
+	<definition name="clients/search.content" template="/WEB-INF/clients/content.jsp">
+		<put-attribute name="main" value="/WEB-INF/clients/searchResults.jsp" type="template" />
+	</definition>
+	
+	<!-- DETAIL PAGE -->
+	<definition name="client" extends="clients.layout">
+		<put-attribute name="title" value="Client" type="string" />
+		<put-attribute name="content" value="client.content" type="definition" />
+	</definition>
+
+	<definition name="client.content" template="/WEB-INF/clients/content.jsp">
+		<put-attribute name="main" value="/WEB-INF/clients/client.jsp" type="template" />
+	</definition>
+	
+</tiles-definitions>
