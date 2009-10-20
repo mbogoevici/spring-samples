@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.appointments;
 
 import static org.junit.Assert.assertEquals;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.junit.Test;
@@ -36,6 +37,11 @@ public class JdbcAppointmentBookTests {
 		this.appointmentBook.addAppointment(form);
 		DoctorAppointments appointments = this.appointmentBook.getAppointmentsForDay(new LocalDate(2009, 12, 29));
 		assertEquals(1, appointments.asMap().size());
+		Appointment a = appointments.getAppointments("Dwight Howard").iterator().next();
+		assertEquals(new DateTime(2009, 12, 29, 8, 0, 0, 0), a.getDateTime());
+		assertEquals("Macy", a.getPatient());
+		assertEquals("Keith Donald", a.getClient());
+		assertEquals("1-205-333-5555", a.getClientPhone());
 	}
 
 }

@@ -30,7 +30,7 @@ public class AppointmentsController {
 	@RequestMapping(value = "/{day}", method = RequestMethod.GET)
 	public String getForDay(@PathVariable LocalDate day, Model model) {
 		DoctorAppointments appointments = appointmentBook.getAppointmentsForDay(day);
-		model.addAttribute(appointments);
+		model.addAttribute("doctorAppointmentsMap", appointments.asMap());
 		return "appointments";
 	}
 

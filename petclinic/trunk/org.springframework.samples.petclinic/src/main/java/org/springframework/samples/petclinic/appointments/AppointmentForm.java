@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
+import org.springframework.core.style.ToStringCreator;
 
 public class AppointmentForm {
 
@@ -70,6 +71,10 @@ public class AppointmentForm {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+	
+	public String toString() {
+		return new ToStringCreator(this).append("date", date).append("time", time).append("patient", patient).toString();
 	}
 
 }

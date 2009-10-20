@@ -44,7 +44,7 @@ public class JdbcAppointmentBook implements AppointmentBook {
 	private static class AppointmentRowMapper implements RowMapper<Appointment> {
 		public Appointment mapRow(ResultSet rs, int row) throws SQLException {
 			Appointment a = new Appointment();
-			a.setDateTime(new DateTime(rs.getDate("DATETIME")));
+			a.setDateTime(new DateTime(rs.getTimestamp("DATETIME")));
 			a.setDoctor(rs.getString("DOCTOR"));
 			a.setClient(rs.getString("CLIENT"));
 			a.setClientPhone(rs.getString("CLIENTPHONE"));
