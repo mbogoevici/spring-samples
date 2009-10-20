@@ -2,8 +2,8 @@ package org.springframework.samples.petclinic.appointments;
 
 import static org.junit.Assert.assertEquals;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +29,10 @@ public class JdbcAppointmentBookTests {
 	@Transactional
 	public void createAppointment() {
 		AppointmentForm form = new AppointmentForm();
-		form.setDateTime(new DateTime(2009, 12, 29, 8, 0, 0, 0));
+		form.setDate(new LocalDate(2009, 12, 29));
+		form.setTime(new LocalTime(8, 0, 0, 0));
 		form.setNotes("Checkup");
-		form.setPatientId(1L);
+		form.setPatient(1L);
 		this.appointmentBook.addAppointment(form);
 		DoctorAppointments appointments = this.appointmentBook.getAppointmentsForDay(new LocalDate(2009, 12, 29));
 		assertEquals(1, appointments.asMap().size());

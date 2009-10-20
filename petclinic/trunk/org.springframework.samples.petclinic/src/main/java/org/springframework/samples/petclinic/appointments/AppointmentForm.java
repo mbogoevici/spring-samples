@@ -1,21 +1,60 @@
 package org.springframework.samples.petclinic.appointments;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 public class AppointmentForm {
 
-	private DateTime dateTime;
+	private Long doctor;
+
+	private Long client;
+
+	private Long patient;
+
+	private LocalDate date;
+
+	private LocalTime time;
 
 	private String notes;
 
-	private Long patientId;
-
-	public DateTime getDateTime() {
-		return dateTime;
+	public Long getDoctor() {
+		return doctor;
 	}
 
-	public void setDateTime(DateTime dateTime) {
-		this.dateTime = dateTime;
+	public void setDoctor(Long doctor) {
+		this.doctor = doctor;
+	}
+
+	public Long getClient() {
+		return client;
+	}
+
+	public void setClient(Long client) {
+		this.client = client;
+	}
+
+	public Long getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Long patient) {
+		this.patient = patient;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
 	}
 
 	public String getNotes() {
@@ -24,14 +63,6 @@ public class AppointmentForm {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
-	}
-
-	public Long getPatientId() {
-		return patientId;
-	}
-
-	public void setPatientId(Long patientId) {
-		this.patientId = patientId;
 	}
 
 }

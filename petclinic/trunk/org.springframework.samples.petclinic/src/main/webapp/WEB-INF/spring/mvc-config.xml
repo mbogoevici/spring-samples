@@ -32,7 +32,7 @@
 			<list>
 				<value>/WEB-INF/tiles.xml</value>
 				<value>/WEB-INF/appointments/tiles.xml</value>
-				<value>/WEB-INF/owners/tiles.xml</value>
+				<value>/WEB-INF/clients/tiles.xml</value>
 			</list>
 		</property>
 	</bean>

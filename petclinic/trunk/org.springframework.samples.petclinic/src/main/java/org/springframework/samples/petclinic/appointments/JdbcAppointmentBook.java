@@ -36,8 +36,7 @@ public class JdbcAppointmentBook implements AppointmentBook {
 
 	public void addAppointment(AppointmentForm appointment) {
 		this.jdbcTemplate.update("insert into Appointment (dateTime, notes, patientId) values (?, ?, ?)",
-				appointment.getDateTime().toDate(), appointment.getNotes(),
-				appointment.getPatientId());
+				appointment.getDate().toDateTime(appointment.getTime()).toDate(), appointment.getNotes(), appointment.getPatient());
 	}
 
 	// internal helpers
