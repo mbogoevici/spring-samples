@@ -2,14 +2,11 @@ package org.springframework.samples.petclinic.appointments;
 
 import static org.junit.Assert.assertEquals;
 
-import javax.sql.DataSource;
-
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,13 +17,6 @@ public class JdbcAppointmentBookTests {
 
 	@Autowired
 	private AppointmentBook appointmentBook;
-
-	private SimpleJdbcTemplate jdbcTemplate;
-
-	@Autowired
-	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new SimpleJdbcTemplate(dataSource);
-	}
 
 	@Test
 	@Transactional
