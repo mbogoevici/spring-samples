@@ -6,17 +6,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<title><tiles:insertAttribute name="title"/></title>
-
-	<link href="${pageContext.request.contextPath}/resources/css-framework/css/tools.css"  rel="stylesheet" type="text/css"/>
-	<link href="${pageContext.request.contextPath}/resources/css-framework/css/typo.css"  rel="stylesheet" type="text/css"/>
-	<link href="${pageContext.request.contextPath}/resources/css-framework/css/forms.css"  rel="stylesheet" type="text/css"/>
-	<link href="${pageContext.request.contextPath}/resources/css-framework/css/layout-navtop-localleft.css" rel="stylesheet" type="text/css"/>
-	<link href="${pageContext.request.contextPath}/resources/css-framework/css/layout.css"  rel="stylesheet" type="text/css"/>
 	<link href="${pageContext.request.contextPath}/resources/styles/main.css"  rel="stylesheet" type="text/css"/>
 </head>
 <body id="page-body">
 	<div id="page">
-		<div id="header" class="clearfix spring">
+		<div id="header">
 			<div id="signin">
 				<c:choose>
 					<c:when test="${pageContext.request.userPrincipal != null}">
@@ -28,11 +22,11 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div id="branding" class="spring">
+			<div id="branding">
 				<a href="${pageContext.request.contextPath}"><img src="${pageContext.request.contextPath}/resources/images/banner-graphic.png" alt="Spring Petclinic" /></a>
 			</div>
 		</div>
-		<div id="content" class="clearfix">
+		<div id="content">
 			<div id="main">
 				<tiles:insertAttribute name="content"/>
 			</div>
@@ -47,7 +41,7 @@
 				</ul>
 			</div>
 		</div>
-		<div id="footer" class="clearfix">
+		<div id="footer">
 			<ul id="legal">
 				<li>Privacy Policy</li>
 				<li>Terms of Service</li>
