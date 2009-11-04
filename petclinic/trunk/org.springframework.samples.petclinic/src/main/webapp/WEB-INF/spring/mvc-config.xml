@@ -21,7 +21,7 @@
 		<!-- Configures Spring MVC DataBinder instances globally -->
 		<property name="webBindingInitializer">
 			<bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
-				<property name="formatterRegistry" ref="formatterRegistry" />
+				<property name="conversionService" ref="conversionService" />
 				<property name="validator" ref="validator" />
 	        </bean>
 		</property>
@@ -45,14 +45,11 @@
 		</property>
 	</bean>
 
-	<!-- TYPE CONVERSION, PROPERTY FORMATTING, AND VALIDATION -->
+	<!-- FIELD TYPE CONVERSION AND VALIDATION -->
 	
-	<!-- Enables the Spring 3 core.convert Type Coersion system -->
-	<bean id="conversionService" class="org.springframework.core.convert.support.DefaultConversionService"/>
+	<!-- Enables the Spring 3 Type Conversion system -->
+	<bean id="conversionService" class="org.springframework.samples.petclinic.util.PetclinicConversionServiceFactory" />
 	
-	<!-- Enables the Spring 3 ui.format Property Formatting system as a simpler alternative to PropertyEditors -->
-	<bean id="formatterRegistry" class="org.springframework.samples.petclinic.util.PetclinicFormatterRegistry" />
-
 	<!-- Configures JSR-303 Declarative Validation with default provider on classpath (Hibernate Validator) -->
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 	

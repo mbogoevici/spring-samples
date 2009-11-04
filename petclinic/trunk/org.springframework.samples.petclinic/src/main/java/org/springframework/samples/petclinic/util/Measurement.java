@@ -7,4 +7,13 @@ public class Measurement {
 	private BigDecimal amount;
 	
 	private Unit unit;
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public Unit getUnit() {
+		return unit;
+	}
+
 }

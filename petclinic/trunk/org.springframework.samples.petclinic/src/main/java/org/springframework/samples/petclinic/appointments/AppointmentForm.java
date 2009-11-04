@@ -18,10 +18,10 @@ public class AppointmentForm {
 	private Long patient;
 
 	@NotNull
-	private LocalDate date;
+	private LocalDate date = new LocalDate();
 
 	@NotNull
-	private LocalTime time;
+	private LocalTime time = new LocalTime();
 
 	private String notes;
 
