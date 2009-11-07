@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<!-- HANDLER MAPPING RULES -->
-	
-	<!-- Maps requests to @Controllers based on @RequestMapping("path") annotation values
-		 If no annotation-based path mapping is found, Spring MVC sends a 404 response and logs a pageNotFound warning. -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-		<property name="order" value="1" />
-	</bean>
-	
-	<!-- REGISTERED HANDLER TYPES -->
-
-	<!-- Enables annotated @Controllers; responsible for invoking an annotated POJO @Controller when one is mapped. -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<!-- Configures Spring MVC DataBinder instances globally -->
-		<property name="webBindingInitializer">
-			<bean class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
-				<property name="conversionService" ref="conversionService" />
-				<property name="validator" ref="validator" />
-	        </bean>
-		</property>
-	</bean>
+	<!-- Turns on support for mapping requests to Spring MVC @Controller methods
+		 Also registers default Formatters and Validators for use across all @Controllers -->
+	<mvc:annotated-controllers />
 
 	<!--  VIEW RESOLUTION AND RENDERING -->
 	
@@ -45,12 +28,4 @@
 		</property>
 	</bean>
 
-	<!-- FIELD TYPE CONVERSION AND VALIDATION -->
-	
-	<!-- Enables the Spring 3 Type Conversion system -->
-	<bean id="conversionService" class="org.springframework.samples.petclinic.util.PetclinicConversionServiceFactory" />
-	
-	<!-- Configures JSR-303 Declarative Validation with default provider on classpath (Hibernate Validator) -->
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-	
 </beans>
