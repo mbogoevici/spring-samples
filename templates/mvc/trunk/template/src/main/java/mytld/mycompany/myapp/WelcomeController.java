@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application welcome page.
  */
 @Controller
+@RequestMapping("/welcome")
 public class WelcomeController {
 
 	/**
