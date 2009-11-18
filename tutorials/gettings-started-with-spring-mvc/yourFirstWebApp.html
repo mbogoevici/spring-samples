@@ -37,12 +37,12 @@
         <img style="width: 242px; height: 312px;" alt="Package Explorer" src="images/new-project-packag-explorer.png">
       </li>
       <li>
-        Next, right-click on your project in your Package Explorer view,and select Run As -&gt; Run On Server.<br clear="all">
+        Next, right-click on your project in your Package Explorer view, and select Run As -&gt; Run On Server.<br clear="all">
         <br clear="all">
         <img style="width: 500px; height: 495px;" alt="Run On Server" src="images/run-on-server.png">&nbsp;<br clear="all">
         <br clear="all">
         Now select the tc Server instance that STS has automatically defined for you, check the 'Always use this server'
-        box and press Finish. The server will start your application, and uou should see your application's welcome page 
+        box and press Finish. The server will start your application, and you should see your application's welcome page 
         appear in the embedded web browser as shown below.
         Alternatively, you can access your application in an external browser&nbsp;
         <span style="text-decoration: underline;">http://localhost:8080/gettingstarted/</span><br clear="all">
@@ -94,9 +94,9 @@
     will map that to the <span class="file">/app/welcome</span> URL, and all other incoming requests will have 
     <span class="file">/app</span> prepended so that they map to the DispatcherServlet, which will be stripped again
     from the outgoing URLs. This is done to make the URLs a bit nicer: without the filter, 
-    they would always need to have <span class="file">/app</span> in them, and mapping
-    the DispatcherServlet to<span class="file">/*</span> is also not an option as it causes issues with the JSP support 
-    of the servlet container.
+    they would always need to have <span class="file">/app</span> in them; mapping
+    the DispatcherServlet to<span class="file">/*</span> to achieve that effect is not an option, as it causes issues 
+    with the JSP support of the servlet container.
   </div>
 </div>
 <div id="section3" class="section">
@@ -110,7 +110,7 @@
         <pre><code>@Controller
 public class GreetingController {
 	
-	private List<String> greetings = new ArrayList<String>();
+	private List&lt;String&gt; greetings = new ArrayList&lt;String&gt;();
 	
 	public GreetingController() {
 		greetings.add("Hello World");
