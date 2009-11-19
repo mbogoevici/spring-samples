@@ -12,7 +12,7 @@
 </head>
 <body class="tundra">
 <a href="http://www.springsource.org"><img src="../images/logo.png"></a>
-<h1> Creating Your First Web Application</h1>
+<h1> Creating Your First Spring Web Application</h1>
 <div id="section1" class="section">
   <h2>Create your project</h2>
   <div id="sts">
@@ -28,7 +28,7 @@
         <img style="width: 574px; height: 186px;" alt="New Project Menu" src="images/new-project-menu.png">&nbsp;<br clear="all">
         <br clear="all">
         Then select "Spring MVC Project" and press Next. Enter 'gettingstarted' for your
-        project name and 'com.springsource.samples.springmvc' as the top level package name.<br clear="all">
+        project name and 'com.springsource.samples' as the top level package name.<br clear="all">
         <br clear="all">
         <img style="width: 526px; height: 387px;" alt="New Project Settings" src="images/new-project-settings.png"><br clear="all">
         <br clear="all">
@@ -179,7 +179,7 @@ public String add(@RequestParam String greeting) {
 	greetings.add(greeting);
 	return "redirect:/greetings";
 } </pre></code>
-        Don't forget to add an import for the <em>RequestMethod</em>. 
+        Don't forget to add an import for the <em>RequestMethod</em> and <em>RequestParam</em> classes. 
       </li>
       <li>
       Now restart your server again and refresh your browser window: you will now be able to add new greetings and to
