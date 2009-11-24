@@ -1,10 +1,10 @@
 <template>
-	<descriptor id="org.springframework.samples.batch.simple"
-		name="Simple Spring Batch Project"
+	<descriptor id="org.springframework.samples.batch.admin.web"
+		name="Spring Batch Admin Webapp"
 		kind="template"
 		version="2.2.0">
 		<description>
-			A simple project that shows how to use Spring Batch with a reader and a writer in a single step job
+			A WAR project for a Spring Batch Admin web application with simple custom job
 		</description>
 	</descriptor>
 	<project path="template.zip"/>
