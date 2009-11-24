@@ -1,0 +1,12 @@
+<template>
+	<descriptor id="org.springframework.samples.batch.simple"
+		name="Simple Spring Batch Project"
+		kind="template"
+		version="2.2.0">
+		<description>
+			A simple project that shows how to use Spring Batch with a reader and a writer in a single step job
+		</description>
+	</descriptor>
+	<project path="template.zip"/>
+	<json path="wizard.json"/>
+</template>
