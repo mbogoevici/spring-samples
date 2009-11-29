@@ -1,19 +1,11 @@
 {
 	"info" : {
-		"elements" : {
-			"element" :	[
-				{
-					"name" : "projectName",
-					"description" : "Please specify the project name e.g. myproject",
-					"type" : "java.lang.String",
-					"page" : 0,
-					"order" : 1,
-					"required" : true
-				}
-			]
-		},
+        
+        "topLevelPackage" : "org.springframework.batch.admin.sample",
+
+		"projectName" : "projectName",		
 		
-		"pages" : {
+        "pages" : {
 			"page" : [
 			{
 				"order" : 0,
