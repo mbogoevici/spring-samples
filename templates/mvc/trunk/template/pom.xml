@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 	<properties>
-		<spring.version>3.0.0.RC2</spring.version>
+		<spring.version>3.0.0.RC3</spring.version>
 	</properties>	
 	<!-- TODO: remove the repositories node once we move to 3.0.0.RELEASE -->
 	<repositories>
