@@ -8,15 +8,48 @@
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 	<properties>
-		<spring.version>3.0.0.RELEASE</spring.version>
+		<org.springframework.version>3.0.0.RELEASE</org.springframework.version>
+		<org.slf4j.version>1.5.8</org.slf4j.version>		
 	</properties>	
 	<dependencies>
-		<!-- Compile dependencies -->
+	
+		<!--  Spring -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework.version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+		         </exclusion>
+			</exclusions>			
+		</dependency>			
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework.version}</version>
 		</dependency>
+				
+		<!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${org.slf4j.version}</version>
+ 			<scope>runtime</scope>           
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${org.slf4j.version}</version>
+			<scope>runtime</scope>           
+        </dependency>		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -39,22 +72,21 @@
 					<artifactId>jmxri</artifactId>
 				</exclusion>
 			</exclusions>
+			<scope>runtime</scope>           
 		</dependency>
+		
+		<!--  URL Rewrite -->
 		<dependency>
 			<groupId>org.tuckey</groupId>
 			<artifactId>urlrewritefilter</artifactId>
 			<version>3.1.0</version>						
-		</dependency>		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
-		<!-- Container-provided dependencies-->
+		
+		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.4</version>
+			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -63,7 +95,13 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>		
-		<!-- Test dependencies -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

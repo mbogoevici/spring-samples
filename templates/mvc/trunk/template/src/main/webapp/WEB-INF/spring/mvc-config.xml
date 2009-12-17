@@ -6,8 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<!-- Sets up standard HandlerMapping and HanderAdapter for use with annotations.
-	     Allows customization of various MVC-related aspects like binding and validation. -->
+	<!-- Configures support for @Controllers -->
 	<mvc:annotation-driven />
 
 	<!-- Resolves view names to protected .jsp resources within the /WEB-INF/views directory -->
