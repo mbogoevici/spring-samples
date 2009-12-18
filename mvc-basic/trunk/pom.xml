@@ -75,6 +75,13 @@
 			<scope>runtime</scope>           
 		</dependency>
 		
+		<!--  Joda Time -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>1.6</version>		
+		</dependency>
+		
 		<!--  URL Rewrite -->
 		<dependency>
 			<groupId>org.tuckey</groupId>

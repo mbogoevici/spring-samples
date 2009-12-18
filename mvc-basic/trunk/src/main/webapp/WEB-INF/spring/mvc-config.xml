@@ -6,12 +6,12 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<!-- Forwards requests to the "/welcome" resource to the "welcome" view -->
-	<mvc:view-controller path="/welcome" />
-
-	<!-- Configures the annotation-driven @Controller programming model -->
+	<!-- Configures the @Controller programming model -->
 	<mvc:annotation-driven />
-	
+
+	<!-- Forwards requests to the "/" resource to the "welcome" view -->
+	<mvc:view-controller path="/" view-name="welcome"/>
+		
 	<!-- Configures Handler Interceptors -->	
 	<mvc:interceptors>
 		<!-- Changes the locale when a 'locale' request parameter is sent; e.g. /?locale=de -->
@@ -26,5 +26,5 @@
 		<property name="prefix" value="/WEB-INF/views/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
-	
+		
 </beans>
