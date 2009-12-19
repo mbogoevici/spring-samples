@@ -75,11 +75,24 @@
 			<scope>runtime</scope>           
 		</dependency>
 		
+		<!--  JSR 303 with Hibernate Validator -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>		
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.0.2.GA</version>		
+		</dependency>		
+		
 		<!--  Joda Time -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-			<version>1.6</version>		
+			<version>1.6</version>
+			<scope>runtime</scope>	
 		</dependency>
 		
 		<!--  URL Rewrite -->
@@ -116,6 +129,14 @@
 			<scope>test</scope>
 		</dependency>			
 	</dependencies>
+	<repositories>
+		<!-- For JSR 303 and Hibernate Validator only - Encourage JBoss to publish these artifacts to Maven Central! -->
+		<repository>
+			<id>org.jboss.repository.maven</id>
+			<url>http://repository.jboss.org/maven2</url>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+	</repositories>
 	<build>
 		<plugins>
 			<plugin>
