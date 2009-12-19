@@ -24,7 +24,7 @@
 	<div class="span-12 last">	
 		<form:form modelAttribute="account" method="post">
 		  	<fieldset>		
-				<legend>View Account</legend>
+				<legend>Account Fields</legend>
 				<p>
 					<form:label	for="name" path="name">Name</form:label><br/>
 					<form:input path="name" readonly="true"/>		

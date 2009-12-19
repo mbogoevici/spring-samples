@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/account")
 public class AccountController {
 
-	private AtomicLong idSequence = new AtomicLong();
-	
 	private Map<Long, Account> accounts = new ConcurrentHashMap<Long, Account>();
 	
 	@RequestMapping(method=RequestMethod.GET)
@@ -33,8 +31,7 @@ public class AccountController {
 			// re-render form with errors
 			return "account/createForm";
 		}
-		account.setId(nextId());
-		this.accounts.put(account.getId(), account);
+		this.accounts.put(account.assignId(), account);
 		return "redirect:/account/" + account.getId();
 	}
 	
@@ -43,10 +40,6 @@ public class AccountController {
 		Account account = this.accounts.get(id);
 		model.addAttribute(account);
 		return "account/view";
-	}
-	
-	private Long nextId() {
-		return this.idSequence.incrementAndGet();
 	}
 
 }

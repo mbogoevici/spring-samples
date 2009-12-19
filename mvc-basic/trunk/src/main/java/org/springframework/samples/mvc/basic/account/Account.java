@@ -2,6 +2,7 @@ package org.springframework.samples.mvc.basic.account;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicLong;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -70,5 +71,12 @@ public class Account {
 	public void setRenewalDate(Date renewalDate) {
 		this.renewalDate = renewalDate;
 	}
+	
+	Long assignId() {
+		this.id = idSequence.incrementAndGet();
+		return id;
+	}
+	
+	private static final AtomicLong idSequence = new AtomicLong();
 	
 }

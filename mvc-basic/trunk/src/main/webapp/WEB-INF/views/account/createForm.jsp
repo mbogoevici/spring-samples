@@ -8,7 +8,7 @@
 <html>
 <head>
 	<META http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>@Controller Example</title>
+	<title>Create Account</title>
 	<link rel="stylesheet" href="<c:url value="/styles/blueprint/screen.css" />" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="<c:url value="/styles/blueprint/print.css" />" type="text/css" media="print">
 	<!--[if lt IE 8]>
@@ -19,12 +19,12 @@
 <body>
 <div class="container">
 	<h1>
-		@Controller Example
+		Create Account
 	</h1>
 	<div class="span-12 last">	
 		<form:form modelAttribute="account" method="post">
 		  	<fieldset>		
-				<legend>Create Account</legend>
+				<legend>Account Fields</legend>
 				<p>
 					<form:label	for="name" path="name" cssErrorClass="error">Name</form:label><br/>
 					<form:input path="name" /> <form:errors path="name" />			
