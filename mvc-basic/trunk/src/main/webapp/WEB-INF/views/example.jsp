@@ -5,41 +5,49 @@
 <html>
 <head>
 	<title>@Controller Example</title>
-</head>
+	<link rel="stylesheet" href="<c:url value="/styles/blueprint/screen.css" />" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="<c:url value="/styles/blueprint/print.css" />" type="text/css" media="print">
+	<!--[if lt IE 8]>
+		<link rel="stylesheet" href="<c:url value="/styles/blueprint/ie.css" />" type="text/css" media="screen, projection">
+	<![endif]-->
+	<link rel="stylesheet" href="<c:url value="/styles/blueprint/print.css" />" type="text/css" media="print">	
+</head>	
 <body>
-<h1>
-	@Controller Example
-</h1>
-
-<form:form modelAttribute="testModel" method="post">
-
-	<form:label	for="text" path="text">
-		Text <form:input path="text" /> <form:errors path="text" />			
-	</form:label> 
-	
-	<form:label for="checkbox" path="checkbox">
-		Checkbox <form:checkbox path="checkbox" />
-	</form:label> 
-		
-	<form:label for="currency" path="currency">
-		Currency <form:input path="currency" /> <form:errors path="currency" />
-	</form:label>
-		
-	<form:label for="percent" path="percent">
-		Percent <form:input path="percent" /> <form:errors path="percent" />
-	</form:label>
-		
-	<form:label for="date" path="date">
-		Date <form:input path="date" /> <form:errors path="date" />
-	</form:label>
-			
-	<input type="submit" />
-	
-</form:form>
-
-<ul>
-	<li> <a href="?locale=en_us">en</a> | <a href="?locale=es_es">es</a> | <a href="?locale=de_de">de</a> </li>
-</ul>
-
+<div class="container">
+	<h1>
+		@Controller Example
+	</h1>
+	<div class="span-24 last">	
+		<form:form modelAttribute="testModel" method="post">
+			<p>
+				<form:label	for="text" path="text">Text</form:label><br/>
+				<form:input path="text" /> <form:errors path="text" />			
+			</p>
+			<p>
+				<form:label for="checkbox" path="checkbox">Checkbox</form:label><br/>
+				<form:checkbox path="checkbox" />
+			</p>
+			<p>	
+				<form:label for="currency" path="currency">Currency</form:label><br/>
+				<form:input path="currency" /> <form:errors path="currency" />
+			</p>
+			<p>
+				<form:label for="percent" path="percent">Percent</form:label><br/>
+				<form:input path="percent" /> <form:errors path="percent" />
+			</p>
+			<p>	
+				<form:label for="date" path="date">Date</form:label><br/>
+				<form:input path="date" /> <form:errors path="date" />
+			</p>
+			<p>	
+				<input type="submit" />
+			</p>
+		</form:form>
+	</div>
+	<hr>	
+	<ul>
+		<li> <a href="?locale=en_us">en</a> | <a href="?locale=es_es">es</a> | <a href="?locale=de_de">de</a> </li>
+	</ul>	
+</div>
 </body>
 </html>
