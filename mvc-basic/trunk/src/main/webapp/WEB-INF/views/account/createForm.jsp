@@ -21,31 +21,30 @@
 	<h1>
 		@Controller Example
 	</h1>
-	<div class="span-24 last">	
-		<form:form modelAttribute="testModel" method="post">
-			<p>
-				<form:label	for="text" path="text" cssErrorClass="error">Text</form:label><br/>
-				<form:input path="text" /> <form:errors path="text" />			
-			</p>
-			<p>
-				<form:label for="checkbox" path="checkbox">Checkbox</form:label><br/>
-				<form:checkbox path="checkbox" />
-			</p>
-			<p>	
-				<form:label for="currency" path="currency" cssErrorClass="error">Currency</form:label><br/>
-				<form:input path="currency" /> <form:errors path="currency" />
-			</p>
-			<p>
-				<form:label for="percent" path="percent" cssErrorClass="error">Percent</form:label><br/>
-				<form:input path="percent" /> <form:errors path="percent" />
-			</p>
-			<p>	
-				<form:label for="date" path="date" cssErrorClass="error">Date</form:label><br/>
-				<form:input path="date" /> <form:errors path="date" />
-			</p>
-			<p>	
-				<input type="submit" />
-			</p>
+	<div class="span-12 last">	
+		<form:form modelAttribute="account" method="post">
+		  	<fieldset>		
+				<legend>Create Account</legend>
+				<p>
+					<form:label	for="name" path="name" cssErrorClass="error">Name</form:label><br/>
+					<form:input path="name" /> <form:errors path="name" />			
+				</p>
+				<p>	
+					<form:label for="balance" path="balance" cssErrorClass="error">Balance</form:label><br/>
+					<form:input path="balance" /> <form:errors path="balance" />
+				</p>
+				<p>
+					<form:label for="equityAllocation" path="equityAllocation" cssErrorClass="error">Equity Allocation</form:label><br/>
+					<form:input path="equityAllocation" /> <form:errors path="equityAllocation" />
+				</p>
+				<p>	
+					<form:label for="renewalDate" path="renewalDate" cssErrorClass="error">Renewal Date</form:label><br/>
+					<form:input path="renewalDate" /> <form:errors path="renewalDate" />
+				</p>
+				<p>	
+					<input type="submit" />
+				</p>
+			</fieldset>
 		</form:form>
 	</div>
 	<hr>	
