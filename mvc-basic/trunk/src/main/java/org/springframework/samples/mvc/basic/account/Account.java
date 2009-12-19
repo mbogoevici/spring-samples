@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.springframework.samples.mvc.basic.account;
 
 import java.math.BigDecimal;

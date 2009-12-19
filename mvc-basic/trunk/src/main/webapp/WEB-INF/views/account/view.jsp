@@ -26,19 +26,19 @@
 		  	<fieldset>		
 				<legend>View Account</legend>
 				<p>
-					<form:label	for="name" path="name" cssErrorClass="error">Name</form:label><br/>
+					<form:label	for="name" path="name">Name</form:label><br/>
 					<form:input path="name" readonly="true"/>		
 				</p>
 				<p>	
-					<form:label for="balance" path="balance" cssErrorClass="error">Balance</form:label><br/>
+					<form:label for="balance" path="balance">Balance</form:label><br/>
 					<form:input path="balance" readonly="true"/>
 				</p>
 				<p>
-					<form:label for="equityAllocation" path="equityAllocation" cssErrorClass="error">Equity Allocation</form:label><br/>
+					<form:label for="equityAllocation" path="equityAllocation">Equity Allocation</form:label><br/>
 					<form:input path="equityAllocation" readonly="true"/>
 				</p>
 				<p>	
-					<form:label for="renewalDate" path="renewalDate" cssErrorClass="error">Renewal Date</form:label><br/>
+					<form:label for="renewalDate" path="renewalDate">Renewal Date</form:label><br/>
 					<form:input path="renewalDate" readonly="true"/>
 				</p>
 				<p>	

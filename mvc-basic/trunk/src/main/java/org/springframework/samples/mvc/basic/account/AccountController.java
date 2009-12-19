@@ -1,5 +1,9 @@
 package org.springframework.samples.mvc.basic.account;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/account")
 public class AccountController {
 
+	private AtomicLong idSequence = new AtomicLong();
+	
+	private Map<Long, Account> accounts = new ConcurrentHashMap<Long, Account>();
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String createForm(Model model) {
 		model.addAttribute(new Account());
@@ -25,14 +33,20 @@ public class AccountController {
 			// re-render form with errors
 			return "account/createForm";
 		}
+		account.setId(nextId());
+		this.accounts.put(account.getId(), account);
 		return "redirect:/account/" + account.getId();
 	}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.GET)
 	public String get(@PathVariable("id") Long id, Model model) {
-		Account account = new Account();
+		Account account = this.accounts.get(id);
 		model.addAttribute(account);
 		return "account/view";
+	}
+	
+	private Long nextId() {
+		return this.idSequence.incrementAndGet();
 	}
 
 }
