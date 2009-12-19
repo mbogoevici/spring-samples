@@ -24,7 +24,7 @@
 	<div class="span-24 last">	
 		<form:form modelAttribute="testModel" method="post">
 			<p>
-				<form:label	for="text" path="text">Text</form:label><br/>
+				<form:label	for="text" path="text" cssErrorClass="error">Text</form:label><br/>
 				<form:input path="text" /> <form:errors path="text" />			
 			</p>
 			<p>
@@ -32,15 +32,15 @@
 				<form:checkbox path="checkbox" />
 			</p>
 			<p>	
-				<form:label for="currency" path="currency">Currency</form:label><br/>
+				<form:label for="currency" path="currency" cssErrorClass="error">Currency</form:label><br/>
 				<form:input path="currency" /> <form:errors path="currency" />
 			</p>
 			<p>
-				<form:label for="percent" path="percent">Percent</form:label><br/>
+				<form:label for="percent" path="percent" cssErrorClass="error">Percent</form:label><br/>
 				<form:input path="percent" /> <form:errors path="percent" />
 			</p>
 			<p>	
-				<form:label for="date" path="date">Date</form:label><br/>
+				<form:label for="date" path="date" cssErrorClass="error">Date</form:label><br/>
 				<form:input path="date" /> <form:errors path="date" />
 			</p>
 			<p>	
