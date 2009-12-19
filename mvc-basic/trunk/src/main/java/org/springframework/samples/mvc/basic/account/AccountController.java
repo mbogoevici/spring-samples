@@ -22,7 +22,7 @@ public class AccountController {
 	private Map<Long, Account> accounts = new ConcurrentHashMap<Long, Account>();
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public String createForm(Model model) {
+	public String getCreateForm(Model model) {
 		model.addAttribute(new Account());
 		return "account/createForm";
 	}
@@ -39,7 +39,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.GET)
-	public String get(@PathVariable("id") Long id, Model model) {
+	public String getView(@PathVariable Long id, Model model) {
 		Account account = this.accounts.get(id);
 		model.addAttribute(account);
 		return "account/view";
