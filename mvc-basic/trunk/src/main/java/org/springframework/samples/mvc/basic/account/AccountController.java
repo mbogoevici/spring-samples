@@ -3,7 +3,6 @@ package org.springframework.samples.mvc.basic.account;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -36,11 +35,10 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.GET)
-	public String getView(@PathVariable Long id, Model model, HttpServletResponse response) throws Exception {
+	public String getView(@PathVariable Long id, Model model) {
 		Account account = this.accounts.get(id);
 		if (account == null) {
-			response.sendError(HttpServletResponse.SC_NOT_FOUND);
-			return null;
+			throw new ResourceNotFoundException(id);
 		}
 		model.addAttribute(account);
 		return "account/view";
