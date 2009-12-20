@@ -41,9 +41,6 @@
 					<form:label for="renewalDate" path="renewalDate">Renewal Date</form:label><br/>
 					<form:input path="renewalDate" readonly="true"/>
 				</p>
-				<p>	
-					<input type="submit" />
-				</p>
 			</fieldset>
 		</form:form>
 	</div>
