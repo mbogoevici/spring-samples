@@ -27,7 +27,6 @@ public class AccountController {
 	@RequestMapping(method=RequestMethod.POST)
 	public String create(@Valid Account account, BindingResult result) {
 		if (result.hasErrors()) {
-			// re-render form with errors
 			return "account/createForm";
 		}
 		this.accounts.put(account.assignId(), account);
