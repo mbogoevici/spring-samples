@@ -6,9 +6,11 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<!-- Turns on support for mapping requests to Spring MVC @Controller methods
-		 Also registers default Formatters and Validators for use across all @Controllers -->
+	<!-- Configures the @Controller programming model -->
 	<mvc:annotation-driven />
+
+	<!-- Forwards GET requests to the "/" resource to the "home" view -->
+	<mvc:view-controller path="/" view-name="home"/>
 
 	<!--  VIEW RESOLUTION AND RENDERING -->
 	
