@@ -11,5 +11,5 @@
 	<li>Blueprint CSS framework</li>
 	<li>Joda Time Support</li>
 	<li>Annotation-driven formatting and validation</li>
-	<li>"Resource-oriented" architecture</li>
+	<li>"Resource-oriented" architecture and packaging</li>
 </ul>
