@@ -101,18 +101,15 @@
 		<!-- Apache Tiles -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
-			<artifactId>com.springsource.org.apache.tiles.core</artifactId>
-			<version>2.1.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
 			<artifactId>com.springsource.org.apache.tiles.jsp</artifactId>
 			<version>2.1.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>com.springsource.org.apache.tiles.servlet</artifactId>
-			<version>2.1.3</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>org.apache.commons</groupId>
+					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
+				</exclusion>
+			</exclusions>			
 		</dependency>
 		
 		<!-- Clean URLs with JSPs -->
@@ -120,6 +117,13 @@
 			<groupId>org.tuckey</groupId>
 			<artifactId>com.springsource.org.tuckey.web.filters.urlrewrite</artifactId>
 			<version>3.1.0</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>org.apache.commons</groupId>
+					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
+				</exclusion>
+			</exclusions>			
 		</dependency>
 		
 		<!-- JSR 303 with Hibernate Validator -->

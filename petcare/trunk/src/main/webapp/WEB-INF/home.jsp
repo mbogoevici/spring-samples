@@ -16,4 +16,6 @@
 	<li>JDBC data access support</li>
 	<li>JUnit integration testing support</li>
 	<li>"Resource-oriented" architecture and packaging</li>
+	<li>SLF4j logging</li>
+	<li>Maven + Spring dynamic web project importable into Eclipse / <a href="http://www.springsource.com/products/sts">STS</a></li>
 </ul>
