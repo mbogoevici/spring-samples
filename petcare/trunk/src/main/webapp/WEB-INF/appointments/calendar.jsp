@@ -1,7 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<h2>Appointment Calendar</h2>
-
-<p>${appointmentCalendar.day}</p>
+<h2>Appointment Calendar for ${appointmentCalendar.day}</h2>
 
 <c:if test="${appointmentCalendar.hasAppointments}">
 	<c:forEach var="entry" items="${appointmentCalendar.doctorAppointments}">
