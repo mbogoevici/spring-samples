@@ -15,8 +15,8 @@
 	<![endif]-->
 </head>
 <body id="page-body">
-	<div id="page">
-		<div id="header">
+	<div id="page" class="container">
+		<div id="header" class="span-24 last">
 			<div id="signin">
 				<c:choose>
 					<c:when test="${pageContext.request.userPrincipal != null}">
@@ -33,28 +33,28 @@
 			</div>
 		</div>
 		<div id="content">
-			<div id="main">
-				<tiles:insertAttribute name="content"/>
-			</div>
-			<div id="local">
-				<ul>
-					<tiles:insertAttribute name="localNavigation"/>
-				</ul>
-			</div>
-			<div id="nav">
+			<div id="nav" class="span-24">
 				<ul>
 					<li><a href="<c:url value="/"/>">Home</a></li>
 					<li><a href="<c:url value="/appointments"/>">Appointments</a></li>
 					<!-- TODO Clients -->
 				</ul>
 			</div>
+			<div id="local" class="span-4">
+				<ul>
+					<tiles:insertAttribute name="localNavigation"/>
+				</ul>
+			</div>
+			<div id="main" class="span-16">
+				<tiles:insertAttribute name="content"/>
+			</div>
 		</div>
-		<div id="footer">
+		<div id="footer" class="span-24">
 			<ul id="legal">
 				<li>Privacy Policy</li>
 				<li>Terms of Service</li>
-				<li><a href="http://www.springsource.org"><img src="<c:url value="/images/springsource-logo.png"/>" alt="Powered by SpringSource" /></a> </li>
 			</ul>
+			<a href="http://www.springsource.org"><img src="<c:url value="/images/springsource-logo.png"/>" alt="Powered by SpringSource" /></a>
 		</div>
 	</div>
 </body>

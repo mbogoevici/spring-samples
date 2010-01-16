@@ -30,7 +30,7 @@
 			<form:input path="notes" /> <form:errors path="notes" />
 		</p>
 		<p>	
-			<input type="submit" />
+			<input type="submit" value="Add" />
 		</p>
 	</fieldset>
 	
