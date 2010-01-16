@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
-public class JdbcAppointmentBookTests {
+public class JdbcAppointmentBookTest {
 
 	@Autowired
 	private AppointmentBook appointmentBook;
@@ -25,7 +25,7 @@ public class JdbcAppointmentBookTests {
 	@Test
 	@Transactional
 	public void testGetAppointmentsForDay() {
-		Map<String, List<Appointment>> appointments = this.appointmentBook.getAppointmentsForDay(new LocalDate(2009, 10, 23));
+		Map<String, List<Appointment>> appointments = appointmentBook.getAppointmentsForDay(new LocalDate(2009, 10, 23));
 		assertEquals(2, appointments.size());
 	}
 
