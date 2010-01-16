@@ -7,9 +7,13 @@
 <ul>
 	<li>The Spring MVC @Controller programming model</li>
 	<li>Clean, Restful URLs utilizing URL Rewrite</li>
-	<li>Apache Tiles for Layout</li>
+	<li>Apache Tiles for layout with JSP templating</li>
 	<li>Blueprint CSS framework</li>
-	<li>Joda Time Support</li>
+	<li>Annotation-driven configuration and transaction management</li>
 	<li>Annotation-driven formatting and validation</li>
+	<li>Joda Time support</li>
+	<li>Embedded database support</li>
+	<li>JDBC data access support</li>
+	<li>JUnit integration testing support</li>
 	<li>"Resource-oriented" architecture and packaging</li>
 </ul>
