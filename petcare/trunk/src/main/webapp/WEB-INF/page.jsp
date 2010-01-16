@@ -24,12 +24,12 @@
 						<li><a href="<c:url value="/account/signout"/>">Sign Out</a></li>
 					</c:when>
 					<c:otherwise>
-						<!-- TODO SIGN IN -->
+						<!-- TODO sign in -->
 					</c:otherwise>
 				</c:choose>
 			</div>
 			<div id="branding">
-				<a href="<c:url value="/"/>"><img src="<c:url value="/images/banner-graphic.png"/>" alt="Spring Petcare" /></a>
+				<!-- TODO branding -->
 			</div>
 		</div>
 		<div id="content">
@@ -51,10 +51,8 @@
 		</div>
 		<div id="footer" class="span-24">
 			<ul id="legal">
-				<li>Privacy Policy</li>
-				<li>Terms of Service</li>
+			
 			</ul>
-			<a href="http://www.springsource.org"><img src="<c:url value="/images/springsource-logo.png"/>" alt="Powered by SpringSource" /></a>
 		</div>
 	</div>
 </body>
