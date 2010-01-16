@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.appointments;
 
 import javax.validation.constraints.NotNull;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.springframework.core.style.ToStringCreator;
@@ -65,6 +66,10 @@ public class AppointmentForm {
 		this.time = time;
 	}
 
+	public DateTime getDateTime() {
+		return date.toDateTime(time);
+	}
+	
 	public String getNotes() {
 		return notes;
 	}

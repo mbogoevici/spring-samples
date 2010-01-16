@@ -1,5 +1,8 @@
 package org.springframework.samples.petclinic.appointments;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.joda.time.LocalDate;
@@ -25,14 +28,16 @@ public class AppointmentsController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public DoctorAppointments get() {
-		return appointmentBook.getAppointmentsForDay(new LocalDate());
+	public AppointmentCalendar get() {
+		LocalDate day = new LocalDate();
+		Map<String, List<Appointment>> doctorAppointments = appointmentBook.getAppointmentsForDay(day);
+		return new AppointmentCalendar(day, doctorAppointments);
 	}
 
 	@RequestMapping(value = "/{day}", method = RequestMethod.GET)
 	public String getForDay(@PathVariable @DateTimeFormat(iso=ISO.DATE) LocalDate day, Model model) {
-		DoctorAppointments appointments = appointmentBook.getAppointmentsForDay(day);
-		model.addAttribute("doctorAppointmentsMap", appointments.asMap());
+		Map<String, List<Appointment>> doctorAppointments = appointmentBook.getAppointmentsForDay(day);
+		model.addAttribute(new AppointmentCalendar(day, doctorAppointments));
 		return "appointments";
 	}
 
