@@ -1,0 +1,12 @@
+<template>
+	<descriptor id="org.springframework.samples.spring.jpa"
+		name="Simple Spring JPA Utility Project"
+		kind="template"
+		version="2.3.0">
+		<description>
+			A simple jar project that has some Spring and JPA configuration and an integration test.  To run the test you will need to add -javaagent:spring-instrument-3.0.0.RELEASE.jar to your java command line.
+		</description>
+	</descriptor>
+	<project path="template.zip"/>
+	<json path="wizard.json"/>
+</template>
