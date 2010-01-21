@@ -1,0 +1,12 @@
+<template>
+	<descriptor id="org.springframework.samples.spring.hibernate"
+		name="Simple Spring Hibernate Utility Project"
+		kind="template"
+		version="2.3.0">
+		<description>
+			A simple jar project that has some Spring and Hibernate configuration and an integration test
+		</description>
+	</descriptor>
+	<project path="template.zip"/>
+	<json path="wizard.json"/>
+</template>
