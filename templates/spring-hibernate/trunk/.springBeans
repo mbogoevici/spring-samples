@@ -8,7 +8,7 @@
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>template/src/main/resources/META-INF/spring/app-context.xml</config>
-		<config>template/src/test/resources/mytld/mycompany/myapp/ExampleConfigurationTests-context.xml</config>
+		<config>template/src/test/resources/mytld/mycompany/myapp/OrderPersistenceTests-context.xml</config>
 	</configs>
 	<configSets>
 	</configSets>

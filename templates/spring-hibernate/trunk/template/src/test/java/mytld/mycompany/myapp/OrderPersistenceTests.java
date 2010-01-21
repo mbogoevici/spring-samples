@@ -29,8 +29,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-public class ExampleConfigurationTests {
-	
+public class OrderPersistenceTests {
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -44,7 +44,7 @@ public class ExampleConfigurationTests {
 		session.flush();
 		assertNotNull(order.getId());
 	}
-	
+
 	@Test
 	@Transactional
 	public void testSaveAndGet() throws Exception {
@@ -53,9 +53,31 @@ public class ExampleConfigurationTests {
 		order.getItems().add(new Item());
 		session.save(order);
 		session.flush();
+		// Otherwise the query returns the existing order (and we didn't set the
+		// parent in the item)...
 		session.clear();
 		Order other = (Order) session.get(Order.class, order.getId());
-		assertEquals(1,other.getItems().size());
+		assertEquals(1, other.getItems().size());
+		assertEquals(other, other.getItems().iterator().next().getOrder());
+	}
+
+	@Test
+	@Transactional
+	public void testSaveAndFind() throws Exception {
+		Session session = sessionFactory.getCurrentSession();
+		Order order = new Order();
+		Item item = new Item();
+		item.setProduct("foo");
+		order.getItems().add(item);
+		session.save(order);
+		session.flush();
+		// Otherwise the query returns the existing order (and we didn't set the
+		// parent in the item)...
+		session.clear();
+		Order other = (Order) session.createQuery("select o from Order o join o.items i where i.product=:product")
+				.setString("product", "foo").uniqueResult();
+		assertEquals(1, other.getItems().size());
+		assertEquals(other, other.getItems().iterator().next().getOrder());
 	}
 
 }

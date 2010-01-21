@@ -27,7 +27,7 @@ public class Order {
 	private String customer;
 	
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="order_id")
+	@JoinColumn(name="ORDER_ID")
 	private Collection<Item> items = new LinkedHashSet<Item>();
 
 	/**
