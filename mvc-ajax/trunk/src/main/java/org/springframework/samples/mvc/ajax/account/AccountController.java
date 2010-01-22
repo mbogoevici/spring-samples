@@ -12,6 +12,7 @@ import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.mapping.support.MappingConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +34,7 @@ public class AccountController {
 	
 	@Autowired
 	public AccountController(ConversionService conversionService, Validator validator) {
-		this.conversionService = conversionService;
+		this.conversionService = new MappingConversionService(conversionService);
 		this.validator = validator;
 	}
 	
