@@ -31,7 +31,8 @@ public class AccountController {
 	
 	private Validator validator;
 	
-	public @Autowired AccountController(ConversionService conversionService, Validator validator) {
+	@Autowired
+	public AccountController(ConversionService conversionService, Validator validator) {
 		this.conversionService = conversionService;
 		this.validator = validator;
 	}
