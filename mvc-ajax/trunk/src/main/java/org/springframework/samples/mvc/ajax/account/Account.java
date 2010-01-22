@@ -52,7 +52,7 @@ public class Account {
 		return balance;
 	}
 
-	public void setBalance(@NumberFormat(style=Style.CURRENCY) BigDecimal balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 
@@ -60,7 +60,7 @@ public class Account {
 		return equityAllocation;
 	}
 
-	public void setEquityAllocation(	@NumberFormat(style=Style.PERCENT) BigDecimal equityAllocation) {
+	public void setEquityAllocation(	BigDecimal equityAllocation) {
 		this.equityAllocation = equityAllocation;
 	}
 
@@ -68,7 +68,7 @@ public class Account {
 		return renewalDate;
 	}
 
-	public void setRenewalDate(@DateTimeFormat(style="S-") Date renewalDate) {
+	public void setRenewalDate(Date renewalDate) {
 		this.renewalDate = renewalDate;
 	}
 	
