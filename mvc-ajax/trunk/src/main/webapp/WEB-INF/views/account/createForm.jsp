@@ -60,13 +60,9 @@
 			});
 			$("#account").submit(function() {
 				var account = $(this).serializeObject();
-				try {
 				$.postJSON("account", account, function(data) {
 					console.log(data);
 				});
-				} catch(e) {
-					console.log(e);
-				}
 				return false;				
 			});
 		});
