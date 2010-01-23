@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
-public class FormatAnnotationIntrospector extends NopAnnotationIntrospector{
+public class FormatAnnotationIntrospector extends NopAnnotationIntrospector {
 
 	private final ConversionService conversionService;
 	
@@ -32,7 +32,7 @@ public class FormatAnnotationIntrospector extends NopAnnotationIntrospector{
 			TypeDescriptor typeDescriptor = getTypeDescriptorForDeserializer(method);
 			for (Annotation ann : typeDescriptor.getAnnotations()){
 				if (isHandled(ann)) {
-					return new FormattingDeserializer(conversionService, typeDescriptor);
+					return new ConvertingDeserializer(this.conversionService, typeDescriptor);
 				}
 			}
 		}
@@ -46,7 +46,7 @@ public class FormatAnnotationIntrospector extends NopAnnotationIntrospector{
 			TypeDescriptor typeDescriptor = getTypeDescriptorForSerializer(method);
 			for (Annotation ann : typeDescriptor.getAnnotations()){
 				if (isHandled(ann)) {
-					return new FormattingSerializer(conversionService, typeDescriptor);
+					return new ConvertingSerializer(this.conversionService, typeDescriptor);
 				}
 			}
 		}
@@ -55,7 +55,7 @@ public class FormatAnnotationIntrospector extends NopAnnotationIntrospector{
 
 	private TypeDescriptor getTypeDescriptorForDeserializer(AnnotatedMethod method) {
 		// TODO - Could handle annotated method params here - in fact, those should probably take precedence over field annotations
-		Assert.isTrue(method.getName().startsWith("set"), "Expected a setter method, but was "+method.getName());
+		Assert.isTrue(method.getName().startsWith("set"), "Expected a setter method, but was " + method.getName());
 		String fieldName = StringUtils.uncapitalize(method.getName().substring(3));
 		Field field = ReflectionUtils.findField(method.getDeclaringClass(), fieldName);
 		if (field != null) {
@@ -66,7 +66,7 @@ public class FormatAnnotationIntrospector extends NopAnnotationIntrospector{
 	
 	private TypeDescriptor getTypeDescriptorForSerializer(AnnotatedMethod method) {
 		// TODO - Could handle annotated methods here (if that's even valid) - in fact, those should probably take precedence over field annotations
-		Assert.isTrue(method.getName().startsWith("get"), "Expected a getter method, but was "+method.getName());
+		Assert.isTrue(method.getName().startsWith("get"), "Expected a getter method, but was " + method.getName());
 		String fieldName = StringUtils.uncapitalize(method.getName().substring(3));
 		Field field = ReflectionUtils.findField(method.getDeclaringClass(), fieldName);
 		if (field != null) {
@@ -74,8 +74,5 @@ public class FormatAnnotationIntrospector extends NopAnnotationIntrospector{
 		}
 		return null;
 	}
-	
-
-	
 
 }

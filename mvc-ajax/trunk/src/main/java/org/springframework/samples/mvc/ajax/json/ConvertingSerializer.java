@@ -9,12 +9,13 @@ import org.codehaus.jackson.map.SerializerProvider;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 
-public class FormattingSerializer extends JsonSerializer<Object> {
+public class ConvertingSerializer extends JsonSerializer<Object> {
 
 	private final ConversionService conversionService;
+	
 	private final TypeDescriptor sourceType;
 	
-	public FormattingSerializer(ConversionService conversionService, TypeDescriptor sourceType) {
+	public ConvertingSerializer(ConversionService conversionService, TypeDescriptor sourceType) {
 		this.conversionService = conversionService;
 		this.sourceType = sourceType;
 	}

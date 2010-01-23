@@ -13,7 +13,6 @@ public class ConversionServiceAwareObjectMapper extends ObjectMapper {
 
 	@Autowired
 	public ConversionServiceAwareObjectMapper(ConversionService conversionService) {
-		super();
 		AnnotationIntrospector introspector = AnnotationIntrospector.pair(new FormatAnnotationIntrospector(conversionService), new JacksonAnnotationIntrospector());
 		SerializationConfig sconfig = new SerializationConfig(BasicClassIntrospector.instance, introspector);
 		DeserializationConfig dconfig = new DeserializationConfig(BasicClassIntrospector.instance, introspector);

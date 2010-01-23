@@ -29,6 +29,7 @@ public class AccountJsonBindingTests extends TestCase{
 	Log log = LogFactory.getLog(AccountJsonBindingTests.class);
 	
 	private MappingJacksonHttpMessageConverter converter;
+	
 	private ObjectMapper objectMapper;
 	
 	private String testPayload = "{\"name\":\"jim\",\"id\":null,\"balance\":\"$1,000.00\",\"equityAllocation\":\"60%\",\"renewalDate\":\"1/22/11\"}";

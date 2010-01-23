@@ -1,8 +1,13 @@
 package org.springframework.samples.mvc.ajax.account;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +50,18 @@ public class AccountController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String create(@RequestBody Account account) {
+	public @ResponseBody Map<String, ? extends Object> create(@RequestBody Account account, HttpServletResponse response) {
+		Set<ConstraintViolation<Account>> failures = this.validator.validate(account);
+		if (!failures.isEmpty()) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			Map<String, String> failureMessages = new HashMap<String, String>();
+			for (ConstraintViolation<Account> failure : failures) {
+				failureMessages.put(failure.getPropertyPath().toString(), failure.getMessage());
+			}
+			return failureMessages;
+		}
 		accounts.put(account.assignId(), account);
-		return "redirect:/account/" + account.getId();
+		return Collections.singletonMap("id", account.getId());
 	}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.GET)

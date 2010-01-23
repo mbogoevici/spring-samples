@@ -9,13 +9,13 @@ import org.codehaus.jackson.map.JsonDeserializer;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 
-public class FormattingDeserializer extends JsonDeserializer<Object> {
+public class ConvertingDeserializer extends JsonDeserializer<Object> {
 
 	private final ConversionService conversionService;
 	
 	private final TypeDescriptor targetType;
 	
-	public FormattingDeserializer(ConversionService conversionService, TypeDescriptor targetType) {
+	public ConvertingDeserializer(ConversionService conversionService, TypeDescriptor targetType) {
 		this.conversionService = conversionService;
 		this.targetType = targetType;
 	}
