@@ -41,6 +41,7 @@ public class FormatAnnotationIntrospector extends NopAnnotationIntrospector {
 	
 	@Override
 	public Object findSerializer(Annotated a) {
+		// this seems to be called even if the method is not annotated with an actual annotation???
 		if (a instanceof AnnotatedMethod) {
 			AnnotatedMethod method = (AnnotatedMethod) a;
 			TypeDescriptor typeDescriptor = getTypeDescriptorForSerializer(method);
@@ -54,9 +55,10 @@ public class FormatAnnotationIntrospector extends NopAnnotationIntrospector {
 	}
 
 	private TypeDescriptor getTypeDescriptorForDeserializer(AnnotatedMethod method) {
-		// TODO - Could handle annotated method params here - in fact, those should probably take precedence over field annotations
+		// TODO - Could handle annotated getter/is/setter method here - those should probably take precedence over field annotations
 		Assert.isTrue(method.getName().startsWith("set"), "Expected a setter method, but was " + method.getName());
 		String fieldName = StringUtils.uncapitalize(method.getName().substring(3));
+		// TODO the field could obviously be named anything, relies on convention		
 		Field field = ReflectionUtils.findField(method.getDeclaringClass(), fieldName);
 		if (field != null) {
 			return new TypeDescriptor(field);
@@ -65,9 +67,16 @@ public class FormatAnnotationIntrospector extends NopAnnotationIntrospector {
 	}
 	
 	private TypeDescriptor getTypeDescriptorForSerializer(AnnotatedMethod method) {
-		// TODO - Could handle annotated methods here (if that's even valid) - in fact, those should probably take precedence over field annotations
-		Assert.isTrue(method.getName().startsWith("get"), "Expected a getter method, but was " + method.getName());
-		String fieldName = StringUtils.uncapitalize(method.getName().substring(3));
+		// TODO - Could handle annotated getter/is methods here - those should probably take precedence over field annotations
+		String fieldName;
+		if (method.getName().startsWith("get")) {
+			fieldName = StringUtils.uncapitalize(method.getName().substring(3));
+		} else if (method.getName().startsWith("is")) {
+			fieldName = StringUtils.uncapitalize(method.getName().substring(2));			
+		} else {
+			throw new IllegalArgumentException("Expected a getter method, but was " + method.getName());
+		}
+		// TODO the field could obviously be named anything, relies on convention
 		Field field = ReflectionUtils.findField(method.getDeclaringClass(), fieldName);
 		if (field != null) {
 			return new TypeDescriptor(field);
