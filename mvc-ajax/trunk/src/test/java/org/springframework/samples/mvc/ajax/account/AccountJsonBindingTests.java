@@ -9,9 +9,9 @@ import java.nio.charset.Charset;
 
 import junit.framework.TestCase;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.format.support.FormattingConversionServiceFactoryBean;
 import org.springframework.http.HttpHeaders;
@@ -19,14 +19,12 @@ import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
-import org.springframework.samples.mvc.ajax.account.Account;
 import org.springframework.samples.mvc.ajax.json.ConversionServiceAwareObjectMapper;
 import org.springframework.util.Assert;
 
-
 public class AccountJsonBindingTests extends TestCase{
 
-	Log log = LogFactory.getLog(AccountJsonBindingTests.class);
+	Logger log = LoggerFactory.getLogger(AccountJsonBindingTests.class);
 	
 	private MappingJacksonHttpMessageConverter converter;
 	
@@ -52,7 +50,7 @@ public class AccountJsonBindingTests extends TestCase{
 		inputMessage.getHeaders().setContentType(jsonType);
 		Account account = (Account) converter.read((Class) Account.class, inputMessage);
 		Assert.notNull(account);
-		log.debug(account);
+		log.debug(account.toString());
 		
 		MockHttpOutputMessage outputMessage = new MockHttpOutputMessage();
 		converter.write(account, jsonType, outputMessage);
