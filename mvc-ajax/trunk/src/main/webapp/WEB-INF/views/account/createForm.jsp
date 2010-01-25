@@ -83,8 +83,11 @@
 
 	<script type="text/javascript">	
 		$(document).ready(function() {
+			// check name availability on focus lost
 			$('#name').blur(function() {
-				validateNameField();
+				if ($('#name').val()) {	
+					checkAvailability();
+				}
 			});
 			$("#account").submit(function() {
 				var account = $(this).serializeObject();
@@ -96,16 +99,12 @@
 			});
 		});
 
-		function validateNameField() {
-			var val = $('#name').val();
-			if (!val) {
-				return { valid : true };
-			}
-			$.getJSON("account/availability", { name: val }, function(availability) {
+		function checkAvailability() {
+			$.getJSON("account/availability", { name: $('#name').val() }, function(availability) {
 				if (availability.available) {
-					fieldValidated( "name", { valid : true });
+					fieldValidated("name", { valid : true });
 				} else {
-					fieldValidated( "name", { valid : false, message : val + " is not  available, try " + availability.suggestions });
+					fieldValidated("name", { valid : false, message : $('#name').val() + " is not available, try " + availability.suggestions });
 				}
 			});
 		}

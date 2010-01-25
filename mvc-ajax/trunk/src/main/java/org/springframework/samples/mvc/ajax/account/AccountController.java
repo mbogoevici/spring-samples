@@ -51,17 +51,14 @@ public class AccountController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public @ResponseBody Map<String, ? extends Object> create(@RequestBody Account account, HttpServletResponse response) {
-		Set<ConstraintViolation<Account>> failures = this.validator.validate(account);
+		Set<ConstraintViolation<Account>> failures = validator.validate(account);
 		if (!failures.isEmpty()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			Map<String, String> failureMessages = new HashMap<String, String>();
-			for (ConstraintViolation<Account> failure : failures) {
-				failureMessages.put(failure.getPropertyPath().toString(), failure.getMessage());
-			}
-			return failureMessages;
+			return validationMessages(failures);
+		} else {
+			accounts.put(account.assignId(), account);
+			return Collections.singletonMap("id", account.getId());
 		}
-		accounts.put(account.assignId(), account);
-		return Collections.singletonMap("id", account.getId());
 	}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.GET)
@@ -71,5 +68,15 @@ public class AccountController {
 			throw new ResourceNotFoundException(id);
 		}
 		return account;
+	}
+	
+	// internal helpers
+	
+	private Map<String, String> validationMessages(Set<ConstraintViolation<Account>> failures) {
+		Map<String, String> failureMessages = new HashMap<String, String>();
+		for (ConstraintViolation<Account> failure : failures) {
+			failureMessages.put(failure.getPropertyPath().toString(), failure.getMessage());
+		}
+		return failureMessages;
 	}
 }

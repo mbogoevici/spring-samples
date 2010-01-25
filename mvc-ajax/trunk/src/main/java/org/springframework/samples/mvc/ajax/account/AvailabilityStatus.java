@@ -2,6 +2,14 @@ package org.springframework.samples.mvc.ajax.account;
 
 public final class AvailabilityStatus {
 
+	public boolean isAvailable() {
+		return available;
+	}
+	
+	public String[] getSuggestions() {
+		return suggestions;
+	}
+	
 	public static AvailabilityStatus available() {
 		return AVAILABLE_INSTANCE;
 	}
@@ -12,14 +20,6 @@ public final class AvailabilityStatus {
 			suggestions[i] = name + (i + 1);
 		}
 		return new AvailabilityStatus(false, suggestions);
-	}
-	
-	public boolean isAvailable() {
-		return available;
-	}
-	
-	public String[] getSuggestions() {
-		return suggestions;
 	}
 	
 	// internal
