@@ -9,7 +9,7 @@ import org.codehaus.jackson.map.JsonDeserializer;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 
-public class ConvertingDeserializer extends JsonDeserializer<Object> {
+final class ConvertingDeserializer extends JsonDeserializer<Object> {
 
 	private final ConversionService conversionService;
 	

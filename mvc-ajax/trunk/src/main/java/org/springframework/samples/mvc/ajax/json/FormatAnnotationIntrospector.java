@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
-public class FormatAnnotationIntrospector extends NopAnnotationIntrospector {
+class FormatAnnotationIntrospector extends NopAnnotationIntrospector {
 
 	private final ConversionService conversionService;
 	

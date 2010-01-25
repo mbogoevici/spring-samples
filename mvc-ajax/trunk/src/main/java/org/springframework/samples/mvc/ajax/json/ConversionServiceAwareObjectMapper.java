@@ -7,6 +7,10 @@ import org.codehaus.jackson.map.SerializationConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 
+/**
+ * A custom Jackson ObjectMapper that installs JSON serialization/deserialization support
+ * for properties annotated with Spring format annotations such as @DateTimeFormat and @NumberFormat.
+ */
 public class ConversionServiceAwareObjectMapper extends ObjectMapper {
 
 	@Autowired

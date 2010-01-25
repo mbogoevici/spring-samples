@@ -9,10 +9,17 @@ import org.springframework.http.converter.json.MappingJacksonHttpMessageConverte
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
 
+/**
+ * A custom BeanPostProcessor for Spring MVC environments that configures Jackson
+ * with awareness of Spring-specific format annotations such as @DateTimeFormat and @NumberFormat.
+ * 
+ * This is an example of extending Spring to plug-in unique functionality not yet available
+ * in a released Spring distribution.
+ */
 @Component
 public class JacksonConversionServiceConfigurer implements BeanPostProcessor {
 
-	private ConversionService conversionService;
+	private final ConversionService conversionService;
 	
 	@Autowired
 	public JacksonConversionServiceConfigurer(ConversionService conversionService) {
@@ -36,6 +43,5 @@ public class JacksonConversionServiceConfigurer implements BeanPostProcessor {
 		}
 		return bean;
 	}
-
 
 }
