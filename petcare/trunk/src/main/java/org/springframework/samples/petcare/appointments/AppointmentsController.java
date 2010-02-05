@@ -28,10 +28,8 @@ public class AppointmentsController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public AppointmentCalendar get() {
-		LocalDate day = new LocalDate();
-		Map<String, List<Appointment>> doctorAppointments = appointmentBook.getAppointmentsForDay(day);
-		return new AppointmentCalendar(day, doctorAppointments);
+	public String get(Model model) {
+		return getForDay(new LocalDate(), model);
 	}
 
 	@RequestMapping(value = "/{day}", method = RequestMethod.GET)

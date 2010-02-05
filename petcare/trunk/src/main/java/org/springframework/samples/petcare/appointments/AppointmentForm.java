@@ -10,12 +10,6 @@ import org.springframework.core.style.ToStringCreator;
 public class AppointmentForm {
 
 	@NotNull
-	private Long doctor;
-
-	@NotNull
-	private Long client;
-
-	@NotNull
 	private Long patient;
 
 	@NotNull
@@ -25,22 +19,6 @@ public class AppointmentForm {
 	private LocalTime time = new LocalTime();
 
 	private String notes;
-
-	public Long getDoctor() {
-		return doctor;
-	}
-
-	public void setDoctor(Long doctor) {
-		this.doctor = doctor;
-	}
-
-	public Long getClient() {
-		return client;
-	}
-
-	public void setClient(Long client) {
-		this.client = client;
-	}
 
 	public Long getPatient() {
 		return patient;

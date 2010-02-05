@@ -7,8 +7,6 @@ public class Appointment {
 
 	private DateTime dateTime;
 
-	private String doctor;
-
 	private String client;
 
 	private String clientPhone;
@@ -27,14 +25,6 @@ public class Appointment {
 
 	public void setDateTime(DateTime dateTime) {
 		this.dateTime = dateTime;
-	}
-
-	public String getDoctor() {
-		return doctor;
-	}
-
-	public void setDoctor(String doctor) {
-		this.doctor = doctor;
 	}
 
 	public String getClient() {
@@ -70,7 +60,6 @@ public class Appointment {
 	}
 
 	public String toString() {
-		return new ToStringCreator(this).append("dateTime", dateTime).append(
-				"doctor", doctor).append("patient", patient).toString();
+		return new ToStringCreator(this).append("dateTime", dateTime).append("patient", patient).toString();
 	}
 }

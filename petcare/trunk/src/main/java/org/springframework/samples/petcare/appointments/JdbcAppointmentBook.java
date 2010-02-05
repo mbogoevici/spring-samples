@@ -47,7 +47,7 @@ public class JdbcAppointmentBook implements AppointmentBook {
 		+ "from Appointment a, Doctor d, Client c, Patient p "
 		+ "where "
 		+ "a.dateTime between ? and ? and "
-		+ "a.patientId = p.id and " + "p.clientId = c.id and c.doctorId = d.id order by doctor, dateTime";
+		+ "a.patientId = p.id and p.clientId = c.id and p.doctorId = d.id order by doctor, dateTime";
 
 	private static class AppointmentsExtractor implements ResultSetExtractor<Map<String, List<Appointment>>> {
 
@@ -56,12 +56,11 @@ public class JdbcAppointmentBook implements AppointmentBook {
 			while (rs.next()) {
 				Appointment a = new Appointment();
 				a.setDateTime(new DateTime(rs.getTimestamp("DATETIME")));
-				a.setDoctor(rs.getString("DOCTOR"));
 				a.setClient(rs.getString("CLIENT"));
 				a.setClientPhone(rs.getString("CLIENTPHONE"));
 				a.setPatient(rs.getString("PATIENT"));
 				a.setNotes(rs.getString("NOTES"));
-				appointments.get(a.getDoctor()).add(a);
+				appointments.get(rs.getString("DOCTOR")).add(a);
 			}
 			return appointments;
 		}

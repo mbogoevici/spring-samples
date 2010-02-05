@@ -6,14 +6,6 @@
   	<fieldset>		
 		<legend>Appointment Fields</legend>
 		<p>
-			<form:label	for="doctor" path="doctor" cssErrorClass="error">Doctor</form:label><br/>
-			<form:input path="doctor" /> <form:errors path="doctor" />			
-		</p>
-		<p>	
-			<form:label for="client" path="client" cssErrorClass="error">Client</form:label><br/>
-			<form:input path="client" /> <form:errors path="client" />
-		</p>
-		<p>
 			<form:label for="patient" path="patient" cssErrorClass="error">Patient</form:label><br/>
 			<form:input path="patient" /> <form:errors path="patient" />
 		</p>
