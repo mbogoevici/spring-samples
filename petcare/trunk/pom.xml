@@ -8,7 +8,9 @@
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 	<properties>
+		<java.version>1.6</java.version>
 		<org.springframework.version>3.0.0.RELEASE</org.springframework.version>
+		<org.aspectj.version>1.6.8.RELEASE</org.aspectj.version>
 		<org.slf4j.version>1.5.10</org.slf4j.version>
 	</properties>
 	<dependencies>
@@ -40,6 +42,19 @@
 			<artifactId>org.springframework.web.servlet</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.roo</groupId>
+			<artifactId>org.springframework.roo.annotations</artifactId>
+			<version>1.0.1.RELEASE</version>
+			<scope>provided</scope>
+		</dependency>	
+		
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>com.springsource.org.aspectj.runtime</artifactId>
+			<version>${org.aspectj.version}</version>
+		</dependency>	
 		
 		<!-- Logging -->
 		<dependency>
@@ -188,8 +203,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -212,6 +227,48 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<!-- Have to use version 1.2 since version 1.3 does not appear to work with ITDs -->
+				<version>1.2</version>
+				<dependencies>
+					<!-- NB: You must use Maven 2.0.9 or above or these are ignored (see MNG-2972) -->
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>com.springsource.org.aspectj.runtime</artifactId>
+						<version>${org.aspectj.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>com.springsource.org.aspectj.tools</artifactId>
+						<version>${org.aspectj.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>test-compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<outxml>true</outxml>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<junitArtifactName>org.junit:com.springsource.org.junit</junitArtifactName>
+					<excludes>
+						<exclude>**/*_Roo_*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>					
 		</plugins>
 	</build>
 </project>

@@ -2,62 +2,17 @@ package org.springframework.samples.petcare.appointments;
 
 import javax.validation.constraints.NotNull;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
-import org.springframework.core.style.ToStringCreator;
+import org.springframework.roo.addon.javabean.RooJavaBean;
+import org.springframework.roo.addon.tostring.RooToString;
 
+@RooJavaBean
+@RooToString
 public class AppointmentForm {
 
 	@NotNull
-	private Long patient;
+	private Long patientId;
 
 	@NotNull
-	private LocalDate date = new LocalDate();
-
-	@NotNull
-	private LocalTime time = new LocalTime();
-
-	private String notes;
-
-	public Long getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Long patient) {
-		this.patient = patient;
-	}
-
-	public LocalDate getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
-	public LocalTime getTime() {
-		return time;
-	}
-
-	public void setTime(LocalTime time) {
-		this.time = time;
-	}
-
-	public DateTime getDateTime() {
-		return date.toDateTime(time);
-	}
-	
-	public String getNotes() {
-		return notes;
-	}
-
-	public void setNotes(String notes) {
-		this.notes = notes;
-	}
-	
-	public String toString() {
-		return new ToStringCreator(this).append("date", date).append("time", time).append("patient", patient).toString();
-	}
+	private String reason;
 
 }

@@ -12,7 +12,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
+			<name>org.eclipse.ajdt.core.ajbuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -38,6 +38,8 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>org.eclipse.ajdt.ui.ajnature</nature>
+		<nature>com.springsource.sts.roo.core.nature</nature>
 		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
 		<nature>org.maven.ide.eclipse.maven2Nature</nature>
 		<nature>org.springframework.ide.eclipse.core.springnature</nature>
