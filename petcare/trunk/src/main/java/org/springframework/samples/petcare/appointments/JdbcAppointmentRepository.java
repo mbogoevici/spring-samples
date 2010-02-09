@@ -15,35 +15,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CachingMapDecorator;
 
-@Service
+@Repository
 @Transactional
-public class JdbcAppointmentBook implements AppointmentBook {
+public class JdbcAppointmentRepository implements AppointmentRepository {
 
-	private JdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	public JdbcAppointmentBook(DataSource dataSource) {
+	public JdbcAppointmentRepository(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public Map<String, List<Appointment>> getAppointmentsForDay(LocalDate day) {
+	public AppointmentCalendar getAppointmentsForDay(LocalDate day) {
 		Date startOfDay = day.toDateTimeAtStartOfDay().toDate();
 		Date endOfDay = day.plusDays(1).toDateTimeAtStartOfDay().toDate();
-		return this.jdbcTemplate.query(FOR_DAY, new Date[] { startOfDay, endOfDay }, new AppointmentsExtractor());
+		Map<String, List<Appointment>> appointments = this.jdbcTemplate.query(APPOINTMENTS_FOR_DAY, new Date[] { startOfDay, endOfDay }, new AppointmentsExtractor());
+		return new AppointmentCalendar(day, appointments);
 	}
 
-	public void addAppointment(AppointmentForm form) {
-		//this.jdbcTemplate.update("insert into Appointment (dateTime, notes, patientId) values (?, ?, ?)", form
-			//	.getDateTime().toDate(), form.getNotes(), form.getPatient());
+	public void addAppointment(NewAppointment appointment) {
+		this.jdbcTemplate.update("insert into Appointment (dateTime, reason, patientId) values (?, ?, ?)", appointment
+				.getTime().toDate(), appointment.getReason(), appointment.getPatientId());
 	}
 
 	// internal helpers
 
-	private static final String FOR_DAY = "select a.dateTime, (d.firstName || ' ' || d.lastName) as doctor, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, p.name as patient, a.notes "
+	private static final String APPOINTMENTS_FOR_DAY = "select a.dateTime, (d.firstName || ' ' || d.lastName) as doctor, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, p.name as patient, a.reason "
 		+ "from Appointment a, Doctor d, Client c, Patient p "
 		+ "where "
 		+ "a.dateTime between ? and ? and "
@@ -55,11 +56,11 @@ public class JdbcAppointmentBook implements AppointmentBook {
 			Map<String, List<Appointment>> appointments = createMapOfLists(String.class, Appointment.class);
 			while (rs.next()) {
 				Appointment a = new Appointment();
-				a.setDateTime(new DateTime(rs.getTimestamp("DATETIME")));
+				a.setTime(new DateTime(rs.getTimestamp("DATETIME")));
 				a.setClient(rs.getString("CLIENT"));
 				a.setClientPhone(rs.getString("CLIENTPHONE"));
 				a.setPatient(rs.getString("PATIENT"));
-				a.setNotes(rs.getString("NOTES"));
+				a.setReason(rs.getString("REASON"));
 				appointments.get(rs.getString("DOCTOR")).add(a);
 			}
 			return appointments;

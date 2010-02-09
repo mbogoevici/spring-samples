@@ -8,14 +8,14 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 public class Appointment {
 
-	private DateTime dateTime;
+	private DateTime time;
+
+	private String patient;
 
 	private String client;
 
 	private String clientPhone;
 
-	private String patient;
-
-	private String notes;
+	private String reason;
 
 }

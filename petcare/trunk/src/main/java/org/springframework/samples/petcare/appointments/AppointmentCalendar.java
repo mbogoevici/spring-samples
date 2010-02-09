@@ -10,9 +10,9 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 public class AppointmentCalendar {
 
-	private LocalDate day;
+	private final LocalDate day;
 
-	private Map<String, List<Appointment>> doctorAppointments;
+	private final Map<String, List<Appointment>> doctorAppointments;
 
 	public AppointmentCalendar(LocalDate day, Map<String, List<Appointment>> doctorAppointments) {
 		this.day = day;

@@ -1,8 +1,5 @@
 package org.springframework.samples.petcare.appointments;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.joda.time.LocalDate;
@@ -20,36 +17,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/appointments")
 public class AppointmentsController {
 
-	private AppointmentBook appointmentBook;
+	private final AppointmentRepository appointmentRepository;
 
 	@Autowired
-	public AppointmentsController(AppointmentBook appointmentBook) {
-		this.appointmentBook = appointmentBook;
+	public AppointmentsController(AppointmentRepository appointmentBook) {
+		this.appointmentRepository = appointmentBook;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String get(Model model) {
-		return getForDay(new LocalDate(), model);
+	public String getAppointments(Model model) {
+		return getAppointmentsForDay(new LocalDate(), model);
 	}
 
 	@RequestMapping(value = "/{day}", method = RequestMethod.GET)
-	public String getForDay(@PathVariable @DateTimeFormat(iso=ISO.DATE) LocalDate day, Model model) {
-		Map<String, List<Appointment>> doctorAppointments = appointmentBook.getAppointmentsForDay(day);
-		model.addAttribute(new AppointmentCalendar(day, doctorAppointments));
+	public String getAppointmentsForDay(@PathVariable @DateTimeFormat(iso=ISO.DATE) LocalDate day, Model model) {
+		model.addAttribute(appointmentRepository.getAppointmentsForDay(day));
 		return "appointments";
 	}
 
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public AppointmentForm getNewForm() {
-		return new AppointmentForm();
-	}
-
 	@RequestMapping(method = RequestMethod.POST)
-	public String add(@Valid AppointmentForm appointment, BindingResult result) {
+	public String addAppointment(@Valid NewAppointment appointment, BindingResult result) {
 		if (result.hasErrors()) {
 			return "appointments/new";
 		}
-		appointmentBook.addAppointment(appointment);
+		appointmentRepository.addAppointment(appointment);
 		return "redirect:/appointments";
 	}
 }
