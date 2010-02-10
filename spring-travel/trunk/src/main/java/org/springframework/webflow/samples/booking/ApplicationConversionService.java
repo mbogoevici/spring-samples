@@ -4,7 +4,7 @@ import org.springframework.binding.convert.converters.StringToDate;
 import org.springframework.binding.convert.service.DefaultConversionService;
 import org.springframework.stereotype.Component;
 
-@Component("conversionService")
+@Component("flowConversionService")
 public class ApplicationConversionService extends DefaultConversionService {
 
     @Override

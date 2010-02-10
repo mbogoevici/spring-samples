@@ -7,6 +7,14 @@
 	<packaging>war</packaging>
 	<name>Spring Travel Sample Application</name>
 	<version>3.0.0.BUILD-SNAPSHOT</version>
+	
+	<properties>
+        <spring.version>3.0.0.RELEASE</spring.version>
+        <spring.security.version>3.0.0.RELEASE</spring.security.version>
+        <spring.flex.version>1.0.1.RELEASE</spring.flex.version>
+        <spring.webflow.version>2.0.8.RELEASE</spring.webflow.version>
+        <aspectj.version>1.6.8</aspectj.version>
+	</properties>
 	<dependencies>
 		<!-- Java Compile and Runtime Dependencies -->
 		<dependency>
@@ -22,6 +30,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
 			<version>2.5</version>
 		</dependency>
 		<dependency>
@@ -68,6 +77,18 @@
 					<groupId>javax.transaction</groupId>
 					<artifactId>jta</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>cglib</groupId>
+					<artifactId>cglib</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>asm</groupId>
+					<artifactId>asm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>asm</groupId>
+					<artifactId>asm-attrs</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -78,17 +99,17 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>3.0.0.M2</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>3.0.0.M2</version>
+			<version>${spring.security.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.flex</groupId>
 			<artifactId>spring-flex</artifactId>
-			<version>1.0.0.RELEASE</version>
+			<version>${spring.flex.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -154,12 +175,17 @@
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-webflow</artifactId>
-			<version>2.0.7.RELEASE</version>
+			<version>${spring.webflow.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.6.3</version>
+			<version>${aspectj.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -194,6 +220,11 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>JBoss Repository</id>
+			<name>JBoss Maven Repository</name>
+			<url>http://repository.jboss.org/maven2</url>
+		</repository>
 	</repositories>
 	<build>
 		<finalName>spring-travel</finalName>
@@ -208,7 +239,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<properties>
-		<spring.version>3.0.0.M4</spring.version>
-	</properties>
 </project>
