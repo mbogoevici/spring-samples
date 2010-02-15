@@ -3,6 +3,7 @@ package org.springframework.samples.petcare.appointments;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,6 +23,14 @@ public class AppointmentCalendar {
 	@DateTimeFormat(style="F-")
 	public LocalDate getDay() {
 		return day;
+	}
+	
+	public Set<String> getDoctors() {
+		return doctorAppointments.keySet();
+	}
+	
+	public Set<String> getBlocks() {
+		return Collections.emptySet();
 	}
 	
 	public boolean getHasAppointments() {
