@@ -8,39 +8,26 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.roo.addon.javabean.RooJavaBean;
+import org.springframework.roo.addon.tostring.RooToString;
 
+@RooJavaBean(settersByDefault=false)
+@RooToString
 public class AppointmentCalendar {
 
-	private final LocalDate day;
+	@DateTimeFormat(style="F-")
+	private LocalDate day;
 
-	private final Map<String, List<Appointment>> doctorAppointments;
+	private Map<String, List<Appointment>> doctorAppointments;
 
+	private Set<Block> blocks;
+	
 	public AppointmentCalendar(LocalDate day, Map<String, List<Appointment>> doctorAppointments) {
 		this.day = day;
 		this.doctorAppointments = Collections.unmodifiableMap(doctorAppointments);
+		this.blocks = Block.createWorkDayBlocks();
 	}
 
-	@DateTimeFormat(style="F-")
-	public LocalDate getDay() {
-		return day;
-	}
-	
-	public Set<String> getDoctors() {
-		return doctorAppointments.keySet();
-	}
-	
-	public Set<String> getBlocks() {
-		return Collections.emptySet();
-	}
-	
-	public boolean getHasAppointments() {
-		return !doctorAppointments.isEmpty();
-	}
-
-	public Map<String, List<Appointment>> getDoctorAppointments() {
-		return doctorAppointments;
-	}
-	
 	// resource links
 	
 	@DateTimeFormat(iso=ISO.DATE)
@@ -52,5 +39,5 @@ public class AppointmentCalendar {
 	public LocalDate getNextDayResourceId() {
 		return day.plusDays(1);
 	}
-
+	
 }

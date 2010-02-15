@@ -5,15 +5,16 @@
 <table>
 	<tr>
 		<th>&nbsp;</th>
-		<c:forEach var="doctor" items="${appointmentCalendar.doctors}">
+		<spring:eval expression="appointmentCalendar.doctorAppointments.keySet()" var="doctors" />
+		<c:forEach var="doctor" items="${doctors}">
 			<th>Dr. ${doctor}</th>
 		</c:forEach>
 	</tr>
 
 	<c:forEach var="block" items="${appointmentCalendar.blocks}">
 		<tr>
-			<td><spring:eval expression="block" /></td>
-			<c:forEach var="doctor" items="${appointmentCalendar.doctors}">
+			<td><spring:eval expression="block.time" /></td>
+			<c:forEach var="doctor" items="${doctors}">
 				<td>
 					<spring:eval expression="appointmentCalendar.appointmentFor(doctor, block)" var="appointment" />
 					<c:if test="${appointment}">

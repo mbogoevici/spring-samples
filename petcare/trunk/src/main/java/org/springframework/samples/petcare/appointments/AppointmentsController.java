@@ -20,8 +20,8 @@ public class AppointmentsController {
 	private final AppointmentRepository appointmentRepository;
 
 	@Autowired
-	public AppointmentsController(AppointmentRepository appointmentBook) {
-		this.appointmentRepository = appointmentBook;
+	public AppointmentsController(AppointmentRepository appointmentRepository) {
+		this.appointmentRepository = appointmentRepository;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
