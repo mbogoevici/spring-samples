@@ -2,10 +2,7 @@ package org.springframework.samples.petcare.appointments;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -14,10 +11,10 @@ import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CachingMapDecorator;
 
 @Repository
 @Transactional
@@ -27,52 +24,58 @@ public class JdbcAppointmentRepository implements AppointmentRepository {
 
 	@Autowired
 	public JdbcAppointmentRepository(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	public AppointmentCalendar getAppointmentsForDay(LocalDate day) {
 		Date startOfDay = day.toDateTimeAtStartOfDay().toDate();
 		Date endOfDay = day.plusDays(1).toDateTimeAtStartOfDay().toDate();
-		Map<String, List<Appointment>> appointments = this.jdbcTemplate.query(APPOINTMENTS_FOR_DAY, new Date[] { startOfDay, endOfDay }, new AppointmentsExtractor());
-		return new AppointmentCalendar(day, appointments);
+		AppointmentCalendar calendar = new AppointmentCalendar(day);
+		calendar.setDoctors(jdbcTemplate.query(DOCTORS, new DoctorReferenceRowMapper()));
+		jdbcTemplate.query(APPOINTMENTS_FOR_DAY, new Date[] { startOfDay, endOfDay }, new AppointmentCalendarPopulator(
+				calendar));
+		return calendar;
 	}
 
 	public void addAppointment(NewAppointment appointment) {
-		this.jdbcTemplate.update("insert into Appointment (dateTime, reason, patientId) values (?, ?, ?)", appointment
+		jdbcTemplate.update("insert into Appointment (dateTime, reason, patientId) values (?, ?, ?)", appointment
 				.getTime().toDate(), appointment.getReason(), appointment.getPatientId());
 	}
 
 	// internal helpers
 
-	private static final String APPOINTMENTS_FOR_DAY = "select a.dateTime, (d.firstName || ' ' || d.lastName) as doctor, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, p.name as patient, a.reason "
-		+ "from Appointment a, Doctor d, Client c, Patient p "
-		+ "where "
-		+ "a.dateTime between ? and ? and "
-		+ "a.patientId = p.id and p.clientId = c.id and p.doctorId = d.id order by doctor, dateTime";
+	private static final String DOCTORS = "select id, (firstName || ' ' || lastName) as doctor from Doctor";
 
-	private static class AppointmentsExtractor implements ResultSetExtractor<Map<String, List<Appointment>>> {
+	private static final String APPOINTMENTS_FOR_DAY = "select a.startTime, a.endTime, d.id as doctorId, p.name as patient, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, a.reason "
+			+ "from Appointment a, Doctor d, Patient p, Client c "
+			+ "where "
+			+ "a.startTime between ? and ? and "
+			+ "a.patientId = p.id and p.clientId = c.id and p.doctorId = d.id";
 
-		public Map<String, List<Appointment>> extractData(ResultSet rs) throws SQLException, DataAccessException {
-			Map<String, List<Appointment>> appointments = createMapOfLists(String.class, Appointment.class);
-			while (rs.next()) {
-				Appointment a = new Appointment();
-				a.setTime(new DateTime(rs.getTimestamp("DATETIME")));
-				a.setClient(rs.getString("CLIENT"));
-				a.setClientPhone(rs.getString("CLIENTPHONE"));
-				a.setPatient(rs.getString("PATIENT"));
-				a.setReason(rs.getString("REASON"));
-				appointments.get(rs.getString("DOCTOR")).add(a);
-			}
-			return appointments;
+	private static class AppointmentCalendarPopulator implements RowCallbackHandler {
+
+		private AppointmentCalendar calendar;
+
+		public AppointmentCalendarPopulator(AppointmentCalendar calendar) {
+			this.calendar = calendar;
 		}
-		
-		@SuppressWarnings("serial")
-		private static <K, V> Map<K, List<V>> createMapOfLists(Class<K> keyType, Class<V> valueElementType) {
-			return new CachingMapDecorator<K, List<V>>() {
-				protected List<V> create(K key) {
-					return new ArrayList<V>();
-				}
-			};
+
+		public void processRow(ResultSet rs) throws SQLException, DataAccessException {
+			Appointment a = new Appointment();
+			a.setStartTime(new DateTime(rs.getTimestamp("STARTTIME")));
+			a.setEndTime(new DateTime(rs.getTimestamp("ENDTIME")));
+			a.setPatient(rs.getString("PATIENT"));
+			a.setClient(rs.getString("CLIENT"));
+			a.setClientPhone(rs.getString("CLIENTPHONE"));
+			a.setReason(rs.getString("REASON"));
+			calendar.addAppointment(rs.getLong("DOCTORID"), a);
+		}
+	}
+
+	private static class DoctorReferenceRowMapper implements RowMapper<DoctorReference> {
+
+		public DoctorReference mapRow(ResultSet rs, int row) throws SQLException {
+			return new DoctorReference(rs.getLong("ID"), rs.getString("DOCTOR"));
 		}
 
 	}

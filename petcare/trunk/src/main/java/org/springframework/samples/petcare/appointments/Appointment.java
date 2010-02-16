@@ -8,7 +8,9 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 public class Appointment {
 
-	private DateTime time;
+	private DateTime startTime;
+
+	private DateTime endTime;
 
 	private String patient;
 

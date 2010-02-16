@@ -19,7 +19,9 @@ public class NewAppointment {
 	private Long patientId;
 
 	@NotNull
+	private Long doctorId;
+	
+	@NotNull
 	private String reason;
-
 
 }

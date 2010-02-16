@@ -1,7 +1,7 @@
 package org.springframework.samples.petcare.appointments;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.joda.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,15 +28,23 @@ public class Block {
 		Block b = (Block) o;
 		return time.equals(b.time);
 	}
-
-	public static Set<Block> createWorkDayBlocks() {
-		Set<Block> blocks = new LinkedHashSet<Block>();
+	
+	public static List<Block> getBlocks() {
+		List<Block> blocks = new ArrayList<Block>(NUMBER_OF_BLOCKS);
 		LocalTime time = new LocalTime(8, 0);
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < NUMBER_OF_BLOCKS; i++) {
 			blocks.add(new Block(time));
-			time = time.plusHours(1);
+			time = time.plusMinutes(BLOCK_LENGTH_IN_MINUTES);
 		}
 		return blocks;
+	}
+	
+	public static int count() {
+		return NUMBER_OF_BLOCKS;
+	}
+	
+	public static int indexOf(Appointment appointment) {
+		return appointment.getStartTime().getHourOfDay() - 8;
 	}
 	
 	// internal 
@@ -44,4 +52,9 @@ public class Block {
 	private Block(LocalTime time) {
 		this.time = time;
 	}
+
+	private static final int NUMBER_OF_BLOCKS = 9;
+	
+	private static final int BLOCK_LENGTH_IN_MINUTES = 60;
+
 }

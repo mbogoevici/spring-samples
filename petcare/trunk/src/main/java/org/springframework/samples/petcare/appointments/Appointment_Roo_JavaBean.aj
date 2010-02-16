@@ -5,12 +5,20 @@ import org.joda.time.DateTime;
 
 privileged aspect Appointment_Roo_JavaBean {
     
-    public DateTime Appointment.getTime() {    
-        return this.time;        
+    public DateTime Appointment.getStartTime() {    
+        return this.startTime;        
     }    
     
-    public void Appointment.setTime(DateTime time) {    
-        this.time = time;        
+    public void Appointment.setStartTime(DateTime startTime) {    
+        this.startTime = startTime;        
+    }    
+    
+    public DateTime Appointment.getEndTime() {    
+        return this.endTime;        
+    }    
+    
+    public void Appointment.setEndTime(DateTime endTime) {    
+        this.endTime = endTime;        
     }    
     
     public String Appointment.getPatient() {    

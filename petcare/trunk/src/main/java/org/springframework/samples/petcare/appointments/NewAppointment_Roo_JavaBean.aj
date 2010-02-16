@@ -22,6 +22,14 @@ privileged aspect NewAppointment_Roo_JavaBean {
         this.patientId = patientId;        
     }    
     
+    public Long NewAppointment.getDoctorId() {    
+        return this.doctorId;        
+    }    
+    
+    public void NewAppointment.setDoctorId(Long doctorId) {    
+        this.doctorId = doctorId;        
+    }    
+    
     public String NewAppointment.getReason() {    
         return this.reason;        
     }    

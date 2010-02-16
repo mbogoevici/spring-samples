@@ -1,24 +1,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<h2>Appointment Calendar for <spring:eval expression="appointmentCalendar.day" /></h2>
+<h2>Calendar for <spring:eval expression="appointmentCalendar.day" /></h2>
 
 <table>
 	<tr>
 		<th>&nbsp;</th>
-		<spring:eval expression="appointmentCalendar.doctorAppointments.keySet()" var="doctors" />
-		<c:forEach var="doctor" items="${doctors}">
-			<th>Dr. ${doctor}</th>
+		<c:forEach var="doctor" items="${appointmentCalendar.doctors}">
+			<th>${doctor.name}</th>
 		</c:forEach>
 	</tr>
 
-	<c:forEach var="block" items="${appointmentCalendar.blocks}">
+	<c:forEach var="block" items="${appointmentCalendar.blocks}" varStatus="b">
 		<tr>
-			<td><spring:eval expression="block.time" /></td>
-			<c:forEach var="doctor" items="${doctors}">
+			<td>
+				<spring:eval expression="block.time" />
+			</td>
+			<c:forEach var="doctor" items="${appointmentCalendar.doctors}" varStatus="d">
 				<td>
-					<spring:eval expression="appointmentCalendar.appointmentFor(doctor, block)" var="appointment" />
-					<c:if test="${appointment}">
-						${appointment.dateTime} ${appointment.patient} <br/>
+					<spring:eval expression="appointmentCalendar.appointments[b.count - 1][d.count - 1]" var="appointment" />
+					<c:if test="${appointment != null}">
+						${appointment.patient} <br/>
 						${appointment.client} ${appointment.clientPhone} <br/>
 						${appointment.reason}			
 					</c:if>

@@ -1,12 +1,9 @@
 package org.springframework.samples.petcare.appointments;
 
-import java.lang.String;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import org.joda.time.LocalDate;
 import org.springframework.samples.petcare.appointments.Appointment;
-import org.springframework.samples.petcare.appointments.Block;
+import org.springframework.samples.petcare.appointments.DoctorReference;
 
 privileged aspect AppointmentCalendar_Roo_JavaBean {
     
@@ -14,12 +11,12 @@ privileged aspect AppointmentCalendar_Roo_JavaBean {
         return this.day;        
     }    
     
-    public Map<String, List<Appointment>> AppointmentCalendar.getDoctorAppointments() {    
-        return this.doctorAppointments;        
+    public List<DoctorReference> AppointmentCalendar.getDoctors() {    
+        return this.doctors;        
     }    
     
-    public Set<Block> AppointmentCalendar.getBlocks() {    
-        return this.blocks;        
+    public List<List<Appointment>> AppointmentCalendar.getAppointments() {    
+        return this.appointments;        
     }    
     
 }
