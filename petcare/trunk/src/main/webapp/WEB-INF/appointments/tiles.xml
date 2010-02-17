@@ -18,6 +18,9 @@
 			<add-attribute value="jquery-1.4.1.min.js" />
 			<add-attribute value="jquery-ui-1.7.2.custom.min.js" />
 		</put-list-attribute>
+		<put-list-attribute name="styles">
+			<add-attribute value="jquery/ui-lightness/jquery-ui-1.7.2.custom.css" />
+		</put-list-attribute>		
 	</definition>
 	
 </tiles-definitions>

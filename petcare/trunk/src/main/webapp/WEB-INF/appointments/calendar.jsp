@@ -27,14 +27,34 @@
 						</td>				
 					</c:when>
 					<c:otherwise>
-						<td class="open">&nbsp;</td>
+						<td class="open" onclick="showDialog();">&nbsp;</td>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 		</tr>
 	</c:forEach>
 </table>
+
 <ul>
 <li><a href="<c:url value="/appointments/${appointmentCalendar.previousDayResourceId}"/>">Previous</a></li> 
 <li><a href="<c:url value="/appointments/${appointmentCalendar.nextDayResourceId}"/>">Next</a></li>
 </ul>
+
+<div id="addDialog" title="Add Appointment">
+	<form method="POST">
+		<fieldset>
+			<p>
+				<label for="patient">Patient</label><br/>
+				<input id="patient" type="text" />
+				<input id="add" type="submit" value="Add" />				
+			</p>
+		</fieldset>
+	</form>
+</div>
+
+<script type="text/javascript">
+	function showDialog() {
+		$("#addDialog").dialog();
+		$("#addDialog").dialog('open');
+	}
+</script>

@@ -13,9 +13,13 @@
 	<!--[if lt IE 8]>
 		<link rel="stylesheet" href="<c:url value="/styles/blueprint/ie.css" />" type="text/css" media="screen, projection" />
 	<![endif]-->
+	<tiles:useAttribute id="styles" name="styles" classname="java.util.List" ignore="true" />
+	<c:forEach var="style" items="${styles}">
+		<link rel="stylesheet" href="<c:url value="/styles/${style}" />" type="text/css" media="all" />
+	</c:forEach>	
 	<tiles:useAttribute id="scripts" name="scripts" classname="java.util.List" ignore="true" />
 	<c:forEach var="script" items="${scripts}">
-		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/${script}"></script>	
+		<script type="text/javascript" src="<c:url value="/scripts/${script}" />"></script>	
 	</c:forEach>	
 </head>
 <body id="page-body">
