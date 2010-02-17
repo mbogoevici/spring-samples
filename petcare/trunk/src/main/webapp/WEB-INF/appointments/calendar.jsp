@@ -53,8 +53,21 @@
 </div>
 
 <script type="text/javascript">
+	$(document).ready(function() {
+		// auto-complete patients on change
+		$('#patient').autocomplete({
+			source: function(request, response) {
+				$.getJSON("patients", { name: request.term }, response);
+			}
+		});
+		
+		$("#addDialog").dialog({
+			autoOpen: false,
+			modal: true
+		});			
+	});
+	
 	function showDialog() {
-		$("#addDialog").dialog();
-		$("#addDialog").dialog('open');
+		$("#addDialog").dialog("open");
 	}
 </script>

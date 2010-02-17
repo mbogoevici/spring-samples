@@ -2,7 +2,6 @@ package org.springframework.samples.petcare.appointments;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;

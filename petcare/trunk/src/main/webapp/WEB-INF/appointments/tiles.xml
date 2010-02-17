@@ -16,7 +16,7 @@
 		<put-attribute name="content" value="/WEB-INF/appointments/calendar.jsp" type="template" />
 		<put-list-attribute name="scripts">
 			<add-attribute value="jquery-1.4.1.min.js" />
-			<add-attribute value="jquery-ui-1.7.2.custom.min.js" />
+			<add-attribute value="jquery.ui-1.8rc2.min.js" />
 		</put-list-attribute>
 		<put-list-attribute name="styles">
 			<add-attribute value="jquery/ui-lightness/jquery-ui-1.7.2.custom.css" />
