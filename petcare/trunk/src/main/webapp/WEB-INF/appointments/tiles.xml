@@ -19,7 +19,7 @@
 			<add-attribute value="jquery.ui-1.8rc2.min.js" />
 		</put-list-attribute>
 		<put-list-attribute name="styles">
-			<add-attribute value="jquery/ui-lightness/jquery-ui-1.7.2.custom.css" />
+			<add-attribute value="jquery/base/jquery.ui-1.8rc2.css" />
 		</put-list-attribute>		
 	</definition>
 	

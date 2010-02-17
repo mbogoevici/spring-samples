@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/patients")
 public class PatientsController {
 
-	private SimpleJdbcTemplate template;
+	private SimpleJdbcTemplate jdbcTemplate;
 	
 	@Autowired
 	public PatientsController(DataSource dataSource) {
-		this.template = new SimpleJdbcTemplate(dataSource);
+		this.jdbcTemplate = new SimpleJdbcTemplate(dataSource);
 	}
 
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody List<Patient> getPatients(@RequestParam String name) {
-		return template.query("select p.id, p.name, c.name as client from Patient p, Client c where p.name like '?%' and p.clientId = c.id",
+		return jdbcTemplate.query("select p.id, p.name, (c.firstName || ' ' || c.lastName) as client from Patient p, Client c where p.name like ? and p.clientId = c.id",
 				new RowMapper<Patient>() {
 					public Patient mapRow(ResultSet rs, int row)
 							throws SQLException {
@@ -38,6 +38,6 @@ public class PatientsController {
 						patient.setClient(rs.getString("CLIENT"));
 						return patient;
 					}
-				}, name);
+				}, name + "%");
 	}
 }
