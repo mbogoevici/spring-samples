@@ -14,6 +14,10 @@
 	<definition name="appointments" extends="appointsments.layout">
 		<put-attribute name="title" value="Appointments" type="string" />
 		<put-attribute name="content" value="appointments.content" type="definition" />
+		<put-list-attribute name="scripts">
+			<add-attribute value="jquery-1.4.1.min.js" />
+			<add-attribute value="jquery-ui-1.7.2.custom.min.js" />
+		</put-list-attribute>
 	</definition>
 	
 	<definition name="appointments.content" template="/WEB-INF/appointments/content.jsp">

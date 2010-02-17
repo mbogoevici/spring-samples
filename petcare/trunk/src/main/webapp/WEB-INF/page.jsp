@@ -13,6 +13,10 @@
 	<!--[if lt IE 8]>
 		<link rel="stylesheet" href="<c:url value="/styles/blueprint/ie.css" />" type="text/css" media="screen, projection" />
 	<![endif]-->
+	<tiles:useAttribute id="scripts" name="scripts" classname="java.util.List" />
+	<c:forEach var="script" items="${scripts}">
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/${script}"></script>	
+	</c:forEach>	
 </head>
 <body id="page-body">
 	<div id="page" class="container">

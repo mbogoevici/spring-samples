@@ -6,7 +6,7 @@
 	<tr>
 		<th>&nbsp;</th>
 		<c:forEach var="doctor" items="${appointmentCalendar.doctors}">
-			<th>${doctor.name}</th>
+			<th>Dr. ${doctor.name}</th>
 		</c:forEach>
 	</tr>
 
@@ -16,14 +16,19 @@
 				<spring:eval expression="block.time" />
 			</td>
 			<c:forEach var="doctor" items="${appointmentCalendar.doctors}" varStatus="d">
-				<td>
-					<spring:eval expression="appointmentCalendar.appointments[b.count - 1][d.count - 1]" var="appointment" />
-					<c:if test="${appointment != null}">
-						${appointment.patient} <br/>
-						${appointment.client} ${appointment.clientPhone} <br/>
-						${appointment.reason}			
-					</c:if>
-				</td>
+				<spring:eval expression="appointmentCalendar.appointments[b.count - 1][d.count - 1]" var="appointment" />
+				<c:choose>
+					<c:when test="${appointment != null}">
+						<td class="filled">
+							${appointment.patient} <br/>
+							${appointment.client} ${appointment.clientPhone} <br/>
+							${appointment.reason}
+						</td>				
+					</c:when>
+					<c:otherwise>
+						<td class="open">&nbsp;</td>
+					</c:otherwise>
+				</c:choose>
 			</c:forEach>
 		</tr>
 	</c:forEach>
