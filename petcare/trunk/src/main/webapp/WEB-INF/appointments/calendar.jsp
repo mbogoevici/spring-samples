@@ -54,8 +54,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		// auto-complete patients on change
-		$('#patient').autocomplete({
+		$("#patient").autocomplete({
 			source: function(request, response) {
 				$.getJSON("patients", { name: request.term }, response);
 			}

@@ -144,7 +144,7 @@
 		<!-- JSR 303 with Hibernate Validator -->
         <dependency>
 			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
+			<artifactId>com.springsource.javax.validation</artifactId>
 			<version>1.0.0.GA</version>
         </dependency>		
 		<dependency>
@@ -160,6 +160,13 @@
 			<version>1.6.0</version>
 		</dependency>
 
+		<!-- Jackson JSON Mapper -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>com.springsource.org.codehaus.jackson.mapper</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
 		<!-- Testing -->
 		<dependency>
 			<groupId>org.junit</groupId>
