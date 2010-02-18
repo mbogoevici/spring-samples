@@ -150,7 +150,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>com.springsource.org.hibernate.validator</artifactId>
-			<version>4.0.0.GA</version>
+			<version>4.0.2.GA</version>
 		</dependency>
 		
 		<!-- Joda Time -->
@@ -164,7 +164,7 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>com.springsource.org.codehaus.jackson.mapper</artifactId>
-			<version>1.0.0</version>
+			<version>1.4.2</version>
 		</dependency>
 		
 		<!-- Testing -->
