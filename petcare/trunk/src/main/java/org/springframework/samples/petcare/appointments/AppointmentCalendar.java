@@ -41,6 +41,10 @@ public class AppointmentCalendar {
 		}
 		appointments.get(blockIndex).set(doctorIndex, appointment);
 	}
+
+	public Long getDayMillis() {
+		return day.toDateTimeAtStartOfDay().getMillis();
+	}
 	
 	public List<Block> getBlocks() {
 		return Block.getBlocks();

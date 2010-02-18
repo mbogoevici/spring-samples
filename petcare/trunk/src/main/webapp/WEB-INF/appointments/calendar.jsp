@@ -80,6 +80,7 @@
 		$("#dayPicker").datepicker({
 			firstDay: 1,
 			dateFormat: "yy-mm-dd",
+			defaultDate: new Date(${appointmentCalendar.dayMillis}),
 			onSelect: function(dateText, instance) {
 				window.location = "${pageContext.request.contextPath}/appointments/" + dateText;
 			}

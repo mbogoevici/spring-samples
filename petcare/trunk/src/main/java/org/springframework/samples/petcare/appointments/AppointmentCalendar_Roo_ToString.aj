@@ -6,6 +6,7 @@ privileged aspect AppointmentCalendar_Roo_ToString {
     
     public String AppointmentCalendar.toString() {    
         StringBuilder sb = new StringBuilder();        
+        sb.append("DayMillis: ").append(getDayMillis()).append(", ");        
         sb.append("Blocks: ").append(getBlocks() == null ? "null" : getBlocks().size()).append(", ");        
         sb.append("PreviousDayResourceId: ").append(getPreviousDayResourceId()).append(", ");        
         sb.append("NextDayResourceId: ").append(getNextDayResourceId()).append(", ");        
