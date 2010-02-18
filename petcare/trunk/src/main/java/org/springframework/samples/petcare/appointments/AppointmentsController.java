@@ -34,13 +34,13 @@ public class AppointmentsController {
 		model.addAttribute(appointmentRepository.getAppointmentsForDay(day));
 		return "appointments";
 	}
-
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public String addAppointment(@Valid NewAppointment appointment, BindingResult result) {
+	public String createAppointment(@Valid NewAppointment appointment, BindingResult result) {
 		if (result.hasErrors()) {
 			return "appointments/new";
 		}
-		appointmentRepository.addAppointment(appointment);
+		appointmentRepository.createAppointment(appointment);
 		return "redirect:/appointments";
 	}
 }

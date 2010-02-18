@@ -6,6 +6,6 @@ public interface AppointmentRepository {
 
 	AppointmentCalendar getAppointmentsForDay(LocalDate day);
 
-	void addAppointment(NewAppointment appointment);
+	void createAppointment(NewAppointment appointment);
 
 }

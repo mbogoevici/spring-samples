@@ -12,7 +12,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 public class Block {
 	
-	@DateTimeFormat(pattern="h a")
+	@DateTimeFormat(style="-S")
 	private LocalTime time;
 	
 	//  would be nice to eliminate this with @RooEquals

@@ -41,7 +41,7 @@ public class JdbcAppointmentRepository implements AppointmentRepository {
 		return calendar;
 	}
 
-	public void addAppointment(NewAppointment appointment) {
+	public void createAppointment(NewAppointment appointment) {
 		DateTime startTime = appointment.getDay().toDateTime(appointment.getTime());
 		jdbcTemplate.update("insert into Appointment (startTime, endTime, reason, patientId) values (?, ?, ?)", startTime, startTime.plusHours(1), appointment.getReason(), appointment.getPatientId());
 	}

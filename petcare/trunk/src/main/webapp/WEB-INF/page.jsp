@@ -25,6 +25,8 @@
 <body id="page-body">
 	<div id="page" class="container">
 		<div id="header" class="span-24 last">
+			<h1>Petcare</h1>
+			<h2>We love your pet</h2>
 			<div id="signin">
 				<c:choose>
 					<c:when test="${pageContext.request.userPrincipal != null}">
@@ -48,19 +50,12 @@
 					<!-- TODO Clients -->
 				</ul>
 			</div>
-			<div id="local" class="span-4">
-				<ul>
-					<tiles:insertAttribute name="localNavigation"/>
-				</ul>
-			</div>
-			<div id="main" class="span-16">
+			<div id="main" class="span-24">
 				<tiles:insertAttribute name="content"/>
 			</div>
 		</div>
 		<div id="footer" class="span-24">
-			<ul id="legal">
-			
-			</ul>
+			Copyright (c) 2010 SpringSource | About
 		</div>
 	</div>
 </body>

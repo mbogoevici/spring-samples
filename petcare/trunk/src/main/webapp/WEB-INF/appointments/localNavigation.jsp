@@ -1,1 +1,0 @@
-<li><a href="${pageContext.request.contextPath}/appointments">Calendar</a></li>

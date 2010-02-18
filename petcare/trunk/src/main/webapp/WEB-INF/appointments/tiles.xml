@@ -5,13 +5,8 @@
 
 <tiles-definitions>
 
-	<!-- Abstract Appointments template -->
-	<definition name="appointsments.layout" extends="page">
-		<put-attribute name="localNavigation" value="/WEB-INF/appointments/localNavigation.jsp" type="template"/>
-	</definition>
-
 	<!-- Appointment Calendar -->
-	<definition name="appointments" extends="appointsments.layout">
+	<definition name="appointments" extends="page">
 		<put-attribute name="title" value="Appointments" type="string" />
 		<put-attribute name="content" value="/WEB-INF/appointments/calendar.jsp" type="template" />
 		<put-list-attribute name="scripts">

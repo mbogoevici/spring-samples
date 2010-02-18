@@ -159,6 +159,13 @@
 			<artifactId>com.springsource.org.joda.time</artifactId>
 			<version>1.6.0</version>
 		</dependency>
+		<!-- TODO: Get this dependency in the EBR -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time-jsptags</artifactId>
+			<version>1.0.2</version>
+			<scope>runtime</scope>
+		</dependency>		
 
 		<!-- Jackson JSON Mapper -->
 		<dependency>

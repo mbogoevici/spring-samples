@@ -94,6 +94,12 @@
 			<version>1.6</version>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time-jsptags</artifactId>
+			<version>1.0.2</version>
+			<scope>runtime</scope>
+		</dependency>		
 
 		<!--  URL Rewrite -->
 		<dependency>

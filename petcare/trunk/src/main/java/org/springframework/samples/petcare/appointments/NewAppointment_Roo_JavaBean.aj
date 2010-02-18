@@ -7,22 +7,6 @@ import org.joda.time.LocalTime;
 
 privileged aspect NewAppointment_Roo_JavaBean {
     
-    public LocalDate NewAppointment.getDay() {    
-        return this.day;        
-    }    
-    
-    public void NewAppointment.setDay(LocalDate day) {    
-        this.day = day;        
-    }    
-    
-    public LocalTime NewAppointment.getTime() {    
-        return this.time;        
-    }    
-    
-    public void NewAppointment.setTime(LocalTime time) {    
-        this.time = time;        
-    }    
-    
     public Long NewAppointment.getPatientId() {    
         return this.patientId;        
     }    
@@ -37,6 +21,22 @@ privileged aspect NewAppointment_Roo_JavaBean {
     
     public void NewAppointment.setDoctorId(Long doctorId) {    
         this.doctorId = doctorId;        
+    }    
+    
+    public LocalDate NewAppointment.getDay() {    
+        return this.day;        
+    }    
+    
+    public void NewAppointment.setDay(LocalDate day) {    
+        this.day = day;        
+    }    
+    
+    public LocalTime NewAppointment.getTime() {    
+        return this.time;        
+    }    
+    
+    public void NewAppointment.setTime(LocalTime time) {    
+        this.time = time;        
     }    
     
     public String NewAppointment.getReason() {    
