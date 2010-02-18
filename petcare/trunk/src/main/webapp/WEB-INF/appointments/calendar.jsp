@@ -27,7 +27,7 @@
 						</td>				
 					</c:when>
 					<c:otherwise>
-						<td class="open" onclick="showDialog();">&nbsp;</td>
+						<td class="open" data-time="${appointmentCalendar.day} ${block.time}" data-doctorId="${doctor.id}">&nbsp;</td>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -41,11 +41,14 @@
 </ul>
 
 <div id="addDialog" title="Add Appointment">
-	<form method="POST">
+	<form id="addForm" action="${pageContext.request.contextPath}/appointments" method="POST">
 		<fieldset>
 			<p>
 				<label for="patient">Patient</label><br/>
 				<input id="patient" type="text" />
+				<input id="patientId" type="hidden" name="patientId" />
+				<input id="doctorId" type="hidden" name="doctorId" />
+				<input id="startTime" type="hidden" name="startTime" />
 				<input id="add" type="submit" value="Add" />				
 			</p>
 		</fieldset>
@@ -56,17 +59,27 @@
 	$(document).ready(function() {
 		$("#patient").autocomplete({
 			source: function(request, response) {
-				$.getJSON("patients", { name: request.term }, response);
+				$.getJSON("${pageContext.request.contextPath}/patients", { name: request.term }, response);
+			},
+			select: function(event, ui) {
+				$("#patientId").val(ui.item.id);
 			}
+		});
+
+		$("td.open").click(function() {
+			$("#doctorId").val($(this).attr("data-doctorId"));
+			$("#startTime").val($(this).attr("data-time"));
+			$("#addDialog").dialog("open");
 		});
 		
 		$("#addDialog").dialog({
 			autoOpen: false,
-			modal: true
-		});			
+			modal: true,
+			close: function(event, ui) {
+				$('#addForm')[0].reset();
+			}			
+		});
+		
 	});
 	
-	function showDialog() {
-		$("#addDialog").dialog("open");
-	}
 </script>
