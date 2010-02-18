@@ -37,7 +37,7 @@ public class JdbcAppointmentRepository implements AppointmentRepository {
 				return new ResourceReference(rs.getLong("ID"), rs.getString("DOCTOR"));
 			}
 		}));
-		jdbcTemplate.query(APPOINTMENTS_FOR_DAY, new Object[] { startOfDay, endOfDay }, new AppointmentCalendarPopulator(calendar));
+		jdbcTemplate.query(APPOINTMENTS_FOR_DAY, new AppointmentCalendarPopulator(calendar), startOfDay, endOfDay);
 		return calendar;
 	}
 

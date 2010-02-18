@@ -7,8 +7,8 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.samples.petcare.util.ResourceReference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/patients")
 public class PatientsController {
 
-	private SimpleJdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate;
 	
 	@Autowired
 	public PatientsController(DataSource dataSource) {
-		this.jdbcTemplate = new SimpleJdbcTemplate(dataSource);
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	@RequestMapping(method=RequestMethod.GET)
