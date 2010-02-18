@@ -11,6 +11,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.samples.petcare.util.ResourceReference;
 
 public class AppointmentCalendarTest {
 
@@ -20,9 +21,9 @@ public class AppointmentCalendarTest {
 	public void setUp() {
 		LocalDate day = new LocalDate(2010, 2, 16);
 		calendar = new AppointmentCalendar(day);
-		List<DoctorReference> doctors = new ArrayList<DoctorReference>();
-		doctors.add(new DoctorReference(1L, "Dwight Howard"));
-		doctors.add(new DoctorReference(2L, "Rashad Lewis"));
+		List<ResourceReference> doctors = new ArrayList<ResourceReference>();
+		doctors.add(new ResourceReference(1L, "Dwight Howard"));
+		doctors.add(new ResourceReference(2L, "Rashad Lewis"));
 		calendar.setDoctors(doctors);
 		
 		Appointment a1 = new Appointment();
@@ -76,11 +77,11 @@ public class AppointmentCalendarTest {
 	
 	@Test
 	public void getDoctors() {
-		List<DoctorReference> doctors = calendar.getDoctors();
+		List<ResourceReference> doctors = calendar.getDoctors();
 		assertEquals(1L, (long) doctors.get(0).getId());
-		assertEquals("Dwight Howard", doctors.get(0).getName());
+		assertEquals("Dwight Howard", doctors.get(0).getLabel());
 		assertEquals(2L, (long) doctors.get(1).getId());
-		assertEquals("Rashad Lewis", doctors.get(1).getName());
+		assertEquals("Rashad Lewis", doctors.get(1).getLabel());
 	}
 	
 	@Test

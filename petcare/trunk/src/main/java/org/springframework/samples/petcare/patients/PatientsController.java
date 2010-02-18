@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.samples.petcare.util.ResourceReference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,16 +28,14 @@ public class PatientsController {
 	}
 
 	@RequestMapping(method=RequestMethod.GET)
-	public @ResponseBody List<Patient> getPatients(@RequestParam String name) {
+	public @ResponseBody List<ResourceReference> getPatients(@RequestParam String name) {
 		return jdbcTemplate.query("select p.id, p.name, (c.firstName || ' ' || c.lastName) as client from Patient p, Client c where p.name like ? and p.clientId = c.id",
-				new RowMapper<Patient>() {
-					public Patient mapRow(ResultSet rs, int row)
+				new RowMapper<ResourceReference>() {
+					public ResourceReference mapRow(ResultSet rs, int row)
 							throws SQLException {
-						Patient patient = new Patient();
-						patient.setId(rs.getLong("ID"));
-						patient.setName(rs.getString("NAME"));
-						patient.setClient(rs.getString("CLIENT"));
-						return patient;
+						Long id = rs.getLong("ID");
+						String label = rs.getString("NAME") + " (" + rs.getString("CLIENT") + ")";
+						return new ResourceReference(id, label);
 					}
 				}, name + "%");
 	}

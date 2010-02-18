@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.samples.petcare.util.ResourceReference;
 
 @RooJavaBean(settersByDefault=false)
 @RooToString
@@ -16,7 +17,7 @@ public class AppointmentCalendar {
 	@DateTimeFormat(style="F-")
 	private LocalDate day;
 	
-	private List<DoctorReference> doctors;
+	private List<ResourceReference> doctors;
 	
 	private List<List<Appointment>> appointments; 
 	
@@ -24,7 +25,7 @@ public class AppointmentCalendar {
 		this.day = day;
 	}
 
-	public void setDoctors(List<DoctorReference> doctors) {
+	public void setDoctors(List<ResourceReference> doctors) {
 		this.doctors = doctors;
 		appointments = new ArrayList<List<Appointment>>(Block.count());
 		for (int i = 0; i < Block.count(); i++) {
@@ -34,7 +35,7 @@ public class AppointmentCalendar {
 
 	public void addAppointment(Long doctorId, Appointment appointment) {
 		int blockIndex = Block.indexOf(appointment);
-		int doctorIndex = doctors.indexOf(new DoctorReference(doctorId));
+		int doctorIndex = doctors.indexOf(new ResourceReference(doctorId));
 		if (appointments.get(blockIndex).get(doctorIndex) != null) {
 			throw new IllegalArgumentException("Already an appointment at block " + blockIndex + " for doctor " + doctorId);
 		}

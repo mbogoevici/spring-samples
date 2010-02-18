@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.samples.petcare.util.ResourceReference;
 
 public class PatientsControllerTest {
 
@@ -33,10 +34,10 @@ public class PatientsControllerTest {
 
 	@Test
 	public void autoCompletePatients() {
-		List<Patient> patients = controller.getPatients("M");
+		List<ResourceReference> patients = controller.getPatients("M");
 		assertEquals(1, patients.size());
-		assertEquals("Macy", patients.get(0).getName());
-		assertEquals("Keith Donald", patients.get(0).getClient());
+		assertEquals(1L, (long) patients.get(0).getId());
+		assertEquals("Macy (Keith Donald)", patients.get(0).getLabel());
 	}
 
 }

@@ -13,6 +13,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.samples.petcare.util.ResourceReference;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,9 +32,12 @@ public class JdbcAppointmentRepository implements AppointmentRepository {
 		Date startOfDay = day.toDateTimeAtStartOfDay().toDate();
 		Date endOfDay = day.plusDays(1).toDateTimeAtStartOfDay().toDate();
 		AppointmentCalendar calendar = new AppointmentCalendar(day);
-		calendar.setDoctors(jdbcTemplate.query(DOCTORS, new DoctorReferenceRowMapper()));
-		jdbcTemplate.query(APPOINTMENTS_FOR_DAY, new Date[] { startOfDay, endOfDay }, new AppointmentCalendarPopulator(
-				calendar));
+		calendar.setDoctors(jdbcTemplate.query(DOCTORS, new RowMapper<ResourceReference>() {
+			public ResourceReference mapRow(ResultSet rs, int row) throws SQLException {
+				return new ResourceReference(rs.getLong("ID"), rs.getString("DOCTOR"));
+			}
+		}));
+		jdbcTemplate.query(APPOINTMENTS_FOR_DAY, new Object[] { startOfDay, endOfDay }, new AppointmentCalendarPopulator(calendar));
 		return calendar;
 	}
 
@@ -72,11 +76,4 @@ public class JdbcAppointmentRepository implements AppointmentRepository {
 		}
 	}
 
-	private static class DoctorReferenceRowMapper implements RowMapper<DoctorReference> {
-
-		public DoctorReference mapRow(ResultSet rs, int row) throws SQLException {
-			return new DoctorReference(rs.getLong("ID"), rs.getString("DOCTOR"));
-		}
-
-	}
 }

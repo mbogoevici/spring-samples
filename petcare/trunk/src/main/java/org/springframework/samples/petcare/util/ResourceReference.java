@@ -1,23 +1,23 @@
-package org.springframework.samples.petcare.appointments;
+package org.springframework.samples.petcare.util;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean(settersByDefault=false)
 @RooToString
-public final class DoctorReference {
+public final class ResourceReference {
 
 	private Long id;
 	
-	private String name;
+	private String label;
 
-	public DoctorReference(Long id) {
+	public ResourceReference(Long id) {
 		this.id = id;
 	}
 
-	public DoctorReference(Long id, String name) {
+	public ResourceReference(Long id, String label) {
 		this.id = id;
-		this.name = name;
+		this.label = label;
 	}
 	
 	public int hashCode() {
@@ -25,10 +25,10 @@ public final class DoctorReference {
 	}
 	
 	public boolean equals(Object o) {
-		if (!(o instanceof DoctorReference)) {
+		if (!(o instanceof ResourceReference)) {
 			return false;
 		}
-		DoctorReference ref = (DoctorReference) o;
+		ResourceReference ref = (ResourceReference) o;
 		return id.equals(ref.id);
 	}
 	

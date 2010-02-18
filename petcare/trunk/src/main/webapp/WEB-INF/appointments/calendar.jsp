@@ -7,7 +7,7 @@
 	<tr>
 		<th>&nbsp;</th>
 		<c:forEach var="doctor" items="${appointmentCalendar.doctors}">
-			<th>Dr. ${doctor.name}</th>
+			<th>Dr. ${doctor.label}</th>
 		</c:forEach>
 	</tr>
 
