@@ -143,6 +143,7 @@
 					<excludes>
 						<exclude>**/Abstract*.java</exclude>
 					</excludes>
+					<argLine>-javaagent:spring-instrument-3.0.0.RELEASE.jar</argLine>
 				</configuration>
 			</plugin>
 		</plugins>
