@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/appointments")
@@ -34,7 +33,8 @@ public class AppointmentsController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Long createAppointment(NewAppointment appointment) {
-		return appointmentRepository.createAppointment(appointment);
+	public String createAppointment(NewAppointment appointment) {
+		appointmentRepository.createAppointment(appointment);
+		return "redirect:/appointments/" + appointment.getDay();
 	}
 }

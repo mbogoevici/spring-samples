@@ -52,11 +52,11 @@ public class JdbcAppointmentRepository implements AppointmentRepository {
 
 	private static final String DOCTORS = "select id, (firstName || ' ' || lastName) as doctor from Doctor";
 
-	private static final String APPOINTMENTS_FOR_DAY = "select a.startTime, a.endTime, d.id as doctorId, p.name as patient, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, a.reason "
+	private static final String APPOINTMENTS_FOR_DAY = "select a.startTime, a.endTime, a.doctorId, p.name as patient, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, a.reason "
 			+ "from Appointment a, Doctor d, Patient p, Client c "
 			+ "where "
 			+ "a.startTime between ? and ? and "
-			+ "a.patientId = p.id and p.clientId = c.id and p.doctorId = d.id";
+			+ "a.patientId = p.id and p.clientId = c.id and a.doctorId = d.id";
 
 	private static class AppointmentCalendarPopulator implements RowCallbackHandler {
 
