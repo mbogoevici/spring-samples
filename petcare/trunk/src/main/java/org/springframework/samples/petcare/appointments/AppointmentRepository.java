@@ -8,4 +8,6 @@ public interface AppointmentRepository {
 
 	Long createAppointment(NewAppointment appointment);
 
+	void deleteAppointment(Long appointmentId);
+
 }

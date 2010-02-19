@@ -47,12 +47,14 @@ public class JdbcAppointmentRepository implements AppointmentRepository {
 				startTime.toDate(), startTime.plusHours(1).toDate(), appointment.getReason(), appointment.getPatientId(), appointment.getDoctorId());
 		return jdbcTemplate.queryForLong("call identity()");
 	}
-
-	// internal helpers
+	
+	public void deleteAppointment(Long appointmentId) {
+		jdbcTemplate.update("delete from Appointment where id = ?", appointmentId);
+	}
 
 	private static final String DOCTORS = "select id, (firstName || ' ' || lastName) as doctor from Doctor";
 
-	private static final String APPOINTMENTS_FOR_DAY = "select a.startTime, a.endTime, a.doctorId, p.name as patient, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, a.reason "
+	private static final String APPOINTMENTS_FOR_DAY = "select a.id, a.startTime, a.endTime, a.doctorId, p.name as patient, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, a.reason "
 			+ "from Appointment a, Doctor d, Patient p, Client c "
 			+ "where "
 			+ "a.startTime between ? and ? and "
@@ -68,6 +70,7 @@ public class JdbcAppointmentRepository implements AppointmentRepository {
 
 		public void processRow(ResultSet rs) throws SQLException, DataAccessException {
 			Appointment a = new Appointment();
+			a.setId(rs.getLong("ID"));
 			a.setStartTime(new DateTime(rs.getTimestamp("STARTTIME")));
 			a.setEndTime(new DateTime(rs.getTimestamp("ENDTIME")));
 			a.setPatient(rs.getString("PATIENT"));

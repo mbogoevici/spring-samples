@@ -6,6 +6,7 @@ privileged aspect Appointment_Roo_ToString {
     
     public String Appointment.toString() {    
         StringBuilder sb = new StringBuilder();        
+        sb.append("Id: ").append(getId()).append(", ");        
         sb.append("StartTime: ").append(getStartTime()).append(", ");        
         sb.append("EndTime: ").append(getEndTime()).append(", ");        
         sb.append("Patient: ").append(getPatient()).append(", ");        

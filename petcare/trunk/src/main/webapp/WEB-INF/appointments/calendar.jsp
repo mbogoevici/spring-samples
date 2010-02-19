@@ -23,7 +23,7 @@
 		<tr>
 			<th>&nbsp;</th>
 			<c:forEach var="doctor" items="${appointmentCalendar.doctors}">
-				<th>Dr. ${doctor.label}</th>
+				<th class="doctor" data-doctorId="${doctor.id}">Dr. ${doctor.label}</th>
 			</c:forEach>
 		</tr>
 	
@@ -36,7 +36,7 @@
 					<spring:eval expression="appointmentCalendar.appointments[b.count - 1][d.count - 1]" var="appointment" />
 					<c:choose>
 						<c:when test="${appointment != null}">
-							<td class="filled" data-id="${appointment.id}">
+							<td class="filled" data-id="${appointment.id}" data-time="<spring:eval expression="block.time" />" data-doctorId="${doctor.id}">
 								<div class="patient">
 									${appointment.patient}
 								</div>
@@ -67,7 +67,8 @@
 				When: <span id="selectedBlock"></span>
 			</p>
 			<p>		
-				<label for="patient">Patient</label><br/><input type="text" />
+				<label for="patient">Patient</label><br/>
+				<input id="patient" type="text" />
 			</p>
 			<p>
 				<input type="submit" value="Add" />
@@ -80,10 +81,9 @@
 	</form>
 </div>
 
-<div id="appDialog"">
-	<p>
-		<span id="patient"></span>
-	</p>
+<div id="appointmentDialog" title="Appointment">
+	<div class="patient"></div>
+	<hr/>
 	<div class="link">
 		Delete
 	</div>
@@ -104,15 +104,18 @@
 		$("td.open").click(function() {
 			var time = $(this).attr("data-time");
 			$("#selectedBlock").html(time);
-			$("#time").val(time);
-			$("#doctorId").val($(this).attr("data-doctorId"));
-			$("#add").attr("disabled", true);
+			$("#addForm input[name=time]").val(time);
+			$("#addForm input[name=doctorId]").val($(this).attr("data-doctorId"));
+			$("#addForm input[type=submit]").attr("disabled", true);
 			$("#addDialog").dialog("open");
 			$("#patient").focus();
 		});
 
 		$("td.filled").click(function() {
-			
+			$("#appointmentDialog .patient").html($(this).children(".patient").html());
+			$("#appointmentDialog").attr("data-id", $(this).attr("data-id"));
+			$("#appointmentDialog").dialog('option', 'title', $(this).attr("data-time"));			
+			$("#appointmentDialog").dialog("open");
 		});
 			
 		$("#addDialog").dialog({
@@ -128,10 +131,28 @@
 				$.getJSON("${pageContext.request.contextPath}/patients", { name: request.term }, response);
 			},
 			select: function(event, ui) {
-				$("#addForm").elements["patientId"].val(ui.item.id);
-				$("#add").attr("disabled", false);				
+				$("#addForm input[name=patientId]").val(ui.item.id);
+				$("#addForm input[type=submit]").attr("disabled", false);
+				$("#addForm input[type=submit]").focus();	
 			}
 		});
+
+		$("#appointmentDialog").dialog({
+			autoOpen: false,
+			modal: true
+		});
+
+		$("#appointmentDialog .link").click(function() {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/appointments/" + $("#appointmentDialog").attr("data-id"),
+				type: "DELETE",
+				success: function(data) {
+					$("#appointmentDialog").dialog('close');
+					location.reload();	
+				}
+			});			
+		});
+			
 		
 	});
 </script>

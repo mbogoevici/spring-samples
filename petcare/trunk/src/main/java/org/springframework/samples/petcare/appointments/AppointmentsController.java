@@ -1,5 +1,7 @@
 package org.springframework.samples.petcare.appointments;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,9 +28,9 @@ public class AppointmentsController {
 		return getAppointmentsForDay(new LocalDate(), model);
 	}
 
-	@RequestMapping(value = "/{day}", method = RequestMethod.GET)
-	public String getAppointmentsForDay(@PathVariable @DateTimeFormat(iso=ISO.DATE) LocalDate day, Model model) {
-		model.addAttribute(appointmentRepository.getAppointmentsForDay(day));
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String getAppointmentsForDay(@PathVariable @DateTimeFormat(iso=ISO.DATE) LocalDate id, Model model) {
+		model.addAttribute(appointmentRepository.getAppointmentsForDay(id));
 		return "appointments";
 	}
 	
@@ -36,5 +38,11 @@ public class AppointmentsController {
 	public String createAppointment(NewAppointment appointment) {
 		appointmentRepository.createAppointment(appointment);
 		return "redirect:/appointments/" + appointment.getDay();
+	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public void deleteAppointment(@PathVariable Long id, HttpServletResponse response) {
+		appointmentRepository.deleteAppointment(id);
+		response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
 }

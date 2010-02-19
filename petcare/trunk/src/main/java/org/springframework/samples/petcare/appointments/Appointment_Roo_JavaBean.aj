@@ -1,9 +1,18 @@
 package org.springframework.samples.petcare.appointments;
 
+import java.lang.Long;
 import java.lang.String;
 import org.joda.time.DateTime;
 
 privileged aspect Appointment_Roo_JavaBean {
+    
+    public Long Appointment.getId() {    
+        return this.id;        
+    }    
+    
+    public void Appointment.setId(Long id) {    
+        this.id = id;        
+    }    
     
     public DateTime Appointment.getStartTime() {    
         return this.startTime;        
