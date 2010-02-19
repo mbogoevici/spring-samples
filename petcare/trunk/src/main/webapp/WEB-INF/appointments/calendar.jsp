@@ -36,10 +36,16 @@
 					<spring:eval expression="appointmentCalendar.appointments[b.count - 1][d.count - 1]" var="appointment" />
 					<c:choose>
 						<c:when test="${appointment != null}">
-							<td class="filled">
-								${appointment.patient} <br/>
-								${appointment.client} ${appointment.clientPhone} <br/>
-								${appointment.reason}
+							<td class="filled" data-id="${appointment.id}">
+								<div class="patient">
+									${appointment.patient}
+								</div>
+								<div class="client">
+									${appointment.client} ${appointment.clientPhone}								
+								</div>
+								<div class="reason">
+									${appointment.reason}
+								</div>
 							</td>				
 						</c:when>
 						<c:otherwise>
@@ -61,17 +67,26 @@
 				When: <span id="selectedBlock"></span>
 			</p>
 			<p>		
-				<label for="patient">Patient</label><br/><input id="patient" type="text" />
+				<label for="patient">Patient</label><br/><input type="text" />
 			</p>
 			<p>
-				<input id="add" type="submit" value="Add" />
+				<input type="submit" value="Add" />
 			</p>
-			<input id="patientId" type="hidden" name="patientId" />
-			<input id="doctorId" type="hidden" name="doctorId" />
-			<input id="day" type="hidden" name="day" value="<joda:format value="${appointmentCalendar.day}" style="S-" />" />
-			<input id="time" type="hidden" name="time" />
+			<input type="hidden" name="patientId" />
+			<input type="hidden" name="doctorId" />
+			<input type="hidden" name="day" value="<joda:format value="${appointmentCalendar.day}" style="S-" />" />
+			<input type="hidden" name="time" />
 		</fieldset>
 	</form>
+</div>
+
+<div id="appDialog"">
+	<p>
+		<span id="patient"></span>
+	</p>
+	<div class="link">
+		Delete
+	</div>
 </div>
 
 <script type="text/javascript">
@@ -95,6 +110,10 @@
 			$("#addDialog").dialog("open");
 			$("#patient").focus();
 		});
+
+		$("td.filled").click(function() {
+			
+		});
 			
 		$("#addDialog").dialog({
 			autoOpen: false,
@@ -109,7 +128,7 @@
 				$.getJSON("${pageContext.request.contextPath}/patients", { name: request.term }, response);
 			},
 			select: function(event, ui) {
-				$("#patientId").val(ui.item.id);
+				$("#addForm").elements["patientId"].val(ui.item.id);
 				$("#add").attr("disabled", false);				
 			}
 		});
