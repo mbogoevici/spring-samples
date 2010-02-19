@@ -1,8 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.springframework.samples.hibernate</groupId>
-	<artifactId>spring-hibernate-utility-build</artifactId>
+	<groupId>org.springframework.samples</groupId>
+	<artifactId>org.springframework.samples.spring.hibernate</artifactId>
+	<name>Spring Hiberbate Utility Bundle</name>
 	<packaging>pom</packaging>
 	<version>1.0.0.CI-SNAPSHOT</version>
 	<modules>
@@ -22,5 +23,75 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>template</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<mkdir dir="target/generated-resources" />
+								<zip destfile="target/generated-resources/template.zip"
+									basedir="." includes="template/**"
+									excludes="template/target, template/target/**, target/**, target" />
+								<echo file="target/generated-resources/README.txt"><![CDATA[
+Take this jar file and unpack it in your Eclipse workspace in a directory called
+.metadata/.sts/content/${pom.artifactId}-${pom.version}. Then add or edit the 
+template descriptor in .metadata/.plugins/com.springsource.sts.content.core/content.xml
+so it has this form:
+<descriptor id="${pom.artifactId}" kind="template" local="true"
+      name="${pom.name}" size="0" version="${pom.version}">
+   <description>...</description>
+</descriptor>
+Make sure there are no conflicting templates with the same name and a different version.]]>
+								</echo>
+								<copy todir="target/generated-resources">
+									<fileset dir=".">
+										<exclude name="template" />
+										<exclude name="target" />
+										<include name="template.*" />
+										<include name="wizard.*" />
+									</fileset>
+								</copy>
+								<concat>
+									<filelist dir="target/generated-resources" files="README.txt" />
+								</concat>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>template</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+							<Bundle-Version>${pom.version}</Bundle-Version>
+						</manifestEntries>
+					</archive>
+					<classesDirectory>target/generated-resources</classesDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>
