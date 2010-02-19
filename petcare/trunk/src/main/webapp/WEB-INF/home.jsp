@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<h2>Welcome to Petcare</h2>
 <p>
 	This sample application demonstrates some of the features Spring 3 provides for web application development.
 	This includes:

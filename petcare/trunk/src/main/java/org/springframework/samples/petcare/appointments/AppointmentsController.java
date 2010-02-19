@@ -1,17 +1,15 @@
 package org.springframework.samples.petcare.appointments;
 
-import javax.validation.Valid;
-
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/appointments")
@@ -36,11 +34,7 @@ public class AppointmentsController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String createAppointment(@Valid NewAppointment appointment, BindingResult result) {
-		if (result.hasErrors()) {
-			return "appointments/new";
-		}
-		appointmentRepository.createAppointment(appointment);
-		return "redirect:/appointments";
+	public @ResponseBody Long createAppointment(NewAppointment appointment) {
+		return appointmentRepository.createAppointment(appointment);
 	}
 }
