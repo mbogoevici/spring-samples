@@ -7,7 +7,6 @@
 </div>
 
 <div id="calendar">
-
 	<h2>
 		<spring:eval expression="appointmentCalendar.day" />
 	</h2>
@@ -56,7 +55,6 @@
 			</tr>
 		</c:forEach>
 	</table>
-
 </div>
 
 
@@ -152,7 +150,6 @@
 				}
 			});			
 		});
-			
 		
 	});
 </script>
