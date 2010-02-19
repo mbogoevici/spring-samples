@@ -40,8 +40,10 @@ create table Appointment (	id identity,
 						  	endTime datetime not null,
 						  	reason varchar(255),
 						  	patientId bigint not null,
+						  	doctorId bigint not null,
 							primary key (id),
-							foreign key (patientId) references Patient(id));						
+							foreign key (patientId) references Patient(id),
+							foreign key (doctorId) references Doctor(id));	
 
 create table Species (	id identity, 
 						name varchar(255) not null,

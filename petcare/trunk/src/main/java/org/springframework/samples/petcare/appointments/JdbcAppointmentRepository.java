@@ -43,7 +43,8 @@ public class JdbcAppointmentRepository implements AppointmentRepository {
 
 	public Long createAppointment(NewAppointment appointment) {
 		DateTime startTime = appointment.getDay().toDateTime(appointment.getTime());
-		jdbcTemplate.update("insert into Appointment (startTime, endTime, reason, patientId) values (?, ?, ?, ?)", startTime.toDate(), startTime.plusHours(1).toDate(), appointment.getReason(), appointment.getPatientId());
+		jdbcTemplate.update("insert into Appointment (startTime, endTime, reason, patientId, doctorId) values (?, ?, ?, ?, ?)", 
+				startTime.toDate(), startTime.plusHours(1).toDate(), appointment.getReason(), appointment.getPatientId(), appointment.getDoctorId());
 		return jdbcTemplate.queryForLong("call identity()");
 	}
 
