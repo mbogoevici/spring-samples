@@ -89,7 +89,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
 		$("#dayPicker").datepicker({
 			firstDay: 1,
 			dateFormat: "yy-mm-dd",
