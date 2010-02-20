@@ -62,17 +62,18 @@ public class AppointmentCalendarTest {
 	
 	@Test
 	public void getBlocks() {
-		List<Block> blocks = calendar.getBlocks();
+		calendar = new AppointmentCalendar(new LocalDate());		
+		List<LocalTime> blocks = calendar.getBlocks();
 		assertEquals(9, blocks.size());		
-		assertEquals(new LocalTime(8, 0), blocks.get(0).getTime());
-		assertEquals(new LocalTime(9, 0), blocks.get(1).getTime());
-		assertEquals(new LocalTime(10, 0), blocks.get(2).getTime());
-		assertEquals(new LocalTime(11, 0), blocks.get(3).getTime());
-		assertEquals(new LocalTime(12, 0), blocks.get(4).getTime());
-		assertEquals(new LocalTime(13, 0), blocks.get(5).getTime());
-		assertEquals(new LocalTime(14, 0), blocks.get(6).getTime());
-		assertEquals(new LocalTime(15, 0), blocks.get(7).getTime());
-		assertEquals(new LocalTime(16, 0), blocks.get(8).getTime());
+		assertEquals(new LocalTime(8, 0), blocks.get(0));
+		assertEquals(new LocalTime(9, 0), blocks.get(1));
+		assertEquals(new LocalTime(10, 0), blocks.get(2));
+		assertEquals(new LocalTime(11, 0), blocks.get(3));
+		assertEquals(new LocalTime(12, 0), blocks.get(4));
+		assertEquals(new LocalTime(13, 0), blocks.get(5));
+		assertEquals(new LocalTime(14, 0), blocks.get(6));
+		assertEquals(new LocalTime(15, 0), blocks.get(7));
+		assertEquals(new LocalTime(16, 0), blocks.get(8));
 	}
 	
 	@Test

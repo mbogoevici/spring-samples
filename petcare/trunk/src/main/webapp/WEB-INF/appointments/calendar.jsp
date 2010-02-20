@@ -26,16 +26,17 @@
 			</c:forEach>
 		</tr>
 	
-		<c:forEach var="block" items="${appointmentCalendar.blocks}" varStatus="b">
+		<c:forEach var="block" items="${appointmentCalendar.blocks}" varStatus="i">
 			<tr>
 				<td>
-					<spring:eval expression="block.time" />
+					<joda:format value="${block}" style="-S" var="time" />
+					${time}
 				</td>
-				<c:forEach var="doctor" items="${appointmentCalendar.doctors}" varStatus="d">
-					<spring:eval expression="appointmentCalendar.appointments[b.count - 1][d.count - 1]" var="appointment" />
+				<c:forEach var="doctor" items="${appointmentCalendar.doctors}" varStatus="j">
+					<spring:eval expression="appointmentCalendar.appointments[i.count - 1][j.count - 1]" var="appointment" />
 					<c:choose>
 						<c:when test="${appointment != null}">
-							<td class="filled" data-id="${appointment.id}" data-time="<spring:eval expression="block.time" />" data-doctorId="${doctor.id}">
+							<td class="filled" data-id="${appointment.id}" data-time="${time}" data-doctorId="${doctor.id}">
 								<div class="patient">
 									${appointment.patient}
 								</div>
@@ -48,7 +49,7 @@
 							</td>				
 						</c:when>
 						<c:otherwise>
-							<td class="open" data-time="<spring:eval expression="block.time" />" data-doctorId="${doctor.id}">&nbsp;</td>
+							<td class="open" data-time="${time}" data-doctorId="${doctor.id}">&nbsp;</td>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -56,7 +57,6 @@
 		</c:forEach>
 	</table>
 </div>
-
 
 <div id="addDialog" title="Add Appointment">
 	<form id="addForm" action="${pageContext.request.contextPath}/appointments" method="POST">

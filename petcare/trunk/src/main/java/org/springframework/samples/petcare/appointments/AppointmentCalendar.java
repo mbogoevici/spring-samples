@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -27,14 +28,14 @@ public class AppointmentCalendar {
 
 	public void setDoctors(List<ResourceReference> doctors) {
 		this.doctors = doctors;
-		appointments = new ArrayList<List<Appointment>>(Block.count());
-		for (int i = 0; i < Block.count(); i++) {
+		appointments = new ArrayList<List<Appointment>>(9);
+		for (int i = 0; i < 9; i++) {
 			appointments.add(createAppointmentList(doctors.size()));
 		}
 	}
 
 	public void addAppointment(Long doctorId, Appointment appointment) {
-		int blockIndex = Block.indexOf(appointment);
+		int blockIndex = appointment.getStartTime().getHourOfDay() - 8;
 		int doctorIndex = doctors.indexOf(new ResourceReference(doctorId));
 		if (appointments.get(blockIndex).get(doctorIndex) != null) {
 			throw new IllegalArgumentException("Already an appointment at block " + blockIndex + " for doctor " + doctorId);
@@ -46,8 +47,14 @@ public class AppointmentCalendar {
 		return day.toDateTimeAtStartOfDay().getMillis();
 	}
 	
-	public List<Block> getBlocks() {
-		return Block.getBlocks();
+	public List<LocalTime> getBlocks() {
+		List<LocalTime> blocks = new ArrayList<LocalTime>(9);
+		LocalTime time = new LocalTime(8, 0);
+		for (int i = 0; i < 9; i++) {
+			blocks.add(time);
+			time = time.plusMinutes(60);
+		}
+		return blocks;
 	}
 	
 	// resource links

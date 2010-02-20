@@ -26,7 +26,9 @@
 		<jdbc:script location="classpath:data.sql"/>
 	</jdbc:embedded-database>
 
-	<!-- Configures Spring MVC -->
+	<!-- Configures MVC Layer -->
 	<import resource="mvc-config.xml" />
+	<!-- Configures Integration Layer -->
+	<import resource="integration-config.xml" />
 	
 </beans>
