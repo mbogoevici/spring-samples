@@ -62,7 +62,7 @@
 	<form id="addForm" action="${pageContext.request.contextPath}/appointments" method="POST">
 		<fieldset>
 			<p>
-				When: <span id="selectedBlock"></span>
+				When: <span id="when"></span>
 			</p>
 			<p>		
 				<label for="patient">Patient</label><br/>
@@ -79,7 +79,7 @@
 	</form>
 </div>
 
-<div id="appointmentDialog" title="Appointment">
+<div id="updateDialog" title="Appointment">
 	<div class="patient"></div>
 	<hr/>
 	<div class="link">
@@ -97,24 +97,7 @@
 				window.location = "${pageContext.request.contextPath}/appointments/" + dateText;
 			}
 		});
-		
-		$("td.open").click(function() {
-			var time = $(this).attr("data-time");
-			$("#selectedBlock").html(time);
-			$("#addForm input[name=time]").val(time);
-			$("#addForm input[name=doctorId]").val($(this).attr("data-doctorId"));
-			$("#addForm input[type=submit]").attr("disabled", true);
-			$("#addDialog").dialog("open");
-			$("#patient").focus();
-		});
 
-		$("td.filled").click(function() {
-			$("#appointmentDialog .patient").html($(this).children(".patient").html());
-			$("#appointmentDialog").attr("data-id", $(this).attr("data-id"));
-			$("#appointmentDialog").dialog('option', 'title', $(this).attr("data-time"));			
-			$("#appointmentDialog").dialog("open");
-		});
-			
 		$("#addDialog").dialog({
 			autoOpen: false,
 			modal: true,
@@ -122,7 +105,21 @@
 				$('#addForm')[0].reset();
 			}			
 		});
-
+		
+		$("#updateDialog").dialog({
+			autoOpen: false,
+			modal: true
+		});
+			
+		$("td.open").click(function() {
+			$("#when").html($(this).attr("data-time"));
+			$("#addForm input[name=time]").val($(this).attr("data-time"));
+			$("#addForm input[name=doctorId]").val($(this).attr("data-doctorId"));
+			$("#addForm input[type=submit]").attr("disabled", true);
+			$("#addDialog").dialog("open");
+			$("#patient").focus();
+		});
+			
 		$("#patient").autocomplete({
 			source: function(request, response) {
 				$.getJSON("${pageContext.request.contextPath}/patients", { name: request.term }, response);
@@ -134,17 +131,19 @@
 			}
 		});
 
-		$("#appointmentDialog").dialog({
-			autoOpen: false,
-			modal: true
+		$("td.filled").click(function() {
+			$("#updateDialog .patient").html($(this).children(".patient").html());
+			$("#updateDialog").attr("data-id", $(this).attr("data-id"));
+			$("#updateDialog").dialog('option', 'title', $(this).attr("data-time"));			
+			$("#updateDialog").dialog("open");
 		});
 
-		$("#appointmentDialog .link").click(function() {
+		$("#updateDialog .link").click(function() {
 			$.ajax({
-				url: "${pageContext.request.contextPath}/appointments/" + $("#appointmentDialog").attr("data-id"),
+				url: "${pageContext.request.contextPath}/appointments/" + $("#updateDialog").attr("data-id"),
 				type: "DELETE",
 				success: function(data) {
-					$("#appointmentDialog").dialog('close');
+					$("#updateDialog").dialog('close');
 					location.reload();	
 				}
 			});			
