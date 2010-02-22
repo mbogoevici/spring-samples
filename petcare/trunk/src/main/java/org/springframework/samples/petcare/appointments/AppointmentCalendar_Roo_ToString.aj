@@ -8,8 +8,8 @@ privileged aspect AppointmentCalendar_Roo_ToString {
         StringBuilder sb = new StringBuilder();        
         sb.append("DayMillis: ").append(getDayMillis()).append(", ");        
         sb.append("Blocks: ").append(getBlocks() == null ? "null" : getBlocks().size()).append(", ");        
-        sb.append("PreviousDayResourceId: ").append(getPreviousDayResourceId()).append(", ");        
-        sb.append("NextDayResourceId: ").append(getNextDayResourceId()).append(", ");        
+        sb.append("PreviousDayResourceId: ").append(getPreviousDay()).append(", ");        
+        sb.append("NextDayResourceId: ").append(getNextDay()).append(", ");        
         sb.append("Day: ").append(getDay()).append(", ");        
         sb.append("Doctors: ").append(getDoctors() == null ? "null" : getDoctors().size()).append(", ");        
         sb.append("Appointments: ").append(getAppointments() == null ? "null" : getAppointments().size());        

@@ -28,6 +28,7 @@
 
 	<!-- Configures MVC Layer -->
 	<import resource="mvc-config.xml" />
+	
 	<!-- Configures Integration Layer -->
 	<import resource="integration-config.xml" />
 	

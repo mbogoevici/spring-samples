@@ -2,11 +2,11 @@ package org.springframework.samples.petcare.appointments;
 
 import org.joda.time.LocalDate;
 
-public interface AppointmentRepository {
+public interface AppointmentService {
 
 	AppointmentCalendar getAppointmentsForDay(LocalDate day);
 
-	Long createAppointment(NewAppointment appointment);
+	Long addAppointment(NewAppointment appointment);
 
 	void deleteAppointment(Long appointmentId);
 

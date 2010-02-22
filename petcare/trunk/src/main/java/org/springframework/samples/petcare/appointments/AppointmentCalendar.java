@@ -6,7 +6,6 @@ import java.util.List;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 import org.springframework.samples.petcare.util.ResourceReference;
@@ -59,13 +58,11 @@ public class AppointmentCalendar {
 	
 	// resource links
 	
-	@DateTimeFormat(iso=ISO.DATE)
-	public LocalDate getPreviousDayResourceId() {
+	public LocalDate getPreviousDay() {
 		return day.minusDays(1);
 	}
 
-	@DateTimeFormat(iso=ISO.DATE)
-	public LocalDate getNextDayResourceId() {
+	public LocalDate getNextDay() {
 		return day.plusDays(1);
 	}
 	

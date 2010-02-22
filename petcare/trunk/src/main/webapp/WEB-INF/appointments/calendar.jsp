@@ -6,16 +6,16 @@
 
 </div>
 
-<div id="calendar">
+<div id="appointmentCalendar">
 	<h2>
 		<spring:eval expression="appointmentCalendar.day" />
 	</h2>
 	
 	<div class="prev">
-		<a href="<c:url value="/appointments/${appointmentCalendar.previousDayResourceId}"/>">Previous</a> 
+		<a href="<c:url value="/appointments?day=${appointmentCalendar.previousDay}"/>">Previous</a> 
 	</div>
 	<div class="next">
-		<a href="<c:url value="/appointments/${appointmentCalendar.nextDayResourceId}"/>">Next</a>	
+		<a href="<c:url value="/appointments?day=${appointmentCalendar.nextDay}"/>">Next</a>	
 	</div>
 	
 	<table>
@@ -94,7 +94,7 @@
 			dateFormat: "yy-mm-dd",
 			defaultDate: new Date(${appointmentCalendar.dayMillis}),
 			onSelect: function(dateText, instance) {
-				window.location = "${pageContext.request.contextPath}/appointments/" + dateText;
+				window.location = "${pageContext.request.contextPath}/appointments?day=" + dateText;
 			}
 		});
 
@@ -148,6 +148,19 @@
 				}
 			});			
 		});
+
+		setTimeout(function(){
+			console.log("Polling ${pageContext.request.contextPath}/appointments/notifications?day=${appointmentCalendar.day}");
+			$.getJSON("${pageContext.request.contextPath}/appointments/notifications?day=${appointmentCalendar.day}", function(messages) {
+				var i;
+				console.log(messages.length);
+				for (i = 0; i < messages.length; i += 1) {
+					var message = messages[i];
+					console.log("headers=" + message.headers, "; payload=" + message.payload.patient);
+				}
+			});
+		    setTimeout(arguments.callee, 3000);
+		  }, 10);
 		
 	});
 </script>
