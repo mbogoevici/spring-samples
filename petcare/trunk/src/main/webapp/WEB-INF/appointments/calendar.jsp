@@ -154,8 +154,9 @@
 				var i;
 				for (i = 0; i < messages.length; i += 1) {
 					var message = messages[i];
-					if (message.headers.type == "appointmentDeleted") {
-						console.log("#appointmentCalendar td.filled[data-id=" + message.payload.id + "]");
+					if (message.headers.type == "appointmentAdded") {
+						// TODO
+					} else if (message.headers.type == "appointmentDeleted") {
 						var slot = $("#appointmentCalendar td.filled[data-id=" + message.payload.id + "]");
 						slot.html("&nbsp;");
 						slot.removeClass("filled");
