@@ -102,7 +102,7 @@
 			autoOpen: false,
 			modal: true,
 			close: function(event, ui) {
-				$('#addForm')[0].reset();
+				$("#addForm")[0].reset();
 			}			
 		});
 		
@@ -154,6 +154,13 @@
 				var i;
 				for (i = 0; i < messages.length; i += 1) {
 					var message = messages[i];
+					if (message.headers.type == "appointmentDeleted") {
+						console.log("#appointmentCalendar td.filled[data-id=" + message.payload.id + "]");
+						var slot = $("#appointmentCalendar td.filled[data-id=" + message.payload.id + "]");
+						slot.html("&nbsp;");
+						slot.removeClass("filled");
+						slot.addClass("open");
+					}
 				}
 			});
 		    setTimeout(arguments.callee, 3000);

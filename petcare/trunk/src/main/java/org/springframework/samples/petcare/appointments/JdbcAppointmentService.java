@@ -29,12 +29,12 @@ public class JdbcAppointmentService implements AppointmentService {
 
 	private final JdbcTemplate jdbcTemplate;
 	
-	private MessageChannel notificationChannel;
+	private MessageChannel messageChannel;
 
 	@Autowired
-	public JdbcAppointmentService(DataSource dataSource, @Qualifier("notifications") MessageChannel notificationChannel) {
+	public JdbcAppointmentService(DataSource dataSource, @Qualifier("notifications") MessageChannel messageChannel) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		this.notificationChannel = notificationChannel;
+		this.messageChannel = messageChannel;
 	}
 
 	public AppointmentCalendar getAppointmentsForDay(LocalDate day) {
@@ -56,7 +56,7 @@ public class JdbcAppointmentService implements AppointmentService {
 				startTime.toDate(), startTime.plusHours(1).toDate(), newAppointment.getPatientId(), newAppointment.getDoctorId(), newAppointment.getReason());
 		Long id = jdbcTemplate.queryForLong("call identity()");
 		Message<Appointment> addedMessage = MessageBuilder.withPayload(getAppointment(id)).setHeader("element", "appointmentCalendar").setHeader("type", "appointmentAdded").build();
-		notificationChannel.send(addedMessage);		
+		messageChannel.send(addedMessage);		
 		return id;
 	}
 	
@@ -64,7 +64,7 @@ public class JdbcAppointmentService implements AppointmentService {
 		Appointment appointment = getAppointment(id);
 		jdbcTemplate.update("delete from Appointment where id = ?", appointment.getId());
 		Message<Appointment> deletedMessage = MessageBuilder.withPayload(appointment).setHeader("element", "appointmentCalendar").setHeader("type", "appointmentDeleted").build();
-		notificationChannel.send(deletedMessage);
+		messageChannel.send(deletedMessage);
 	}
 
 	// internal helpers
