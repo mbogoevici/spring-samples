@@ -150,13 +150,11 @@
 		});
 
 		setTimeout(function(){
-			console.log("Polling ${pageContext.request.contextPath}/appointments/notifications?day=${appointmentCalendar.day}");
-			$.getJSON("${pageContext.request.contextPath}/appointments/notifications?day=${appointmentCalendar.day}", function(messages) {
+			console.log("Polling ${pageContext.request.contextPath}/appointments/messages?day=${appointmentCalendar.day}");
+			$.getJSON("${pageContext.request.contextPath}/appointments/messages?day=${appointmentCalendar.day}", function(messages) {
 				var i;
-				console.log(messages.length);
 				for (i = 0; i < messages.length; i += 1) {
 					var message = messages[i];
-					console.log("headers=" + message.headers, "; payload=" + message.payload.patient);
 				}
 			});
 		    setTimeout(arguments.callee, 3000);

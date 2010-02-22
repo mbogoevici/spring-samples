@@ -5,7 +5,7 @@ import java.util.List;
 import org.joda.time.LocalDate;
 import org.springframework.integration.core.Message;
 
-public interface AppointmentMessageHandler {
+public interface AppointmentChannel {
 
 	void setDay(LocalDate day);
 

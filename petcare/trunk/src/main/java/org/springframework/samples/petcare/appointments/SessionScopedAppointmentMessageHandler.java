@@ -22,19 +22,21 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope(value="session", proxyMode=ScopedProxyMode.INTERFACES)
-public class SessionScopedAppointmentMessageHandler implements InitializingBean, DisposableBean, MessageHandler, AppointmentMessageHandler {
+public class SessionScopedAppointmentMessageHandler implements InitializingBean, DisposableBean, MessageHandler, AppointmentChannel {
 
-	private SubscribableChannel messageChannel;
+	private final SubscribableChannel messageChannel;
 
-	private AppointmentMessageSelector messageSelector = new AppointmentMessageSelector();
+	private final AppointmentMessageSelector messageSelector = new AppointmentMessageSelector();
 	
-	private PollableChannel pollableChannel = new QueueChannel();
+	private final PollableChannel pollableChannel = new QueueChannel();
 	
 	@Autowired
 	public SessionScopedAppointmentMessageHandler(@Qualifier("notifications") SubscribableChannel messageChannel) {
 		this.messageChannel = messageChannel;
 	}
 
+	// Lifecycle callbacks
+	
 	public void afterPropertiesSet() throws Exception {
 		this.messageChannel.subscribe(this);
 	}
@@ -43,9 +45,7 @@ public class SessionScopedAppointmentMessageHandler implements InitializingBean,
 		this.messageChannel.unsubscribe(this);
 	}	
 
-	public void setDay(LocalDate day) {
-		this.messageSelector.setDay(day);
-	}
+	// implementing MessageHandler
 	
 	public void handleMessage(Message<?> message) throws MessageRejectedException, MessageHandlingException, MessageDeliveryException {
 		if (messageSelector.accept(message)) {
@@ -53,6 +53,12 @@ public class SessionScopedAppointmentMessageHandler implements InitializingBean,
 		}
 	}
 
+	// implementing AppointmnetMessageHandler
+	
+	public void setDay(LocalDate day) {
+		this.messageSelector.setDay(day);
+	}
+	
 	public List<Message<?>> pollMessages() {
 		return pollableChannel.clear();
 	}

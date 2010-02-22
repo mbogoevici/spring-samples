@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/appointments")
 public class AppointmentsController {
 
-	private final AppointmentService appointmentRepository;
+	private final AppointmentService appointmentService;
 
-	private AppointmentMessageHandler messageHandler;
+	private final AppointmentChannel appointmentChannel;
 	
 	@Autowired
-	public AppointmentsController(AppointmentService appointmentRepository, AppointmentMessageHandler messageHandler) {
-		this.appointmentRepository = appointmentRepository;
-		this.messageHandler = messageHandler;
+	public AppointmentsController(AppointmentService appointmentService, AppointmentChannel appointmentChannel) {
+		this.appointmentService = appointmentService;
+		this.appointmentChannel = appointmentChannel;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -38,25 +38,25 @@ public class AppointmentsController {
 
 	@RequestMapping(method = RequestMethod.GET, params="day")
 	public String getAppointmentsForDay(@RequestParam @DateTimeFormat(iso=ISO.DATE) LocalDate day, Model model) {
-		model.addAttribute(appointmentRepository.getAppointmentsForDay(day));
+		model.addAttribute(appointmentService.getAppointmentsForDay(day));
 		return "appointments";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String createAppointment(NewAppointment appointment) {
-		appointmentRepository.addAppointment(appointment);
+		appointmentService.addAppointment(appointment);
 		return "redirect:/appointments?day=" + appointment.getDay();
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
 	public void deleteAppointment(@PathVariable Long id, HttpServletResponse response) {
-		appointmentRepository.deleteAppointment(id);
+		appointmentService.deleteAppointment(id);
 		response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
 	
-	@RequestMapping(value="/notifications", method = RequestMethod.GET)
-	public @ResponseBody List<Message<?>> pollAppointmentNotifications(@RequestParam @DateTimeFormat(iso=ISO.DATE) LocalDate day) {
-		messageHandler.setDay(day);
-		return messageHandler.pollMessages();
+	@RequestMapping(value="/messages", method = RequestMethod.GET)
+	public @ResponseBody List<Message<?>> pollMessages(@RequestParam @DateTimeFormat(iso=ISO.DATE) LocalDate day) {
+		appointmentChannel.setDay(day);
+		return appointmentChannel.pollMessages();
 	}
 }
