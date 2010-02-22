@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope(value="session", proxyMode=ScopedProxyMode.INTERFACES)
-public class SessionScopedAppointmentMessageHandler implements InitializingBean, DisposableBean, MessageHandler, AppointmentChannel {
+public class SessionScopedAppointmentChannel implements InitializingBean, DisposableBean, MessageHandler, AppointmentChannel {
 
 	private final SubscribableChannel messageChannel;
 
@@ -31,7 +31,7 @@ public class SessionScopedAppointmentMessageHandler implements InitializingBean,
 	private final PollableChannel pollableChannel = new QueueChannel();
 	
 	@Autowired
-	public SessionScopedAppointmentMessageHandler(@Qualifier("notifications") SubscribableChannel messageChannel) {
+	public SessionScopedAppointmentChannel(@Qualifier("notifications") SubscribableChannel messageChannel) {
 		this.messageChannel = messageChannel;
 	}
 
