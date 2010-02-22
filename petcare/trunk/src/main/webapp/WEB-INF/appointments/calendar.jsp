@@ -150,7 +150,6 @@
 		});
 
 		setTimeout(function(){
-			console.log("Polling ${pageContext.request.contextPath}/appointments/messages?day=${appointmentCalendar.day}");
 			$.getJSON("${pageContext.request.contextPath}/appointments/messages?day=${appointmentCalendar.day}", function(messages) {
 				var i;
 				for (i = 0; i < messages.length; i += 1) {
