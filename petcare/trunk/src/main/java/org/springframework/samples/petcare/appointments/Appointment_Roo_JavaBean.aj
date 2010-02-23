@@ -14,20 +14,20 @@ privileged aspect Appointment_Roo_JavaBean {
         this.id = id;        
     }    
     
-    public DateTime Appointment.getStartTime() {    
-        return this.startTime;        
+    public DateTime Appointment.getDateTime() {    
+        return this.dateTime;        
     }    
     
-    public void Appointment.setStartTime(DateTime startTime) {    
-        this.startTime = startTime;        
+    public void Appointment.setDateTime(DateTime dateTime) {    
+        this.dateTime = dateTime;        
     }    
     
-    public DateTime Appointment.getEndTime() {    
-        return this.endTime;        
+    public Long Appointment.getDoctorId() {    
+        return this.doctorId;        
     }    
     
-    public void Appointment.setEndTime(DateTime endTime) {    
-        this.endTime = endTime;        
+    public void Appointment.setDoctorId(Long doctorId) {    
+        this.doctorId = doctorId;        
     }    
     
     public String Appointment.getPatient() {    

@@ -3,6 +3,7 @@ package org.springframework.samples.petcare.appointments;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +44,8 @@ public class AppointmentsController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String createAppointment(NewAppointment appointment) {
-		appointmentService.addAppointment(appointment);
-		return "redirect:/appointments?day=" + appointment.getDay();
+	public @ResponseBody Long createAppointment(@Valid NewAppointment appointment) {
+		return appointmentService.addAppointment(appointment);
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)

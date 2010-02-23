@@ -1,5 +1,6 @@
 package org.springframework.samples.petcare.appointments;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.joda.time.LocalDate;
@@ -20,15 +21,16 @@ import org.springframework.integration.message.MessageRejectedException;
 import org.springframework.integration.selector.MessageSelector;
 import org.springframework.stereotype.Component;
 
+@SuppressWarnings("serial")
 @Component
 @Scope(value="session", proxyMode=ScopedProxyMode.INTERFACES)
-public class SessionScopedAppointmentChannel implements InitializingBean, DisposableBean, MessageHandler, AppointmentChannel {
+public class SessionScopedAppointmentChannel implements AppointmentChannel, MessageHandler, InitializingBean, DisposableBean, Serializable {
 
-	private final SubscribableChannel messageChannel;
+	private final transient SubscribableChannel messageChannel;
 
-	private final AppointmentMessageSelector messageSelector = new AppointmentMessageSelector();
+	private final transient AppointmentMessageSelector messageSelector = new AppointmentMessageSelector();
 	
-	private final PollableChannel pollableChannel = new QueueChannel();
+	private final transient PollableChannel pollableChannel = new QueueChannel();
 	
 	@Autowired
 	public SessionScopedAppointmentChannel(@Qualifier("notifications") SubscribableChannel messageChannel) {
@@ -76,7 +78,7 @@ public class SessionScopedAppointmentChannel implements InitializingBean, Dispos
 		public boolean accept(Message<?> message) {
 			if (message.getHeaders().get("element").equals("appointmentCalendar")) {
 				Appointment appointment = (Appointment) message.getPayload();
-				if (appointment.getStartTime().toLocalDate().equals(day)) {
+				if (appointment.getDateTime().toLocalDate().equals(day)) {
 					return true;
 				}
 			}

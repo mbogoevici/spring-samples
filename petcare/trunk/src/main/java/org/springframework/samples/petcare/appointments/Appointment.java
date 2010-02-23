@@ -10,9 +10,9 @@ public class Appointment {
 
 	private Long id;
 
-	private DateTime startTime;
+	private DateTime dateTime;
 
-	private DateTime endTime;
+	private Long doctorId;
 
 	private String patient;
 

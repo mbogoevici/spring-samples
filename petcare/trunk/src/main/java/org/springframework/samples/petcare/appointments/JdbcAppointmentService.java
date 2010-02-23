@@ -44,16 +44,13 @@ public class JdbcAppointmentService implements AppointmentService {
 				return new ResourceReference(rs.getLong("ID"), rs.getString("DOCTOR"));
 			}
 		}));
-		Date startOfDay = day.toDateTimeAtStartOfDay().toDate();
-		Date endOfDay = day.plusDays(1).toDateTimeAtStartOfDay().toDate();		
-		jdbcTemplate.query(APPOINTMENTS_FOR_DAY, new AppointmentCalendarPopulator(calendar), startOfDay, endOfDay);
+		jdbcTemplate.query(APPOINTMENTS_FOR_DAY, new AppointmentCalendarPopulator(calendar), calendar.getStartOfDay(), calendar.getEndOfDay());
 		return calendar;
 	}
 
 	public Long addAppointment(NewAppointment newAppointment) {
-		DateTime startTime = newAppointment.getDay().toDateTime(newAppointment.getTime());
-		jdbcTemplate.update("insert into Appointment (startTime, endTime, patientId, doctorId, reason) values (?, ?, ?, ?, ?)", 
-				startTime.toDate(), startTime.plusHours(1).toDate(), newAppointment.getPatientId(), newAppointment.getDoctorId(), newAppointment.getReason());
+		jdbcTemplate.update("insert into Appointment (dateTime, patientId, doctorId, reason) values (?, ?, ?, ?)", 
+				new Date(newAppointment.getDateTime()), newAppointment.getPatientId(), newAppointment.getDoctorId(), newAppointment.getReason());
 		Long id = jdbcTemplate.queryForLong("call identity()");
 		Message<Appointment> addedMessage = MessageBuilder.withPayload(getAppointment(id)).setHeader("element", "appointmentCalendar").setHeader("type", "appointmentAdded").build();
 		messageChannel.send(addedMessage);		
@@ -75,12 +72,12 @@ public class JdbcAppointmentService implements AppointmentService {
 	
 	private static final String DOCTORS = "select id, (firstName || ' ' || lastName) as doctor from Doctor";
 
-	private static final String APPOINTMENTS_FOR_DAY = "select a.id, a.startTime, a.endTime, a.doctorId, p.name as patient, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, a.reason "
+	private static final String APPOINTMENTS_FOR_DAY = "select a.id, a.dateTime, a.doctorId, p.name as patient, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, a.reason "
 			+ "from Appointment a, Doctor d, Patient p, Client c "
 			+ "where "
-			+ "a.startTime between ? and ? and a.patientId = p.id and p.clientId = c.id and a.doctorId = d.id";
+			+ "a.dateTime between ? and ? and a.patientId = p.id and p.clientId = c.id and a.doctorId = d.id";
 	
-	private static final String APPOINTMENT_BY_ID = "select a.id, a.startTime, a.endTime, a.doctorId, p.name as patient, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, a.reason "
+	private static final String APPOINTMENT_BY_ID = "select a.id, a.dateTime, a.doctorId, p.name as patient, (c.firstName || ' ' || c.lastName) as client, c.phone as clientPhone, a.reason "
 		+ "from Appointment a, Doctor d, Patient p, Client c "
 		+ "where "
 		+ "a.id = ? and a.patientId = p.id and p.clientId = c.id and a.doctorId = d.id";
@@ -96,7 +93,7 @@ public class JdbcAppointmentService implements AppointmentService {
 		}
 
 		public void processRow(ResultSet rs) throws SQLException, DataAccessException {
-			calendar.addAppointment(rs.getLong("DOCTORID"), rowMapper.mapRow(rs, -1));
+			calendar.addAppointment(rowMapper.mapRow(rs, -1));
 		}
 	}
 	
@@ -105,8 +102,8 @@ public class JdbcAppointmentService implements AppointmentService {
 		public Appointment mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Appointment a = new Appointment();
 			a.setId(rs.getLong("ID"));
-			a.setStartTime(new DateTime(rs.getTimestamp("STARTTIME")));
-			a.setEndTime(new DateTime(rs.getTimestamp("ENDTIME")));
+			a.setDateTime(new DateTime(rs.getTimestamp("DATETIME")));
+			a.setDoctorId(rs.getLong("DOCTORID"));
 			a.setPatient(rs.getString("PATIENT"));
 			a.setClient(rs.getString("CLIENT"));
 			a.setClientPhone(rs.getString("CLIENTPHONE"));

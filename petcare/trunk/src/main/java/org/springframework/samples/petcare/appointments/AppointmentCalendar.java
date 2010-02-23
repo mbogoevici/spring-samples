@@ -1,6 +1,7 @@
 package org.springframework.samples.petcare.appointments;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.joda.time.LocalDate;
@@ -33,12 +34,9 @@ public class AppointmentCalendar {
 		}
 	}
 
-	public void addAppointment(Long doctorId, Appointment appointment) {
-		int blockIndex = appointment.getStartTime().getHourOfDay() - 8;
-		int doctorIndex = doctors.indexOf(new ResourceReference(doctorId));
-		if (appointments.get(blockIndex).get(doctorIndex) != null) {
-			throw new IllegalArgumentException("Already an appointment at block " + blockIndex + " for doctor " + doctorId);
-		}
+	public void addAppointment(Appointment appointment) {
+		int blockIndex = appointment.getDateTime().getHourOfDay() - 8;
+		int doctorIndex = doctors.indexOf(new ResourceReference(appointment.getDoctorId()));
 		appointments.get(blockIndex).set(doctorIndex, appointment);
 	}
 
@@ -56,6 +54,18 @@ public class AppointmentCalendar {
 		return blocks;
 	}
 	
+	public Long getBlockMillis(LocalTime block) {
+		return day.toDateTime(block).getMillis();
+	}
+
+	public Date getStartOfDay() {
+		return day.toDateTime(getBlocks().get(0)).toDate();
+	}
+
+	public Date getEndOfDay() {
+		return day.toDateTime(getBlocks().get(8)).plusMillis(60).toDate();
+	}
+
 	// resource links
 	
 	public LocalDate getPreviousDay() {
