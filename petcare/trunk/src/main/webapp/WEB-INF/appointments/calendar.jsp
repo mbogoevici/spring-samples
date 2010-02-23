@@ -67,8 +67,8 @@
 				When: <span id="when"></span>
 			</p>
 			<p>		
-				<label for="patient">Patient</label><br/>
-				<input id="patient" type="text" />
+				<label for="patientField">Patient</label><br/>
+				<input id="patientField" type="text" />
 			</p>
 			<p>
 				<input id="addButton" type="submit" value="Add" />
@@ -89,22 +89,6 @@
 </div>
 
 <script type="text/javascript">
-
-	var showAddDialog = function() {
-		$("#when").html($(this).parent().children("td.block").html());
-		$("#addForm input[name=dateTime]").val($(this).attr("data-dateTime"));
-		$("#addForm input[name=doctorId]").val($(this).attr("data-doctorId"));
-		$("#addButton").attr("disabled", true);
-		$("#addDialog").dialog("open");
-		$("#patient").focus();
-	};
-	
-	var showUpdateDialog = function() {
-		$("#updateDialog").dialog('option', 'title', $(this).parent().children("td.block").html());
-		$("#updateDialog .patient").html($(this).children(".patient").html());
-		$("#updateDialog").attr("data-id", $(this).attr("data-id"));
-		$("#updateDialog").dialog("open");
-	};
 
 	$(document).ready(function() {
 		$("#dayPicker").datepicker({
@@ -127,7 +111,7 @@
 			}			
 		});
 					
-		$("#patient").autocomplete({
+		$("#patientField").autocomplete({
 			source: function(request, response) {
 				$.getJSON("${pageContext.request.contextPath}/patients", { name: request.term }, response);
 			},
@@ -189,4 +173,21 @@
 		}, 3000);
 
 	});
+
+	var showAddDialog = function() {
+		$("#when").html($(this).parent().children("td.block").html());
+		$("#addForm input[name=dateTime]").val($(this).attr("data-dateTime"));
+		$("#addForm input[name=doctorId]").val($(this).attr("data-doctorId"));
+		$("#addButton").attr("disabled", true);
+		$("#addDialog").dialog("open");
+		$("#patientField").focus();
+	};
+	
+	var showUpdateDialog = function() {
+		$("#updateDialog").dialog('option', 'title', $(this).parent().children("td.block").html());
+		$("#updateDialog .patient").html($(this).children(".patient").html());
+		$("#updateDialog").attr("data-id", $(this).attr("data-id"));
+		$("#updateDialog").dialog("open");
+	};
+	
 </script>
