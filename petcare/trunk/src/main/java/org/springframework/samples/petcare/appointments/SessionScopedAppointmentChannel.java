@@ -31,7 +31,7 @@ public class SessionScopedAppointmentChannel implements AppointmentChannel, Mess
 	private final PollableChannel pollableChannel = new QueueChannel();
 	
 	@Autowired
-	public SessionScopedAppointmentChannel(@Qualifier("notifications") SubscribableChannel messageChannel) {
+	public SessionScopedAppointmentChannel(@Qualifier("messageChannel") SubscribableChannel messageChannel) {
 		this.messageChannel = messageChannel;
 	}
 

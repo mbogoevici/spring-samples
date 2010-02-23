@@ -32,7 +32,7 @@ public class JdbcAppointmentService implements AppointmentService {
 	private MessageChannel messageChannel;
 
 	@Autowired
-	public JdbcAppointmentService(DataSource dataSource, @Qualifier("notifications") MessageChannel messageChannel) {
+	public JdbcAppointmentService(DataSource dataSource, @Qualifier("messageChannel") MessageChannel messageChannel) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 		this.messageChannel = messageChannel;
 	}
