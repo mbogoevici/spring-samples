@@ -1,6 +1,5 @@
 package org.springframework.samples.petcare.appointments;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.joda.time.LocalDate;
@@ -21,16 +20,15 @@ import org.springframework.integration.message.MessageRejectedException;
 import org.springframework.integration.selector.MessageSelector;
 import org.springframework.stereotype.Component;
 
-@SuppressWarnings("serial")
 @Component
 @Scope(value="session", proxyMode=ScopedProxyMode.INTERFACES)
-public class SessionScopedAppointmentChannel implements AppointmentChannel, MessageHandler, InitializingBean, DisposableBean, Serializable {
+public class SessionScopedAppointmentChannel implements AppointmentChannel, MessageHandler, InitializingBean, DisposableBean {
 
-	private final transient SubscribableChannel messageChannel;
+	private final SubscribableChannel messageChannel;
 
-	private final transient AppointmentMessageSelector messageSelector = new AppointmentMessageSelector();
+	private final AppointmentMessageSelector messageSelector = new AppointmentMessageSelector();
 	
-	private final transient PollableChannel pollableChannel = new QueueChannel();
+	private final PollableChannel pollableChannel = new QueueChannel();
 	
 	@Autowired
 	public SessionScopedAppointmentChannel(@Qualifier("notifications") SubscribableChannel messageChannel) {

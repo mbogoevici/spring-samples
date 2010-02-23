@@ -50,15 +50,7 @@
 						</c:when>
 						<c:otherwise>
 							<td class="open" data-dateTime="${dateTime}" data-doctorId="${doctor.id}">
-								<div class="patient">
-									&nbsp;
-								</div>
-								<div class="client">
-									&nbsp;
-								</div>
-								<div class="reason">
-									&nbsp;
-								</div>					
+								&nbsp;
 							</td>
 						</c:otherwise>
 					</c:choose>
@@ -97,6 +89,23 @@
 </div>
 
 <script type="text/javascript">
+
+	var showAddDialog = function() {
+		$("#when").html($(this).parent().children("td.block").html());
+		$("#addForm input[name=dateTime]").val($(this).attr("data-dateTime"));
+		$("#addForm input[name=doctorId]").val($(this).attr("data-doctorId"));
+		$("#addButton").attr("disabled", true);
+		$("#addDialog").dialog("open");
+		$("#patient").focus();
+	};
+	
+	var showUpdateDialog = function() {
+		$("#updateDialog").dialog('option', 'title', $(this).parent().children("td.block").html());
+		$("#updateDialog .patient").html($(this).children(".patient").html());
+		$("#updateDialog").attr("data-id", $(this).attr("data-id"));
+		$("#updateDialog").dialog("open");
+	};
+
 	$(document).ready(function() {
 		$("#dayPicker").datepicker({
 			firstDay: 1,
@@ -106,7 +115,10 @@
 				window.location = "${pageContext.request.contextPath}/appointments?day=" + dateText;
 			}
 		});
-
+		
+		$("#appointmentCalendar td.open").click(showAddDialog);
+		$("#appointmentCalendar td.filled").click(showUpdateDialog);
+		
 		$("#addDialog").dialog({
 			autoOpen: false,
 			modal: true,
@@ -114,21 +126,7 @@
 				$("#addForm")[0].reset();
 			}			
 		});
-		
-		$("#updateDialog").dialog({
-			autoOpen: false,
-			modal: true
-		});
-			
-		$("td.open").click(function() {
-			$("#when").html($(this).parent().children("td.block").html());
-			$("#addForm input[name=dateTime]").val($(this).attr("data-dateTime"));
-			$("#addForm input[name=doctorId]").val($(this).attr("data-doctorId"));
-			$("#addButton").attr("disabled", true);
-			$("#addDialog").dialog("open");
-			$("#patient").focus();
-		});
-			
+					
 		$("#patient").autocomplete({
 			source: function(request, response) {
 				$.getJSON("${pageContext.request.contextPath}/patients", { name: request.term }, response);
@@ -140,20 +138,18 @@
 			}
 		});
 
-		$("#addForm #addButton").click(function() {
+		$("#addButton").click(function() {
 			$.post("${pageContext.request.contextPath}/appointments", $("#addForm").serialize(), function(data) {
 				$("#addDialog").dialog('close');
 			});	
 			return false;
 		});
 
-		$("td.filled").click(function() {
-			$("#updateDialog").dialog('option', 'title', $(this).parent().children("td.block").html());
-			$("#updateDialog .patient").html($(this).children(".patient").html());
-			$("#updateDialog").attr("data-id", $(this).attr("data-id"));
-			$("#updateDialog").dialog("open");
+		$("#updateDialog").dialog({
+			autoOpen: false,
+			modal: true
 		});
-
+		
 		$("#updateDialog .link").click(function() {
 			$.ajax({
 				url: "${pageContext.request.contextPath}/appointments/" + $("#updateDialog").attr("data-id"),
@@ -171,24 +167,26 @@
 				for (i = 0; i < messages.length; i += 1) {
 					var message = messages[i];
 					if (message.headers.type == "appointmentAdded") {
-						var slot = $("#appointmentCalendar td.open[data-dateTime=" + message.payload.dateTime + "][data-doctorId=" + message.payload.doctorId + "]"); 
+						var slot = $("#appointmentCalendar td.open[data-dateTime=" + message.payload.dateTime + "][data-doctorId=" + message.payload.doctorId + "]");
+						slot.attr("data-id", message.payload.id);
+						slot.html("<div class='patient'></div><div class='client'></div><div class='reason'></div>");
 						slot.children(".patient").html(message.payload.patient);
 						slot.children(".client").html(message.payload.client + " " + message.payload.clientPhone);
 						slot.children(".reason").html(message.payload.reason);
 						slot.removeClass("open");
-						slot.addClass("filled");						
+						slot.addClass("filled");
+						slot.unbind('click').click(showUpdateDialog);						
 					} else if (message.headers.type == "appointmentDeleted") {
 						var slot = $("#appointmentCalendar td.filled[data-id=" + message.payload.id + "]");
-						slot.children(".patient").html("&nbsp;");
-						slot.children(".client").html("&nbsp;");
-						slot.children(".reason").html("&nbsp;");
+						slot.html("&nbsp;");
 						slot.removeClass("filled");
 						slot.addClass("open");
+						slot.unbind('click').click(showAddDialog);
 					}
 				}
 			});
-		    setTimeout(arguments.callee, 3000);
-		  }, 10);
+			setTimeout(arguments.callee, 3000);			
+		}, 3000);
 
 	});
 </script>
