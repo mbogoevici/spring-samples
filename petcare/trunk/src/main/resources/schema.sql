@@ -36,12 +36,11 @@ create table Patient (	id identity,
 						foreign key (doctorId) references Doctor(id));
 
 create table Appointment (	id identity, 
-						  	startTime datetime not null,
-						  	endTime datetime not null,
-						  	reason varchar(255),
-						  	patientId bigint not null,
+							dateTime datetime not null,
+							patientId bigint not null,
 						  	doctorId bigint not null,
-							primary key (id),
+						  	reason varchar(255),
+						  	primary key (id),
 							foreign key (patientId) references Patient(id),
 							foreign key (doctorId) references Doctor(id));	
 

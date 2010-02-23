@@ -67,11 +67,10 @@ public class JdbcAppointmentServiceTest {
 	public void testAddAppointment() {
 		TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 		NewAppointment appointment = new NewAppointment();
-		appointment.setDay(new LocalDate());
-		appointment.setTime(new LocalTime(8, 0));
 		appointment.setDoctorId(1L);
 		appointment.setPatientId(1L);
 		appointment.setReason("Checkup");
+		appointment.setDateTime(new LocalDate().toDateTime(new LocalTime(8, 0)).getMillis());
 		testNotificationChannel.subscribe(new MessageHandler() {
 			public void handleMessage(Message<?> message)
 					throws MessageRejectedException, MessageHandlingException,
@@ -85,8 +84,7 @@ public class JdbcAppointmentServiceTest {
 		long id = appointmentService.addAppointment(appointment);
 		assertEquals(3L, id);
 		Map<String, Object> row = template.queryForMap("select * from Appointment where id = ?", id);
-		assertEquals(new LocalDate().toDateTime(new LocalTime(8, 0)).toDate(), row.get("STARTTIME"));
-		assertEquals(new LocalDate().toDateTime(new LocalTime(9, 0)).toDate(), row.get("ENDTIME"));
+		assertEquals(new LocalDate().toDateTime(new LocalTime(8, 0)).toDate(), row.get("DATETIME"));
 		assertEquals(1L, row.get("DOCTORID"));
 		assertEquals(1L, row.get("PATIENTID"));
 		assertEquals("Checkup", row.get("REASON"));		

@@ -18,5 +18,5 @@ insert into Client (firstName, lastName, phone, street, apartment, city, state, 
 insert into Patient (name, gender, species, breed, birthDate, weight, clientId, doctorId) values ('Macy', 'F', 'Canine', 'Whippet', '2000-05-16', 25.4, 1, 1);
 insert into Patient (name, gender, species, breed, birthDate, weight, clientId, doctorId) values ('Lil Jerry', 'M', 'Feline', 'Domestic Shorthair', '1998-04-01', 25.4, 2, 2);
 
-insert into Appointment (startTime, endTime, reason, patientId, doctorId) values ('2010-02-16 8:00:00', '2010-02-16 9:00:00', 'Annual checkup', 1, 1);
-insert into Appointment (startTime, endTime, reason, patientId, doctorId) values ('2010-02-16 16:00:00', '2010-02-16 17:00:00', 'Teeth cleaning', 2, 2);
+insert into Appointment (dateTime, patientId, doctorId, reason) values ('2010-02-16 8:00:00', 1, 1, 'Annual checkup');
+insert into Appointment (dateTime, patientId, doctorId, reason) values ('2010-02-16 16:00:00', 2, 2, 'Teeth cleaning');

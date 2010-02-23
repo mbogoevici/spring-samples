@@ -28,36 +28,40 @@ public class AppointmentCalendarTest {
 		
 		Appointment a1 = new Appointment();
 		a1.setPatient("Macy");
-		a1.setStartTime(day.toDateTime(new LocalTime(8, 0)));
+		a1.setDateTime(day.toDateTime(new LocalTime(8, 0)));
+		a1.setDoctorId(1L);
 		a1.setClient("Keith Donald");
 		a1.setClientPhone("123456789");
 		a1.setReason("Teeth cleaning");
 		
 		Appointment a2 = new Appointment();
 		a2.setPatient("Lil Jerry");
-		a2.setStartTime(day.toDateTime(new LocalTime(13, 0)));
+		a2.setDateTime(day.toDateTime(new LocalTime(13, 0)));
+		a2.setDoctorId(1L);
 		a2.setClient("Keri Donald");
 		a2.setClientPhone("123456789");
 		a2.setReason("Annual checkup");
 
 		Appointment a3 = new Appointment();
 		a3.setPatient("Max");
-		a3.setStartTime(day.toDateTime(new LocalTime(16, 0)));
+		a3.setDateTime(day.toDateTime(new LocalTime(16, 0)));
+		a3.setDoctorId(2L);
 		a3.setClient("Aldis Donald");
 		a3.setClientPhone("123456789");
 		a3.setReason("Annual checkup");
 
 		Appointment a4 = new Appointment();
 		a4.setPatient("Beau");
-		a4.setStartTime(day.toDateTime(new LocalTime(11, 0)));
+		a4.setDateTime(day.toDateTime(new LocalTime(11, 0)));
+		a4.setDoctorId(2L);		
 		a4.setClient("Scot Donald");
 		a4.setClientPhone("123456789");
 		a4.setReason("Annual checkup");
 
-		calendar.addAppointment(1L, a1);
-		calendar.addAppointment(1L, a2);
-		calendar.addAppointment(2L, a3);
-		calendar.addAppointment(2L, a4);
+		calendar.addAppointment(a1);
+		calendar.addAppointment(a2);
+		calendar.addAppointment(a3);
+		calendar.addAppointment(a4);
 	}
 	
 	@Test

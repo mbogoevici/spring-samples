@@ -27,16 +27,16 @@
 		</tr>
 	
 		<c:forEach var="block" items="${appointmentCalendar.blocks}" varStatus="i">
+			<spring:eval expression="appointmentCalendar.getBlockMillis(block)" var="dateTime"/>
 			<tr>
-				<td>
-					<joda:format value="${block}" style="-S" var="time" />
-					${time}
+				<td class="block">
+					<joda:format value="${block}" style="-S" />
 				</td>
 				<c:forEach var="doctor" items="${appointmentCalendar.doctors}" varStatus="j">
 					<spring:eval expression="appointmentCalendar.appointments[i.count - 1][j.count - 1]" var="appointment" />
 					<c:choose>
 						<c:when test="${appointment != null}">
-							<td class="filled" data-id="${appointment.id}" data-time="${time}" data-doctorId="${doctor.id}">
+							<td class="filled" data-id="${appointment.id}" data-dateTime="${dateTime}" data-doctorId="${doctor.id}">
 								<div class="patient">
 									${appointment.patient}
 								</div>
@@ -49,7 +49,17 @@
 							</td>				
 						</c:when>
 						<c:otherwise>
-							<td class="open" data-time="${time}" data-doctorId="${doctor.id}">&nbsp;</td>
+							<td class="open" data-dateTime="${dateTime}" data-doctorId="${doctor.id}">
+								<div class="patient">
+									&nbsp;
+								</div>
+								<div class="client">
+									&nbsp;
+								</div>
+								<div class="reason">
+									&nbsp;
+								</div>					
+							</td>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -69,12 +79,11 @@
 				<input id="patient" type="text" />
 			</p>
 			<p>
-				<input type="submit" value="Add" />
+				<input id="addButton" type="submit" value="Add" />
 			</p>
 			<input type="hidden" name="patientId" />
 			<input type="hidden" name="doctorId" />
-			<input type="hidden" name="day" value="<joda:format value="${appointmentCalendar.day}" style="S-" />" />
-			<input type="hidden" name="time" />
+			<input type="hidden" name="dateTime" />
 		</fieldset>
 	</form>
 </div>
@@ -112,10 +121,10 @@
 		});
 			
 		$("td.open").click(function() {
-			$("#when").html($(this).attr("data-time"));
-			$("#addForm input[name=time]").val($(this).attr("data-time"));
+			$("#when").html($(this).parent().children("td.block").html());
+			$("#addForm input[name=dateTime]").val($(this).attr("data-dateTime"));
 			$("#addForm input[name=doctorId]").val($(this).attr("data-doctorId"));
-			$("#addForm input[type=submit]").attr("disabled", true);
+			$("#addButton").attr("disabled", true);
 			$("#addDialog").dialog("open");
 			$("#patient").focus();
 		});
@@ -127,14 +136,21 @@
 			select: function(event, ui) {
 				$("#addForm input[name=patientId]").val(ui.item.id);
 				$("#addForm input[type=submit]").attr("disabled", false);
-				$("#addForm input[type=submit]").focus();	
+				$("#addButton").focus();	
 			}
 		});
 
+		$("#addForm #addButton").click(function() {
+			$.post("${pageContext.request.contextPath}/appointments", $("#addForm").serialize(), function(data) {
+				$("#addDialog").dialog('close');
+			});	
+			return false;
+		});
+
 		$("td.filled").click(function() {
+			$("#updateDialog").dialog('option', 'title', $(this).parent().children("td.block").html());
 			$("#updateDialog .patient").html($(this).children(".patient").html());
 			$("#updateDialog").attr("data-id", $(this).attr("data-id"));
-			$("#updateDialog").dialog('option', 'title', $(this).attr("data-time"));			
 			$("#updateDialog").dialog("open");
 		});
 
@@ -155,10 +171,17 @@
 				for (i = 0; i < messages.length; i += 1) {
 					var message = messages[i];
 					if (message.headers.type == "appointmentAdded") {
-						// TODO
+						var slot = $("#appointmentCalendar td.open[data-dateTime=" + message.payload.dateTime + "][data-doctorId=" + message.payload.doctorId + "]"); 
+						slot.children(".patient").html(message.payload.patient);
+						slot.children(".client").html(message.payload.client + " " + message.payload.clientPhone);
+						slot.children(".reason").html(message.payload.reason);
+						slot.removeClass("open");
+						slot.addClass("filled");						
 					} else if (message.headers.type == "appointmentDeleted") {
 						var slot = $("#appointmentCalendar td.filled[data-id=" + message.payload.id + "]");
-						slot.html("&nbsp;");
+						slot.children(".patient").html("&nbsp;");
+						slot.children(".client").html("&nbsp;");
+						slot.children(".reason").html("&nbsp;");
 						slot.removeClass("filled");
 						slot.addClass("open");
 					}
@@ -166,6 +189,6 @@
 			});
 		    setTimeout(arguments.callee, 3000);
 		  }, 10);
-		
+
 	});
 </script>
