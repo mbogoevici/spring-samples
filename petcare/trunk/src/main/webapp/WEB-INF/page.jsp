@@ -22,7 +22,7 @@
 		<script type="text/javascript" src="<c:url value="/scripts/${script}" />"></script>	
 	</c:forEach>	
 </head>
-<body id="page-body">
+<body>
 	<div id="page" class="container">
 		<div id="header" class="span-24">
 			<h1>Petcare</h1>
@@ -41,7 +41,6 @@
 				<ul>
 					<li><a href="<c:url value="/"/>">Home</a></li>
 					<li><a href="<c:url value="/appointments"/>">Appointments</a></li>
-					<!-- TODO Clients -->
 				</ul>
 			</div>
 		</div>
