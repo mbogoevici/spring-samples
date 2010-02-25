@@ -12,6 +12,9 @@
 	<!-- Forwards GET requests to the "/" resource to the "home" view -->
 	<view-controller path="/" view-name="home"/>
 
+	<!-- Forwards GET requests to the "/users/signin" resource to the "users/signin" view -->
+	<view-controller path="/users/signin" />
+
 	<!-- VIEW RESOLUTION AND RENDERING -->
 	
 	<!-- Resolves view names to tiles definitions in /WEB-INF/tiles.xml -->
@@ -23,8 +26,9 @@
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:value>
-				/WEB-INF/tiles.xml,
-				/WEB-INF/appointments/tiles.xml
+				/WEB-INF/views/tiles.xml,
+				/WEB-INF/views/users/tiles.xml,
+				/WEB-INF/views/appointments/tiles.xml
 			</beans:value>
 		</beans:property>
 	</beans:bean>
