@@ -215,7 +215,7 @@
 	<repositories>
 		<repository>
 			<id>com.springsource.repository.bundles.release</id>
-			<name>SpringSource Enterprise Bundle Repository - SpringSource Releases</name>
+			<name>SpringSource Enterprise Bundle Repository - Releases</name>
 			<url>http://repository.springsource.com/maven/bundles/release</url>
 		</repository>
 		<repository>
@@ -225,12 +225,12 @@
 		</repository>
 		<repository>
 			<id>com.springsource.repository.bundles.milestone</id>
-			<name>SpringSource Enterprise Bundle Repository - SpringSource Milestones</name>
+			<name>SpringSource Enterprise Bundle Repository - Milestones</name>
 			<url>http://repository.springsource.com/maven/bundles/milestone</url>
 		</repository>		
 		<repository>
 			<id>com.springsource.repository.bundles.snapshot</id>
-			<name>SpringSource Enterprise Bundle Repository - Snapshot Releases</name>
+			<name>SpringSource Enterprise Bundle Repository - Snapshots</name>
 			<url>http://repository.springsource.com/maven/bundles/snapshot</url>
 		</repository>
 	</repositories>
