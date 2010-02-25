@@ -13,6 +13,7 @@
 	<!--[if lt IE 8]>
 		<link rel="stylesheet" href="<c:url value="/styles/blueprint/ie.css" />" type="text/css" media="screen, projection" />
 	<![endif]-->
+	<link rel="stylesheet" href="<c:url value="/styles/style.css" />" type="text/css" />
 	<tiles:useAttribute id="styles" name="styles" classname="java.util.List" ignore="true" />
 	<c:forEach var="style" items="${styles}">
 		<link rel="stylesheet" href="<c:url value="/styles/${style}" />" type="text/css" media="all" />
@@ -36,15 +37,17 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div id="logo">
+			<div id="logo" class="span-18 first">
 				<h1>Petcare</h1>
-				<h2>We love your pet</h2>
+				<h2 class="alt">We love your pet</h2>
 			</div>
-			<div id="menu">
-				<ul>
-					<li><a href="<c:url value="/"/>">Home</a></li>
-					<li><a href="<c:url value="/appointments"/>">Appointments</a></li>
-				</ul>
+			<div id="menu" class="span-5 last">
+				<p>
+					<ul>
+						<li><a href="<c:url value="/"/>">Home</a></li>
+						<li><a href="<c:url value="/appointments"/>">Appointments</a></li>
+					</ul>
+				</p>
 			</div>
 		</div>
 		<div id="content" class="span-24">

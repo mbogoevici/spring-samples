@@ -1,0 +1,21 @@
+#logo h1 {
+	font-size:5.25em;
+	font-weight:bold;
+	text-transform:uppercase;
+	margin:0;
+	padding:0;
+}
+
+.alt { 
+  color: #666; 
+  font-family: "Warnock Pro", "Goudy Old Style","Palatino","Book Antiqua", Georgia, serif; 
+  font-style: italic;
+  font-weight: normal;
+}
+
+#menu ul {
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+}
+

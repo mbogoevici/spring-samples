@@ -2,33 +2,37 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 
-<div id="dayPicker">
+<div class="span-6 prepend-7">
+	<h3>
+		<spring:eval expression="appointmentCalendar.day" />
+	</h3>
+</div>
+
+<div class="span-3 append-7 last">
+	<p>
+		<a href="<c:url value="/appointments?day=${appointmentCalendar.previousDay}"/>">Previous</a> 
+		<a href="<c:url value="/appointments?day=${appointmentCalendar.nextDay}"/>">Next</a>	
+	</p>
+</div>
+
+<div id="dayPicker" class="span-7">
 
 </div>
 
-<div id="appointmentCalendar">
-	<h2>
-		<spring:eval expression="appointmentCalendar.day" />
-	</h2>
-	
-	<div class="prev">
-		<a href="<c:url value="/appointments?day=${appointmentCalendar.previousDay}"/>">Previous</a> 
-	</div>
-	<div class="next">
-		<a href="<c:url value="/appointments?day=${appointmentCalendar.nextDay}"/>">Next</a>	
-	</div>
-	
+<div id="appointmentCalendar" class="span-17 last">
+		
 	<table>
-		<tr>
-			<th>&nbsp;</th>
-			<c:forEach var="doctor" items="${appointmentCalendar.doctors}">
-				<th class="doctor" data-doctorId="${doctor.id}">Dr. ${doctor.label}</th>
-			</c:forEach>
-		</tr>
-	
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<c:forEach var="doctor" items="${appointmentCalendar.doctors}">
+					<th class="doctor" data-doctorId="${doctor.id}">Dr. ${doctor.label}</th>
+				</c:forEach>
+			</tr>
+		</thead>	
 		<c:forEach var="block" items="${appointmentCalendar.blocks}" varStatus="i">
 			<spring:eval expression="appointmentCalendar.getBlockMillis(block)" var="dateTime"/>
-			<tr>
+			<tr class="${i.index % 2 == 0 ? 'even' : ''}">
 				<td class="block">
 					<joda:format value="${block}" style="-S" />
 				</td>
