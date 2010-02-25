@@ -37,7 +37,7 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div id="nav" class="span-24">
+			<div id="nav">
 				<ul>
 					<li><a href="<c:url value="/"/>">Home</a></li>
 					<li><a href="<c:url value="/appointments"/>">Appointments</a></li>
