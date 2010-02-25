@@ -30,19 +30,13 @@
 			<div id="signin">
 				<c:choose>
 					<c:when test="${pageContext.request.userPrincipal != null}">
-						<p>Welcome ${pageContext.request.userPrincipal.name}</p>
-						<li><a href="<c:url value="/account/signout"/>">Sign Out</a></li>
+						${pageContext.request.userPrincipal.name} | <a href="<c:url value="/users/signout"/>">Sign Out</a>
 					</c:when>
 					<c:otherwise>
-						<!-- TODO sign in -->
+						<a href="<c:url value="/users/signin"/>">Sign In</a>
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div id="branding">
-				<!-- TODO branding -->
-			</div>
-		</div>
-		<div id="content">
 			<div id="nav" class="span-24">
 				<ul>
 					<li><a href="<c:url value="/"/>">Home</a></li>
@@ -50,9 +44,9 @@
 					<!-- TODO Clients -->
 				</ul>
 			</div>
-			<div id="main" class="span-24">
-				<tiles:insertAttribute name="content"/>
-			</div>
+		</div>
+		<div id="content" class="span-24">
+			<tiles:insertAttribute name="content"/>
 		</div>
 		<div id="footer" class="span-24">
 			Copyright (c) 2010 SpringSource | About
