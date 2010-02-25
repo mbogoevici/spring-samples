@@ -25,9 +25,7 @@
 <body>
 	<div id="page" class="container">
 		<div id="header" class="span-24">
-			<h1>Petcare</h1>
-			<h2>We love your pet</h2>
-			<div id="signin">
+			<div id="topbar">
 				<c:choose>
 					<c:when test="${pageContext.request.userPrincipal != null}">
 						${pageContext.request.userPrincipal.name} | <a href="<c:url value="/users/signout"/>">Sign Out</a>
@@ -37,7 +35,11 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div id="nav">
+			<div id="logo">
+				<h1>Petcare</h1>
+				<h2>We love your pet</h2>
+			</div>
+			<div id="menu">
 				<ul>
 					<li><a href="<c:url value="/"/>">Home</a></li>
 					<li><a href="<c:url value="/appointments"/>">Appointments</a></li>
