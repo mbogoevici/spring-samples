@@ -24,7 +24,7 @@
 </head>
 <body id="page-body">
 	<div id="page" class="container">
-		<div id="header" class="span-24 last">
+		<div id="header" class="span-24">
 			<h1>Petcare</h1>
 			<h2>We love your pet</h2>
 			<div id="signin">

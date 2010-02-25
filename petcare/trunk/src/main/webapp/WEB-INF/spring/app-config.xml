@@ -31,5 +31,8 @@
 	
 	<!-- Configures Integration Layer -->
 	<import resource="integration-config.xml" />
-	
+
+	<!-- Configures Security -->
+	<import resource="integration-config.xml" />
+		
 </beans>

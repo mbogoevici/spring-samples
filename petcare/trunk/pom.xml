@@ -9,16 +9,17 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<properties>
 		<java.version>1.6</java.version>
-		<org.springframework.version>3.0.2.BUILD-SNAPSHOT</org.springframework.version>
-		<org.aspectj.version>1.6.8.RELEASE</org.aspectj.version>
-		<org.slf4j.version>1.5.10</org.slf4j.version>
+		<org.springframework-version>3.0.2.BUILD-SNAPSHOT</org.springframework-version>
+		<org.springframework.security-version>3.0.2.RELEASE</org.springframework.security-version>
+		<org.aspectj-version>1.6.8.RELEASE</org.aspectj-version>
+		<org.slf4j-version>1.5.10</org.slf4j-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.context</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${org.springframework-version}</version>
 			<exclusions>
 				<!-- Exclude Commons Logging in favor of SLF4j -->
 				<exclusion>
@@ -30,23 +31,40 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.jdbc</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>				
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.orm</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.web.servlet</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>org.springframework.integration</artifactId>
 			<version>1.0.3.RELEASE</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>org.springframework.security.web</artifactId>
+			<version>${org.springframework.security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>org.springframework.security.openid</artifactId>
+			<version>${org.springframework.security-version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>org.apache.commons</groupId>
+					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
+				</exclusion>
+			</exclusions>			
+		</dependency>				
 		<dependency>
 			<groupId>org.springframework.roo</groupId>
 			<artifactId>org.springframework.roo.annotations</artifactId>
@@ -58,25 +76,25 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>com.springsource.org.aspectj.runtime</artifactId>
-			<version>${org.aspectj.version}</version>
+			<version>${org.aspectj-version}</version>
 		</dependency>	
 		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>com.springsource.slf4j.api</artifactId>
-			<version>${org.slf4j.version}</version>
+			<version>${org.slf4j-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>com.springsource.slf4j.org.apache.commons.logging</artifactId>
-			<version>${org.slf4j.version}</version>
+			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>com.springsource.slf4j.log4j</artifactId>
-			<version>${org.slf4j.version}</version>
+			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -189,7 +207,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>org.springframework.test</artifactId>
-			<version>${org.springframework.version}</version>
+			<version>${org.springframework-version}</version>
 			<scope>test</scope>
 		</dependency>
 				
