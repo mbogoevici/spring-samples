@@ -37,17 +37,19 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div id="logo" class="span-18 first">
-				<h1>Petcare</h1>
-				<h2 class="alt">We love your pet</h2>
+			<div id="logo" class="span-19">
+				<div class="box">
+					<h1>Petcare</h1>
+					<h2>We love your pet</h2>
+				</div>
 			</div>
-			<div id="menu" class="span-5 last">
-				<p>
+			<div id="navigation" class="span-5 last">
+				<div class="box">
 					<ul>
 						<li><a href="<c:url value="/"/>">Home</a></li>
 						<li><a href="<c:url value="/appointments"/>">Appointments</a></li>
 					</ul>
-				</p>
+				</div>
 			</div>
 		</div>
 		<div id="content" class="span-24">

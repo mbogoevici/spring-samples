@@ -1,21 +1,33 @@
 #logo h1 {
-	font-size:5.25em;
-	font-weight:bold;
-	text-transform:uppercase;
-	margin:0;
-	padding:0;
+	color: #444444;
+	text-transform: lowercase;
+	font-weight: bolder;
+	margin: 0;
 }
 
-.alt { 
-  color: #666; 
-  font-family: "Warnock Pro", "Goudy Old Style","Palatino","Book Antiqua", Georgia, serif; 
-  font-style: italic;
-  font-weight: normal;
+#logo h2 {
+	color: #999999;
+	text-transform: lowercase;
+	margin: 0;
 }
 
-#menu ul {
-	list-style-image:none;
-	list-style-position:outside;
-	list-style-type:none;
+#navigation ul {
+	list-style: none;
+	padding: 1.5em 0 1.5em 1.5em;
+	margin: 0;
+}
+
+#navigation a {
+	font-weight: bold;
+}
+
+
+#appointmentDay {
+	color: #666666;
+	font-weight: bold;	
+}
+
+#appointmentNavigation a {
+	padding-left: 0.25em;
 }
 
