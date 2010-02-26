@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 	
-	<!-- Scans the classpath of this application for @Components to deploy as beans -->
-	<context:component-scan base-package="org.springframework.samples.petcare" />
-	
-	<!-- Advises @Transactional beans -->
-	<tx:annotation-driven />
-
 	<!-- Local, JDBC-based TransactionManager -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
@@ -26,13 +16,10 @@
 		<jdbc:script location="classpath:data.sql"/>
 	</jdbc:embedded-database>
 
-	<!-- Configures MVC Layer -->
-	<import resource="mvc-config.xml" />
-	
 	<!-- Configures Integration Layer -->
 	<import resource="integration-config.xml" />
 
 	<!-- Configures Security -->
-	<import resource="integration-config.xml" />
+	<import resource="security-config.xml" />
 		
 </beans>
