@@ -13,6 +13,7 @@
 	<!--[if lt IE 8]>
 		<link rel="stylesheet" href="<c:url value="/styles/blueprint/ie.css" />" type="text/css" media="screen, projection" />
 	<![endif]-->
+	<link rel="stylesheet" href="<c:url value="/styles/blueprint/plugins/fancy-type/screen.css" />" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="<c:url value="/styles/style.css" />" type="text/css" />
 	<tiles:useAttribute id="styles" name="styles" classname="java.util.List" ignore="true" />
 	<c:forEach var="style" items="${styles}">
@@ -26,8 +27,9 @@
 </head>
 <body>
 	<div id="page" class="container">
-		<div id="header" class="span-24">
-			<div id="topbar">
+		<div id="header" class="span-24 last">
+			<div id="topbar" class="span-24 last">
+				<p>
 				<c:choose>
 					<c:when test="${pageContext.request.userPrincipal != null}">
 						${pageContext.request.userPrincipal.name} | <a href="<c:url value="/users/signout"/>">Sign Out</a>
@@ -36,19 +38,18 @@
 						<a href="<c:url value="/users/signin"/>">Sign In</a>
 					</c:otherwise>
 				</c:choose>
+				</p>
 			</div>
-			<div id="logo" class="span-19">
+			<div id="logo" class="span-24 last">
 				<div class="box">
-					<h1>Petcare</h1>
-					<h2>We love your pet</h2>
-				</div>
-			</div>
-			<div id="navigation" class="span-5 last">
-				<div class="box">
-					<ul>
-						<li><a href="<c:url value="/"/>">Home</a></li>
-						<li><a href="<c:url value="/appointments"/>">Appointments</a></li>
-					</ul>
+						<h1>Petcare</h1>
+						<h2 class="alt">We love your pet</h2>
+					<div id="navigation">
+						<ul>
+							<li><a href="<c:url value="/"/>">Home</a></li>
+							<li><a href="<c:url value="/appointments"/>">Appointments</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

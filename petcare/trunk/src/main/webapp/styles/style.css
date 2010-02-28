@@ -1,33 +1,17 @@
-#logo h1 {
-	color: #444444;
-	text-transform: lowercase;
-	font-weight: bolder;
-	margin: 0;
+#logo h1, h2 {
+	margin: 0;	
 }
 
-#logo h2 {
-	color: #999999;
-	text-transform: lowercase;
-	margin: 0;
+#navigation {
+	position: absolute;
+	top: 6em;
+	left: 76em;
 }
 
 #navigation ul {
 	list-style: none;
-	padding: 1.5em 0 1.5em 1.5em;
-	margin: 0;
 }
-
-#navigation a {
-	font-weight: bold;
-}
-
 
 #appointmentDay {
-	color: #666666;
-	font-weight: bold;	
+	font-weight: bold;
 }
-
-#appointmentNavigation a {
-	padding-left: 0.25em;
-}
-
