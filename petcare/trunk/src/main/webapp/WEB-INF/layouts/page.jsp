@@ -13,9 +13,7 @@
 	<!--[if lt IE 8]>
 		<link rel="stylesheet" href="<c:url value="/styles/blueprint/ie.css" />" type="text/css" media="screen, projection" />
 	<![endif]-->
-	<link rel="stylesheet" href="<c:url value="/styles/blueprint/plugins/fancy-type/screen.css" />" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<c:url value="/styles/blueprint/plugins/buttons/screen.css" />" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<c:url value="/styles/style.css" />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value="/styles/petcare.css" />" type="text/css" media="screen" />
 	<tiles:useAttribute id="styles" name="styles" classname="java.util.List" ignore="true" />
 	<c:forEach var="style" items="${styles}">
 		<link rel="stylesheet" href="<c:url value="/styles/${style}" />" type="text/css" media="all" />
@@ -43,11 +41,11 @@
 			</div>
 			<hr/>
 			<div id="logo" class="span-24 last">
-				<div class="span-7">
+				<div class="span-6">
 					<h1>Petcare</h1>
 					<h2 class="alt">We love your pet</h2>
 				</div>
-				<div id="navigation" class="span-17 last prepend-top">
+				<div id="navigation" class="span-18 last">
 					<ul>
 						<li><a class="button" href="<c:url value="/"/>">Home</a></li>
 						<li><a class="button" href="<c:url value="/appointments"/>">Appointments</a></li>

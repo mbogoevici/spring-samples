@@ -2,21 +2,23 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 
-<div id="dayPicker" class="span-7">
+<div id="appointmentDay" class="prepend-6 span-4">
+	<p class="alt">
+		<spring:eval expression="appointmentCalendar.day" />
+	</p>
 </div>
 
-<div id="appointmentCalendar" class="span-17 last">
-	<div id="appointmentDay" class="span-4 last">
-		<p class="alt">
-			<spring:eval expression="appointmentCalendar.day" />
-		</p>
-	</div>
-	<div id="appointmentNavigation" class="span-13 last">
-		<p>
-			<a class="alt" href="<c:url value="/appointments?day=${appointmentCalendar.previousDay}"/>">Previous</a>
-			<a class="alt" href="<c:url value="/appointments?day=${appointmentCalendar.nextDay}"/>">Next</a>	
-		</p>
-	</div>
+<div id="appointmentNavigation" class="span-3 append-11 last">
+	<p class="alt">
+		<a href="<c:url value="/appointments?day=${appointmentCalendar.previousDay}"/>">Previous</a>
+		<a href="<c:url value="/appointments?day=${appointmentCalendar.nextDay}"/>">Next</a>	
+	</p>
+</div>
+
+<div id="dayPicker" class="span-6">
+</div>
+
+<div id="appointmentCalendar" class="span-18 last">
 	<table>
 		<thead>
 			<tr>
