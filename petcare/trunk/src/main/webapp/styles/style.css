@@ -1,17 +1,17 @@
-#logo h1, h2 {
+#logo h1 {
 	margin: 0;	
 }
 
-#navigation {
-	position: absolute;
-	top: 6em;
-	left: 76em;
+#navigation ul {
+	padding-left: 0;
+	list-style: none;
 }
 
-#navigation ul {
-	list-style: none;
+#navigation li {
+	float: left;
 }
 
 #appointmentDay {
 	font-weight: bold;
 }
+

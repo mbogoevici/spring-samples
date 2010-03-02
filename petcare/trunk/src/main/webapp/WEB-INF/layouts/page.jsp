@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="<c:url value="/styles/blueprint/ie.css" />" type="text/css" media="screen, projection" />
 	<![endif]-->
 	<link rel="stylesheet" href="<c:url value="/styles/blueprint/plugins/fancy-type/screen.css" />" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="<c:url value="/styles/blueprint/plugins/buttons/screen.css" />" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="<c:url value="/styles/style.css" />" type="text/css" />
 	<tiles:useAttribute id="styles" name="styles" classname="java.util.List" ignore="true" />
 	<c:forEach var="style" items="${styles}">
@@ -30,32 +31,35 @@
 		<div id="header" class="span-24 last">
 			<div id="topbar" class="span-24 last">
 				<p>
-				<c:choose>
-					<c:when test="${pageContext.request.userPrincipal != null}">
-						${pageContext.request.userPrincipal.name} | <a href="<c:url value="/users/signout"/>">Sign Out</a>
-					</c:when>
-					<c:otherwise>
-						<a href="<c:url value="/users/signin"/>">Sign In</a>
-					</c:otherwise>
-				</c:choose>
+					<c:choose>
+						<c:when test="${pageContext.request.userPrincipal != null}">
+							${pageContext.request.userPrincipal.name} | <a href="<c:url value="/users/signout"/>">Sign Out</a>
+						</c:when>
+						<c:otherwise>
+							<a href="<c:url value="/users/signin"/>">Sign In</a>
+						</c:otherwise>
+					</c:choose>
 				</p>
 			</div>
+			<hr/>
 			<div id="logo" class="span-24 last">
-				<div class="box">
-						<h1>Petcare</h1>
-						<h2 class="alt">We love your pet</h2>
-					<div id="navigation">
-						<ul>
-							<li><a href="<c:url value="/"/>">Home</a></li>
-							<li><a href="<c:url value="/appointments"/>">Appointments</a></li>
-						</ul>
-					</div>
+				<div class="span-7">
+					<h1>Petcare</h1>
+					<h2 class="alt">We love your pet</h2>
+				</div>
+				<div id="navigation" class="span-17 last prepend-top">
+					<ul>
+						<li><a class="button" href="<c:url value="/"/>">Home</a></li>
+						<li><a class="button" href="<c:url value="/appointments"/>">Appointments</a></li>
+					</ul>
 				</div>
 			</div>
+			<hr/>
 		</div>
 		<div id="content" class="span-24">
 			<tiles:insertAttribute name="content"/>
 		</div>
+		<hr/>
 		<div id="footer" class="span-24">
 			Copyright (c) 2010 SpringSource | About
 		</div>

@@ -6,19 +6,17 @@
 </div>
 
 <div id="appointmentCalendar" class="span-17 last">
-	<hr/>
-	<div id="appointmentDay" class="span-5 last">
-		<p>
+	<div id="appointmentDay" class="span-4 last">
+		<p class="alt">
 			<spring:eval expression="appointmentCalendar.day" />
 		</p>
 	</div>
-	<div id="appointmentNavigation" class="span-12 last">
+	<div id="appointmentNavigation" class="span-13 last">
 		<p>
-			<a href="<c:url value="/appointments?day=${appointmentCalendar.previousDay}"/>">Previous</a>
-			<a href="<c:url value="/appointments?day=${appointmentCalendar.nextDay}"/>">Next</a>	
+			<a class="alt" href="<c:url value="/appointments?day=${appointmentCalendar.previousDay}"/>">Previous</a>
+			<a class="alt" href="<c:url value="/appointments?day=${appointmentCalendar.nextDay}"/>">Next</a>	
 		</p>
 	</div>
-	<hr/>
 	<table>
 		<thead>
 			<tr>
