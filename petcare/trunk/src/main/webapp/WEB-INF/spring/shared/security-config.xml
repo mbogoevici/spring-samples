@@ -4,7 +4,24 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-security-3.0.xsd">
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
+	<http>
+		<!-- Authentication policy -->
+		<openid-login login-page="/users/signin" login-processing-url="/users/signin/openid" />
+		<anonymous/>
+		<logout logout-url="/users/signout" />
+		<!-- Authorization policy -->
+		<intercept-url pattern="/users/signin" filters="none" />
+		<intercept-url pattern="/users/signin/openid" filters="none" />
+		<intercept-url pattern="/" access="ROLE_ANONYMOUS" />
+		<!-- <intercept-url pattern="/**" access="ROLE_USER" /> -->
+	</http>
 	
+	<authentication-manager alias="authenticationManager" />
+	
+	<user-service id="userService">
+		<user name="http://spring.security.test.myopenid.com/" authorities="ROLE_SUPERVISOR,ROLE_USER"/>
+	</user-service>
+
 </beans:beans>
