@@ -55,6 +55,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
+			<artifactId>org.springframework.security.taglibs</artifactId>
+			<version>${org.springframework.security-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
 			<artifactId>org.springframework.security.openid</artifactId>
 			<version>${org.springframework.security-version}</version>
 			<exclusions>
@@ -64,7 +69,12 @@
 					<artifactId>com.springsource.org.apache.commons.logging</artifactId>
 				</exclusion>
 			</exclusions>			
-		</dependency>				
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>org.springframework.security.config</artifactId>
+			<version>${org.springframework.security-version}</version>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.roo</groupId>
 			<artifactId>org.springframework.roo.annotations</artifactId>
@@ -274,12 +284,12 @@
 					<dependency>
 						<groupId>org.aspectj</groupId>
 						<artifactId>com.springsource.org.aspectj.runtime</artifactId>
-						<version>${org.aspectj.version}</version>
+						<version>${org.aspectj-version}</version>
 					</dependency>
 					<dependency>
 						<groupId>org.aspectj</groupId>
 						<artifactId>com.springsource.org.aspectj.tools</artifactId>
-						<version>${org.aspectj.version}</version>
+						<version>${org.aspectj-version}</version>
 					</dependency>
 				</dependencies>
 				<executions>
