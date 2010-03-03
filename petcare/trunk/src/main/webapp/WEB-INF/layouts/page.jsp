@@ -2,11 +2,12 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page session="false" %>
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html>
 <head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
 	<title>
-		<tiles:insertAttribute name="title"/>
+		<tiles:insertAttribute name="title" />
 	</title>
 	<link rel="stylesheet" href="<c:url value="/styles/blueprint/screen.css" />" type="text/css" media="screen, projection" />
 	<link rel="stylesheet" href="<c:url value="/styles/blueprint/print.css" />" type="text/css" media="print" />
@@ -55,7 +56,7 @@
 			<hr/>
 		</div>
 		<div id="content" class="span-24">
-			<tiles:insertAttribute name="content"/>
+			<tiles:insertAttribute name="content" />
 		</div>
 		<hr/>
 		<div id="footer" class="span-24">

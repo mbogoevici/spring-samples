@@ -2,17 +2,20 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="joda" uri="http://www.joda.org/joda/time/tags" %>
 
-<div id="appointmentDay" class="prepend-6 span-4">
-	<p class="alt">
-		<spring:eval expression="appointmentCalendar.day" />
-	</p>
+<div id="appointmentDay" class="prepend-6 span-4 alt">
+	<spring:eval expression="appointmentCalendar.day" />
 </div>
 
-<div id="appointmentNavigation" class="span-3 append-11 last">
-	<p class="alt">
-		<a href="<c:url value="/appointments?day=${appointmentCalendar.previousDay}"/>">Previous</a>
-		<a href="<c:url value="/appointments?day=${appointmentCalendar.nextDay}"/>">Next</a>	
-	</p>
+<div id="appointmentNavigation" class="span-3 append-11 last alt">
+	<c:url var="previousLink" value="/appointments">
+		<c:param name="day" value="${appointmentCalendar.previousDay}" />
+	</c:url>
+	<a href="${previousLink}">Previous</a>
+	
+	<c:url var="nextLink" value="/appointments">
+		<c:param name="day" value="${appointmentCalendar.nextDay}" />
+	</c:url>
+	<a href="${nextLink}">Next</a>	
 </div>
 
 <div id="dayPicker" class="span-6">
@@ -24,7 +27,7 @@
 			<tr>
 				<th>&nbsp;</th>
 				<c:forEach var="doctor" items="${appointmentCalendar.doctors}">
-					<th class="doctor" data-doctorId="${doctor.id}">Dr. ${doctor.label}</th>
+					<th class="doctor" data-doctorId="<c:out value="${doctor.id}" />">Dr. <c:out value="${doctor.label}" /></th>
 				</c:forEach>
 			</tr>
 		</thead>	
@@ -38,20 +41,20 @@
 					<spring:eval expression="appointmentCalendar.appointments[i.count - 1][j.count - 1]" var="appointment" />
 					<c:choose>
 						<c:when test="${appointment != null}">
-							<td class="filled" data-id="${appointment.id}" data-dateTime="${dateTime}" data-doctorId="${doctor.id}">
+							<td class="filled" data-id="<c:out value="${appointment.id} "/>" data-dateTime="<c:out value="${dateTime}" />" data-doctorId="<c:out value="${doctor.id}" />">
 								<div class="patient">
-									${appointment.patient}
+									<c:out value="${appointment.patient}" />
 								</div>
 								<div class="client">
-									${appointment.client} ${appointment.clientPhone}								
+									<c:out value="${appointment.client} ${appointment.clientPhone}" />								
 								</div>
 								<div class="reason">
-									${appointment.reason}
+									<c:out value="${appointment.reason}" />
 								</div>
 							</td>				
 						</c:when>
 						<c:otherwise>
-							<td class="open" data-dateTime="${dateTime}" data-doctorId="${doctor.id}">
+							<td class="open" data-dateTime="<c:out value="${dateTime}" />" data-doctorId="<c:out value="${doctor.id}" />">
 								&nbsp;
 							</td>
 						</c:otherwise>
@@ -63,7 +66,7 @@
 </div>
 
 <div id="addDialog" title="Add Appointment">
-	<form id="addForm" action="${pageContext.request.contextPath}/appointments" method="POST">
+	<form id="addForm" action="<c:url value="/appointments" />" method="POST">
 		<fieldset>
 			<p>
 				When: <span id="when"></span>
@@ -98,7 +101,7 @@
 			dateFormat: "yy-mm-dd",
 			defaultDate: new Date(${appointmentCalendar.dayMillis}),
 			onSelect: function(dateText, instance) {
-				window.location = "${pageContext.request.contextPath}/appointments?day=" + dateText;
+				window.location = "${pageContext.request.contextPath}/appointments?day=" + encodeURIComponent(dateText);
 			}
 		});
 		
@@ -138,7 +141,7 @@
 		
 		$("#updateDialog .link").click(function() {
 			$.ajax({
-				url: "${pageContext.request.contextPath}/appointments/" + $("#updateDialog").attr("data-id"),
+				url: "${pageContext.request.contextPath}/appointments/" + encodeURIComponent($("#updateDialog").attr("data-id")),
 				type: "DELETE",
 				success: function(data) {
 					$("#updateDialog").dialog('close');
@@ -148,7 +151,12 @@
 		});
 
 		setTimeout(function(){
-			$.getJSON("${pageContext.request.contextPath}/appointments/messages?day=${appointmentCalendar.day}", function(messages) {
+
+			<c:url var="messagesLink" value="/appointments/messages">
+				<c:param name="day" value="${appointmentCalendar.day}" />
+			</c:url>
+
+			$.getJSON("${messagesLink}", function(messages) {
 				var i;
 				for (i = 0; i < messages.length; i += 1) {
 					var message = messages[i];
