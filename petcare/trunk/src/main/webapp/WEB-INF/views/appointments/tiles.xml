@@ -10,10 +10,10 @@
 		<put-attribute name="title" value="Appointments" type="string" />
 		<put-attribute name="content" value="/WEB-INF/views/appointments/calendar.jsp" type="template" />
 		<put-list-attribute name="scripts">
-			<add-attribute value="jquery.ui-1.8rc2.min.js" />
+			<add-attribute value="jquery/ui/jquery-ui.min.js" />
 		</put-list-attribute>
 		<put-list-attribute name="styles">
-			<add-attribute value="jquery/base/jquery.ui-1.8rc2.css" />
+			<add-attribute value="jquery/ui/themes/base/jquery-ui.css" />
 		</put-list-attribute>		
 	</definition>
 	

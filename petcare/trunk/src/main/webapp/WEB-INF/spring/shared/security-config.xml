@@ -14,9 +14,7 @@
 		<!-- Authorization policy -->
 		<intercept-url pattern="/users/signin" filters="none" />
 		<intercept-url pattern="/" access="ROLE_ANONYMOUS" />
-		<intercept-url pattern="/images/**" access="ROLE_ANONYMOUS" />
-		<intercept-url pattern="/styles/**" access="ROLE_ANONYMOUS" />
-		<intercept-url pattern="/scripts/**" access="ROLE_ANONYMOUS" />
+		<intercept-url pattern="/resources/**" access="ROLE_ANONYMOUS" />
 		<intercept-url pattern="/**" access="ROLE_USER" />
 	</http>
 	

@@ -91,26 +91,26 @@ public class AppointmentCalendarTest {
 	
 	@Test
 	public void getAppointment() {
-		Appointment appointment = calendar.getAppointments().get(0).get(0);
+		Appointment appointment = calendar.getAppointments().getCurrent(0).getCurrent(0);
 		assertNotNull(appointment);
 		assertEquals("Macy", appointment.getPatient());
 
-		appointment = calendar.getAppointments().get(1).get(0);
+		appointment = calendar.getAppointments().getCurrent(1).getCurrent(0);
 		assertNull(appointment);
 
-		appointment = calendar.getAppointments().get(5).get(0);
+		appointment = calendar.getAppointments().getCurrent(5).getCurrent(0);
 		assertNotNull(appointment);
 		assertEquals("Lil Jerry", appointment.getPatient());
 
-		appointment = calendar.getAppointments().get(5).get(0);
+		appointment = calendar.getAppointments().getCurrent(5).getCurrent(0);
 		assertNotNull(appointment);
 		assertEquals("Lil Jerry", appointment.getPatient());
 
-		appointment = calendar.getAppointments().get(8).get(1);
+		appointment = calendar.getAppointments().getCurrent(8).getCurrent(1);
 		assertNotNull(appointment);
 		assertEquals("Max", appointment.getPatient());
 
-		appointment = calendar.getAppointments().get(3).get(1);
+		appointment = calendar.getAppointments().getCurrent(3).getCurrent(1);
 		assertNotNull(appointment);
 		assertEquals("Beau", appointment.getPatient());
 	}
