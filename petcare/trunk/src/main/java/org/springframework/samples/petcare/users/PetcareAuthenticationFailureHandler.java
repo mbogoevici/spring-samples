@@ -14,6 +14,6 @@ public class PetcareAuthenticationFailureHandler implements AuthenticationFailur
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
 			throws IOException, ServletException {
 		FlashScope.getCurrent(request).put("signinErrorMessage", exception.getMessage());
-		response.sendRedirect(request.getContextPath() + "/users/signin");
+		response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/users/signin"));
 	}
 }
