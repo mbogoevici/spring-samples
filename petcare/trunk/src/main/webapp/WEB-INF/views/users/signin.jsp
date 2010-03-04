@@ -1,6 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<form action="<c:url value="/users/signin/openid"/>" method="post">
+<c:if test="${not empty signinErrorMessage}">
+	<div class="error">
+		Unable to log in with your OpenID provider:<br/>	
+		<c:out value="${signinErrorMessage}"/>
+	</div>
+</c:if>
+
+<form action="<c:url value="/users/signin/authenticate" />" method="post">
   	<fieldset>		
 		<p>
 			<label for="openid_identifier">Enter your OpenID URL:</label><br/>

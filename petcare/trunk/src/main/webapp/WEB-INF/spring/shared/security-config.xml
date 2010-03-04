@@ -8,7 +8,7 @@
 
 	<http>
 		<!-- Authentication policy -->
-		<openid-login login-page="/users/signin" login-processing-url="/users/signin/openid" />
+		<openid-login login-page="/users/signin" login-processing-url="/users/signin/authenticate" authentication-failure-handler-ref="authenticationFailureHandler" />
 		<anonymous/>
 		<logout logout-url="/users/signout" />
 		<!-- Authorization policy -->
@@ -17,11 +17,13 @@
 		<intercept-url pattern="/images/**" access="ROLE_ANONYMOUS" />
 		<intercept-url pattern="/styles/**" access="ROLE_ANONYMOUS" />
 		<intercept-url pattern="/scripts/**" access="ROLE_ANONYMOUS" />
-		<!--  <intercept-url pattern="/**" access="ROLE_USER" /> -->
+		<intercept-url pattern="/**" access="ROLE_USER" />
 	</http>
 	
-	<authentication-manager alias="authenticationManager" />
-	
+	<authentication-manager />
+
+	<beans:bean id="authenticationFailureHandler" class="org.springframework.samples.petcare.users.PetcareAuthenticationFailureHandler" />
+		
 	<user-service id="userService">
 		<user name="http://spring.security.test.myopenid.com/" authorities="ROLE_SUPERVISOR,ROLE_USER"/>
 	</user-service>
