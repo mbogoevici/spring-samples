@@ -29,7 +29,7 @@
 	<!-- Configures the @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Resolves view names to tiles definitions in /WEB-INF/tiles.xml -->
+	<!-- Resolves view names to tiles definitions loaded by the tilesConfigurer -->
 	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</beans:bean>
