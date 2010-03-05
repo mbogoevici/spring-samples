@@ -16,18 +16,18 @@
 
 	<!-- Allows attributes to be accessed on the next request -->
 	<filter>
-		<filter-name>FlashScopeFilter</filter-name>
+		<filter-name>flashScope</filter-name>
 		<filter-class>org.springframework.samples.petcare.util.FlashScopeFilter</filter-class>
 	</filter>
 	
     <filter-mapping>
-      <filter-name>FlashScopeFilter</filter-name>
+      <filter-name>flashScope</filter-name>
       <url-pattern>/*</url-pattern>
     </filter-mapping>
 	
 	<!-- Secures the application -->
     <filter>
-        <filter-name>SpringSecurityFilter</filter-name>
+        <filter-name>springSecurity</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
         <init-param>
         	<param-name>targetBeanName</param-name>
@@ -36,18 +36,18 @@
     </filter>
 
     <filter-mapping>
-      <filter-name>SpringSecurityFilter</filter-name>
+      <filter-name>springSecurity</filter-name>
       <url-pattern>/*</url-pattern>
     </filter-mapping>
     	
 	<!-- Enables clean URLs with JSP views e.g. /welcome instead of /app/welcome -->
 	<filter>
-		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-name>urlRewrite</filter-name>
 		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
-		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-name>urlRewrite</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
@@ -64,10 +64,9 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
-	<!-- Maps all /app requests to the petcare servlet for handling -->
 	<servlet-mapping>
 		<servlet-name>petcare</servlet-name>
 		<url-pattern>/app/*</url-pattern>
 	</servlet-mapping>
-	
+
 </web-app>

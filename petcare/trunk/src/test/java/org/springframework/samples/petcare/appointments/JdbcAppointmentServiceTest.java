@@ -59,8 +59,8 @@ public class JdbcAppointmentServiceTest {
 	public void testGetAppointmentsForDay() {
 		AppointmentCalendar calendar = appointmentService.getAppointmentsForDay(new LocalDate(2010, 02, 16));
 		assertEquals(new LocalDate(2010, 02, 16), calendar.getDay());
-		assertEquals("Macy", calendar.getAppointments().getCurrent(0).getCurrent(0).getPatient());
-		assertEquals("Lil Jerry", calendar.getAppointments().getCurrent(8).getCurrent(1).getPatient());
+		assertEquals("Macy", calendar.getAppointments().get(0).get(0).getPatient());
+		assertEquals("Lil Jerry", calendar.getAppointments().get(8).get(1).getPatient());
 	}
 	
 	@Test
