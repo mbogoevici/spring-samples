@@ -6,7 +6,7 @@
 	<artifactId>org.springframework.samples.petcare</artifactId>
 	<name>petcare</name>
 	<packaging>war</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
 		<org.springframework-version>3.0.2.BUILD-SNAPSHOT</org.springframework-version>
@@ -315,7 +315,12 @@
 						<exclude>**/*_Roo_*</exclude>
 					</excludes>
 				</configuration>
-			</plugin>					
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.0-beta-1</version>
+			</plugin>						
 		</plugins>
 	</build>
 </project>
