@@ -3,7 +3,7 @@
 	This includes:
 </p>
 <ul>
-	<li>The Spring MVC @Controller programming model</li>
+	<li>The @Controller programming model</li>
 	<li>Clean, Restful URLs utilizing URL Rewrite</li>
 	<li>Apache Tiles for layout with JSP templating</li>
 	<li>Blueprint CSS framework</li>
@@ -14,6 +14,8 @@
 	<li>JDBC data access support</li>
 	<li>JUnit integration testing support</li>
 	<li>"Resource-oriented" architecture and packaging</li>
-	<li>SLF4j logging</li>
+	<li>Round-tripping code generation</li>
+	<li>Slf4j logging</li>
 	<li>Maven + Spring dynamic web project importable into Eclipse / <a href="http://www.springsource.com/products/sts">STS</a></li>
+	<li>Deployable to any Java Servlet 2.5 or > Container, with convenient support for Apache Tomcat 6</li>
 </ul>
