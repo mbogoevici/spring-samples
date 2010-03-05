@@ -6,16 +6,15 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
-	<http>
+	<http use-expressions="true">
 		<!-- Authentication policy -->
 		<openid-login login-page="/users/signin" login-processing-url="/users/signin/authenticate" user-service-ref="userService" authentication-failure-handler-ref="authenticationFailureHandler" />
-		<anonymous />
 		<logout logout-url="/users/signout" />
 		<!-- Authorization policy -->
 		<intercept-url pattern="/users/signin" filters="none" />
-		<intercept-url pattern="/" access="ROLE_ANONYMOUS" />
-		<intercept-url pattern="/resources/**" access="ROLE_ANONYMOUS" />
-		<intercept-url pattern="/**" access="ROLE_USER" />
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/resources/**" access="permitAll" />
+		<intercept-url pattern="/**" access="isAuthenticated()" />
 	</http>
 
 	<authentication-manager />
