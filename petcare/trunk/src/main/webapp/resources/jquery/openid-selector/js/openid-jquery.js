@@ -80,7 +80,6 @@ var providers_small = {
 var providers = $.extend({}, providers_large, providers_small);
 
 var openid = {
-
 	cookie_expires: 6*30,	// 6 months.
 	cookie_name: 'openid_provider',
 	cookie_path: '/',
@@ -91,37 +90,27 @@ var openid = {
 	provider_url: null,
 	
     init: function(input_id) {
-        
+	 	// turn off hourglass
+		$('body').css('cursor', 'default');
+		$('#openid_submit').css('cursor', 'default'); 
+	
         var openid_btns = $('#openid_btns');
-        
         this.input_id = input_id;
-        
         $('#openid_choice').show();
         $('#openid_input_area').empty();
-        
         // add box for each provider
         for (id in providers_large) {
-        
            	openid_btns.append(this.getBoxHTML(providers_large[id], 'large', '.gif'));
         }
         if (providers_small) {
         	openid_btns.append('<br/>');
-        	
 	        for (id in providers_small) {
-	        
 	           	openid_btns.append(this.getBoxHTML(providers_small[id], 'small', '.ico'));
 	        }
         }
-        
         $('#openid_form').submit(this.submit);
-        
-        var box_id = this.readCookie();
-        if (box_id) {
-        	this.signin(box_id, true);
-        }  
     },
     getBoxHTML: function(provider, box_size, image_ext) {
-            
         var box_id = provider["name"].toLowerCase();
         return '<a title="'+provider["name"]+'" href="javascript: openid.signin(\''+ box_id +'\');"' +
         		' style="background: #FFF url(' + this.img_path + box_id + image_ext+') no-repeat center center" ' + 
@@ -130,7 +119,6 @@ var openid = {
     },
     /* Provider image click */
     signin: function(box_id, onload) {
-    
     	var provider = providers[box_id];
   		if (! provider) {
   			return;
@@ -141,20 +129,23 @@ var openid = {
 		
 		// prompt user for input?
 		if (provider['label']) {
-			
 			this.useInputBox(provider);
 			this.provider_url = provider['url'];
-			
 		} else {
-			
+			$('.' + box_id).css('cursor', 'wait'); 			
 			this.setOpenIdUrl(provider['url']);
-			if (! onload) {
+			if (!onload) {
 				$('#openid_form').submit();
 			}	
 		}
     },
     /* Sign-in button click */
     submit: function() {
+    	console.log("form submit");
+	 	// turn on hourglass
+		$('body').css('cursor', 'wait');
+		$('#openid_submit').css('cursor', 'wait'); 
+    	
     	var url = openid.provider_url; 
     	if (url) {
     		url = url.replace('{username}', $('#openid_username').val());
@@ -167,7 +158,6 @@ var openid = {
     	 hidden.val(url); 
     },
     highlight: function (box_id) {
-    	
     	// remove previous highlight.
     	var highlight = $('#openid_highlight');
     	if (highlight) {
@@ -177,11 +167,9 @@ var openid = {
     	$('.'+box_id).wrap('<div id="openid_highlight"></div>');
     },
     setCookie: function (value) {
-    
 		var date = new Date();
 		date.setTime(date.getTime()+(this.cookie_expires*24*60*60*1000));
 		var expires = "; expires="+date.toGMTString();
-		
 		document.cookie = this.cookie_name+"="+value+expires+"; path=" + this.cookie_path;
     },
     readCookie: function () {
@@ -195,9 +183,7 @@ var openid = {
 		return null;
     },
     useInputBox: function (provider) {
-   	
 		var input_area = $('#openid_input_area');
-		
 		var html = '';
 		var id = 'openid_username';
 		var value = '';

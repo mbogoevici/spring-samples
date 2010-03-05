@@ -9,7 +9,7 @@
 	<http>
 		<!-- Authentication policy -->
 		<openid-login login-page="/users/signin" login-processing-url="/users/signin/authenticate" authentication-failure-handler-ref="authenticationFailureHandler" />
-		<anonymous/>
+		<anonymous />
 		<logout logout-url="/users/signout" />
 		<!-- Authorization policy -->
 		<intercept-url pattern="/users/signin" filters="none" />
@@ -17,13 +17,13 @@
 		<intercept-url pattern="/resources/**" access="ROLE_ANONYMOUS" />
 		<intercept-url pattern="/**" access="ROLE_USER" />
 	</http>
-	
+
 	<authentication-manager />
 
 	<beans:bean id="authenticationFailureHandler" class="org.springframework.samples.petcare.users.PetcareAuthenticationFailureHandler" />
 		
 	<user-service id="userService">
-		<user name="http://spring.security.test.myopenid.com/" authorities="ROLE_SUPERVISOR,ROLE_USER"/>
+		<user name="https://www.google.com/accounts/o8/id?id=AItOawn44fK5Ud4Kh6WAxWNCAOsDKM7NkGEiDXM" authorities="ROLE_USER" />
 	</user-service>
 
 </beans:beans>
