@@ -7,6 +7,8 @@
 	</div>
 </c:if>
 
+<h2>Sign in with OpenID</h2>
+
 <form id="openid_form" action="<c:url value="/users/signin/authenticate" />" method="post">
   	<fieldset>	
   		<div id="openid_choice">
