@@ -32,10 +32,10 @@
 				<p>
 					<c:choose>
 						<c:when test="${pageContext.request.userPrincipal != null}">
-							${pageContext.request.userPrincipal.name} | <a href="<c:url value="/users/signout"/>">Sign Out</a>
+							${pageContext.request.userPrincipal.name} | <a href="<c:url value="/users/signout" />">Sign Out</a>
 						</c:when>
 						<c:otherwise>
-							<a href="<c:url value="/users/signin"/>">Sign In</a>
+							<a href="<c:url value="/users/signin" />">Sign In</a>
 						</c:otherwise>
 					</c:choose>
 				</p>
@@ -48,8 +48,9 @@
 				</div>
 				<div id="navigation" class="span-18 last">
 					<ul>
-						<li><a class="button" href="<c:url value="/"/>">Home</a></li>
-						<li><a class="button" href="<c:url value="/appointments"/>">Appointments</a></li>
+						<li><a class="button" href="<c:url value="/" />">Home</a></li>
+						<li><a class="button" href="<c:url value="/appointments" />">Appointments</a></li>
+						<li><a class="button" href="<c:url value="/clients" />">Clients</a></li>
 					</ul>
 				</div>
 			</div>
