@@ -29,7 +29,7 @@ public class PatientsController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody List<ResourceReference> getPatients(@RequestParam String name) {
-		return jdbcTemplate.query("select p.id, p.name, (c.firstName || ' ' || c.lastName) as client from Patient p, Client c where p.name like ? and p.clientId = c.id",
+		return jdbcTemplate.query("select p.id, p.name, (c.firstName || ' ' || c.lastName) as client from Patient p, Client c where lower(p.name) like ? and p.clientId = c.id",
 				new RowMapper<ResourceReference>() {
 					public ResourceReference mapRow(ResultSet rs, int row)
 							throws SQLException {
@@ -37,6 +37,6 @@ public class PatientsController {
 						String label = rs.getString("NAME") + " (" + rs.getString("CLIENT") + ")";
 						return new ResourceReference(id, label);
 					}
-				}, name + "%");
+				}, name.toLowerCase() + "%");
 	}
 }
