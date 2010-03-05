@@ -8,7 +8,7 @@
 
 	<http>
 		<!-- Authentication policy -->
-		<openid-login login-page="/users/signin" login-processing-url="/users/signin/authenticate" authentication-failure-handler-ref="authenticationFailureHandler" />
+		<openid-login login-page="/users/signin" login-processing-url="/users/signin/authenticate" user-service-ref="userService" authentication-failure-handler-ref="authenticationFailureHandler" />
 		<anonymous />
 		<logout logout-url="/users/signout" />
 		<!-- Authorization policy -->
@@ -22,8 +22,6 @@
 
 	<beans:bean id="authenticationFailureHandler" class="org.springframework.samples.petcare.users.PetcareAuthenticationFailureHandler" />
 		
-	<user-service id="userService">
-		<user name="https://www.google.com/accounts/o8/id?id=AItOawn44fK5Ud4Kh6WAxWNCAOsDKM7NkGEiDXM" authorities="ROLE_USER" />
-	</user-service>
+	<beans:bean id="userService" class="org.springframework.samples.petcare.users.PetcareUserService" />
 
 </beans:beans>
