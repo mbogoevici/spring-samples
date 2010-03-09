@@ -77,6 +77,12 @@
 				 </exclusion>
 			</exclusions>			
 		</dependency>
+		<!-- This was not brought down transitively by openid4java: to research -->
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
