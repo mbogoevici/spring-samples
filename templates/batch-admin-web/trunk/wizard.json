@@ -3,7 +3,7 @@
         
         "topLevelPackage" : "org.springframework.batch.admin.sample",
 
-		"projectName" : "projectName",		
+		"projectName" : "spring-batch-admin-sample",		
 		
         "pages" : {
 			"page" : [

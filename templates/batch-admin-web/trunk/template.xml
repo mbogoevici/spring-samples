@@ -2,7 +2,7 @@
 	<descriptor id="org.springframework.samples.batch.admin.web"
 		name="Spring Batch Admin Webapp"
 		kind="template"
-		version="2.3.0">
+		version="2.3.1">
 		<description>
 			A WAR project for a Spring Batch Admin web application with simple custom job
 		</description>
