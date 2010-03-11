@@ -5,12 +5,12 @@ import java.lang.String;
 
 privileged aspect ResourceReference_Roo_JavaBean {
     
-    public Long ResourceReference.getId() {    
-        return this.id;        
-    }    
+    public Long ResourceReference.getId() {
+        return this.id;
+    }
     
-    public String ResourceReference.getLabel() {    
-        return this.label;        
-    }    
+    public String ResourceReference.getLabel() {
+        return this.label;
+    }
     
 }

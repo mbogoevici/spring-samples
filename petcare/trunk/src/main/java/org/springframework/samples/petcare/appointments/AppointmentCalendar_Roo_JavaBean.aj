@@ -7,16 +7,16 @@ import org.springframework.samples.petcare.util.ResourceReference;
 
 privileged aspect AppointmentCalendar_Roo_JavaBean {
     
-    public LocalDate AppointmentCalendar.getDay() {    
-        return this.day;        
-    }    
+    public LocalDate AppointmentCalendar.getDay() {
+        return this.day;
+    }
     
-    public List<ResourceReference> AppointmentCalendar.getDoctors() {    
-        return this.doctors;        
-    }    
+    public List<ResourceReference> AppointmentCalendar.getDoctors() {
+        return this.doctors;
+    }
     
-    public List<List<Appointment>> AppointmentCalendar.getAppointments() {    
-        return this.appointments;        
-    }    
+    public List<List<Appointment>> AppointmentCalendar.getAppointments() {
+        return this.appointments;
+    }
     
 }
