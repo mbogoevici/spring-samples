@@ -35,11 +35,11 @@ public class AppointmentCalendarMessageStoreImpl implements AppointmentCalendarM
 	// Lifecycle callbacks
 	
 	public void afterPropertiesSet() throws Exception {
-		this.messageChannel.subscribe(this);
+		messageChannel.subscribe(this);
 	}
 
 	public void destroy() throws Exception {
-		this.messageChannel.unsubscribe(this);
+		messageChannel.unsubscribe(this);
 	}	
 
 	// implementing MessageHandler
@@ -53,7 +53,7 @@ public class AppointmentCalendarMessageStoreImpl implements AppointmentCalendarM
 	// implementing AppointmnetMessageHandler
 	
 	public void setDay(LocalDate day) {
-		this.messageSelector.setDay(day);
+		messageSelector.setDay(day);
 	}
 	
 	public List<Message<?>> pollMessages() {
