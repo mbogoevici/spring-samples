@@ -77,12 +77,6 @@
 				 </exclusion>
 			</exclusions>			
 		</dependency>
-		<!-- This was not brought down transitively by openid4java: to research -->
-		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
-			<version>3.0.1</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
@@ -218,7 +212,6 @@
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>1.6</version>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -249,23 +242,47 @@
 		</dependency>
 	</dependencies>
 	<repositories>
-		<!-- Needed for roo annotations until it is added to Maven Central -->
-		<repository>
-			<id>com.springsource.repository.bundles.release</id>
-			<name>SpringSource Enterprise Bundle Repository - SpringSource Releases</name>
-			<url>http://repository.springsource.com/maven/bundles/release</url>
-		</repository>
-		<!-- Needed for Hibernate -->
-		<repository>
-			<id>org.jboss.repository.maven</id>
-			<url>http://repository.jboss.org/maven2</url>
-			<snapshots><enabled>false</enabled></snapshots>
-		</repository>
-		<!-- For easy testing against latest Spring snapshots -->
+		<!-- For testing against latest Spring snapshots -->
 		<repository>
 		    <id>org.springframework.maven.snapshot</id>
-    		<name>Maven Central Compatible Spring Snapshot Repository</name>
+    		<name>Spring Maven Snapshot Repository</name>
     		<url>http://maven.springframework.org/snapshot</url>
+    		<releases>
+    			<enabled>false</enabled>
+    		</releases>
+    		<snapshots>
+        		<enabled>true</enabled>
+    		</snapshots>
+		</repository>
+		<!-- Maven Central -->
+		<repository>
+    		<id>org.maven.central</id>
+    		<name>Maven Central Repository</name>
+    		<url>http://repo1.maven.org/maven2</url>
+    		<snapshots>
+        		<enabled>false</enabled>
+    		</snapshots>
+		</repository>
+		
+		<!-- For released artifacts not in Maven Central -->
+		
+		<!-- Needed for roo annotations until it is added to central -->
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>SpringSource Bundle Repository</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+	   		<snapshots>
+        		<enabled>false</enabled>
+    		</snapshots>
+		</repository>
+		<!-- Needed for Hibernate, which has not published consistently to central -->
+		<repository>
+			<id>org.jboss.repository</id>
+			<name>JBoss Maven Repository</name>			
+			<url>http://repository.jboss.org/maven2</url>
+	   		<snapshots>
+        		<enabled>false</enabled>
+    		</snapshots>
 		</repository>
 	</repositories>
 	<build>
