@@ -7,8 +7,6 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.integration.channel.PollableChannel;
 import org.springframework.integration.channel.QueueChannel;
 import org.springframework.integration.channel.SubscribableChannel;
@@ -21,8 +19,7 @@ import org.springframework.integration.selector.MessageSelector;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope(value="session", proxyMode=ScopedProxyMode.INTERFACES)
-public class SessionScopedAppointmentChannel implements AppointmentChannel, MessageHandler, InitializingBean, DisposableBean {
+public class AppointmentCalendarMessageStoreImpl implements AppointmentCalendarMessageStore, MessageHandler, InitializingBean, DisposableBean {
 
 	private final SubscribableChannel messageChannel;
 
@@ -31,7 +28,7 @@ public class SessionScopedAppointmentChannel implements AppointmentChannel, Mess
 	private final PollableChannel pollableChannel = new QueueChannel();
 	
 	@Autowired
-	public SessionScopedAppointmentChannel(@Qualifier("messageChannel") SubscribableChannel messageChannel) {
+	public AppointmentCalendarMessageStoreImpl(@Qualifier("messageChannel") SubscribableChannel messageChannel) {
 		this.messageChannel = messageChannel;
 	}
 

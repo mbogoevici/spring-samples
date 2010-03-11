@@ -24,10 +24,10 @@ public class AppointmentsController {
 
 	private final AppointmentService appointmentService;
 
-	private final AppointmentChannel appointmentChannel;
+	private final AppointmentCalendarMessageStore appointmentChannel;
 	
 	@Autowired
-	public AppointmentsController(AppointmentService appointmentService, AppointmentChannel appointmentChannel) {
+	public AppointmentsController(AppointmentService appointmentService, AppointmentCalendarMessageStore appointmentChannel) {
 		this.appointmentService = appointmentService;
 		this.appointmentChannel = appointmentChannel;
 	}
