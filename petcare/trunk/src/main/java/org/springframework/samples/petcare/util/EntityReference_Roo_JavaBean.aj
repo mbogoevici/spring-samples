@@ -3,13 +3,13 @@ package org.springframework.samples.petcare.util;
 import java.lang.Long;
 import java.lang.String;
 
-privileged aspect ResourceReference_Roo_JavaBean {
+privileged aspect EntityReference_Roo_JavaBean {
     
-    public Long ResourceReference.getId() {
+    public Long EntityReference.getId() {
         return this.id;
     }
     
-    public String ResourceReference.getLabel() {
+    public String EntityReference.getLabel() {
         return this.label;
     }
     

@@ -5,17 +5,17 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean(settersByDefault=false)
 @RooToString
-public final class ResourceReference {
+public final class EntityReference {
 
 	private Long id;
 	
 	private String label;
 
-	public ResourceReference(Long id) {
+	public EntityReference(Long id) {
 		this.id = id;
 	}
 
-	public ResourceReference(Long id, String label) {
+	public EntityReference(Long id, String label) {
 		this.id = id;
 		this.label = label;
 	}
@@ -25,10 +25,10 @@ public final class ResourceReference {
 	}
 	
 	public boolean equals(Object o) {
-		if (!(o instanceof ResourceReference)) {
+		if (!(o instanceof EntityReference)) {
 			return false;
 		}
-		ResourceReference ref = (ResourceReference) o;
+		EntityReference ref = (EntityReference) o;
 		return id.equals(ref.id);
 	}
 	
