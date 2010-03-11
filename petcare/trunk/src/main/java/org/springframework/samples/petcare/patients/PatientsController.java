@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.samples.petcare.util.ResourceReference;
+import org.springframework.samples.petcare.util.EntityReference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,14 +28,14 @@ public class PatientsController {
 	}
 
 	@RequestMapping(method=RequestMethod.GET)
-	public @ResponseBody List<ResourceReference> getPatients(@RequestParam String name) {
+	public @ResponseBody List<EntityReference> getPatients(@RequestParam String name) {
 		return jdbcTemplate.query("select p.id, p.name, (c.firstName || ' ' || c.lastName) as client from Patient p, Client c where lower(p.name) like ? and p.clientId = c.id",
-				new RowMapper<ResourceReference>() {
-					public ResourceReference mapRow(ResultSet rs, int row)
+				new RowMapper<EntityReference>() {
+					public EntityReference mapRow(ResultSet rs, int row)
 							throws SQLException {
 						Long id = rs.getLong("ID");
 						String label = rs.getString("NAME") + " (" + rs.getString("CLIENT") + ")";
-						return new ResourceReference(id, label);
+						return new EntityReference(id, label);
 					}
 				}, name.toLowerCase() + "%");
 	}

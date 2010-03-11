@@ -17,7 +17,7 @@ import org.springframework.integration.message.MessageBuilder;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.samples.petcare.util.ResourceReference;
+import org.springframework.samples.petcare.util.EntityReference;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,9 +39,9 @@ public class JdbcAppointmentService implements AppointmentService {
 
 	public AppointmentCalendar getAppointmentsForDay(LocalDate day) {
 		AppointmentCalendar calendar = new AppointmentCalendar(day);
-		calendar.setDoctors(jdbcTemplate.query(DOCTORS, new RowMapper<ResourceReference>() {
-			public ResourceReference mapRow(ResultSet rs, int row) throws SQLException {
-				return new ResourceReference(rs.getLong("ID"), rs.getString("DOCTOR"));
+		calendar.setDoctors(jdbcTemplate.query(DOCTORS, new RowMapper<EntityReference>() {
+			public EntityReference mapRow(ResultSet rs, int row) throws SQLException {
+				return new EntityReference(rs.getLong("ID"), rs.getString("DOCTOR"));
 			}
 		}));
 		jdbcTemplate.query(APPOINTMENTS_FOR_DAY, new AppointmentCalendarPopulator(calendar), calendar.getStartOfDay(), calendar.getEndOfDay());

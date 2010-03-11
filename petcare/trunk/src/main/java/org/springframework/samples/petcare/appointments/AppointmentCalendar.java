@@ -9,7 +9,7 @@ import org.joda.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
-import org.springframework.samples.petcare.util.ResourceReference;
+import org.springframework.samples.petcare.util.EntityReference;
 
 @RooJavaBean(settersByDefault=false)
 @RooToString
@@ -18,7 +18,7 @@ public class AppointmentCalendar {
 	@DateTimeFormat(style="F-")
 	private LocalDate day;
 	
-	private List<ResourceReference> doctors;
+	private List<EntityReference> doctors;
 	
 	private List<List<Appointment>> appointments; 
 	
@@ -26,7 +26,7 @@ public class AppointmentCalendar {
 		this.day = day;
 	}
 
-	public void setDoctors(List<ResourceReference> doctors) {
+	public void setDoctors(List<EntityReference> doctors) {
 		this.doctors = doctors;
 		appointments = new ArrayList<List<Appointment>>(9);
 		for (int i = 0; i < 9; i++) {
@@ -36,7 +36,7 @@ public class AppointmentCalendar {
 
 	public void addAppointment(Appointment appointment) {
 		int blockIndex = appointment.getDateTime().getHourOfDay() - 8;
-		int doctorIndex = doctors.indexOf(new ResourceReference(appointment.getDoctorId()));
+		int doctorIndex = doctors.indexOf(new EntityReference(appointment.getDoctorId()));
 		appointments.get(blockIndex).set(doctorIndex, appointment);
 	}
 

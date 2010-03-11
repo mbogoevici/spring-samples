@@ -24,12 +24,12 @@ public class AppointmentsController {
 
 	private final AppointmentService appointmentService;
 
-	private final AppointmentCalendarMessageStore appointmentChannel;
+	private final AppointmentCalendarMessageStore appointmentMessageStore;
 	
 	@Autowired
-	public AppointmentsController(AppointmentService appointmentService, AppointmentCalendarMessageStore appointmentChannel) {
+	public AppointmentsController(AppointmentService appointmentService, AppointmentCalendarMessageStore appointmentMessageStore) {
 		this.appointmentService = appointmentService;
-		this.appointmentChannel = appointmentChannel;
+		this.appointmentMessageStore = appointmentMessageStore;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -56,7 +56,7 @@ public class AppointmentsController {
 	
 	@RequestMapping(value="/messages", method = RequestMethod.GET)
 	public @ResponseBody List<Message<?>> pollMessages(@RequestParam @DateTimeFormat(iso=ISO.DATE) LocalDate day) {
-		appointmentChannel.setDay(day);
-		return appointmentChannel.pollMessages();
+		appointmentMessageStore.setDay(day);
+		return appointmentMessageStore.pollMessages();
 	}
 }
