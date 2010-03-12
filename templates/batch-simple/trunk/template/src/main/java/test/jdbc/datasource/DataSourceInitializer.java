@@ -103,6 +103,7 @@ public class DataSourceInitializer implements InitializingBean, DisposableBean {
 			if (initScripts != null) {
 				for (int i = 0; i < initScripts.length; i++) {
 					Resource initScript = initScripts[i];
+					logger.debug("Initializing with script: "+initScript);
 					doExecuteScript(initScript);
 				}
 			}
