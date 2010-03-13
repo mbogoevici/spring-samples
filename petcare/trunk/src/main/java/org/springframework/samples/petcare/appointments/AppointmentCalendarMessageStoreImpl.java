@@ -50,7 +50,7 @@ public class AppointmentCalendarMessageStoreImpl implements AppointmentCalendarM
 		}
 	}
 
-	// implementing AppointmnetMessageHandler
+	// implementing AppointmentCalendarMessageStore
 	
 	public void setDay(LocalDate day) {
 		messageSelector.setDay(day);
