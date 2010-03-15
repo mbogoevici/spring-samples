@@ -17,7 +17,7 @@
 	<!-- Allows attributes to be accessed on the next request -->
 	<filter>
 		<filter-name>flashScope</filter-name>
-		<filter-class>org.springframework.samples.petcare.util.FlashScopeFilter</filter-class>
+		<filter-class>org.springframework.samples.petcare.util.flash.FlashScopeFilter</filter-class>
 	</filter>
 	
     <filter-mapping>

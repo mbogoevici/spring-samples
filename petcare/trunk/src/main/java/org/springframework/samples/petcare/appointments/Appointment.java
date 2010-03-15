@@ -14,6 +14,8 @@ public class Appointment {
 
 	private Long doctorId;
 
+	private String doctor;
+	
 	private String patient;
 
 	private String client;

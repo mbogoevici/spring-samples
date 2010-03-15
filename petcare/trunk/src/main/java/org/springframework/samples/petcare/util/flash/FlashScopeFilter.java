@@ -1,4 +1,4 @@
-package org.springframework.samples.petcare.util;
+package org.springframework.samples.petcare.util.flash;
 
 import java.io.IOException;
 import java.util.Map;

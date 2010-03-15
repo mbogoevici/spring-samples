@@ -12,7 +12,7 @@
 	<logging-channel-adapter channel="globalMessageChannel" />
 	
 	<payload-type-router input-channel="globalMessageChannel">
-		<mapping type="org.springframework.samples.petcare.appointments.messaging.AppointmentMessage" channel="appointmentMessageChannel"/>
+		<mapping type="org.springframework.samples.petcare.appointments.messaging.AppointmentMessage" channel="appointmentMessageChannel" />
 	</payload-type-router>
 	
 	<publish-subscribe-channel id="appointmentMessageChannel" />

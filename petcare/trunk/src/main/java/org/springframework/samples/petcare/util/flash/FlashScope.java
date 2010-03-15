@@ -1,4 +1,4 @@
-package org.springframework.samples.petcare.util;
+package org.springframework.samples.petcare.util.flash;
 
 import java.util.HashMap;
 import java.util.Map;

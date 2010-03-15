@@ -9,6 +9,7 @@ privileged aspect Appointment_Roo_ToString {
         sb.append("Id: ").append(getId()).append(", ");
         sb.append("DateTime: ").append(getDateTime()).append(", ");
         sb.append("DoctorId: ").append(getDoctorId()).append(", ");
+        sb.append("Doctor: ").append(getDoctor()).append(", ");
         sb.append("Patient: ").append(getPatient()).append(", ");
         sb.append("Client: ").append(getClient()).append(", ");
         sb.append("ClientPhone: ").append(getClientPhone()).append(", ");
