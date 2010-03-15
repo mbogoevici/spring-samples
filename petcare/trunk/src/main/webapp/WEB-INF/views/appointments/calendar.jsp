@@ -162,7 +162,6 @@
 				type: "DELETE",
 				success: function(data) {
 					$("#updateDialog").dialog('close');
-					location.reload();	
 				}
 			});			
 		});
@@ -177,18 +176,18 @@
 				var i, message, slot;
 				for (i = 0; i < messages.length; i += 1) {
 					message = messages[i];
-					if (message.headers.type == "appointmentAdded") {
-						slot = $("#appointmentCalendar td.open[data-dateTime=" + message.payload.dateTime + "][data-doctorId=" + message.payload.doctorId + "]");
-						slot.attr("data-id", message.payload.id);
+					if (message.type == "APPOINTMENT_ADDED") {
+						slot = $("#appointmentCalendar td.open[data-dateTime=" + message.appointment.dateTime + "][data-doctorId=" + message.appointment.doctorId + "]");
+						slot.attr("data-id", message.appointment.id);
 						slot.html("<div class='patient'></div><div class='client'></div><div class='reason'></div>");
-						slot.children(".patient").html(message.payload.patient);
-						slot.children(".client").html(message.payload.client + " " + message.payload.clientPhone);
-						slot.children(".reason").html(message.payload.reason);
+						slot.children(".patient").html(message.appointment.patient);
+						slot.children(".client").html(message.appointment.client + " " + message.appointment.clientPhone);
+						slot.children(".reason").html(message.appointment.reason);
 						slot.removeClass("open");
 						slot.addClass("filled");
 						slot.unbind('click').click(showUpdateDialog);						
-					} else if (message.headers.type == "appointmentDeleted") {
-						slot = $("#appointmentCalendar td.filled[data-id=" + message.payload.id + "]");
+					} else if (message.type == "APPOINTMENT_DELETED") {
+						slot = $("#appointmentCalendar td.filled[data-id=" + message.appointment.id + "]");
 						slot.html("&nbsp;");
 						slot.removeClass("filled");
 						slot.addClass("open");

@@ -50,6 +50,11 @@
 			<version>${org.springframework.integration-version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-mail</artifactId>
+			<version>${org.springframework.integration-version}</version>
+		</dependency>		
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>${org.springframework.security-version}</version>
@@ -147,7 +152,14 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
-		
+
+		<!-- @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+				
 		<!-- Database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -194,7 +206,14 @@
 					<artifactId>commons-logging-api</artifactId>
 				 </exclusion>
 			</exclusions>			
-		</dependency>		
+		</dependency>
+				
+		<!-- Hibernate JPA 2 Provider -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.5.0-CR-2</version>
+		</dependency>
 		
 		<!-- JSR 303 with Hibernate Validator -->
 		<dependency>
@@ -207,7 +226,7 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>4.0.2.GA</version>
 		</dependency>
-		
+				
 		<!--  Joda Time -->
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -221,6 +240,20 @@
 			<scope>runtime</scope>
 		</dependency>		
 
+		<!-- JavaMail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+		
+		<!-- String Template -->
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>stringtemplate</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		
 		<!-- Jackson JSON Mapper -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

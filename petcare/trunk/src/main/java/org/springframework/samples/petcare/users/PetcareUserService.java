@@ -11,7 +11,7 @@ public class PetcareUserService implements UserDetailsService {
 
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
-		return new User(username, "", true, true, true, true, AuthorityUtils.createAuthorityList("ROLE_USER"));
+		return new User(username, "", true, true, true, true, AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
 	}
 
 }

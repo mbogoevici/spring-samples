@@ -1,15 +1,17 @@
 package org.springframework.samples.petcare.appointments;
 
-import java.util.List;
+import java.util.Set;
 
+import javax.inject.Inject;
+import javax.inject.Provider;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.joda.time.LocalDate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
-import org.springframework.integration.core.Message;
+import org.springframework.samples.petcare.appointments.messaging.AppointmentCalendarMessageQueue;
+import org.springframework.samples.petcare.appointments.messaging.AppointmentMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,12 +26,12 @@ public class AppointmentsController {
 
 	private final AppointmentService appointmentService;
 
-	private final AppointmentCalendarMessageStore appointmentMessageStore;
+	private final Provider<AppointmentCalendarMessageQueue> messageQueueProvider;
 	
-	@Autowired
-	public AppointmentsController(AppointmentService appointmentService, AppointmentCalendarMessageStore appointmentMessageStore) {
+	@Inject
+	public AppointmentsController(AppointmentService appointmentService, Provider<AppointmentCalendarMessageQueue> messageQueueProvider) {
 		this.appointmentService = appointmentService;
-		this.appointmentMessageStore = appointmentMessageStore;
+		this.messageQueueProvider = messageQueueProvider;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -44,7 +46,7 @@ public class AppointmentsController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Long createAppointment(@Valid NewAppointment appointment) {
+	public @ResponseBody Long addAppointment(@Valid NewAppointment appointment) {
 		return appointmentService.addAppointment(appointment);
 	}
 	
@@ -55,8 +57,9 @@ public class AppointmentsController {
 	}
 	
 	@RequestMapping(value="/messages", method = RequestMethod.GET)
-	public @ResponseBody List<Message<?>> pollMessages(@RequestParam @DateTimeFormat(iso=ISO.DATE) LocalDate day) {
-		appointmentMessageStore.setDay(day);
-		return appointmentMessageStore.pollMessages();
+	public @ResponseBody Set<AppointmentMessage> pollMessages(@RequestParam @DateTimeFormat(iso=ISO.DATE) LocalDate day) {
+		AppointmentCalendarMessageQueue messageQueue = messageQueueProvider.get();
+		messageQueue.setDay(day);
+		return messageQueue.pollMessages();
 	}
 }

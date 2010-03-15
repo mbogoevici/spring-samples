@@ -11,7 +11,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.integration.channel.PublishSubscribeChannel;
-import org.springframework.integration.channel.SubscribableChannel;
 import org.springframework.integration.core.Message;
 import org.springframework.integration.message.MessageDeliveryException;
 import org.springframework.integration.message.MessageHandler;
@@ -22,6 +21,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.samples.petcare.appointments.messaging.AppointmentMessage;
+import org.springframework.samples.petcare.appointments.messaging.AppointmentMessageGateway;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -30,9 +31,9 @@ public class JdbcAppointmentServiceTest {
 
 	private EmbeddedDatabase database;
 
-	private SubscribableChannel testNotificationChannel;
+	private AppointmentMessageGateway gateway;
 	
-	private JdbcAppointmentService appointmentService;
+	private DefaultAppointmentService appointmentService;
 
 	private PlatformTransactionManager transactionManager;
 	
@@ -44,8 +45,11 @@ public class JdbcAppointmentServiceTest {
 			setType(EmbeddedDatabaseType.H2).
 			addScript("schema.sql").
 			addScript("data.sql").build();
-		testNotificationChannel = new PublishSubscribeChannel();
-		appointmentService = new JdbcAppointmentService(database, testNotificationChannel);
+		gateway = new AppointmentMessageGateway() {
+			public void publish(AppointmentMessage message) {
+			}
+		};
+		appointmentService = new DefaultAppointmentService(database, gateway);
 		transactionManager = new DataSourceTransactionManager(database);
 		template = new JdbcTemplate(database);
 	}
@@ -71,16 +75,6 @@ public class JdbcAppointmentServiceTest {
 		appointment.setPatientId(1L);
 		appointment.setReason("Checkup");
 		appointment.setDateTime(new LocalDate().toDateTime(new LocalTime(8, 0)).getMillis());
-		testNotificationChannel.subscribe(new MessageHandler() {
-			public void handleMessage(Message<?> message)
-					throws MessageRejectedException, MessageHandlingException,
-					MessageDeliveryException {
-				assertEquals("appointmentCalendar", message.getHeaders().get("element"));
-				assertEquals("appointmentAdded", message.getHeaders().get("type"));
-				Appointment a = (Appointment) message.getPayload();
-				assertEquals("Macy", a.getPatient());
-			}
-		});
 		long id = appointmentService.addAppointment(appointment);
 		assertEquals(3L, id);
 		Map<String, Object> row = template.queryForMap("select * from Appointment where id = ?", id);
@@ -94,16 +88,6 @@ public class JdbcAppointmentServiceTest {
 	@Test
 	public void testDeleteAppointment() {
 		TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());		
-		testNotificationChannel.subscribe(new MessageHandler() {
-			public void handleMessage(Message<?> message)
-					throws MessageRejectedException, MessageHandlingException,
-					MessageDeliveryException {
-				assertEquals("appointmentCalendar", message.getHeaders().get("element"));
-				assertEquals("appointmentDeleted", message.getHeaders().get("type"));
-				Appointment a = (Appointment) message.getPayload();
-				assertEquals("Macy", a.getPatient());
-			}
-		});
 		appointmentService.deleteAppointment(1L);
 		List<Map<String, Object>> row = template.queryForList("select * from Appointment where id = ?", 1L);
 		assertEquals(0, row.size());

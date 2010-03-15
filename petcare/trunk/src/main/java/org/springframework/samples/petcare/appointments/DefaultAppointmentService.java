@@ -4,19 +4,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
-import org.springframework.integration.core.Message;
-import org.springframework.integration.core.MessageChannel;
-import org.springframework.integration.message.MessageBuilder;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.samples.petcare.appointments.messaging.AppointmentMessage;
+import org.springframework.samples.petcare.appointments.messaging.AppointmentMessageGateway;
+import org.springframework.samples.petcare.appointments.messaging.AppointmentMessage.MessageType;
 import org.springframework.samples.petcare.util.EntityReference;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -25,16 +24,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Repository
 @Transactional
-public class JdbcAppointmentService implements AppointmentService {
+public class DefaultAppointmentService implements AppointmentService {
 
 	private final JdbcTemplate jdbcTemplate;
 	
-	private MessageChannel messageChannel;
+	private final AppointmentMessageGateway messageGateway;
 
-	@Autowired
-	public JdbcAppointmentService(DataSource dataSource, @Qualifier("messageChannel") MessageChannel messageChannel) {
+	@Inject
+	public DefaultAppointmentService(DataSource dataSource, AppointmentMessageGateway messageGateway) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
-		this.messageChannel = messageChannel;
+		this.messageGateway = messageGateway;
 	}
 
 	public AppointmentCalendar getAppointmentsForDay(LocalDate day) {
@@ -52,16 +51,14 @@ public class JdbcAppointmentService implements AppointmentService {
 		jdbcTemplate.update("insert into Appointment (dateTime, patientId, doctorId, reason) values (?, ?, ?, ?)", 
 				new Date(newAppointment.getDateTime()), newAppointment.getPatientId(), newAppointment.getDoctorId(), newAppointment.getReason());
 		Long id = jdbcTemplate.queryForLong("call identity()");
-		Message<Appointment> addedMessage = MessageBuilder.withPayload(getAppointment(id)).setHeader("element", "appointmentCalendar").setHeader("type", "appointmentAdded").build();
-		messageChannel.send(addedMessage);		
+		messageGateway.publish(new AppointmentMessage(MessageType.APPOINTMENT_ADDED, getAppointment(id)));
 		return id;
 	}
 	
 	public void deleteAppointment(Long id) {
 		Appointment appointment = getAppointment(id);
 		jdbcTemplate.update("delete from Appointment where id = ?", appointment.getId());
-		Message<Appointment> deletedMessage = MessageBuilder.withPayload(appointment).setHeader("element", "appointmentCalendar").setHeader("type", "appointmentDeleted").build();
-		messageChannel.send(deletedMessage);
+		messageGateway.publish(new AppointmentMessage(MessageType.APPOINTMENT_DELETED, appointment));
 	}
 
 	// internal helpers

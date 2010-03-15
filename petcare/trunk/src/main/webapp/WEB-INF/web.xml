@@ -6,7 +6,7 @@
 	<!-- The definition of the Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/shared/shared-context.xml</param-value>
+		<param-value>classpath:/META-INF/spring/shared/shared-context.xml</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -58,7 +58,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/spring/petcare-servlet.xml
+				classpath:/META-INF/spring/petcare-servlet.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

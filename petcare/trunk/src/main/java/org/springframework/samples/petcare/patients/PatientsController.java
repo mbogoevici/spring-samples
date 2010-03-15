@@ -4,9 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.samples.petcare.util.EntityReference;
@@ -22,7 +22,7 @@ public class PatientsController {
 
 	private final JdbcTemplate jdbcTemplate;
 	
-	@Autowired
+	@Inject
 	public PatientsController(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
