@@ -7,6 +7,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd">
 
+	<!-- TODO: make asynchronous -->
 	<publish-subscribe-channel id="globalChannel" />
 
 	<logging-channel-adapter channel="globalChannel" />
@@ -26,7 +27,8 @@
 	</transformer>
 
 	<channel id="newAppointmentMailChannel" />
-		
+	
+	<!-- Workaround for bug in outbound channel adapter -->
 	<header-enricher id="mailHeaderEnricher" input-channel="newAppointmentMailChannel" output-channel="doctorMailChannel">
 		<header name="$mail_to" expression="payload.to[0]" />
 	</header-enricher>
