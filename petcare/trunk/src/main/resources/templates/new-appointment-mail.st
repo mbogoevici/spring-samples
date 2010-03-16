@@ -1,4 +1,4 @@
-Dear Dr. $appointment.doctor$:
+Dear Doctor:
 
 A new appointment has been added your calendar:
 	
@@ -9,4 +9,3 @@ A new appointment has been added your calendar:
 Sincerely,
 
 Your Friendly Petcare Admin
-

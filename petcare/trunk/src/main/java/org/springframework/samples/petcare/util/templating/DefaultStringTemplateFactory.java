@@ -11,7 +11,11 @@ import org.springframework.core.io.support.EncodedResource;
 
 public class DefaultStringTemplateFactory implements StringTemplateFactory {
 
-	private Map<Resource, org.antlr.stringtemplate.StringTemplate> compiledPrototypes = new ConcurrentHashMap<Resource, org.antlr.stringtemplate.StringTemplate>();
+	private Map<Resource, org.antlr.stringtemplate.StringTemplate> compiledPrototypes;
+
+	public DefaultStringTemplateFactory() {
+		compiledPrototypes = new ConcurrentHashMap<Resource, org.antlr.stringtemplate.StringTemplate>();
+	}
 
 	public StringTemplate getStringTemplate(Resource resource) {
 		org.antlr.stringtemplate.StringTemplate prototype = compiledPrototypes.get(resource);

@@ -10,12 +10,38 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+	<!-- Shared JDBC Data Access Template -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+	
 	<!-- Embedded H2 Database -->		
 	<jdbc:embedded-database id="dataSource" type="H2">
-		<jdbc:script location="classpath:schema.sql"/>
-		<jdbc:script location="classpath:data.sql"/>
+		<jdbc:script location="classpath:schema.sql" />
+		<jdbc:script location="classpath:data.sql" />
 	</jdbc:embedded-database>
+	
+	<!-- Cache of string templates -->
+	<bean id="stringTemplateFactory" class="org.springframework.samples.petcare.util.templating.DefaultStringTemplateFactory" />
 
+	<!-- Mail sender -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="465" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
+		<property name="javaMailProperties">
+			<value>
+				mail.debug=true
+				mail.smtp.auth=true
+				mail.smtp.socketFactory.port=465
+				mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
+				mail.smtp.socketFactory.fallback=false
+			</value>
+		</property>
+	</bean>
+	
 	<!-- Configures Integration Layer -->
 	<import resource="integration-config.xml" />
 

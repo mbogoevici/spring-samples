@@ -30,14 +30,6 @@ privileged aspect Appointment_Roo_JavaBean {
         this.doctorId = doctorId;
     }
     
-    public String Appointment.getDoctor() {
-        return this.doctor;
-    }
-    
-    public void Appointment.setDoctor(String doctor) {
-        this.doctor = doctor;
-    }
-    
     public String Appointment.getPatient() {
         return this.patient;
     }

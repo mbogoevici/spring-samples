@@ -7,11 +7,11 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.integration.channel.SubscribableChannel;
 import org.springframework.integration.core.Message;
@@ -26,23 +26,23 @@ import org.springframework.stereotype.Component;
 @Scope(value="session")
 public class DefaultAppointmentCalendarMessageQueue implements AppointmentCalendarMessageQueue, MessageHandler, InitializingBean, DisposableBean {
 
-	private final SubscribableChannel appointmentMessageChannel;
+	private final SubscribableChannel appointmentsChannel;
 
 	private final AppointmentCalendarMessageQueueDelegate delegate = new AppointmentCalendarMessageQueueDelegate();
 	
 	@Inject
-	public DefaultAppointmentCalendarMessageQueue(@Qualifier("appointmentMessageChannel") SubscribableChannel appointmentMessageChannel) {
-		this.appointmentMessageChannel = appointmentMessageChannel;
+	public DefaultAppointmentCalendarMessageQueue(@Named("appointmentsChannel") SubscribableChannel appointmentsChannel) {
+		this.appointmentsChannel = appointmentsChannel;
 	}
 
 	// Lifecycle callbacks
 	
 	public void afterPropertiesSet() throws Exception {
-		appointmentMessageChannel.subscribe(this);
+		appointmentsChannel.subscribe(this);
 	}
 
 	public void destroy() throws Exception {
-		appointmentMessageChannel.unsubscribe(this);
+		appointmentsChannel.unsubscribe(this);
 	}	
 
 	// implementing MessageHandler

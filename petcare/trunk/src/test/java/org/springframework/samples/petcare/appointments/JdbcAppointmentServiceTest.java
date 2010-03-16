@@ -10,12 +10,6 @@ import org.joda.time.LocalTime;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.integration.channel.PublishSubscribeChannel;
-import org.springframework.integration.core.Message;
-import org.springframework.integration.message.MessageDeliveryException;
-import org.springframework.integration.message.MessageHandler;
-import org.springframework.integration.message.MessageHandlingException;
-import org.springframework.integration.message.MessageRejectedException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
@@ -45,13 +39,13 @@ public class JdbcAppointmentServiceTest {
 			setType(EmbeddedDatabaseType.H2).
 			addScript("schema.sql").
 			addScript("data.sql").build();
+		template = new JdbcTemplate(database);
 		gateway = new AppointmentMessageGateway() {
 			public void publish(AppointmentMessage message) {
 			}
 		};
-		appointmentService = new DefaultAppointmentService(database, gateway);
+		appointmentService = new DefaultAppointmentService(template, gateway);
 		transactionManager = new DataSourceTransactionManager(database);
-		template = new JdbcTemplate(database);
 	}
 
 	@After

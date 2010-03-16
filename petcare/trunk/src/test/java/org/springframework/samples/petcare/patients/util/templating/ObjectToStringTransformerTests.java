@@ -13,9 +13,8 @@ public class ObjectToStringTransformerTests {
 
 	@Test
 	public void testGenerateDoctorEmail() {
-		transformer.setTemplate(new ClassPathResource("templates/doctor-email.st"));
+		transformer.setTemplate(new ClassPathResource("templates/new-appointment-mail.st"));
 		Appointment appointment = new Appointment();
-		appointment.setDoctor("Dwight Howard");
 		appointment.setPatient("Macy");
 		appointment.setClient("Keith Donald");
 		appointment.setClientPhone("1234567890");

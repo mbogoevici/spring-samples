@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -23,8 +22,8 @@ public class PatientsController {
 	private final JdbcTemplate jdbcTemplate;
 	
 	@Inject
-	public PatientsController(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	public PatientsController(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
 
 	@RequestMapping(method=RequestMethod.GET)

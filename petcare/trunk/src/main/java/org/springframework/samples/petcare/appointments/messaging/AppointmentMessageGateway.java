@@ -4,7 +4,7 @@ import org.springframework.integration.annotation.Gateway;
 
 public interface AppointmentMessageGateway {
 
-	@Gateway(requestChannel="globalMessageChannel")
+	@Gateway
 	void publish(AppointmentMessage message);
 	
 }

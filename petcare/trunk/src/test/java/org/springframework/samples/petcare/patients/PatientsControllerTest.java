@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -24,7 +25,7 @@ public class PatientsControllerTest {
 			setType(EmbeddedDatabaseType.H2).
 			addScript("schema.sql").
 			addScript("data.sql").build();
-		controller = new PatientsController(database);
+		controller = new PatientsController(new JdbcTemplate(database));
 	}
 
 	@After

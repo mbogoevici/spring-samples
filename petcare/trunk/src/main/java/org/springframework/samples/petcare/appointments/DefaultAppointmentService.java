@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import javax.inject.Inject;
-import javax.sql.DataSource;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -31,8 +30,8 @@ public class DefaultAppointmentService implements AppointmentService {
 	private final AppointmentMessageGateway messageGateway;
 
 	@Inject
-	public DefaultAppointmentService(DataSource dataSource, AppointmentMessageGateway messageGateway) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
+	public DefaultAppointmentService(JdbcTemplate jdbcTemplate, AppointmentMessageGateway messageGateway) {
+		this.jdbcTemplate = jdbcTemplate;
 		this.messageGateway = messageGateway;
 	}
 
