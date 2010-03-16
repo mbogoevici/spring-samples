@@ -26,7 +26,7 @@ public class DoctorMailTransformer {
 	public MailMessage transform(AppointmentMessage message) {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setFrom("noreply@petcare.com");
-		mailMessage.setTo("keith.donald@gmail.com");
+		mailMessage.setTo("name@emailAddress.com");
 		mailMessage.setSubject("New appointment added");
 		StringTemplate mailTemplate = templateFactory.getStringTemplate(mailTemplateResource);
 		mailTemplate.setAttribute("appointment", message.getAppointment());
