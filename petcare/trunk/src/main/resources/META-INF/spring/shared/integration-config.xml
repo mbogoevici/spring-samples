@@ -2,12 +2,13 @@
 <beans:beans xmlns="http://www.springframework.org/schema/integration"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:mail="http://www.springframework.org/schema/integration/mail"
 	xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-2.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
 		http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd">
 
-	<!-- TODO: make asynchronous -->
 	<publish-subscribe-channel id="globalChannel" />
 
 	<logging-channel-adapter channel="globalChannel" />
@@ -15,26 +16,17 @@
 	<payload-type-router input-channel="globalChannel">
 		<mapping type="org.springframework.samples.petcare.appointments.messaging.AppointmentMessage" channel="appointmentsChannel" />
 	</payload-type-router>	
-	
-	<publish-subscribe-channel id="appointmentsChannel" />
 
-	<filter input-channel="appointmentsChannel" expression="payload.type.name() == 'APPOINTMENT_ADDED'" output-channel="newAppointmentsChannel" />
-	
-	<channel id="newAppointmentsChannel" />
+	<publish-subscribe-channel id="appointmentsChannel" task-executor="appointmentsMessageHandlerExecutor"/>
 
-	<transformer id="doctorMailTransformer" input-channel="newAppointmentsChannel" output-channel="newAppointmentMailChannel">
+	<transformer input-channel="appointmentsChannel" output-channel="doctorMailChannel">
 		<beans:bean class="org.springframework.samples.petcare.appointments.messaging.DoctorMailTransformer" autowire="constructor" />
 	</transformer>
-
-	<channel id="newAppointmentMailChannel" />
-	
-	<!-- Workaround for bug in outbound channel adapter -->
-	<header-enricher id="mailHeaderEnricher" input-channel="newAppointmentMailChannel" output-channel="doctorMailChannel">
-		<header name="$mail_to" expression="payload.to[0]" />
-	</header-enricher>
 
 	<mail:outbound-channel-adapter id="doctorMailChannel" mail-sender="mailSender" />
 	
 	<gateway id="appointmentMessageGateway" service-interface="org.springframework.samples.petcare.appointments.messaging.AppointmentMessageGateway" default-request-channel="globalChannel" />
+
+	<task:executor id="appointmentsMessageHandlerExecutor" />
 		
 </beans:beans>
