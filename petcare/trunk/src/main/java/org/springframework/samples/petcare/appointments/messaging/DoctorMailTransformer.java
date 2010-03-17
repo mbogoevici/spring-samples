@@ -18,7 +18,7 @@ public class DoctorMailTransformer {
 	
 	private Resource newTemplate = new ClassPathResource("/templates/new-appointment-mail.st");
 
-	private Resource canceledTemplate = new ClassPathResource("/templates/canceled-appointment-mail.st");
+	private Resource canceledTemplate = new ClassPathResource("/templates/cancelled-appointment-mail.st");
 
 	@Inject
 	public DoctorMailTransformer(JdbcTemplate jdbcTemplate, StringTemplateFactory templateFactory) {
@@ -29,7 +29,7 @@ public class DoctorMailTransformer {
 	public MailMessage transform(AppointmentMessage message) {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setFrom("noreply@petcare.com");
-		mailMessage.setTo("name@emailAddress.com");
+		mailMessage.setTo("keith.donald@gmail.com");
 		StringTemplate textTemplate;
 		if (message.getType().equals(MessageType.APPOINTMENT_ADDED)) {
 			mailMessage.setSubject("New appointment added");

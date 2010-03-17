@@ -5,7 +5,8 @@
 <ul>
 	<li>The @Controller programming model</li>
 	<li>Clean, Restful URLs utilizing URL Rewrite</li>
-	<li>Apache Tiles for layout with JSP templating</li>
+	<li>Apache Tiles for page layout and composition</li>
+	<li>JSP templating for HTML pages</li>	
 	<li>jQuery JavaScript framework</li>
 	<li>Blueprint CSS framework</li>
 	<li>Annotation-driven configuration and transaction management</li>
@@ -15,7 +16,8 @@
 	<li>JDBC data access support</li>
 	<li>JUnit integration testing support</li>
 	<li>Ajax push messaging</li>
-	<li>OpenID authentication</li>
+	<li>Role-based security with pluggable authentication mechanisms (including OpenID)</li>
+	<li>Sending emails with StringTemplate templating</li>
 	<li>"Resource-oriented" architecture and packaging</li>
 	<li>Slf4j logging</li>
 	<li>Round-tripping code generation</li>

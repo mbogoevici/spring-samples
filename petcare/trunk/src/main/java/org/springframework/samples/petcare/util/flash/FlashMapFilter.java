@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 
-public class FlashScopeFilter extends OncePerRequestFilter {
+public class FlashMapFilter extends OncePerRequestFilter {
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -19,7 +19,7 @@ public class FlashScopeFilter extends OncePerRequestFilter {
 		throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
-			Map<String, ?> flash = (Map<String, ?>) session.getAttribute(FlashScope.FLASH_SCOPE_ATTRIBUTE);
+			Map<String, ?> flash = (Map<String, ?>) session.getAttribute(FlashMap.FLASH_MAP_ATTRIBUTE);
 			if (flash != null) {
 				for (Map.Entry<String, ?> entry : flash.entrySet()) {
 					Object currentValue = request.getAttribute(entry.getKey());
@@ -27,7 +27,7 @@ public class FlashScopeFilter extends OncePerRequestFilter {
 						request.setAttribute(entry.getKey(), entry.getValue());
 					}					
 				}
-				session.removeAttribute(FlashScope.FLASH_SCOPE_ATTRIBUTE);
+				session.removeAttribute(FlashMap.FLASH_MAP_ATTRIBUTE);
 			}
 		}
 		filterChain.doFilter(request, response);

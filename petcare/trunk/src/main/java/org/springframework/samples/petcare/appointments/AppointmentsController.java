@@ -4,12 +4,12 @@ import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.http.HttpStatus;
 import org.springframework.samples.petcare.appointments.messaging.AppointmentCalendarMessageQueue;
 import org.springframework.samples.petcare.appointments.messaging.AppointmentMessage;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 @RequestMapping("/appointments")
@@ -51,9 +52,9 @@ public class AppointmentsController {
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
-	public void deleteAppointment(@PathVariable Long id, HttpServletResponse response) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteAppointment(@PathVariable Long id) {
 		appointmentService.deleteAppointment(id);
-		response.setStatus(HttpServletResponse.SC_NO_CONTENT);
 	}
 	
 	@RequestMapping(value="/messages", method = RequestMethod.GET)

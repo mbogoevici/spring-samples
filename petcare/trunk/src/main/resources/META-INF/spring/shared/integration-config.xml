@@ -14,19 +14,25 @@
 	<logging-channel-adapter channel="globalChannel" />
 
 	<payload-type-router input-channel="globalChannel">
-		<mapping type="org.springframework.samples.petcare.appointments.messaging.AppointmentMessage" channel="appointmentsChannel" />
+		<mapping type="org.springframework.samples.petcare.appointments.messaging.AppointmentMessage" channel="appointmentChannel" />
 	</payload-type-router>	
 
-	<publish-subscribe-channel id="appointmentsChannel" task-executor="appointmentsMessageHandlerExecutor"/>
+	<publish-subscribe-channel id="appointmentChannel" />
 
-	<transformer input-channel="appointmentsChannel" output-channel="doctorMailChannel">
+	<router input-channel="appointmentChannel" expression="'appointmentMailerChannel'" />
+	
+	<channel id="appointmentMailerChannel">
+		<dispatcher task-executor="appointmentMailerExecutor" />
+	</channel>
+	
+	<transformer input-channel="appointmentMailerChannel" output-channel="appointmentMail">
 		<beans:bean class="org.springframework.samples.petcare.appointments.messaging.DoctorMailTransformer" autowire="constructor" />
 	</transformer>
 
-	<mail:outbound-channel-adapter id="doctorMailChannel" mail-sender="mailSender" />
-	
+	<mail:outbound-channel-adapter id="appointmentMail" mail-sender="mailSender" />
+	 
 	<gateway id="appointmentMessageGateway" service-interface="org.springframework.samples.petcare.appointments.messaging.AppointmentMessageGateway" default-request-channel="globalChannel" />
 
-	<task:executor id="appointmentsMessageHandlerExecutor" />
+	<task:executor id="appointmentMailerExecutor" />
 		
 </beans:beans>

@@ -1,6 +1,5 @@
 package org.springframework.samples.petcare.appointments.messaging;
 
-import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.concurrent.BlockingQueue;
@@ -13,6 +12,7 @@ import org.joda.time.LocalDate;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Scope;
+import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.SubscribableChannel;
 import org.springframework.integration.core.Message;
 import org.springframework.integration.message.MessageDeliveryException;
@@ -26,32 +26,32 @@ import org.springframework.stereotype.Component;
 @Scope(value="session")
 public class DefaultAppointmentCalendarMessageQueue implements AppointmentCalendarMessageQueue, MessageHandler, InitializingBean, DisposableBean {
 
-	private final SubscribableChannel appointmentsChannel;
+	private final SubscribableChannel appointmentChannel;
 
 	private final AppointmentCalendarMessageQueueDelegate delegate = new AppointmentCalendarMessageQueueDelegate();
 	
 	@Inject
-	public DefaultAppointmentCalendarMessageQueue(@Named("appointmentsChannel") SubscribableChannel appointmentsChannel) {
-		this.appointmentsChannel = appointmentsChannel;
+	public DefaultAppointmentCalendarMessageQueue(@Named("appointmentChannel") SubscribableChannel appointmentChannel) {
+		this.appointmentChannel = appointmentChannel;
 	}
 
 	// Lifecycle callbacks
 	
 	public void afterPropertiesSet() throws Exception {
-		appointmentsChannel.subscribe(this);
+		appointmentChannel.subscribe(this);
 	}
 
 	public void destroy() throws Exception {
-		appointmentsChannel.unsubscribe(this);
+		appointmentChannel.unsubscribe(this);
 	}	
 
 	// implementing MessageHandler
 	
 	public void handleMessage(Message<?> message) throws MessageRejectedException, MessageHandlingException, MessageDeliveryException {
-		delegate.add((AppointmentMessage) message.getPayload());
+		delegate.handleMessage((AppointmentMessage) message.getPayload());
 	}
 
-	// implementing AppointmentCalendarMessageStore
+	// implementing AppointmentCalendarMessageQueue
 	
 	public void setDay(LocalDate day) {
 		delegate.setDay(day);
@@ -63,19 +63,17 @@ public class DefaultAppointmentCalendarMessageQueue implements AppointmentCalend
 	
 	// internal helpers
 	
-	@SuppressWarnings("serial")
-	private static class AppointmentCalendarMessageQueueDelegate implements AppointmentCalendarMessageQueue, Serializable {
+	private static class AppointmentCalendarMessageQueueDelegate implements AppointmentCalendarMessageQueue {
 
 		private final MessageSelector selector = new MessageSelector();
 
 		private final BlockingQueue<AppointmentMessage> queue = new LinkedBlockingQueue<AppointmentMessage>();
 		
-		boolean add(AppointmentMessage message) {
-			if (selector.accept(message)) {
+		@ServiceActivator(inputChannel="appointmentChannel")
+		public void handleMessage(AppointmentMessage message) {
+			if (selector.accepts(message)) {
 				queue.add(message);
-				return true;
 			}
-			return false;
 		}
 		
 		public void setDay(LocalDate day) {
@@ -88,7 +86,7 @@ public class DefaultAppointmentCalendarMessageQueue implements AppointmentCalend
 			return messages;
 		}
 		
-		private static class MessageSelector implements Serializable {
+		private static class MessageSelector {
 
 			private LocalDate day;
 			
@@ -96,12 +94,19 @@ public class DefaultAppointmentCalendarMessageQueue implements AppointmentCalend
 				this.day = day;
 			}
 
-			public boolean accept(AppointmentMessage message) {
+			public boolean accepts(AppointmentMessage message) {
 				Appointment appointment = message.getAppointment();
 				return appointment.getDateTime().toLocalDate().equals(day);
 			}
 		}
+		
+		public String toString() {
+			return "[AppointmentCalendarMessageQueue size = " + queue.size() + "]";
+		}
 
 	}
 	
+	public String toString() {
+		return delegate.toString();
+	}
 }
