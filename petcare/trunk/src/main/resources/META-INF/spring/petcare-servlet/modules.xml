@@ -12,17 +12,8 @@
 	<mvc:view-controller path="/" view-name="home"/>
 
 	<!-- APPOINTMENTS -->
-	<!-- TODO: Replace with component-scanning once strange dependency resolution issue is resolved -->
-	<bean class="org.springframework.samples.petcare.appointments.AppointmentsController" />
-	
-	<bean id="appointmentService" class="org.springframework.samples.petcare.appointments.integration.DefaultAppointmentService">
-		<constructor-arg ref="jdbcTemplate" />
-		<constructor-arg ref="appointmentMessageGateway" />
-	</bean>
-
-	<bean class="org.springframework.samples.petcare.appointments.integration.DefaultAppointmentCalendarMessageQueue" />
-	
 	<import resource="classpath:org/springframework/samples/petcare/appointments/integration/pipeline.xml" />
+	<context:component-scan base-package="org.springframework.samples.petcare.appointments" />
 	
 	<!-- CLIENTS -->
 	<context:component-scan base-package="org.springframework.samples.petcare.clients" />
