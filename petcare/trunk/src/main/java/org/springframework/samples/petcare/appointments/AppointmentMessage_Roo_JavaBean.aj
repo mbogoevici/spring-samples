@@ -1,7 +1,7 @@
-package org.springframework.samples.petcare.appointments.messaging;
+package org.springframework.samples.petcare.appointments;
 
 import org.springframework.samples.petcare.appointments.Appointment;
-import org.springframework.samples.petcare.appointments.messaging.AppointmentMessage.MessageType;
+import org.springframework.samples.petcare.appointments.AppointmentMessage.MessageType;
 
 privileged aspect AppointmentMessage_Roo_JavaBean {
     

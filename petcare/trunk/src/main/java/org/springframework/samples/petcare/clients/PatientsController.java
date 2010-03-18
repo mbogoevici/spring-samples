@@ -1,4 +1,4 @@
-package org.springframework.samples.petcare.patients;
+package org.springframework.samples.petcare.clients;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/patients")
+@RequestMapping("/clients/patients")
 public class PatientsController {
 
 	private final JdbcTemplate jdbcTemplate;

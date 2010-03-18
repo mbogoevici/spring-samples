@@ -1,6 +1,7 @@
-package org.springframework.samples.petcare.appointments.messaging;
+package org.springframework.samples.petcare.appointments.integration;
 
 import org.springframework.integration.annotation.Gateway;
+import org.springframework.samples.petcare.appointments.AppointmentMessage;
 
 public interface AppointmentMessageGateway {
 

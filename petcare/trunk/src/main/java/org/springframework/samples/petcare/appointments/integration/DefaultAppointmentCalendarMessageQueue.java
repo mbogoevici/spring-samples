@@ -1,4 +1,4 @@
-package org.springframework.samples.petcare.appointments.messaging;
+package org.springframework.samples.petcare.appointments.integration;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -20,6 +20,8 @@ import org.springframework.integration.message.MessageHandler;
 import org.springframework.integration.message.MessageHandlingException;
 import org.springframework.integration.message.MessageRejectedException;
 import org.springframework.samples.petcare.appointments.Appointment;
+import org.springframework.samples.petcare.appointments.AppointmentCalendarMessageQueue;
+import org.springframework.samples.petcare.appointments.AppointmentMessage;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,8 +1,7 @@
-package org.springframework.samples.petcare.appointments.messaging;
+package org.springframework.samples.petcare.appointments;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
-import org.springframework.samples.petcare.appointments.Appointment;
 
 @RooJavaBean(settersByDefault=false)
 @RooToString

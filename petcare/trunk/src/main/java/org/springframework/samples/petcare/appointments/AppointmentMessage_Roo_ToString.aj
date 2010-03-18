@@ -1,4 +1,4 @@
-package org.springframework.samples.petcare.appointments.messaging;
+package org.springframework.samples.petcare.appointments;
 
 import java.lang.String;
 

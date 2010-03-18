@@ -7,6 +7,8 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 	
+	<!-- SHARED RESOURCES ACCESSIBLE TO ALL WEB COMPONENTS -->
+	
 	<!-- Local, JDBC-based TransactionManager -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
@@ -29,15 +31,15 @@
 	<!-- Mail sender -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="defaultEncoding" value="UTF-8" />
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="465" />
+		<property name="host" value="${mail.host}" />
+		<property name="port" value="${mail.port}" />
 		<property name="username" value="${mail.username}" />
 		<property name="password" value="${mail.password}" />
 		<property name="javaMailProperties">
 			<value>
 				mail.debug=true
 				mail.smtp.auth=true
-				mail.smtp.socketFactory.port=465
+				mail.smtp.socketFactory.port=${mail.port}
 				mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
 				mail.smtp.socketFactory.fallback=false
 			</value>
@@ -47,10 +49,10 @@
 	<!-- Substitute ${placeholders} with externalized application properties -->	
 	<context:property-placeholder location="classpath:/META-INF/spring/shared/application.properties" />
 	
-	<!-- Configures Integration Layer -->
-	<import resource="integration-config.xml" />
+	<!-- Configures Shared Integration Layer -->
+	<import resource="integration.xml" />
 
-	<!-- Configures Security -->
-	<import resource="security-config.xml" />
+	<!-- Configures Shared Security Layer -->
+	<import resource="security.xml" />
 		
 </beans>

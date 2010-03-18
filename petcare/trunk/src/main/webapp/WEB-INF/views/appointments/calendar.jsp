@@ -135,7 +135,7 @@
 					
 		$("#patientField").autocomplete({
 			source: function(request, response) {
-				$.getJSON("${pageContext.request.contextPath}/patients", { name: request.term }, response);
+				$.getJSON("${pageContext.request.contextPath}/clients/patients", { name: request.term }, response);
 			},
 			select: function(event, ui) {
 				$("#addForm input[name=patientId]").val(ui.item.id);

@@ -1,4 +1,4 @@
-package org.springframework.samples.petcare.appointments.messaging;
+package org.springframework.samples.petcare.appointments.mail;
 
 import javax.inject.Inject;
 
@@ -8,7 +8,8 @@ import org.springframework.integration.annotation.Transformer;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mail.MailMessage;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.samples.petcare.appointments.messaging.AppointmentMessage.MessageType;
+import org.springframework.samples.petcare.appointments.AppointmentMessage;
+import org.springframework.samples.petcare.appointments.AppointmentMessage.MessageType;
 import org.springframework.samples.petcare.util.templating.StringTemplate;
 import org.springframework.samples.petcare.util.templating.StringTemplateFactory;
 
@@ -16,9 +17,9 @@ public class DoctorMailTransformer {
 	
 	private StringTemplateFactory templateFactory;
 	
-	private Resource newTemplate = new ClassPathResource("/templates/new-appointment-mail.st");
+	private Resource newTemplate = new ClassPathResource("new-appointment-mail.st", getClass());
 
-	private Resource canceledTemplate = new ClassPathResource("/templates/cancelled-appointment-mail.st");
+	private Resource canceledTemplate = new ClassPathResource("cancelled-appointment-mail.st", getClass());
 
 	@Inject
 	public DoctorMailTransformer(JdbcTemplate jdbcTemplate, StringTemplateFactory templateFactory) {

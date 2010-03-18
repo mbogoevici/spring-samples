@@ -1,4 +1,4 @@
-package org.springframework.samples.petcare.appointments;
+package org.springframework.samples.petcare.appointments.integration;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,9 +12,12 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.samples.petcare.appointments.messaging.AppointmentMessage;
-import org.springframework.samples.petcare.appointments.messaging.AppointmentMessageGateway;
-import org.springframework.samples.petcare.appointments.messaging.AppointmentMessage.MessageType;
+import org.springframework.samples.petcare.appointments.Appointment;
+import org.springframework.samples.petcare.appointments.AppointmentCalendar;
+import org.springframework.samples.petcare.appointments.AppointmentMessage;
+import org.springframework.samples.petcare.appointments.AppointmentService;
+import org.springframework.samples.petcare.appointments.NewAppointment;
+import org.springframework.samples.petcare.appointments.AppointmentMessage.MessageType;
 import org.springframework.samples.petcare.util.EntityReference;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;

@@ -14,7 +14,7 @@
 		<intercept-url pattern="/users/signin" filters="none" />
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/resources/**" access="permitAll" />
-		<intercept-url pattern="/**" access="permitAll" />
+		<intercept-url pattern="/**" access="isAuthenticated()" />
 	</http>
 
 	<authentication-manager />
