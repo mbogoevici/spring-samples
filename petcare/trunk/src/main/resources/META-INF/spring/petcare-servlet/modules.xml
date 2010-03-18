@@ -12,8 +12,8 @@
 	<mvc:view-controller path="/" view-name="home"/>
 
 	<!-- APPOINTMENTS -->
-	<import resource="classpath:org/springframework/samples/petcare/appointments/integration/pipeline.xml" />
 	<context:component-scan base-package="org.springframework.samples.petcare.appointments" />
+	<import resource="classpath:org/springframework/samples/petcare/appointments/integration/pipeline.xml" />
 	
 	<!-- CLIENTS -->
 	<context:component-scan base-package="org.springframework.samples.petcare.clients" />

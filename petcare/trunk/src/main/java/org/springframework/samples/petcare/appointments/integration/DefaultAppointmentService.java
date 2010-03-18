@@ -19,12 +19,8 @@ import org.springframework.samples.petcare.appointments.AppointmentService;
 import org.springframework.samples.petcare.appointments.NewAppointment;
 import org.springframework.samples.petcare.appointments.AppointmentMessage.MessageType;
 import org.springframework.samples.petcare.util.EntityReference;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-@Repository
 @Transactional
 public class DefaultAppointmentService implements AppointmentService {
 

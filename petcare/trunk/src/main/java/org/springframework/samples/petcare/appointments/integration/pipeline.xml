@@ -39,5 +39,24 @@
 
 	<!-- Sends the Doctor MailMessage -->
 	<mail:outbound-channel-adapter id="doctorMail" mail-sender="mailSender" />
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+	<beans:bean id="appointmentService" class="org.springframework.samples.petcare.appointments.integration.DefaultAppointmentService">
+		<beans:constructor-arg ref="jdbcTemplate"/>
+		<beans:constructor-arg ref="appointmentMessageGateway"/>
+	</beans:bean>
 
 </beans:beans>
