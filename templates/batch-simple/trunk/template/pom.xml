@@ -162,7 +162,6 @@
 					<excludes>
 						<exclude>**/Abstract*.java</exclude>
 					</excludes>
-					<junitArtifactName>org.junit:com.springsource.org.junit</junitArtifactName>
 				</configuration>
 			</plugin>
 			<plugin>
