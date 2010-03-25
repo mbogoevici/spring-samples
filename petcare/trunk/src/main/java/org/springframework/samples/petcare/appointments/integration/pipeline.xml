@@ -21,8 +21,8 @@
 	<!-- Clients subscribe to this channel to receive appointment notifications (APPOINTMENT_ADDED, APPOINTMENT_DELETED, etc) -->
 	<publish-subscribe-channel id="appointmentChannel" />
 
-	<!-- Routes AppointmentMessages to an asynchronous mailer -->
-	<router input-channel="appointmentChannel" expression="'appointmentMailerChannel'" />
+	<!-- Forks AppointmentMessages to an asynchronous mailer -->
+	<bridge input-channel="appointmentChannel" output-channel="appointmentMailerChannel" />
 	
 	<!-- Asynchronously dispatches appointment notifications for mailing -->
 	<channel id="appointmentMailerChannel">
