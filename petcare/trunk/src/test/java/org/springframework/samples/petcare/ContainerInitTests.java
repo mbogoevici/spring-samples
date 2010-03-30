@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={
-	"classpath:/META-INF/spring/shared/shared.xml",
-	"classpath:/META-INF/spring/petcare-servlet/petcare-servlet.xml"
+	"classpath:/META-INF/spring/root-context.xml",
+	"classpath:/META-INF/spring/petcare-servlet/servlet-context.xml"
 })
 public class ContainerInitTests {
 

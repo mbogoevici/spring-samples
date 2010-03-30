@@ -9,8 +9,10 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
 		http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd">
 
+	<!-- Single channel for broadcasting application messages -->
 	<publish-subscribe-channel id="globalChannel" />
 
+	<!-- Logs messages sent to the global channel -->
 	<logging-channel-adapter channel="globalChannel" />
 
 </beans:beans>

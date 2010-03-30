@@ -11,14 +11,14 @@
 	<!-- Maps '/' requests to the 'home' view -->
 	<mvc:view-controller path="/" view-name="home"/>
 
-	<!-- APPOINTMENTS -->
+	<!-- APPOINTMENTS MODULE -->
 	<context:component-scan base-package="org.springframework.samples.petcare.appointments" />
 	<import resource="classpath:org/springframework/samples/petcare/appointments/integration/pipeline.xml" />
 	
-	<!-- CLIENTS -->
+	<!-- CLIENTS MODULE -->
 	<context:component-scan base-package="org.springframework.samples.petcare.clients" />
 
-	<!-- USERS -->
+	<!-- USERS MODULE -->
 	<context:component-scan base-package="org.springframework.samples.petcare.users" />
 	
 	<!-- Maps '/users/signin' requests to the 'users/signin' view -->

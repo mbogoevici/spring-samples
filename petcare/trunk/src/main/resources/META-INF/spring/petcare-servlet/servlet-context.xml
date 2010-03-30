@@ -33,7 +33,7 @@
 	<!-- Configures transaction management for @Transactional beans across all modules -->
 	<tx:annotation-driven />
 
-	<!-- Imports configuration of each application module -->
-	<beans:import resource="modules.xml" />
+	<!-- Imports the controllers of each application module that process client requests -->
+	<beans:import resource="controllers.xml" />
 	
 </beans:beans>
