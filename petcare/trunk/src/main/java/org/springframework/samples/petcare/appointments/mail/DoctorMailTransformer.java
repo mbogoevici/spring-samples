@@ -30,7 +30,7 @@ public class DoctorMailTransformer {
 	public MailMessage transform(AppointmentMessage message) {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setFrom("noreply@petcare.com");
-		mailMessage.setTo("keith.donald@gmail.com");
+		mailMessage.setTo("doctor@petcare.com");
 		StringTemplate textTemplate;
 		if (message.getType().equals(MessageType.APPOINTMENT_ADDED)) {
 			mailMessage.setSubject("New appointment added");
