@@ -47,7 +47,7 @@
 	</bean>
 
 	<!-- Substitute ${placeholders} with externalized application properties -->	
-	<context:property-placeholder location="application.properties" />
+	<context:property-placeholder location="classpath:application.properties" />
 	
 	<!-- Configures Shared Integration Layer -->
 	<import resource="integration.xml" />
