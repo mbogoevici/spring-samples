@@ -52,8 +52,7 @@
 		<dependency>
 			<groupId>org.springframework.integration</groupId>
 			<artifactId>spring-integration-mail</artifactId>
-			<!-- Spring Integration Mail snapshot not currently available -->
-			<version>2.0.0.M3</version>
+			<version>${org.springframework.integration-version}</version>
 		</dependency>	
 		<dependency>
 			<groupId>org.springframework.security</groupId>
