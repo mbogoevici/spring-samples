@@ -11,6 +11,12 @@
 	<!-- Configures the @Controller programming model -->
 	<annotation-driven />
 
+	<!-- Resolves view names to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
 	<!-- Imports the controllers of each application module that process client requests -->
 	<beans:import resource="controllers.xml" />
 	

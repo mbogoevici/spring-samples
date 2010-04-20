@@ -37,7 +37,7 @@
 	</servlet>
 		
 	<servlet-mapping>
-		<servlet-name>projectName</servlet-name>
+		<servlet-name>app</servlet-name>
 		<url-pattern>/app/*</url-pattern>
 	</servlet-mapping>
 

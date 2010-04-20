@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-	Hello world! I'm running Spring!
+	Hello world!
 </h1>
 </body>
 </html>
