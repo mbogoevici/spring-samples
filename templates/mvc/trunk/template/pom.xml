@@ -117,13 +117,6 @@
 			<version>1.2</version>
 		</dependency>
 	
-		<!-- URL Rewrite -->
-		<dependency>
-			<groupId>org.tuckey</groupId>
-			<artifactId>urlrewritefilter</artifactId>
-			<version>3.1.0</version>			
-		</dependency>
-
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
