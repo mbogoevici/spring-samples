@@ -7,7 +7,6 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
-		<config>src/main/resources/META-INF/spring/app-servlet/controllers.xml</config>
 	</configs>
 	<configSets>
 	</configSets>
