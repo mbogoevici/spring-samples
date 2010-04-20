@@ -2,7 +2,7 @@
 	<descriptor id="org.springframework.templates.mvc"
 		name="Spring MVC Project"
 		kind="template"
-		version="3.0.1.A">
+		version="3.0.3">
 		<description>
 			A new Spring MVC web application development project
 		</description>

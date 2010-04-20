@@ -2,11 +2,11 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Welcome</title>
+	<title>Home</title>
 </head>
 <body>
 <h1>
-	Congratulations! You're running Spring!
+	Hello world! I'm running Spring!
 </h1>
 </body>
 </html>

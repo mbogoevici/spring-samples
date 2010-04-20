@@ -4,7 +4,7 @@
 			"element" :	[
 				{
 					"name" : "topLevelPackage",
-					"description" : "Please specify the top-level package e.g. com.mycompany.travel or com.mycompany.travel.booking",
+					"description" : "Please specify the top-level package e.g. com.mycompany.myapp",
 					"type" : "java.lang.String",
 					"page" : 0,
 					"required" : true,

@@ -14,17 +14,6 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- Allows attributes to be accessed on the next request -->
-	<filter>
-		<filter-name>flashMap</filter-name>
-		<filter-class>org.springframework.samples.petcare.util.flash.FlashMapFilter</filter-class>
-	</filter>
-	
-    <filter-mapping>
-      <filter-name>flashMap</filter-name>
-      <url-pattern>/*</url-pattern>
-    </filter-mapping>
-	
 	<!-- Enables clean URLs with JSP views e.g. /welcome instead of /app/welcome -->
 	<filter>
 		<filter-name>urlRewrite</filter-name>
@@ -38,11 +27,11 @@
 	
 	<!-- Handles all requests into the petcare application -->
 	<servlet>
-		<servlet-name>projectName</servlet-name>
+		<servlet-name>app</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:/META-INF/spring/petcare-servlet/servlet-context.xml</param-value>
+			<param-value>classpath:/META-INF/spring/app-servlet/app-servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
