@@ -3,34 +3,53 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/META-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Allows attributes to be accessed on the next request -->
+	<filter>
+		<filter-name>flashMap</filter-name>
+		<filter-class>org.springframework.samples.petcare.util.flash.FlashMapFilter</filter-class>
+	</filter>
+	
+    <filter-mapping>
+      <filter-name>flashMap</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	
 	<!-- Enables clean URLs with JSP views e.g. /welcome instead of /app/welcome -->
 	<filter>
-		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-name>urlRewrite</filter-name>
 		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
-		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-name>urlRewrite</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-		
-	<!-- Handles all requests into the application -->
+	
+	<!-- Handles all requests into the petcare application -->
 	<servlet>
-		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<servlet-name>projectName</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				/WEB-INF/spring/*.xml
-			</param-value>
+			<param-value>classpath:/META-INF/spring/petcare-servlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
-	<!-- Maps all /app requests to the DispatcherServlet for handling -->
 	<servlet-mapping>
-		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<servlet-name>projectName</servlet-name>
 		<url-pattern>/app/*</url-pattern>
 	</servlet-mapping>
-	
+
 </web-app>
