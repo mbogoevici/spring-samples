@@ -50,7 +50,6 @@
 					<ul>
 						<li><a class="button" href="<c:url value="/" />">Home</a></li>
 						<li><a class="button" href="<c:url value="/appointments" />">Appointments</a></li>
-						<li><a class="button" href="<c:url value="/clients" />">Clients</a></li>
 					</ul>
 				</div>
 			</div>
