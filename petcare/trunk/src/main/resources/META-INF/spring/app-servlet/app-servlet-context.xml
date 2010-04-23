@@ -15,6 +15,22 @@
 	<!-- Configures the @Controller programming model -->
 	<annotation-driven />
 
+	<!-- Resource handling -->
+	<beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<beans:property name="order" value="2" />
+		<beans:property name="mappings">
+			<beans:props>
+				<beans:prop key="/resources/**">resourceHandler</beans:prop>
+			</beans:props>
+		</beans:property>	
+	</beans:bean>
+	
+	<beans:bean id="resourceHandler" class="org.springframework.samples.petcare.util.resource.ResourceHttpRequestHandler">
+		<beans:constructor-arg value="/resources/" />
+	</beans:bean>
+	
+	<beans:bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
+	
 	<!-- Resolves view names to tiles definitions loaded by the tilesConfigurer -->
 	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />

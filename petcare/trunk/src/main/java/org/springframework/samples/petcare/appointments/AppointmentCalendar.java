@@ -25,7 +25,7 @@ public class AppointmentCalendar {
 	public AppointmentCalendar(LocalDate day) {
 		this.day = day;
 	}
-
+	
 	public void setDoctors(List<EntityReference> doctors) {
 		this.doctors = doctors;
 		appointments = new ArrayList<List<Appointment>>(9);
