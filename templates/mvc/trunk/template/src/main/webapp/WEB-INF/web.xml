@@ -16,17 +16,17 @@
 
 	<!-- Processes application requests -->
 	<servlet>
-		<servlet-name>app</servlet-name>
+		<servlet-name>projectName</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:/META-INF/spring/app-servlet/app-servlet-context.xml</param-value>
+			<param-value>classpath:/META-INF/spring/projectName/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
 	<servlet-mapping>
-		<servlet-name>app</servlet-name>
+		<servlet-name>projectName</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
