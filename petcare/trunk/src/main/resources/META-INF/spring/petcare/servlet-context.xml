@@ -15,7 +15,7 @@
 	<!-- Configures the @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Resource handling -->
+	<!-- Resource handling: TODO replace with mvc:resources tag -->
 	<beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<beans:property name="order" value="2" />
 		<beans:property name="mappings">
