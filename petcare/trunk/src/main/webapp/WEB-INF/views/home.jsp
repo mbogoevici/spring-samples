@@ -3,7 +3,7 @@
 	This includes:
 </p>
 <ul>
-	<li>The @Controller programming model</li>
+	<li>The MVC @Controller programming model</li>
 	<li>Clean, Restful URLs utilizing URL Rewrite</li>
 	<li>Apache Tiles for page layout and composition</li>
 	<li>JSP templating for HTML pages</li>	
