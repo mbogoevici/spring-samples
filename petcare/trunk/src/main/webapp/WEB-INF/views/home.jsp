@@ -4,7 +4,7 @@
 </p>
 <ul>
 	<li>The MVC @Controller programming model</li>
-	<li>Clean, Restful URLs utilizing URL Rewrite</li>
+	<li>Clean, Restful URLs</li>
 	<li>Apache Tiles for page layout and composition</li>
 	<li>JSP templating for HTML pages</li>	
 	<li>jQuery JavaScript framework</li>
