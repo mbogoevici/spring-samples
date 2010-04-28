@@ -193,7 +193,6 @@ public class ResourceHttpRequestHandler implements HttpRequestHandler {
 
 		private ConcurrentMap<String, MediaType> mediaTypes = new ConcurrentHashMap<String, MediaType>();
 
-		@Override
 		public MediaType getMediaType(String filename) {
 			String extension = StringUtils.getFilenameExtension(filename);
 			if (!StringUtils.hasText(extension)) {

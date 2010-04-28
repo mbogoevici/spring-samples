@@ -84,7 +84,7 @@ var openid = {
 	cookie_name: 'openid_provider',
 	cookie_path: '/',
 	
-	img_path: '/petcare/resources/1.0.0/jquery/openid-selector/images/',
+	img_path: '/petcare/resources/jquery/openid-selector/images/',
 	
 	input_id: null,
 	provider_url: null,

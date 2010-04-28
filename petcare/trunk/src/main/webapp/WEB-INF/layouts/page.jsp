@@ -9,20 +9,20 @@
 	<title>
 		<tiles:insertAttribute name="title" />
 	</title>
-	<link rel="stylesheet" href="<c:url value="/resources/1.0.0/blueprint/screen.css" />" type="text/css" media="screen, projection" />
-	<link rel="stylesheet" href="<c:url value="/resources/1.0.0/blueprint/print.css" />" type="text/css" media="print" />
+	<link rel="stylesheet" href="<c:url value="/resources/blueprint/screen.css" />" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="<c:url value="/resources/blueprint/print.css" />" type="text/css" media="print" />
 	<!--[if lt IE 8]>
-		<link rel="stylesheet" href="<c:url value="/resources/1.0.0/blueprint/ie.css" />" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="<c:url value="/resources/blueprint/ie.css" />" type="text/css" media="screen, projection" />
 	<![endif]-->
-	<link rel="stylesheet" href="<c:url value="/resources/1.0.0/petcare.css" />" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<c:url value="/resources/petcare.css" />" type="text/css" media="screen" />
 	<tiles:useAttribute id="styles" name="styles" classname="java.util.List" ignore="true" />
 	<c:forEach var="style" items="${styles}">
-		<link rel="stylesheet" href="<c:url value="/resources/1.0.0/${style}" />" type="text/css" media="all" />
+		<link rel="stylesheet" href="<c:url value="/resources/${style}" />" type="text/css" media="all" />
 	</c:forEach>	
-	<script type="text/javascript" src="<c:url value="/resources/1.0.0/jquery/jquery.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery.min.js" />"></script>
 	<tiles:useAttribute id="scripts" name="scripts" classname="java.util.List" ignore="true" />
 	<c:forEach var="script" items="${scripts}">
-		<script type="text/javascript" src="<c:url value="/resources/1.0.0/${script}" />"></script>	
+		<script type="text/javascript" src="<c:url value="/resources/${script}" />"></script>	
 	</c:forEach>	
 </head>
 <body>
