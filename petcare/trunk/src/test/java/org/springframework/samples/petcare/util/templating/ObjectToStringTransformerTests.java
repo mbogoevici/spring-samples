@@ -1,4 +1,4 @@
-package org.springframework.samples.petcare.patients.util.templating;
+package org.springframework.samples.petcare.util.templating;
 
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;

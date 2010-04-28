@@ -64,10 +64,12 @@ public class ResourceHttpRequestHandler implements HttpRequestHandler {
 
 	private List<Resource> getResources(HttpServletRequest request) throws ServletException, IOException {
 		String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
-		String[] versionAndResource = splitVersionAndResourceElements(path, request);
-		String[] resourceElements = versionAndResource[1].split(",");
-		if (resourceElements.length == 0) {
-			throw new NoSuchRequestHandlingMethodException(request);			
+		if (path == null) {
+			throw new IllegalStateException("Required request attribute '" + HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE + "' is not set");			
+		}
+		String[] resourceElements = path.split(",");
+		if (resourceElements.length == 1 && resourceElements[0].length() == 0) {
+			throw new NoSuchRequestHandlingMethodException(request);
 		}
 		List<Resource> resources = new ArrayList<Resource>();
 		String[] dirAndFilename = splitDirectoryAndFilename(resourceElements[0]);
@@ -150,16 +152,6 @@ public class ResourceHttpRequestHandler implements HttpRequestHandler {
 			}
 		}
 	}
-
-	private String[] splitVersionAndResourceElements(String resourceString, HttpServletRequest request) throws ServletException {
-		int index = resourceString.indexOf('/', 1);
-		if (index == -1) {
-			throw new NoSuchRequestHandlingMethodException(request);
-		}
-		String versionPart = resourceString.substring(1, index);
-		String resourcePart = resourceString.substring(index + 1, resourceString.length());
-		return new String[] { versionPart, resourcePart };
-	}
 	
 	private String[] splitDirectoryAndFilename(String firstResourceElement) {
 		int index = firstResourceElement.lastIndexOf("/");
@@ -201,6 +193,7 @@ public class ResourceHttpRequestHandler implements HttpRequestHandler {
 
 		private ConcurrentMap<String, MediaType> mediaTypes = new ConcurrentHashMap<String, MediaType>();
 
+		@Override
 		public MediaType getMediaType(String filename) {
 			String extension = StringUtils.getFilenameExtension(filename);
 			if (!StringUtils.hasText(extension)) {
