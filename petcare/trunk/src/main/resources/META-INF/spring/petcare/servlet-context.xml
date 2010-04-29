@@ -17,7 +17,7 @@
 	<!-- Configures the @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Resource handling -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<petcare:resources />
 	
 	<!-- Resolves view names to tiles definitions loaded by the tilesConfigurer -->
