@@ -1,0 +1,1 @@
+http\://www.springframework.org/schema/petcare=org.springframework.samples.petcare.util.config.PetcareNamespaceHandler

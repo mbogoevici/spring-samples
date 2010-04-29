@@ -179,6 +179,7 @@ public class ResourceHttpRequestHandler implements HttpRequestHandler {
 	}
 		
 	// TODO promote to top-level and make reusable
+	// TODO check ServletContext.getMimeType(String) first
 	
 	public interface FileMediaTypeMap {
 		MediaType getMediaType(String fileName);
