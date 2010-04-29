@@ -12,15 +12,15 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/petcare http://www.springframework.org/schema/petcare/spring-petcare-3.0.xsd">
 		
-	<!-- SPRING MVC DISPATCHER SERVLET CONFIGURATION -->
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
-	<!-- Configures the @Controller programming model -->
+	<!-- Configures the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<petcare:resources />
 	
-	<!-- Resolves view names to tiles definitions loaded by the tilesConfigurer -->
+	<!-- Maps view names to Tiles Definitions -->
 	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</beans:bean>
@@ -35,10 +35,10 @@
 		</beans:property>
 	</beans:bean>
 	
-	<!-- Configures transaction management for @Transactional beans across all modules -->
+	<!-- Configures transaction management around @Transactional components -->
 	<tx:annotation-driven />
 
-	<!-- Imports the controllers of each application module that process client requests -->
+	<!-- Imports the application controllers that process client requests -->
 	<beans:import resource="controllers.xml" />
 	
 </beans:beans>
