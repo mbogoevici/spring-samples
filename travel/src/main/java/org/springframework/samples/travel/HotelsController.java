@@ -44,7 +44,7 @@ public class HotelsController {
 		return bookingService.findHotelById(id);
 	}
 
-	@RequestMapping(value="Iid}", method = RequestMethod.GET)
+	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
 	public String deleteBooking(@PathVariable Long id) {
 		bookingService.cancelBooking(id);
 		return "redirect:index";
