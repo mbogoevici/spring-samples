@@ -30,13 +30,7 @@
 	</flow-registry>
 		
 	<!-- Plugs in a custom creator for Web Flow views -->
-	<flow-builder-services id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator" development="true" />
-	
-	<!-- Configures Web Flow to use Tiles to create views for rendering; Tiles allows for applying consistent layouts to your views -->
-	<beans:bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator"> 
-		<beans:property name="viewResolvers" ref="viewResolver"/>
-		<beans:property name="useSpringBeanBinding" value="true" />
-	</beans:bean>
+	<flow-builder-services id="flowBuilderServices" development="true" />
 	
 	<!-- Installs a listener that manages JPA persistence contexts for flows that require them -->
 	<beans:bean id="jpaFlowEListener" class="org.springframework.webflow.persistence.JpaFlowExecutionListener">
