@@ -20,10 +20,10 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<ext:resources />
 	
-	<!-- Maps view names to Tiles Definitions -->
-	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
-	</beans:bean>
+	<!-- Maps view names to Tiles Definitions with support for partial re-rendering -->
+	<bean id="viewResolver" class="org.springframework.js.ajax.AjaxUrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.webflow.mvc.view.FlowAjaxTilesView"/>
+	</bean>
 		
 	<!-- Initializes the Apache Tiles CompositeView system -->
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">

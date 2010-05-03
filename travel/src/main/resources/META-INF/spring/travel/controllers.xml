@@ -11,10 +11,13 @@
 	<!-- Maps '/' requests to the 'home' view -->
 	<mvc:view-controller path="/" view-name="home"/>
 
-	<!-- Maps '/users/signin' requests to the 'users/signin' view -->
-	<mvc:view-controller path="/users/signin" />
+	<!-- Maps '/users/login' requests to the 'users/login' view -->
+	<mvc:view-controller path="/users/login" />
 
-	<!-- Custom FlowHandler for the hotel booking flow -->
+	<!-- Handler for executions of the 'hotels/booking' flow -->
 	<bean name="hotels/booking" class="org.springframework.samples.travel.BookingFlowHandler" />
-		 
+	
+	<!-- Scans for annotated @Controllers in the classpath -->
+	<context:component-scan base-package="org.springframework.samples.travel" />
+	 
 </beans>

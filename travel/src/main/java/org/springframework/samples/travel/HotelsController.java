@@ -3,7 +3,8 @@ package org.springframework.samples.travel;
 import java.security.Principal;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ public class HotelsController {
 
 	private BookingService bookingService;
 
-	@Autowired
+	@Inject
 	public HotelsController(BookingService bookingService) {
 		this.bookingService = bookingService;
 	}
