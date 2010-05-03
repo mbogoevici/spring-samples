@@ -195,6 +195,7 @@ public class Booking implements Serializable {
 		this.amenities = amenities;
 	}
 
+	// TODO replace with JSR 303
 	public void validateEnterBookingDetails(ValidationContext context) {
 		MessageContext messages = context.getMessageContext();
 		if (checkinDate.before(today())) {
