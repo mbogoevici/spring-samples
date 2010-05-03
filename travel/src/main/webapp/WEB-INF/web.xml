@@ -3,32 +3,34 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!--
+		The definition of the Root Spring Container shared by all Servlets andFilters
+	-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:/META-INF/spring/root-context.xml</param-value>
 	</context-param>
-	
+
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-	<!-- Secures the application -->
-    <filter>
-        <filter-name>springSecurity</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-        <init-param>
-        	<param-name>targetBeanName</param-name>
-        	<param-value>springSecurityFilterChain</param-value>
-        </init-param>
-    </filter>
 
-    <filter-mapping>
-      <filter-name>springSecurity</filter-name>
-      <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    	
+	<!-- Secures the application -->
+	<filter>
+		<filter-name>springSecurity</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetBeanName</param-name>
+			<param-value>springSecurityFilterChain</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurity</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- Handles all requests into the application -->
 	<servlet>
 		<servlet-name>travel</servlet-name>
@@ -39,7 +41,7 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-		
+
 	<servlet-mapping>
 		<servlet-name>travel</servlet-name>
 		<url-pattern>/</url-pattern>
