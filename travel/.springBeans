@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/resources/META-INF/spring/integration.xml</config>
 		<config>src/main/resources/META-INF/spring/security.xml</config>
+		<config>src/main/resources/META-INF/spring/theorchid/controllers.xml</config>
 	</configs>
 	<configSets>
 	</configSets>
