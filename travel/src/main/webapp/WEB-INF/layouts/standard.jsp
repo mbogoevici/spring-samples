@@ -21,7 +21,7 @@
 <div id="page" class="container">
 	<div id="header">
 		<div id="topbar">
-			<p class="alt2">
+			<p>
 				<security:authorize ifAllGranted="ROLE_USER">
 					<c:if test="${pageContext.request.userPrincipal != null}">
 						Welcome, ${pageContext.request.userPrincipal.name} |
@@ -33,7 +33,7 @@
 				</security:authorize>
 			</p>
 		</div>
-		<div id="log">
+		<div id="logo">
 			<p>
 				<a href="<c:url value="/" />">
 					<img src="<c:url value="/resources/images/header.jpg"/>" alt="Spring Travel" />
