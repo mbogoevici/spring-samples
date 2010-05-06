@@ -8,6 +8,7 @@
 
 	<!-- Maps request paths to flows in the flowRegistry; e.g. a path of /hotels/booking looks for a flow with id "hotels/booking" -->
 	<beans:bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<beans:property name="order" value="-1"/>
 		<beans:property name="flowRegistry" ref="flowRegistry" />
 	</beans:bean>
 
@@ -30,10 +31,15 @@
 	</flow-registry>
 		
 	<!-- Plugs in a custom creator for Web Flow views -->
-	<flow-builder-services id="flowBuilderServices" development="true" />
+	<flow-builder-services id="flowBuilderServices" view-factory-creator="viewFactoryCreator" development="true" />
+	
+	<!-- Configures Web Flow to use the "viewResolver" instance already defined for Spring MVC views in servlet-contex.xml -->
+	<beans:bean id="viewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator"> 
+		<beans:property name="viewResolvers" ref="viewResolver"/>
+	</beans:bean>
 	
 	<!-- Installs a listener that manages JPA persistence contexts for flows that require them -->
-	<beans:bean id="jpaFlowEListener" class="org.springframework.webflow.persistence.JpaFlowExecutionListener">
+	<beans:bean id="jpaFlowListener" class="org.springframework.webflow.persistence.JpaFlowExecutionListener">
 		<beans:constructor-arg ref="entityManagerFactory" />
 		<beans:constructor-arg ref="transactionManager" />
 	</beans:bean>

@@ -5,10 +5,10 @@
 	
 <tiles-definitions>
 	
-	<definition name="hotels/index" extends="standardLayout">
+	<definition name="hotels/search" extends="standardLayout">
 		<put-attribute name="body">
-			<definition template="/WEB-INF/views/hotels/index.jsp">
-				<put-attribute name="sarchForm" value="/WEB-INF/views/hotels/searchForm.jsp" />
+			<definition template="/WEB-INF/views/hotels/search.jsp">
+				<put-attribute name="searchForm" value="/WEB-INF/views/hotels/searchForm.jsp" />
 				<put-attribute name="bookingsTable" value="/WEB-INF/views/hotels/bookingsTable.jsp" />
 			</definition>
 		</put-attribute>

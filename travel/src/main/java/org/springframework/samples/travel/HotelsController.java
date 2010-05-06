@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/hotels")
 public class HotelsController {
 
 	private BookingService bookingService;
@@ -22,32 +21,31 @@ public class HotelsController {
 		this.bookingService = bookingService;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public void index(SearchCriteria searchCriteria, Principal currentUser,
-			Model model) {
+	@RequestMapping(value = "/hotels/search", method = RequestMethod.GET)
+	public void search(SearchCriteria searchCriteria, Principal currentUser, Model model) {
 		if (currentUser != null) {
-			List<Booking> booking = bookingService.findBookings(currentUser
-					.getName());
+			List<Booking> booking = bookingService.findBookings(currentUser.getName());
 			model.addAttribute(booking);
 		}
 	}
 
-	@RequestMapping(value="/search", method = RequestMethod.GET)
-	public String search(SearchCriteria criteria, Model model) {
+	@RequestMapping(value = "/hotels", method = RequestMethod.GET)
+	public String list(SearchCriteria criteria, Model model) {
 		List<Hotel> hotels = bookingService.findHotels(criteria);
 		model.addAttribute(hotels);
-		return "hotels/search";
+		return "hotels/list";
 	}
 
-	@RequestMapping(value="{id}", method = RequestMethod.GET)
-	public Hotel show(@PathVariable Long id) {
-		return bookingService.findHotelById(id);
+	@RequestMapping(value = "/hotels/{id}", method = RequestMethod.GET)
+	public String show(@PathVariable Long id, Model model) {
+		model.addAttribute(bookingService.findHotelById(id));
+		return "hotels/show";
 	}
 
-	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/bookings/{id}", method = RequestMethod.DELETE)
 	public String deleteBooking(@PathVariable Long id) {
 		bookingService.cancelBooking(id);
-		return "redirect:index";
+		return "redirect:../hotels/search";
 	}
 
 }

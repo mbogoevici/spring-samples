@@ -1,5 +1,6 @@
 package org.springframework.samples.travel;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
  * A hotel where users may book stays.
  */
 @Entity
-public class Hotel {
+public class Hotel implements Serializable {
 	
 	private Long id;
 
