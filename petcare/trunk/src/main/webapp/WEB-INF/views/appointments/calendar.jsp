@@ -41,7 +41,7 @@
 					<spring:eval expression="appointmentCalendar.appointments[i.count - 1][j.count - 1]" var="appointment" />
 					<c:choose>
 						<c:when test="${appointment != null}">
-							<td class="filled" data-id="<c:out value="${appointment.id} "/>" data-dateTime="<c:out value="${dateTime}" />" data-doctorId="<c:out value="${doctor.id}" />">
+							<td class="filled" data-id="<c:out value="${appointment.id}"/>" data-dateTime="<c:out value="${dateTime}" />" data-doctorId="<c:out value="${doctor.id}" />">
 								<div class="patient">
 									<c:out value="${appointment.patient}" />
 								</div>

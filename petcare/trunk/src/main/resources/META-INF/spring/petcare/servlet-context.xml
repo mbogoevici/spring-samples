@@ -29,7 +29,7 @@
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:value>
-				/WEB-INF/**/tiles.xml,
+				/WEB-INF/**/tiles.xml
 			</beans:value>
 		</beans:property>
 	</beans:bean>
