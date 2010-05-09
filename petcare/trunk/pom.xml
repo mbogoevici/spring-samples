@@ -380,6 +380,10 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<junitArtifactName>junit:junit</junitArtifactName>
+					<includes>
+						<include>**/*Test.java</include>
+						<include>**/*Tests.java</include>
+					</includes>
 					<excludes>
 						<exclude>**/*_Roo_*</exclude>
 					</excludes>

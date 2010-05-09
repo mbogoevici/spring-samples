@@ -13,7 +13,7 @@ public class ObjectToStringTransformerTests {
 
 	@Test
 	public void testGenerateDoctorEmail() {
-		transformer.setTemplate(new ClassPathResource("org/springframework/samples/petcare/appointments/integration/mail/new-appointment-mail.st"));
+		transformer.setTemplate(new ClassPathResource("org/springframework/samples/petcare/appointments/mail/new-appointment-mail.st"));
 		Appointment appointment = new Appointment();
 		appointment.setPatient("Macy");
 		appointment.setClient("Keith Donald");

@@ -1,23 +1,26 @@
 package org.springframework.samples.petcare;
 
-import javax.inject.Inject;
-
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.FileSystemResourceLoader;
+import org.springframework.mock.web.MockServletContext;
 import org.springframework.samples.petcare.appointments.integration.AppointmentMessageGateway;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={
-	"classpath:/META-INF/spring/root-context.xml",
-	"classpath:/META-INF/spring/petcare-servlet/servlet-context.xml"
-})
 public class ContainerInitTests {
 
-	@Inject
-	private ApplicationContext context;
+	private XmlWebApplicationContext context;
+	
+	@Before
+	public void setup() {
+		context = new XmlWebApplicationContext();
+		context.setServletContext(new MockServletContext("src/main/webapp",new FileSystemResourceLoader()));
+		context.setConfigLocations(new String[] {
+				"classpath:/META-INF/spring/root-context.xml",
+				"classpath:/META-INF/spring/petcare/servlet-context.xml"
+			});
+		context.refresh();
+	}
 	
 	@Test
 	public void testOk() {
