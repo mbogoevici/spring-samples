@@ -25,6 +25,7 @@ public class AppointmentsController {
 
 	private final AppointmentService appointmentService;
 
+	/* A reference to a session-scoped bean */
 	private final Provider<AppointmentCalendarMessageQueue> messageQueueProvider;
 	
 	@Inject
