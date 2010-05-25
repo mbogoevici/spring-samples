@@ -32,6 +32,7 @@
 				/WEB-INF/**/tiles.xml
 			</beans:value>
 		</beans:property>
+		<beans:property name="checkRefresh" value="true" />
 	</beans:bean>
 	
 	<!-- Configures transaction management around @Transactional components -->
