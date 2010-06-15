@@ -1,0 +1,39 @@
+simple revisited:
+$.ajax({ url: "simple/textonly", dataType: "text", success: function(text) { console.log(text); } });
+
+data
+----
+with request body:
+$.ajax({ type: "POST", url: "data/body", data: "foo=bar", contentType: "text/plain", dataType: "text", success: function(text) { console.log(text); } });
+
+with http entity:
+$.ajax({ type: "POST", url: "data/entity", data: "foo=bar", contentType: "text/plain", dataType: "text", success: function(text) { console.log(text); } });
+
+.standard
+with char reader:
+$.ajax({ type: "POST", url: "data/standard/request/reader", data: "foo=bar", contentType: "text/plain", dataType: "text", success: function(text) { console.log(text); } });
+
+with is:
+$.ajax({ type: "POST", url: "data/standard/request/is", data: "foo=bar", contentType: "text/plain", dataType: "text", success: function(text) { console.log(text); } });
+
+
+messageconverters
+-----
+.string:
+$.ajax({ type: "GET", url: "messageconverters/string", dataType: "text", success: function(text) { console.log(text); } });
+$.ajax({ type: "POST", url: "messageconverters/string", data: "foo", contentType: "text/plain", dataType: "text", success: function(text) { console.log(text); } });
+
+.form:
+$.ajax({ type: "GET", url: "messageconverters/form", beforeSend: function(req) { req.setRequestHeader("Accept", "application/x-www-form-urlencoded")}, success: function(text) { console.log(text); } });
+$.ajax({ type: "POST", url: "messageconverters/form", data: "foo=bar&fruit=apple", dataType: "text", success: function(text) { console.log(text); } });
+
+.jaxb2:
+$.ajax({ type: "POST", url: "messageconverters/xml", data: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><javaBean><foo>bar</foo><fruit>apple</fruit></javaBean>", contentType: "application/xml", dataType: "text", success: function(text) { console.log(text); } });
+
+.json:
+$.ajax({ type: "GET", url: "messageconverters/json", dataType: "json", success: function(text) { console.log(text); } });
+$.ajax({ type: "POST", url: "messageconverters/json", data: "{ \"foo\": \"bar\", \"fruit\": \"apple\" }", contentType: "application/json", dataType: "text", success: function(text) { console.log(text); } });
+
+.atom
+
+$.ajax({ type: "GET", url: "messageconverters/atom", beforeSend: function(req) { req.setRequestHeader("Accept", "application/atom+xml")}, success: function(text) { console.log(text); } });
