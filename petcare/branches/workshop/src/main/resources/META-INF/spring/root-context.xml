@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+	
+	<!-- Root Context: defines shared resources accessible to all other web components -->
+	
+	<!-- Local, JDBC-based TransactionManager -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- Shared JDBC Data Access Template -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+	
+	<!-- Embedded H2 Database -->		
+	<jdbc:embedded-database id="dataSource" type="H2">
+		<!-- TODO: populate database -->
+	</jdbc:embedded-database>
+	
+	<!-- Cache of string templates -->
+	<bean id="stringTemplateFactory" class="org.springframework.samples.petcare.util.templating.DefaultStringTemplateFactory" />
+
+	<!-- Mail sender -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="host" value="${mail.host}" />
+		<property name="port" value="${mail.port}" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
+		<property name="javaMailProperties">
+			<value>
+				mail.debug=true
+				mail.smtp.auth=true
+				mail.smtp.socketFactory.port=${mail.port}
+				mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
+				mail.smtp.socketFactory.fallback=false
+			</value>
+		</property>
+	</bean>
+
+	<!-- Substitute ${placeholders} with externalized application properties -->	
+	<context:property-placeholder location="classpath:application.properties" />
+	
+	<!-- Configures Shared Integration Layer -->
+	<import resource="integration.xml" />
+
+	<!-- Configures Shared Security Layer -->
+	<import resource="security.xml" />
+		
+</beans>

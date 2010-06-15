@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Appointment Calendar -->
+	<definition name="appointments" extends="page">
+		<put-attribute name="title" value="Appointments" type="string" />
+		<put-attribute name="content" value="/WEB-INF/views/appointments/calendar.jsp" type="template" />
+		<put-list-attribute name="scripts">
+			<add-attribute value="jquery/ui/jquery-ui.min.js" />
+		</put-list-attribute>
+		<put-list-attribute name="styles">
+			<add-attribute value="jquery/ui/themes/base/jquery-ui.css" />
+		</put-list-attribute>		
+	</definition>
+	
+</tiles-definitions>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	
+	<!-- Application Home -->
+	<definition name="users/signin" extends="page">
+		<put-attribute name="title" value="Sign In" type="string" />
+		<put-attribute name="content" value="/WEB-INF/views/users/signin.jsp" type="template" />
+		<put-list-attribute name="scripts">
+			<add-attribute value="jquery/openid-selector/js/openid-jquery.js" />
+		</put-list-attribute>
+		<put-list-attribute name="styles">
+			<add-attribute value="jquery/openid-selector/css/openid.css" />
+		</put-list-attribute>		
+	</definition>
+			
+</tiles-definitions>

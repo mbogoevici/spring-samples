@@ -1,0 +1,16 @@
+#logo h1 {
+	margin-bottom: 0;	
+}
+
+#navigation ul {
+	margin-left: 0;
+	list-style: none;
+}
+
+#navigation li {
+	float: left;
+}
+
+#appointmentNavigation a {
+	margin-right: 3px;
+}
