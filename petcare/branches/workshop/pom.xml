@@ -9,7 +9,7 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>3.0.3.BUILD-SNAPSHOT</org.springframework-version>
+		<org.springframework-version>3.0.3.RELEASE</org.springframework-version>
 		<org.springframework.integration-version>2.0.0.M4</org.springframework.integration-version>
 		<org.springframework.security-version>3.0.2.RELEASE</org.springframework.security-version>
 		<org.aspectj-version>1.6.8</org.aspectj-version>
@@ -130,25 +130,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.mail</groupId>
-					<artifactId>mail</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.jms</groupId>
-					<artifactId>jms</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jdmk</groupId>
-					<artifactId>jmxtools</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jmx</groupId>
-					<artifactId>jmxri</artifactId>
-				</exclusion>
-			</exclusions>
+			<version>1.2.16</version>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -250,7 +232,7 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.4.2</version>
+			<version>1.5.3</version>
 		</dependency>
 		
 		<!-- Test -->
@@ -283,13 +265,6 @@
 			<url>http://maven.springframework.org/milestone</url>
 			<snapshots><enabled>false</enabled></snapshots>
 		</repository>		
-		<!-- Maven Central -->
-		<repository>
-			<id>org.maven.central</id>
-			<name>Maven Central Repository</name>
-			<url>http://repo1.maven.org/maven2</url>
-			<snapshots><enabled>false</enabled></snapshots>
-		</repository>
 		
 		<!-- For released artifacts not in Maven Central -->
 		
@@ -298,18 +273,14 @@
 			<id>com.springsource.repository.bundles.release</id>
 			<name>SpringSource Bundle Repository</name>
 			<url>http://repository.springsource.com/maven/bundles/release</url>
-	   		<snapshots>
-        		<enabled>false</enabled>
-    		</snapshots>
+			<snapshots><enabled>false</enabled></snapshots>			
 		</repository>
 		<!-- Needed for Hibernate, which is not published to central -->
 		<repository>
-			<id>org.jboss.repository</id>
-			<name>JBoss Maven Repository</name>			
-			<url>http://repository.jboss.org/maven2</url>
-	   		<snapshots>
-        		<enabled>false</enabled>
-    		</snapshots>
+			<id>org.jboss.repository.releases</id>
+			<name>JBoss Maven Release Repository</name>			
+			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+			<snapshots><enabled>false</enabled></snapshots>			
 		</repository>
 	</repositories>
 	<build>
