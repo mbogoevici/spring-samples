@@ -60,7 +60,7 @@ public class ResourceHttpRequestHandlerTests {
 	@Test
 	public void getResourceBundleDifferentTypes() throws Exception {
 		MockHttpServletRequest request = new MockHttpServletRequest();
-		request.setRequestURI("/app/resources/foo.css,bar.css");
+		request.setRequestURI("/app/resources/foo.css,bar.js");
 		request.setAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE, "/foo.css,/js/bar.js");
 		request.setMethod("GET");
 		MockHttpServletResponse response = new MockHttpServletResponse();
