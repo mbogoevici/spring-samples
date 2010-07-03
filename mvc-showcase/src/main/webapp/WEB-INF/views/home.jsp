@@ -20,7 +20,7 @@
 			<a id="simpleTextOnly" href="<c:url value="/simple/textonly" />">GET /simple/textonly</a>
 			<script type="text/javascript">
 				$("#simpleTextOnly").click(function(){
-					$.ajax({ url: "simple/textonly", dataType: "text", success: function(text) {
+					$.ajax({ url: this.href, dataType: "text", success: function(text) {
 							$("#simpleTextOnlyResponse").text("").fadeIn().text(text); 
 						}
 					});					
@@ -56,7 +56,7 @@
 			<a id="mappingByHeader" href="<c:url value="/mapping/header" />">Mapping by presence of header</a>
 			<script type="text/javascript">
 				$("#mappingByHeader").click(function(){
-					$.ajax({ url: "mapping/header", dataType: "text", success: function(text) {
+					$.ajax({ url: this.href, dataType: "text", success: function(text) {
 							$("#mappingByHeaderTextResponse").text("").fadeIn().text(text); 
 						}
 					});					
