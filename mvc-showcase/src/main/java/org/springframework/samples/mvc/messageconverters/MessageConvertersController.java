@@ -1,8 +1,5 @@
 package org.springframework.samples.mvc.messageconverters;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -12,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sun.syndication.feed.atom.Feed;
-import com.sun.syndication.feed.synd.SyndContent;
-import com.sun.syndication.feed.synd.SyndContentImpl;
-import com.sun.syndication.feed.synd.SyndEntry;
-import com.sun.syndication.feed.synd.SyndEntryImpl;
 
 @Controller
 @RequestMapping("messageconverters/*")
@@ -25,7 +18,7 @@ public class MessageConvertersController {
 
 	@RequestMapping(value="/string", method=RequestMethod.POST, headers={"Content-Type=text/*", "Accept=text/plain" })
 	public @ResponseBody String readString(@RequestBody String string) {
-		return "Read string " + string;
+		return "Read string '" + string + "'";
 	}
 	
 	@RequestMapping(value="/string", method=RequestMethod.GET, headers="Accept=text/plain")

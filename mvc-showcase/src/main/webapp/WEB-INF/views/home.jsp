@@ -17,7 +17,7 @@
 			<a href="<c:url value="/simple" />">GET /simple</a>
 		</li>
 		<li>
-			<a id="simpleTextOnly" href="<c:url value="/simple/textonly" />">GET /simple/textonly</a>
+			<a id="simpleTextOnly" href="<c:url value="/simple/textonly" />">GET /simple/textonly</a> <span id="simpleTextOnlyResponse" class="responseMessage"></span>
 			<script type="text/javascript">
 				$("#simpleTextOnly").click(function(){
 					$.ajax({ url: this.href, dataType: "text", success: function(text) {
@@ -27,7 +27,6 @@
 					return false;
 				});
 			</script>
-			<span id="simpleTextOnlyResponse" class="responseMessage"></span>
 		</li>
 		<li>
 			<a href="<c:url value="/simple/textonly" />">GET /simple/textonly</a> (Error due to wrong Accept header)	
@@ -53,7 +52,7 @@
 			<a href="<c:url value="/mapping/parameter" />">By path, method, and not presence of parameter</a>
 		</li>
 		<li>
-			<a id="mappingByHeader" href="<c:url value="/mapping/header" />">By presence of header</a>
+			<a id="mappingByHeader" href="<c:url value="/mapping/header" />">By presence of header</a> <span id="mappingByHeaderTextResponse" class="responseMessage"></span>
 			<script type="text/javascript">
 				$("#mappingByHeader").click(function(){
 					$.ajax({ url: this.href, dataType: "text", success: function(text) {
@@ -63,10 +62,9 @@
 					return false;
 				});
 			</script>
-			<span id="mappingByHeaderTextResponse" class="responseMessage"></span>
 		</li>
 		<li>
-			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/header" />">By not presence of header</a>
+			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/header" />">By not presence of header</a> <span id="mappingByHeaderNegationTextResponse" class="responseMessage"></span>			
 			<script type="text/javascript">
 				$("#mappingByHeaderNegation").click(function(){
 					$.ajax({ url: this.href, dataType: "text",
@@ -80,7 +78,6 @@
 					return false;
 				});
 			</script>
-			<span id="mappingByHeaderNegationTextResponse" class="responseMessage"></span>			
 		</li>		
 		<li>
 			<a href="<c:url value="/mapping/wildcard" />">By regexp</a>
@@ -107,7 +104,7 @@
 		</li>
 		<li>
 			<form id="requestBody" action="<c:url value="/data/body" />" method="post">
-				<input type="submit" value="Request Body" /><span id="requestBodyTextResponse" class="responseMessage"></span>		
+				<input type="submit" value="Request Body" /> <span id="requestBodyTextResponse" class="responseMessage"></span>		
 			</form>
 			<script type="text/javascript">
 				$("form#requestBody").submit(function(){
@@ -144,7 +141,7 @@
 			</li>
 			<li>
 				<form id="requestReader" action="<c:url value="/data/standard/request/reader" />" method="post">
-					<input type="submit" value="Request Reader" /><span id="requestReaderTextResponse" class="responseMessage"></span>		
+					<input type="submit" value="Request Reader" /> <span id="requestReaderTextResponse" class="responseMessage"></span>		
 				</form>
 				<script type="text/javascript">
 					$("form#requestReader").submit(function(){
@@ -159,7 +156,7 @@
 			</li>			
 			<li>
 				<form id="requestIs" action="<c:url value="/data/standard/request/is" />" method="post">
-					<input type="submit" value="Request InputStream" /><span id="requestIsTextResponse" class="responseMessage"></span>		
+					<input type="submit" value="Request InputStream" /> <span id="requestIsTextResponse" class="responseMessage"></span>		
 				</form>
 				<script type="text/javascript">
 					$("form#requestIs").submit(function(){
@@ -210,7 +207,36 @@
 	</ul>	
 </div>
 <div id="messageconverters">
-
+	<h3>Message Converters</h3>
+	<ul>
+		<li>
+			<form id="readString" action="<c:url value="/messageconverters/string" />" method="post">
+				<input type="submit" value="Read a String" /> <span id="readStringResponse" class="responseMessage"></span>		
+			</form>
+			<script type="text/javascript">
+				$("form#readString").submit(function(){
+					$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
+						success: function(text) {
+							$("#readStringResponse").text("").fadeIn().text(text); 
+						}
+					});					
+					return false;
+				});
+			</script>
+		</li>
+		<li>
+			<a id="writeString" href="<c:url value="/messageconverters/string" />">Write a String</a> <span id="writeStringResponse" class="responseMessage"></span>
+			<script type="text/javascript">
+				$("#writeString").click(function(){
+					$.ajax({ url: this.href, dataType: "text", success: function(text) {
+							$("#writeStringResponse").text("").fadeIn().text(text); 
+						}
+					});					
+					return false;
+				});
+			</script>								
+		</li>
+	</ul>			
 </div>
 <div id="views">
 
