@@ -207,36 +207,39 @@
 	</ul>	
 </div>
 <div id="messageconverters">
-	<h3>Message Converters</h3>
-	<ul>
-		<li>
-			<form id="readString" action="<c:url value="/messageconverters/string" />" method="post">
-				<input type="submit" value="Read a String" /> <span id="readStringResponse" class="responseMessage"></span>		
-			</form>
-			<script type="text/javascript">
-				$("form#readString").submit(function(){
-					$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
-						success: function(text) {
-							$("#readStringResponse").text("").fadeIn().text(text); 
-						}
-					});					
-					return false;
-				});
-			</script>
-		</li>
-		<li>
-			<a id="writeString" href="<c:url value="/messageconverters/string" />">Write a String</a> <span id="writeStringResponse" class="responseMessage"></span>
-			<script type="text/javascript">
-				$("#writeString").click(function(){
-					$.ajax({ url: this.href, dataType: "text", success: function(text) {
-							$("#writeStringResponse").text("").fadeIn().text(text); 
-						}
-					});					
-					return false;
-				});
-			</script>								
-		</li>
-	</ul>			
+	<h2>Http Message Converters</h2>
+	<div id="stringMessageConverter">
+		<h3>StringHttpMessageConverer</h3>
+		<ul>
+			<li>
+				<form id="readString" action="<c:url value="/messageconverters/string" />" method="post">
+					<input type="submit" value="Read a String" /> <span id="readStringResponse" class="responseMessage"></span>		
+				</form>
+				<script type="text/javascript">
+					$("form#readString").submit(function(){
+						$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
+							success: function(text) {
+								$("#readStringResponse").text("").fadeIn().text(text); 
+							}
+						});					
+						return false;
+					});
+				</script>
+			</li>
+			<li>
+				<a id="writeString" href="<c:url value="/messageconverters/string" />">Write a String</a> <span id="writeStringResponse" class="responseMessage"></span>
+				<script type="text/javascript">
+					$("#writeString").click(function(){
+						$.ajax({ url: this.href, dataType: "text", success: function(text) {
+								$("#writeStringResponse").text("").fadeIn().text(text); 
+							}
+						});					
+						return false;
+					});
+				</script>								
+			</li>
+		</ul>
+	</div>
 </div>
 <div id="views">
 
