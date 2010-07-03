@@ -41,19 +41,19 @@
 	</p>
 	<ul>
 		<li>
-			<a href="<c:url value="/mapping/path" />">Mapping by path</a>
+			<a href="<c:url value="/mapping/path" />">By path</a>
 		</li>
 		<li>
-			<a href="<c:url value="/mapping/method" />">Mapping by path and method</a>
+			<a href="<c:url value="/mapping/method" />">By path and method</a>
 		</li>
 		<li>
-			<a href="<c:url value="/mapping/parameter?foo=bar" />">Mapping by path, method, and presence of parameter</a>
+			<a href="<c:url value="/mapping/parameter?foo=bar" />">By path, method, and presence of parameter</a>
 		</li>
 		<li>
-			<a href="<c:url value="/mapping/parameter" />">Mapping by path, method, and not presence of parameter</a>
+			<a href="<c:url value="/mapping/parameter" />">By path, method, and not presence of parameter</a>
 		</li>
 		<li>
-			<a id="mappingByHeader" href="<c:url value="/mapping/header" />">Mapping by presence of header</a>
+			<a id="mappingByHeader" href="<c:url value="/mapping/header" />">By presence of header</a>
 			<script type="text/javascript">
 				$("#mappingByHeader").click(function(){
 					$.ajax({ url: this.href, dataType: "text", success: function(text) {
@@ -66,7 +66,7 @@
 			<span id="mappingByHeaderTextResponse" class="responseMessage"></span>
 		</li>
 		<li>
-			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/header" />">Mapping by not presence of header</a>
+			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/header" />">By not presence of header</a>
 			<script type="text/javascript">
 				$("#mappingByHeaderNegation").click(function(){
 					$.ajax({ url: this.href, dataType: "text",
@@ -83,7 +83,7 @@
 			<span id="mappingByHeaderNegationTextResponse" class="responseMessage"></span>			
 		</li>		
 		<li>
-			<a href="<c:url value="/mapping/wildcard" />">Mapping by regexp</a>
+			<a href="<c:url value="/mapping/wildcard" />">By regexp</a>
 		</li>		
 	</ul>
 </div>
@@ -196,7 +196,18 @@
 	</div>
 </div>
 <div id="response">
-
+	<h2>Writing Responses</h2>
+	<ul>
+		<li>
+			<a href="<c:url value="/response/annotation" />">@ResponseBody</a>			
+		</li>
+		<li>
+			<a href="<c:url value="/response/entity/status" />">ResponseEntity (custom status)</a>			
+		</li>
+		<li>
+			<a href="<c:url value="/response/entity/headers" />">ResponseEntity (custom headers)</a>			
+		</li>
+	</ul>	
 </div>
 <div id="messageconverters">
 

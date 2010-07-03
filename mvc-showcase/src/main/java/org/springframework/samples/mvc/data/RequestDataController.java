@@ -32,7 +32,7 @@ public class RequestDataController {
 
 	@RequestMapping(value="header")
 	public @ResponseBody String withHeader(@RequestHeader String Accept) {
-		return "Obtained 'Accepts' header '" + Accept + "'";
+		return "Obtained 'Accept' header '" + Accept + "'";
 	}
 
 	@RequestMapping(value="cookie")
