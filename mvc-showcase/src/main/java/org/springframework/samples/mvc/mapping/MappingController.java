@@ -33,7 +33,7 @@ public class MappingController {
 		return "Mapped by path + method + header!";
 	}
 
-	@RequestMapping(value="/mapping/header", method=RequestMethod.GET, headers={ "Accept=text/*", "!Accept=text/plain" })
+	@RequestMapping(value="/mapping/header", method=RequestMethod.GET, headers={ "!Accept=text/plain" })
 	public @ResponseBody String byHeaderNegation() {
 		return "Mapped by path + method + header with negation!";
 	}

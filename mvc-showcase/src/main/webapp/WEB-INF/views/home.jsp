@@ -35,7 +35,43 @@
 	</ul>
 </div>
 <div id="mapping">
-
+	<h2>Request Mapping</h2>
+	<p>
+		See the <code>org.springframework.samples.mvc.mapping</code> package for the @Controller code
+	</p>
+	<ul>
+		<li>
+			<a href="<c:url value="/mapping/path" />">Mapping by path</a>
+		</li>
+		<li>
+			<a href="<c:url value="/mapping/method" />">Mapping by path and method</a>
+		</li>
+		<li>
+			<a href="<c:url value="/mapping/parameter?foo=bar" />">Mapping by path, method, and presence of parameter</a>
+		</li>
+		<li>
+			<a href="<c:url value="/mapping/parameter" />">Mapping by path, method, and not presence of parameter</a>
+		</li>
+		<li>
+			<a id="mappingByHeader" href="<c:url value="/mapping/header" />">Mapping by presence of header</a>
+			<script type="text/javascript">
+				$("#mappingByHeader").click(function(){
+					$.ajax({ url: "mapping/header", dataType: "text", success: function(text) {
+							$("#mappingByHeaderTextResponse").text("").fadeIn().text(text); 
+						}
+					});					
+					return false;
+				});
+			</script>
+			<span id="mappingByHeaderTextResponse" class="responseMessage"></span>
+		</li>
+		<li>
+			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/header" />">Mapping by not presence of header</a>
+		</li>		
+		<li>
+			<a href="<c:url value="/mapping/wildcard" />">Mapping by regexp</a>
+		</li>		
+	</ul>
 </div>
 <div id="data">
 
