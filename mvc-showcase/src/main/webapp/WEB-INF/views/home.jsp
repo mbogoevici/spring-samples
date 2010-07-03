@@ -35,7 +35,7 @@
 	</ul>
 </div>
 <div id="mapping">
-	<h2>Request Mapping</h2>
+	<h2>Mapping Requests</h2>
 	<p>
 		See the <code>org.springframework.samples.mvc.mapping</code> package for the @Controller code
 	</p>
@@ -67,6 +67,20 @@
 		</li>
 		<li>
 			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/header" />">Mapping by not presence of header</a>
+			<script type="text/javascript">
+				$("#mappingByHeaderNegation").click(function(){
+					$.ajax({ url: this.href, dataType: "text",
+						beforeSend: function(req) {
+							req.setRequestHeader("Accept", "text/foo");
+						}, 
+						success: function(text) {
+							$("#mappingByHeaderNegationTextResponse").text("").fadeIn().text(text); 
+						}
+					});					
+					return false;
+				});
+			</script>
+			<span id="mappingByHeaderNegationTextResponse" class="responseMessage"></span>			
 		</li>		
 		<li>
 			<a href="<c:url value="/mapping/wildcard" />">Mapping by regexp</a>
@@ -74,7 +88,54 @@
 	</ul>
 </div>
 <div id="data">
-
+	<h2>Obtaining Request Data</h2>
+	<p>
+		See the <code>org.springframework.samples.mvc.data</code> package for the @Controller code
+	</p>
+	<ul>
+		<li>
+			<a href="<c:url value="/data/param?foo=bar" />">Query parameter</a>
+		</li>
+		<li>
+			<a href="<c:url value="/data/group?param1=foo&param2=bar&param3=baz" />">Group of query parameters</a>
+		</li>
+		<li>
+			<a href="<c:url value="/data/path/foo" />">Path variable</a>
+		</li>
+		<li>
+			<a href="<c:url value="/data/header" />">Header</a>
+		</li>
+		<li>
+			<form id="requestBody" action="<c:url value="/data/body" />" method="post">
+				<input type="submit" value="Request Body" /><span id="requestBodyTextResponse" class="responseMessage"></span>		
+			</form>
+			<script type="text/javascript">
+				$("form#requestBody").submit(function(){
+					$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
+						success: function(text) {
+							$("#requestBodyTextResponse").text("").fadeIn().text(text); 
+						}
+					});					
+					return false;
+				});
+			</script>
+		</li>				
+		<li>
+			<form id="requestEntity" action="<c:url value="/data/entity" />" method="post">
+				<input type="submit" value="Request Body and Headers" /> <span id="requestEntityTextResponse" class="responseMessage"></span>
+			</form>
+			<script type="text/javascript">
+				$("form#requestEntity").submit(function(){
+					$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
+						success: function(text) {
+							$("#requestEntityTextResponse").text("").fadeIn().text(text); 
+						}
+					});					
+					return false;
+				});
+			</script>
+		</li>
+	</ul>	
 </div>
 <div id="response">
 

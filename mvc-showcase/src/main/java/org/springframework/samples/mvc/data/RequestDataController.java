@@ -17,7 +17,7 @@ public class RequestDataController {
 
 	@RequestMapping(value="param")
 	public @ResponseBody String withParam(@RequestParam String foo) {
-		return "Obtained 'foo' query parameter value " + foo;
+		return "Obtained 'foo' query parameter value '" + foo + "'";
 	}
 
 	@RequestMapping(value="group")
@@ -25,29 +25,29 @@ public class RequestDataController {
 		return "Obtained parameter group " + bean;
 	}
 
-	@RequestMapping(value="var/{var}")
+	@RequestMapping(value="path/{var}")
 	public @ResponseBody String withPathVariable(@PathVariable String var) {
-		return "Obtained 'var' path variable " + var;
+		return "Obtained 'var' path variable value '" + var + "'";
 	}
 
 	@RequestMapping(value="header")
 	public @ResponseBody String withHeader(@RequestHeader String Accept) {
-		return "Obtained 'Accepts' header " + Accept;
+		return "Obtained 'Accepts' header '" + Accept + "'";
 	}
 
 	@RequestMapping(value="cookie")
 	public @ResponseBody String withCookie(@CookieValue String openid_provider) {
-		return "Obtained 'openid_provider' cookie " + openid_provider;
+		return "Obtained 'openid_provider' cookie '" + openid_provider + "'";
 	}
 
 	@RequestMapping(value="body", method=RequestMethod.POST)
 	public @ResponseBody String withBody(@RequestBody String body) {
-		return "Posted request body " + body;
+		return "Posted request body '" + body + "'";
 	}
 
 	@RequestMapping(value="entity", method=RequestMethod.POST)
 	public @ResponseBody String withEntity(HttpEntity<String> entity) {
-		return "Posted request body " + entity.getBody() + "; headers = " + entity.getHeaders();
+		return "Posted request body '" + entity.getBody() + "'; headers = " + entity.getHeaders();
 	}
 
 }
