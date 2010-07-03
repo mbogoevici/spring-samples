@@ -8,6 +8,10 @@
 <body>
 <h1>mvc-showcase</h1>
 <div id="simple">
+	<h2>Simple</h2>
+	<p>
+		See the <code>org.springframework.samples.mvc.simple</code> package for the @Controller code
+	</p>
 	<ul>
 		<li>
 			<a href="<c:url value="/simple" />">GET /simple</a>
