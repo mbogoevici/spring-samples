@@ -26,7 +26,7 @@
 			<span id="simpleTextOnlyResponse" class="responseMessage"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/simple/textonly" />">GET /simple/textonly</a> (404 due to wrong Accept header)	
+			<a href="<c:url value="/simple/textonly" />">GET /simple/textonly</a> (Error due to wrong Accept header)	
 		</li>
 	</ul>
 </div>
