@@ -136,6 +136,64 @@
 			</script>
 		</li>
 	</ul>	
+	<div id="standardArgs">
+		<h3>Standard Resolvable Web Arguments</h3>
+		<ul>
+			<li>
+				<a href="<c:url value="/data/standard/request" />">Request arguments</a>					
+			</li>
+			<li>
+				<form id="requestReader" action="<c:url value="/data/standard/request/reader" />" method="post">
+					<input type="submit" value="Request Reader" /><span id="requestReaderTextResponse" class="responseMessage"></span>		
+				</form>
+				<script type="text/javascript">
+					$("form#requestReader").submit(function(){
+						$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
+							success: function(text) {
+								$("#requestReaderTextResponse").text("").fadeIn().text(text); 
+							}
+						});					
+						return false;
+					});
+				</script>
+			</li>			
+			<li>
+				<form id="requestIs" action="<c:url value="/data/standard/request/is" />" method="post">
+					<input type="submit" value="Request InputStream" /><span id="requestIsTextResponse" class="responseMessage"></span>		
+				</form>
+				<script type="text/javascript">
+					$("form#requestIs").submit(function(){
+						$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
+							success: function(text) {
+								$("#requestIsTextResponse").text("").fadeIn().text(text); 
+							}
+						});					
+						return false;
+					});
+				</script>
+			</li>
+			<li>
+				<a href="<c:url value="/data/standard/response" />">Response arguments</a>					
+			</li>			
+			<li>
+				<a href="<c:url value="/data/standard/response/writer" />">Response Writer</a>					
+			</li>
+			<li>
+				<a href="<c:url value="/data/standard/response/os" />">Response OutputStream</a>					
+			</li>
+			<li>
+				<a href="<c:url value="/data/standard/session" />">Session</a>					
+			</li>			
+		</ul>
+	</div>
+	<div id="customArgs">
+		<h3>Custom Resolvable Web Arguments</h3>	
+		<ul>
+			<li>
+				<a href="<c:url value="/data/custom" />">Custom</a>			
+			</li>
+		</ul>
+	</div>
 </div>
 <div id="response">
 

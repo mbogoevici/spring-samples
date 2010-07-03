@@ -26,8 +26,8 @@ public class StandardArgumentsController {
 	public @ResponseBody String availableStandardRequestArguments(HttpServletRequest request,
 			Principal userPrincipal, Locale requestLocale) {
 		StringBuilder buffer = new StringBuilder();
-		buffer.append("request = ").append(request).append("\n");
-		buffer.append("userPrincipal = ").append(userPrincipal).append("\n");
+		buffer.append("request = ").append(request).append(", ");
+		buffer.append("userPrincipal = ").append(userPrincipal).append(", ");
 		buffer.append("requestLocale = ").append(requestLocale);
 		return buffer.toString();
 	}
