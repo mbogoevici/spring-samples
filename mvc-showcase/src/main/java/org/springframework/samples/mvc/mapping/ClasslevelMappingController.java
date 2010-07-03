@@ -24,19 +24,19 @@ public class ClasslevelMappingController {
 		return "Mapped by path + method + presence of query parameter!";
 	}
 
-	@RequestMapping(value="/parameter", method=RequestMethod.GET, params= { "!foo" })
+	@RequestMapping(value="/parameter", method=RequestMethod.GET, params="!foo")
 	public @ResponseBody String byParameterNegation() {
-		return "Mapped by path + method + presence of query parameter with negation!";
+		return "Mapped by path + method + not presence of query!";
 	}
 
 	@RequestMapping(value="/header", method=RequestMethod.GET, headers="Accept=text/plain")
 	public @ResponseBody String byHeader() {
-		return "Mapped by path + method + header!";
+		return "Mapped by path + method + presence of header!";
 	}
 
-	@RequestMapping(value="/header", method=RequestMethod.GET, headers={ "Accept=text/*", "!Accept=text/plain" })
+	@RequestMapping(value="/header", method=RequestMethod.GET, headers="!Accept=text/plain")
 	public @ResponseBody String byHeaderNegation() {
-		return "Mapped by path + method + header with negation!";
+		return "Mapped by path + method + not presence header!";
 	}
 	
 	@RequestMapping(value="/*", method=RequestMethod.GET)

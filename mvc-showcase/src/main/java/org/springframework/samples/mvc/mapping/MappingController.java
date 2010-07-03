@@ -23,19 +23,19 @@ public class MappingController {
 		return "Mapped by path + method + presence of query parameter!";
 	}
 
-	@RequestMapping(value="/mapping/parameter", method=RequestMethod.GET, params= { "!foo" })
+	@RequestMapping(value="/mapping/parameter", method=RequestMethod.GET, params="!foo")
 	public @ResponseBody String byParameterNegation() {
-		return "Mapped by path + method + presence of query parameter with negation!";
+		return "Mapped by path + method + not presence of query parameter!";
 	}
 
 	@RequestMapping(value="/mapping/header", method=RequestMethod.GET, headers="Accept=text/plain")
 	public @ResponseBody String byHeader() {
-		return "Mapped by path + method + header!";
+		return "Mapped by path + method + presence of header!";
 	}
 
-	@RequestMapping(value="/mapping/header", method=RequestMethod.GET, headers={ "!Accept=text/plain" })
+	@RequestMapping(value="/mapping/header", method=RequestMethod.GET, headers="!Accept=text/plain")
 	public @ResponseBody String byHeaderNegation() {
-		return "Mapped by path + method + header with negation!";
+		return "<html><head><title>Header Negation Mapping</title></head><body>Mapped by path + method + not presence of header!</body></html>";
 	}
 	
 	@RequestMapping(value="/mapping/*", method=RequestMethod.GET)
