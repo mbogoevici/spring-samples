@@ -327,6 +327,25 @@
 				</script>								
 			</li>
 		</ul>
+		<h3>AtomFeedHttpMessageConverter</h3>
+		<ul>
+			<li>
+				<a id="writeFeed" href="<c:url value="/messageconverters/atom" />">Write Atom Feed</a> <span id="writeFeedResponse" class="responseMessage"></span>
+				<script type="text/javascript">
+					$("#writeFeed").click(function(){
+						$.ajax({ url: this.href,
+							beforeSend: function(req) { 
+								req.setRequestHeader("Accept", "application/atom+xml")
+							},
+							success: function(feed) {
+								$("#writeFeedResponse").text("").fadeIn().text($(feed).text());
+							}
+						});
+						return false;
+					});
+				</script>								
+			</li>
+		</ul>
 	</div>
 </div>
 <div id="views">
