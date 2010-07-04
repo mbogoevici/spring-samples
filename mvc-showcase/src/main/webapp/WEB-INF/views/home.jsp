@@ -209,7 +209,7 @@
 <div id="messageconverters">
 	<h2>Http Message Converters</h2>
 	<div id="stringMessageConverter">
-		<h3>StringHttpMessageConverer</h3>
+		<h3>StringHttpMessageConverter</h3>
 		<ul>
 			<li>
 				<form id="readString" action="<c:url value="/messageconverters/string" />" method="post">
@@ -232,6 +232,40 @@
 					$("#writeString").click(function(){
 						$.ajax({ url: this.href, dataType: "text", success: function(text) {
 								$("#writeStringResponse").text("").fadeIn().text(text); 
+							}
+						});					
+						return false;
+					});
+				</script>								
+			</li>
+		</ul>
+		<h3>FormHttpMessageConverter</h3>
+		<ul>
+			<li>
+				<form id="readForm" action="<c:url value="/messageconverters/form" />" method="post">
+					<input type="submit" value="Read a Form" /> <span id="readFormResponse" class="responseMessage"></span>		
+				</form>
+				<script type="text/javascript">
+					$("#readForm").submit(function(){
+						$.ajax({ type: "POST", url: this.action, data: "foo=bar&fruit=apple", contentType: "application/x-www-form-urlencoded", dataType: "text",
+							success: function(text) {
+								$("#readFormResponse").text("").fadeIn().text(text); 
+							}
+						});					
+						return false;
+					});
+				</script>
+			</li>
+			<li>
+				<a id="writeForm" href="<c:url value="/messageconverters/form" />">Write a Form</a> <span id="writeFormResponse" class="responseMessage"></span>
+				<script type="text/javascript">
+					$("#writeForm").click(function(){
+						$.ajax({ url: this.href, dataType: "text",
+							beforeSend: function(req) { 
+								req.setRequestHeader("Accept", "application/x-www-form-urlencoded");
+							},							
+							success: function(text) {
+								$("#writeFormResponse").text("").fadeIn().text(text); 
 							}
 						});					
 						return false;
