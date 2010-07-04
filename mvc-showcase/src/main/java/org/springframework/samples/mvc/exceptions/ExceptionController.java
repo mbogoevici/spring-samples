@@ -1,4 +1,4 @@
-package org.springframework.samples.mvc.views.exceptions;
+package org.springframework.samples.mvc.exceptions;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;

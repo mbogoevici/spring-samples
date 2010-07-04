@@ -3,18 +3,20 @@ package org.springframework.samples.mvc.views;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class ViewController {
+@RequestMapping("/views/*")
+public class ViewsController {
 
-	@RequestMapping("/view")
+	@RequestMapping(value="html", method=RequestMethod.GET)
 	public String prepare(Model model) {
 		model.addAttribute("foo", "bar");
 		model.addAttribute("fruit", "apple");
-		return "viewName";
+		return "views/html";
 	}
-
-	@RequestMapping("/viewName")
+	
+	@RequestMapping(value="/viewName", method=RequestMethod.GET)
 	public void usingRequestToViewNameTranslator(Model model) {
 		model.addAttribute("foo", "bar");
 		model.addAttribute("fruit", "apple");
