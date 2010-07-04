@@ -366,7 +366,7 @@
 	</ul>	
 	<ul>
 		<li>
-			<a href="<c:url value="/viewName" />">DefaultRequestToViewNameTranslator</a>
+			<a href="<c:url value="/views/viewName" />">DefaultRequestToViewNameTranslator convention</a>
 		</li>
 	</ul>	
 </div>
