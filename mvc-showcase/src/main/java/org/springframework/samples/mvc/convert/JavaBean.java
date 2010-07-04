@@ -20,8 +20,12 @@ public class JavaBean {
 	
 	// list will autogrow as its dereferenced e.g. numbers[0]=foo
 	private List<Integer> numbers;
-	
+
 	// map will autogrow as its deferenced e.g. fruits[1]=apple
 	private Map<Integer, String> fruits;
-	
+
+	// annotation type conversion rule will be applied to list elements
+	@DateTimeFormat(iso=ISO.DATE)
+	private List<Date> dates;
+
 }

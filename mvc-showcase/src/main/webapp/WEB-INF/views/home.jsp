@@ -371,7 +371,30 @@
 	</ul>	
 </div>
 <div id="convert">
-
+	<h2>Type Conversion</h2>
+	<p>
+		See the <code>org.springframework.samples.mvc.convert</code> package for the @Controller code
+	</p>
+	<ul>
+		<li>
+			<a href="<c:url value="/convert/primitive?number=3" />">String-to-primitive</a>
+		</li>
+		<li>
+			<a href="<c:url value="/convert/date/2010-07-04" />">String-to-date</a>
+		</li>
+		<li>
+			<a href="<c:url value="/convert/collection?numbers=1,2,3,4,5" />">String-to-collection</a>
+		</li>
+		<li>
+			<a href="<c:url value="/convert/dateCollection?dates=2010-07-04,2011-07-04" />">String-to-date collection</a>
+		</li>		
+		<li>
+			<a href="<c:url value="/convert/bean?number=3&date=2010-07-04&numbers[0]=1&numbers[1]=2&numbers[2]=3&fruits[0]=apple&fruits[1]=pear&dates[0]=2010-07-04&dates[1]=2011-07-04" />">JavaBean with String-to-propertyType conversion</a>
+		</li>
+		<li>
+			<a href="<c:url value="/convert/value?ssn=123456789" />">String-to-SocialSecurityNumber</a> (a custom value object)
+		</li>		
+	</ul>
 </div>
 <div id="validation">
 

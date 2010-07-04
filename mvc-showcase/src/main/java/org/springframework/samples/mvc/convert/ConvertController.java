@@ -20,7 +20,7 @@ public class ConvertController {
 		return "Converted " + number;
 	}
 
-	// requires Joda time library on classpath
+	// requires Joda-Time on the classpath
 	@RequestMapping("date/{date}")
 	public @ResponseBody String date(@PathVariable @DateTimeFormat(iso=ISO.DATE) Date date) {
 		return "Converted " + date;
@@ -30,12 +30,17 @@ public class ConvertController {
 	public @ResponseBody String collection(@RequestParam List<Integer> numbers) {
 		return "Converted " + numbers;
 	}
-	
+
+	@RequestMapping("dateCollection")
+	public @ResponseBody String dateCollection(@RequestParam @DateTimeFormat(iso=ISO.DATE) List<Date> dates) {
+		return "Converted " + dates;
+	}
+
 	@RequestMapping("bean")
 	public @ResponseBody String bean(JavaBean bean) {
 		return "Converted " + bean;
 	}
-	
+
 	@RequestMapping("value")
 	public @ResponseBody String valueObject(@RequestParam SocialSecurityNumber ssn) {
 		return "Converted " + ssn;

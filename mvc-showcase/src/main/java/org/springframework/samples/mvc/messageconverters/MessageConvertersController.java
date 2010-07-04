@@ -41,7 +41,7 @@ public class MessageConvertersController {
 		return map;
 	}
 
-	// Jaxb2RootElementHttpMessageConverter
+	// Jaxb2RootElementHttpMessageConverter (requires JAXB2 on the classpath)
 	
 	@RequestMapping(value="/xml", method=RequestMethod.POST, headers={"Content-Type=application/xml", "Accept=text/plain" })
 	public @ResponseBody String readXml(@RequestBody JavaBean bean) {
@@ -53,7 +53,7 @@ public class MessageConvertersController {
 		return new JavaBean();
 	}
 
-	// MappingJacksonHttpMessageConverter
+	// MappingJacksonHttpMessageConverter (requires Jackson on the classpath)
 	
 	@RequestMapping(value="/json", method=RequestMethod.POST, headers={"Content-Type=application/json", "Accept=text/plain" })
 	public @ResponseBody String readJson(@RequestBody JavaBean bean) {
@@ -65,7 +65,7 @@ public class MessageConvertersController {
 		return new JavaBean();
 	}
 
-	// AtomFeedHttpMessageConverter
+	// AtomFeedHttpMessageConverter (requires Rome on the classpath)
 	
 	@RequestMapping(value="/atom", method=RequestMethod.GET, headers="Accept=application/atom+xml")
 	public @ResponseBody Feed writeFeed() {

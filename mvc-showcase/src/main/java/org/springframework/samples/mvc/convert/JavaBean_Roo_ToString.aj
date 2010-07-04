@@ -9,7 +9,8 @@ privileged aspect JavaBean_Roo_ToString {
         sb.append("Number: ").append(getNumber()).append(", ");
         sb.append("Date: ").append(getDate()).append(", ");
         sb.append("Numbers: ").append(getNumbers() == null ? "null" : getNumbers().size()).append(", ");
-        sb.append("Fruits: ").append(getFruits() == null ? "null" : getFruits().size());
+        sb.append("Fruits: ").append(getFruits() == null ? "null" : getFruits().size()).append(", ");
+        sb.append("Dates: ").append(getDates() == null ? "null" : getDates().size());
         return sb.toString();
     }
     

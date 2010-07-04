@@ -1,5 +1,8 @@
 package org.springframework.samples.mvc.convert;
 
+import org.springframework.roo.addon.tostring.RooToString;
+
+@RooToString
 public final class SocialSecurityNumber {
 
 	private final String value;

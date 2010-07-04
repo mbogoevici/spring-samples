@@ -40,4 +40,12 @@ privileged aspect JavaBean_Roo_JavaBean {
         this.fruits = fruits;
     }
     
+    public List<Date> JavaBean.getDates() {
+        return this.dates;
+    }
+    
+    public void JavaBean.setDates(List<Date> dates) {
+        this.dates = dates;
+    }
+    
 }
