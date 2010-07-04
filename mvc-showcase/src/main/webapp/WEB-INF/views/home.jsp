@@ -397,10 +397,29 @@
 	</ul>
 </div>
 <div id="validation">
-
+	<h2>Validation</h2>
+	<p>
+		See the <code>org.springframework.samples.mvc.validation</code> package for the @Controller code	
+	</p>
+	<ul>
+		<li>
+			<a href="<c:url value="/validate?number=3&date=2029-07-04" />">Validate, no errors</a>
+		</li>
+		<li>
+			<a href="<c:url value="/validate?number=3&date=2010-07-01" />">Validate, errors</a>
+		</li>
+	</ul>	
 </div>
 <div id="exceptions">
-
+	<h2>Exception Handling</h2>
+	<p>
+		See the <code>org.springframework.samples.mvc.exceptions</code> package for the @Controller code	
+	</p>
+	<ul>
+		<li>
+			<a href="<c:url value="/exception" />">@Controller Exception handling</a>
+		</li>
+	</ul>
 </div>
 </body>
 </html>
