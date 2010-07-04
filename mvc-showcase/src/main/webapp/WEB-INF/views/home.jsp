@@ -5,8 +5,10 @@
 	<title>mvc-showcase</title>
 </head>
 <script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.4.2.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/json2.js" />"></script>
 <body>
 <h1>mvc-showcase</h1>
+<p>Remember to use a Web Developer tool such a Firebug to inspect the client/server interaction!</p>
 <div id="simple">
 	<h2>Simple</h2>
 	<p>
@@ -266,6 +268,58 @@
 							},							
 							success: function(text) {
 								$("#writeFormResponse").text("").fadeIn().text(text); 
+							}
+						});					
+						return false;
+					});
+				</script>								
+			</li>
+		</ul>
+		<h3>Jaxb2RootElementHttpMessageConverter</h3>
+		<ul>
+			<li>
+				<form id="readXml" action="<c:url value="/messageconverters/xml" />" method="post">
+					<input type="submit" value="Read XML" /> <span id="readXmlResponse" class="responseMessage"></span>		
+				</form>
+				<script type="text/javascript">
+					$("#readXml").submit(function(){
+						$.ajax({ type: "POST", url: this.action, data: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><javaBean><foo>bar</foo><fruit>apple</fruit></javaBean>", contentType: "application/xml", dataType: "text",
+							success: function(text) {
+								$("#readXmlResponse").text("").fadeIn().text(text); 
+							}
+						});					
+						return false;
+					});
+				</script>
+			</li>
+			<li>
+				<a id="writeXml" href="<c:url value="/messageconverters/xml" />">Write XML</a>
+			</li>
+		</ul>
+		<h3>MappingJacksonHttpMessageConverter</h3>
+		<ul>
+			<li>
+				<form id="readJson" action="<c:url value="/messageconverters/json" />" method="post">
+					<input type="submit" value="Read JSON" /> <span id="readJsonResponse" class="responseMessage"></span>		
+				</form>
+				<script type="text/javascript">
+					$("#readJson").submit(function(){
+						$.ajax({ type: "POST", url: this.action, data: "{ \"foo\": \"bar\", \"fruit\": \"apple\" }", contentType: "application/json", dataType: "text",
+							success: function(text) {
+								$("#readJsonResponse").text("").fadeIn().text(text); 
+							}
+						});					
+						return false;
+					});
+				</script>
+			</li>
+			<li>
+				<a id="writeJson" href="<c:url value="/messageconverters/json" />">Write JSON</a> <span id="writeJsonResponse" class="responseMessage"></span>
+				<script type="text/javascript">
+					$("#writeJson").click(function(){
+						$.ajax({ url: this.href, dataType: "json",
+							success: function(json) {
+								$("#writeJsonResponse").text("").fadeIn().text(JSON.stringify(json));
 							}
 						});					
 						return false;

@@ -41,7 +41,7 @@ public class MessageConvertersController {
 		return map;
 	}
 
-	// JAXB2RootElementHttpMessageConverter
+	// Jaxb2RootElementHttpMessageConverter
 	
 	@RequestMapping(value="/xml", method=RequestMethod.POST, headers={"Content-Type=application/xml", "Accept=text/plain" })
 	public @ResponseBody String readXml(@RequestBody JavaBean bean) {
