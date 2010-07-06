@@ -13,19 +13,33 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 public class JavaBean {
 	
-	private Integer number;
+	private Integer primitive;
 	
 	@DateTimeFormat(iso=ISO.DATE)
 	private Date date;
 	
-	// list will autogrow as its dereferenced e.g. numbers[0]=foo
-	private List<Integer> numbers;
+	// list will auto-grow as its dereferenced e.g. list[0]=value
+	private List<Integer> list;
 
-	// map will autogrow as its deferenced e.g. fruits[1]=apple
-	private Map<Integer, String> fruits;
-
-	// annotation type conversion rule will be applied to list elements
+	// annotation type conversion rule will be applied to each list element
 	@DateTimeFormat(iso=ISO.DATE)
-	private List<Date> dates;
+	private List<Date> formattedList;
 
+	// map will auto-grow as its dereferenced e.g. map[key]=value
+	private Map<Integer, String> map;
+
+	// nested will be set when it is referenced e.g. nested.foo=value
+	private NestedBean nested;
+	
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("JavaBean ");
+        sb.append("Primitive: ").append(getPrimitive()).append(", ");
+        sb.append("Date: ").append(getDate()).append(", ");
+        sb.append("List: ").append(getList() == null ? "null" : getList()).append(", ");
+        sb.append("FormattedList: ").append(getFormattedList() == null ? "null" : getFormattedList()).append(", ");
+        sb.append("Map: ").append(getMap() == null ? "null" : getMap()).append(", ");
+        sb.append("Nested: ").append(getNested());
+        return sb.toString();
+    }
 }

@@ -377,24 +377,47 @@
 	</p>
 	<ul>
 		<li>
-			<a href="<c:url value="/convert/primitive?number=3" />">String-to-primitive</a>
+			<a href="<c:url value="/convert/primitive?value=3" />">Primitive</a>
 		</li>
 		<li>
-			<a href="<c:url value="/convert/date/2010-07-04" />">String-to-date</a>
+			<a href="<c:url value="/convert/date/2010-07-04" />">Date</a>
 		</li>
 		<li>
-			<a href="<c:url value="/convert/collection?numbers=1,2,3,4,5" />">String-to-collection</a>
+			<a href="<c:url value="/convert/collection?values=1&values=2&values=3&values=4&values=5" />">Collection 1</a> (multi-value parameter)
 		</li>
 		<li>
-			<a href="<c:url value="/convert/dateCollection?dates=2010-07-04,2011-07-04" />">String-to-date collection</a>
+			<a href="<c:url value="/convert/collection?values=1,2,3,4,5" />">Collection 2</a> (single comma-delimited parameter value)
+		</li>
+		<li>
+			<a href="<c:url value="/convert/formattedCollection?values=2010-07-04,2011-07-04" />">@Formatted Collection</a>
 		</li>		
 		<li>
-			<a href="<c:url value="/convert/bean?number=3&date=2010-07-04&numbers[0]=1&numbers[1]=2&numbers[2]=3&fruits[0]=apple&fruits[1]=pear&dates[0]=2010-07-04&dates[1]=2011-07-04" />">JavaBean with String-to-propertyType conversion</a>
+			<a href="<c:url value="/convert/value?value=123456789" />">Custom Value Object</a>
 		</li>
-		<li>
-			<a href="<c:url value="/convert/value?ssn=123456789" />">String-to-SocialSecurityNumber</a> (a custom value object)
-		</li>		
 	</ul>
+	<div id="convert-bean">
+		<h3>JavaBean Property Binding</h3>
+		<ul>
+			<li>
+				<a href="<c:url value="/convert/bean?primitive=3" />">Primitive</a>
+			</li>	
+			<li>
+				<a href="<c:url value="/convert/bean?date=2010-07-04" />">Date</a>
+			</li>	
+			<li>
+				<a href="<c:url value="/convert/bean?list[0]=1&list[1]=2&list[2]=3" />">List Elements</a>
+			</li>
+			<li>
+				<a href="<c:url value="/convert/bean?formattedList[0]=2010-07-04&formattedList[1]=2011-07-04" />">@Formatted List Elements</a>
+			</li>
+			<li>
+				<a href="<c:url value="/convert/bean?map[0]=apple&map[1]=pear" />">Map Elements</a>
+			</li>
+			<li>
+				<a href="<c:url value="/convert/bean?nested.foo=bar&nested.list[0].foo=baz&nested.map[key].list[0].foo=bing" />">Nested</a>
+			</li>
+		</ul>
+	</div>
 </div>
 <div id="validation">
 	<h2>Validation</h2>

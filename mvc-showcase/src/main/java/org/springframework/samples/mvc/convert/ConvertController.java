@@ -1,7 +1,7 @@
 package org.springframework.samples.mvc.convert;
 
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -16,24 +16,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ConvertController {
 
 	@RequestMapping("primitive")
-	public @ResponseBody String primitive(@RequestParam Integer number) {
-		return "Converted " + number;
+	public @ResponseBody String primitive(@RequestParam Integer value) {
+		return "Converted primitive " + value;
 	}
 
 	// requires Joda-Time on the classpath
-	@RequestMapping("date/{date}")
-	public @ResponseBody String date(@PathVariable @DateTimeFormat(iso=ISO.DATE) Date date) {
-		return "Converted " + date;
+	@RequestMapping("date/{value}")
+	public @ResponseBody String date(@PathVariable @DateTimeFormat(iso=ISO.DATE) Date value) {
+		return "Converted date " + value;
 	}
 	
 	@RequestMapping("collection")
-	public @ResponseBody String collection(@RequestParam List<Integer> numbers) {
-		return "Converted " + numbers;
+	public @ResponseBody String collection(@RequestParam Collection<Integer> values) {
+		return "Converted collection " + values;
 	}
 
-	@RequestMapping("dateCollection")
-	public @ResponseBody String dateCollection(@RequestParam @DateTimeFormat(iso=ISO.DATE) List<Date> dates) {
-		return "Converted " + dates;
+	@RequestMapping("formattedCollection")
+	public @ResponseBody String formattedCollection(@RequestParam @DateTimeFormat(iso=ISO.DATE) Collection<Date> values) {
+		return "Converted formatted collection " + values;
 	}
 
 	@RequestMapping("bean")
@@ -42,8 +42,8 @@ public class ConvertController {
 	}
 
 	@RequestMapping("value")
-	public @ResponseBody String valueObject(@RequestParam SocialSecurityNumber ssn) {
-		return "Converted " + ssn;
+	public @ResponseBody String valueObject(@RequestParam SocialSecurityNumber value) {
+		return "Converted value object " + value;
 	}
 
 }

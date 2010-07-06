@@ -5,15 +5,16 @@ import java.lang.String;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import org.springframework.samples.mvc.convert.NestedBean;
 
 privileged aspect JavaBean_Roo_JavaBean {
     
-    public Integer JavaBean.getNumber() {
-        return this.number;
+    public Integer JavaBean.getPrimitive() {
+        return this.primitive;
     }
     
-    public void JavaBean.setNumber(Integer number) {
-        this.number = number;
+    public void JavaBean.setPrimitive(Integer primitive) {
+        this.primitive = primitive;
     }
     
     public Date JavaBean.getDate() {
@@ -24,28 +25,36 @@ privileged aspect JavaBean_Roo_JavaBean {
         this.date = date;
     }
     
-    public List<Integer> JavaBean.getNumbers() {
-        return this.numbers;
+    public List<Integer> JavaBean.getList() {
+        return this.list;
     }
     
-    public void JavaBean.setNumbers(List<Integer> numbers) {
-        this.numbers = numbers;
+    public void JavaBean.setList(List<Integer> list) {
+        this.list = list;
     }
     
-    public Map<Integer, String> JavaBean.getFruits() {
-        return this.fruits;
+    public List<Date> JavaBean.getFormattedList() {
+        return this.formattedList;
     }
     
-    public void JavaBean.setFruits(Map<Integer, String> fruits) {
-        this.fruits = fruits;
+    public void JavaBean.setFormattedList(List<Date> formattedList) {
+        this.formattedList = formattedList;
     }
     
-    public List<Date> JavaBean.getDates() {
-        return this.dates;
+    public Map<Integer, String> JavaBean.getMap() {
+        return this.map;
     }
     
-    public void JavaBean.setDates(List<Date> dates) {
-        this.dates = dates;
+    public void JavaBean.setMap(Map<Integer, String> map) {
+        this.map = map;
+    }
+    
+    public NestedBean JavaBean.getNested() {
+        return this.nested;
+    }
+    
+    public void JavaBean.setNested(NestedBean nested) {
+        this.nested = nested;
     }
     
 }

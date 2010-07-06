@@ -15,9 +15,9 @@ public class ValidationController {
 	@RequestMapping("/validate")
 	public @ResponseBody String validate(@Valid JavaBean bean, BindingResult result) {
 		if (result.hasErrors()) {
-			return "Object has validation errors:" + bean;
+			return "Object has validation errors";
 		} else {
-			return "No errors: " + bean; 		
+			return "No errors";
 		}
 	}
 

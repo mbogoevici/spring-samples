@@ -10,7 +10,7 @@ public class ExceptionController {
 
 	@ExceptionHandler
 	public @ResponseBody String handle(IllegalStateException e) {
-		return "Illegal state handled! Boo!";
+		return "IllegalStateException handled!";
 	}
 	
 	@RequestMapping("/exception")
