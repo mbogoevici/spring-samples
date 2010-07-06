@@ -19,11 +19,11 @@
 			<a href="<c:url value="/simple" />">GET /simple</a>
 		</li>
 		<li>
-			<a id="simpleTextOnly" href="<c:url value="/simple/textonly" />">GET /simple/textonly</a> <span id="simpleTextOnlyResponse" class="responseMessage"></span>
+			<a id="simpleRevisited" href="<c:url value="/simple/revisited" />">GET /simple/revisited</a> <span id="simpleRevisitedResponse" class="responseMessage"></span>
 			<script type="text/javascript">
-				$("#simpleTextOnly").click(function(){
+				$("#simpleRevisited").click(function(){
 					$.ajax({ url: this.href, dataType: "text", success: function(text) {
-							$("#simpleTextOnlyResponse").text("").fadeIn().text(text); 
+							$("#simpleRevisitedResponse").text("").fadeIn().text(text); 
 						}
 					});					
 					return false;
@@ -31,7 +31,7 @@
 			</script>
 		</li>
 		<li>
-			<a href="<c:url value="/simple/textonly" />">GET /simple/textonly</a> (Error due to wrong Accept header)	
+			<a href="<c:url value="/simple/revisited" />">GET /simple/revisited</a> (Error due to Accept header not set to correct value)
 		</li>
 	</ul>
 </div>
@@ -66,7 +66,7 @@
 			</script>
 		</li>
 		<li>
-			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/header" />">By not presence of header</a> <span id="mappingByHeaderNegationTextResponse" class="responseMessage"></span>			
+			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/header" />">By not presence of header</a> <span id="mappingByHeaderNegationTextResponse" class="responseMessage"></span> (<a href="http://jira.springframework.org/browse/SPR-7346">SPR-7346</a>)			
 			<script type="text/javascript">
 				$("#mappingByHeaderNegation").click(function(){
 					$.ajax({ url: this.href, dataType: "text",
@@ -408,7 +408,7 @@
 				<a href="<c:url value="/convert/bean?list[0]=1&list[1]=2&list[2]=3" />">List Elements</a>
 			</li>
 			<li>
-				<a href="<c:url value="/convert/bean?formattedList[0]=2010-07-04&formattedList[1]=2011-07-04" />">@Formatted List Elements</a>
+				<a href="<c:url value="/convert/bean?formattedList[0]=2010-07-04&formattedList[1]=2011-07-04" />">@Formatted List Elements</a> (<a href="http://jira.springframework.org/browse/SPR-7348">SPR-7348</a>)
 			</li>
 			<li>
 				<a href="<c:url value="/convert/bean?map[0]=apple&map[1]=pear" />">Map Elements</a>
