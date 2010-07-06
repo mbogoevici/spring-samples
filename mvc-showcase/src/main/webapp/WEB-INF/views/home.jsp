@@ -8,7 +8,7 @@
 <script type="text/javascript" src="<c:url value="/resources/json2.js" />"></script>
 <body>
 <h1>mvc-showcase</h1>
-<p>Remember to use a Web Developer tool such a Firebug to inspect the client/server interaction!</p>
+<p>Recommended: Using a Web Developer tool such a Firebug to inspect the client/server interaction</p>
 <div id="simple">
 	<h2>Simple</h2>
 	<p>
