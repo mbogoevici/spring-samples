@@ -16,19 +16,10 @@
 	</p>
 	<ul>
 		<li>
-			<a href="<c:url value="/simple" />">GET /simple</a>
+			<a id="simple" class="textLink" href="<c:url value="/simple" />">GET /simple</a> <span id="simpleResponse"></span>
 		</li>
 		<li>
-			<a id="simpleRevisited" href="<c:url value="/simple/revisited" />">GET /simple/revisited</a> <span id="simpleRevisitedResponse" class="responseMessage"></span>
-			<script type="text/javascript">
-				$("#simpleRevisited").click(function(){
-					$.ajax({ url: this.href, dataType: "text", success: function(text) {
-							$("#simpleRevisitedResponse").text("").fadeIn().text(text); 
-						}
-					});					
-					return false;
-				});
-			</script>
+			<a id="simpleRevisited" class="textLink" href="<c:url value="/simple/revisited" />">GET /simple/revisited</a> <span id="simpleRevisitedResponse"></span>
 		</li>
 	</ul>
 </div>
@@ -39,43 +30,25 @@
 	</p>
 	<ul>
 		<li>
-			<a href="<c:url value="/mapping/path" />">By path</a>
+			<a id="byPath" class="textLink" href="<c:url value="/mapping/path" />">By path</a> <span id="byPathResponse"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/mapping/method" />">By path and method</a>
+			<a id="byMethod" class="textLink" href="<c:url value="/mapping/method" />">By path and method</a> <span id="byMethodResponse"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/mapping/parameter?foo=bar" />">By path, method, and presence of parameter</a>
+			<a id="byParameter" class="textLink" href="<c:url value="/mapping/parameter?foo=bar" />">By path, method, and presence of parameter</a> <span id="byParameterResponse"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/mapping/parameter" />">By path, method, and not presence of parameter</a>
+			<a id="byNotParameter" class="textLink" href="<c:url value="/mapping/parameter" />">By path, method, and not presence of parameter</a> <span id="byNotParameterResponse"></span>
 		</li>
 		<li>
-			<a id="mappingByHeader" href="<c:url value="/mapping/header" />">By presence of header</a> <span id="mappingByHeaderTextResponse" class="responseMessage"></span>
-			<script type="text/javascript">
-				$("#mappingByHeader").click(function(){
-					$.ajax({ url: this.href, dataType: "text", success: function(text) {
-							$("#mappingByHeaderTextResponse").text("").fadeIn().text(text); 
-						}
-					});					
-					return false;
-				});
-			</script>
+			<a id="byHeader" class="textLink" href="<c:url value="/mapping/header" />">By presence of header</a> <span id="byHeaderResponse"></span>
 		</li>
 		<li>
-			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/notheader" />">By not presence of header</a> <span id="mappingByHeaderNegationTextResponse" class="responseMessage"></span>			
-			<script type="text/javascript">
-				$("#mappingByHeaderNegation").click(function(){
-					$.ajax({ url: this.href, dataType: "text", success: function(text) {
-							$("#mappingByHeaderNegationTextResponse").text("").fadeIn().text(text); 
-						}
-					});					
-					return false;
-				});
-			</script>
+			<a id="byHeaderNegation" class="textLink" href="<c:url value="/mapping/notheader" />">By not presence of header</a> <span id="byHeaderNegationResponse"></span>			
 		</li>		
 		<li>
-			<a href="<c:url value="/mapping/wildcard" />">By regexp</a>
+			<a id="byWildcard" class="textLink" href="<c:url value="/mapping/wildcard" />">By regexp</a> <span id="byWildcardResponse"></span>
 		</li>		
 	</ul>
 </div>
@@ -86,26 +59,26 @@
 	</p>
 	<ul>
 		<li>
-			<a href="<c:url value="/data/param?foo=bar" />">Query parameter</a>
+			<a id="param" class="textLink" href="<c:url value="/data/param?foo=bar" />">Query parameter</a> <span id="paramResponse"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/data/group?param1=foo&param2=bar&param3=baz" />">Group of query parameters</a>
+			<a id="group" class="textLink" href="<c:url value="/data/group?param1=foo&param2=bar&param3=baz" />">Group of query parameters</a> <span id="groupResponse"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/data/path/foo" />">Path variable</a>
+			<a id="var" class="textLink" href="<c:url value="/data/path/foo" />">Path variable</a> <span id="varResponse"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/data/header" />">Header</a>
+			<a id="header" class="textLink" href="<c:url value="/data/header" />">Header</a> <span id="headerResponse"></span>
 		</li>
 		<li>
 			<form id="requestBody" action="<c:url value="/data/body" />" method="post">
-				<input type="submit" value="Request Body" /> <span id="requestBodyTextResponse" class="responseMessage"></span>		
+				<input type="submit" value="Request Body" /> <span id="requestBodyResponse"></span>		
 			</form>
 			<script type="text/javascript">
 				$("form#requestBody").submit(function(){
 					$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
 						success: function(text) {
-							$("#requestBodyTextResponse").text("").fadeIn().text(text); 
+							$("#requestBodyResponse").text("").fadeIn().text(text); 
 						}
 					});					
 					return false;
@@ -114,13 +87,13 @@
 		</li>				
 		<li>
 			<form id="requestEntity" action="<c:url value="/data/entity" />" method="post">
-				<input type="submit" value="Request Body and Headers" /> <span id="requestEntityTextResponse" class="responseMessage"></span>
+				<input type="submit" value="Request Body and Headers" /> <span id="requestEntityResponse"></span>
 			</form>
 			<script type="text/javascript">
 				$("form#requestEntity").submit(function(){
 					$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
 						success: function(text) {
-							$("#requestEntityTextResponse").text("").fadeIn().text(text); 
+							$("#requestEntityResponse").text("").fadeIn().text(text); 
 						}
 					});					
 					return false;
@@ -132,17 +105,17 @@
 		<h3>Standard Resolvable Web Arguments</h3>
 		<ul>
 			<li>
-				<a href="<c:url value="/data/standard/request" />">Request arguments</a>					
+				<a id="request" class="textLink" href="<c:url value="/data/standard/request" />">Request arguments</a> <span id="requestResponse"></span>				
 			</li>
 			<li>
 				<form id="requestReader" action="<c:url value="/data/standard/request/reader" />" method="post">
-					<input type="submit" value="Request Reader" /> <span id="requestReaderTextResponse" class="responseMessage"></span>		
+					<input type="submit" value="Request Reader" /> <span id="requestReaderResponse"></span>		
 				</form>
 				<script type="text/javascript">
 					$("form#requestReader").submit(function(){
 						$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
 							success: function(text) {
-								$("#requestReaderTextResponse").text("").fadeIn().text(text); 
+								$("#requestReaderResponse").text("").fadeIn().text(text); 
 							}
 						});					
 						return false;
@@ -151,13 +124,13 @@
 			</li>			
 			<li>
 				<form id="requestIs" action="<c:url value="/data/standard/request/is" />" method="post">
-					<input type="submit" value="Request InputStream" /> <span id="requestIsTextResponse" class="responseMessage"></span>		
+					<input type="submit" value="Request InputStream" /> <span id="requestIsResponse"></span>		
 				</form>
 				<script type="text/javascript">
 					$("form#requestIs").submit(function(){
 						$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text",
 							success: function(text) {
-								$("#requestIsTextResponse").text("").fadeIn().text(text); 
+								$("#requestIsResponse").text("").fadeIn().text(text); 
 							}
 						});					
 						return false;
@@ -165,16 +138,16 @@
 				</script>
 			</li>
 			<li>
-				<a href="<c:url value="/data/standard/response" />">Response arguments</a>					
+				<a id="response" class="textLink" href="<c:url value="/data/standard/response" />">Response arguments</a> <span id="responseResponse"></span>				
 			</li>			
 			<li>
-				<a href="<c:url value="/data/standard/response/writer" />">Response Writer</a>					
+				<a id="writer" class="textLink" href="<c:url value="/data/standard/response/writer" />">Response Writer</a> <span id="writerResponse"></span>				
 			</li>
 			<li>
-				<a href="<c:url value="/data/standard/response/os" />">Response OutputStream</a>					
+				<a id="os" class="textLink" href="<c:url value="/data/standard/response/os" />">Response OutputStream</a> <span id="osResponse"></span>					
 			</li>
 			<li>
-				<a href="<c:url value="/data/standard/session" />">Session</a>					
+				<a id="session" class="textLink" href="<c:url value="/data/standard/session" />">Session</a> <span id="sessionResponse"></span>			
 			</li>			
 		</ul>
 	</div>
@@ -182,7 +155,7 @@
 		<h3>Custom Resolvable Web Arguments</h3>	
 		<ul>
 			<li>
-				<a href="<c:url value="/data/custom" />">Custom</a>			
+				<a id="customArg" class="textLink" href="<c:url value="/data/custom" />">Custom</a> <span id="customArgResponse"></span>			
 			</li>
 		</ul>
 	</div>
@@ -194,13 +167,13 @@
 	</p>		
 	<ul>
 		<li>
-			<a href="<c:url value="/response/annotation" />">@ResponseBody</a>			
+			<a id="responseBody" class="textLink" href="<c:url value="/response/annotation" />">@ResponseBody</a> <span id="responseBodyResponse"></span>			
 		</li>
 		<li>
-			<a href="<c:url value="/response/entity/status" />">ResponseEntity (custom status)</a>			
+			<a id="responseEntityStatus" class="textLink" href="<c:url value="/response/entity/status" />">ResponseEntity (custom status)</a> <span id="responseEntityStatusResponse"></span>			
 		</li>
 		<li>
-			<a href="<c:url value="/response/entity/headers" />">ResponseEntity (custom headers)</a>			
+			<a id="responseEntityHeaders" class="textLink" href="<c:url value="/response/entity/headers" />">ResponseEntity (custom headers)</a> <span id="responseEntityHeadersResponse"></span>			
 		</li>
 	</ul>	
 </div>
@@ -214,7 +187,7 @@
 		<ul>
 			<li>
 				<form id="readString" action="<c:url value="/messageconverters/string" />" method="post">
-					<input type="submit" value="Read a String" /> <span id="readStringResponse" class="responseMessage"></span>		
+					<input type="submit" value="Read a String" /> <span id="readStringResponse"></span>		
 				</form>
 				<script type="text/javascript">
 					$("form#readString").submit(function(){
@@ -228,23 +201,14 @@
 				</script>
 			</li>
 			<li>
-				<a id="writeString" href="<c:url value="/messageconverters/string" />">Write a String</a> <span id="writeStringResponse" class="responseMessage"></span>
-				<script type="text/javascript">
-					$("#writeString").click(function(){
-						$.ajax({ url: this.href, dataType: "text", success: function(text) {
-								$("#writeStringResponse").text("").fadeIn().text(text); 
-							}
-						});					
-						return false;
-					});
-				</script>								
+				<a id="writeString" class="textLink" href="<c:url value="/messageconverters/string" />">Write a String</a> <span id="writeStringResponse"></span>
 			</li>
 		</ul>
 		<h3>FormHttpMessageConverter</h3>
 		<ul>
 			<li>
 				<form id="readForm" action="<c:url value="/messageconverters/form" />" method="post">
-					<input type="submit" value="Read a Form" /> <span id="readFormResponse" class="responseMessage"></span>		
+					<input type="submit" value="Read a Form" /> <span id="readFormResponse"></span>		
 				</form>
 				<script type="text/javascript">
 					$("#readForm").submit(function(){
@@ -258,7 +222,7 @@
 				</script>
 			</li>
 			<li>
-				<a id="writeForm" href="<c:url value="/messageconverters/form" />">Write a Form</a> <span id="writeFormResponse" class="responseMessage"></span>
+				<a id="writeForm" href="<c:url value="/messageconverters/form" />">Write a Form</a> <span id="writeFormResponse"></span>
 				<script type="text/javascript">
 					$("#writeForm").click(function(){
 						$.ajax({ url: this.href, dataType: "text",
@@ -292,14 +256,14 @@
 				</script>
 			</li>
 			<li>
-				<a id="writeXml" href="<c:url value="/messageconverters/xml" />">Write XML</a>
+				<a id="writeXml" href="<c:url value="/messageconverters/xml" />">Write XML</a> <span id="writeXmlResponse"></span>
 			</li>
 		</ul>
 		<h3>MappingJacksonHttpMessageConverter</h3>
 		<ul>
 			<li>
 				<form id="readJson" action="<c:url value="/messageconverters/json" />" method="post">
-					<input type="submit" value="Read JSON" /> <span id="readJsonResponse" class="responseMessage"></span>		
+					<input type="submit" value="Read JSON" /> <span id="readJsonResponse"></span>		
 				</form>
 				<script type="text/javascript">
 					$("#readJson").submit(function(){
@@ -313,7 +277,7 @@
 				</script>
 			</li>
 			<li>
-				<a id="writeJson" href="<c:url value="/messageconverters/json" />">Write JSON</a> <span id="writeJsonResponse" class="responseMessage"></span>
+				<a id="writeJson" href="<c:url value="/messageconverters/json" />">Write JSON</a> <span id="writeJsonResponse"></span>
 				<script type="text/javascript">
 					$("#writeJson").click(function(){
 						$.ajax({ url: this.href, dataType: "json",
@@ -329,7 +293,7 @@
 		<h3>AtomFeedHttpMessageConverter</h3>
 		<ul>
 			<li>
-				<a id="writeFeed" href="<c:url value="/messageconverters/atom" />">Write Atom Feed</a> <span id="writeFeedResponse" class="responseMessage"></span>
+				<a id="writeFeed" href="<c:url value="/messageconverters/atom" />">Write Atom Feed</a> <span id="writeFeedResponse"></span>
 				<script type="text/javascript">
 					$("#writeFeed").click(function(){
 						$.ajax({ url: this.href,
@@ -370,44 +334,44 @@
 	</p>
 	<ul>
 		<li>
-			<a href="<c:url value="/convert/primitive?value=3" />">Primitive</a>
+			<a id="primitive" class="textLink" href="<c:url value="/convert/primitive?value=3" />">Primitive</a> <span id="primitiveResponse"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/convert/date/2010-07-04" />">Date</a>
+			<a id="date" class="textLink" href="<c:url value="/convert/date/2010-07-04" />">Date</a> <span id="dateResponse"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/convert/collection?values=1&values=2&values=3&values=4&values=5" />">Collection 1</a> (multi-value parameter)
+			<a id="collection" class="textLink" href="<c:url value="/convert/collection?values=1&values=2&values=3&values=4&values=5" />">Collection 1</a> (multi-value parameter) <span id="collectionResponse"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/convert/collection?values=1,2,3,4,5" />">Collection 2</a> (single comma-delimited parameter value)
+			<a id="collection2" class="textLink" href="<c:url value="/convert/collection?values=1,2,3,4,5" />">Collection 2</a> (single comma-delimited parameter value) <span id="collection2Response"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/convert/formattedCollection?values=2010-07-04,2011-07-04" />">@Formatted Collection</a>
+			<a id="formattedCollection" class="textLink" href="<c:url value="/convert/formattedCollection?values=2010-07-04,2011-07-04" />">@Formatted Collection</a> <span id="formattedCollectionResponse"></span>
 		</li>		
 		<li>
-			<a href="<c:url value="/convert/value?value=123456789" />">Custom Value Object</a>
+			<a id="valueObject" class="textLink" href="<c:url value="/convert/value?value=123456789" />">Custom Value Object</a> <span id="valueObjectResponse"></span>
 		</li>
 	</ul>
 	<div id="convert-bean">
 		<h3>JavaBean Property Binding</h3>
 		<ul>
 			<li>
-				<a href="<c:url value="/convert/bean?primitive=3" />">Primitive</a>
+				<a id="primitiveProp" class="textLink" href="<c:url value="/convert/bean?primitive=3" />">Primitive</a> <span id="primitivePropResponse"></span>
 			</li>	
 			<li>
-				<a href="<c:url value="/convert/bean?date=2010-07-04" />">Date</a>
+				<a id="dateProp" class="textLink" href="<c:url value="/convert/bean?date=2010-07-04" />">Date</a> <span id="datePropResponse"></span>
 			</li>	
 			<li>
-				<a href="<c:url value="/convert/bean?list[0]=1&list[1]=2&list[2]=3" />">List Elements</a>
+				<a id="listProp" class="textLink" href="<c:url value="/convert/bean?list[0]=1&list[1]=2&list[2]=3" />">List Elements</a> <span id="listPropResponse"></span>
 			</li>
 			<li>
-				<a href="<c:url value="/convert/bean?formattedList[0]=2010-07-04&formattedList[1]=2011-07-04" />">@Formatted List Elements</a>
+				<a id="formattedListProp" class="textLink" href="<c:url value="/convert/bean?formattedList[0]=2010-07-04&formattedList[1]=2011-07-04" />">@Formatted List Elements</a> <span id="formattedListPropResponse"></span>
 			</li>
 			<li>
-				<a href="<c:url value="/convert/bean?map[0]=apple&map[1]=pear" />">Map Elements</a>
+				<a id="mapProp" class="textLink" href="<c:url value="/convert/bean?map[0]=apple&map[1]=pear" />">Map Elements</a> <span id="mapPropResponse"></span>
 			</li>
 			<li>
-				<a href="<c:url value="/convert/bean?nested.foo=bar&nested.list[0].foo=baz&nested.map[key].list[0].foo=bing" />">Nested</a>
+				<a id="nestedProp" class="textLink" href="<c:url value="/convert/bean?nested.foo=bar&nested.list[0].foo=baz&nested.map[key].list[0].foo=bing" />">Nested</a> <span id="nestedPropResponse"></span>
 			</li>
 		</ul>
 	</div>
@@ -419,10 +383,10 @@
 	</p>
 	<ul>
 		<li>
-			<a href="<c:url value="/validate?number=3&date=2029-07-04" />">Validate, no errors</a>
+			<a id="validateNoErrors" class="textLink" href="<c:url value="/validate?number=3&date=2029-07-04" />">Validate, no errors</a> <span id="validateNoErrorsResponse"></span>
 		</li>
 		<li>
-			<a href="<c:url value="/validate?number=3&date=2010-07-01" />">Validate, errors</a>
+			<a id="validateErrors" class="textLink" href="<c:url value="/validate?number=3&date=2010-07-01" />">Validate, errors</a> <span id="validateErrorsResponse"></span>
 		</li>
 	</ul>	
 </div>
@@ -433,9 +397,23 @@
 	</p>
 	<ul>
 		<li>
-			<a href="<c:url value="/exception" />">@Controller Exception handling</a>
+			<a id="exception" class="textLink" href="<c:url value="/exception" />">@Controller Exception handling</a> <span id="exceptionResponse"></span>
 		</li>
 	</ul>
 </div>
+<script type="text/javascript">
+$("a[class=textLink]").click(function(){
+	var responseElement = "#" + this.id + "Response";
+	$.ajax({ url: this.href, dataType: "text",
+		success: function(text) {
+			$(responseElement).text("").fadeIn().text(text); 
+		},
+		error: function(xhr) {
+			$(responseElement).text("").fadeIn().text(xhr.responseText); 
+		}
+	});				
+	return false;
+});
+</script>
 </body>
 </html>
