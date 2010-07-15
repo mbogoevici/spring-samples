@@ -371,7 +371,7 @@
 				<a id="mapProp" class="textLink" href="<c:url value="/convert/bean?map[0]=apple&map[1]=pear" />">Map Elements</a> <span id="mapPropResponse"></span>
 			</li>
 			<li>
-				<a id="nestedProp" class="textLink" href="<c:url value="/convert/bean?nested.foo=bar&nested.list[0].foo=baz&nested.map[key].list[0].foo=bing" />">Nested</a> <span id="nestedPropResponse"></span>
+				<a id="nestedProp" class="textLink" href="<c:url value="/convert/bean?nested.foo=bar&nested.list[0].foo=baz&nested.map[key].list[0].foo=bip" />">Nested</a> <span id="nestedPropResponse"></span>
 			</li>
 		</ul>
 	</div>

@@ -33,13 +33,25 @@ public class JavaBean {
 	
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("JavaBean ");
-        sb.append("Primitive: ").append(getPrimitive()).append(", ");
-        sb.append("Date: ").append(getDate()).append(", ");
-        sb.append("List: ").append(getList() == null ? "null" : getList()).append(", ");
-        sb.append("FormattedList: ").append(getFormattedList() == null ? "null" : getFormattedList()).append(", ");
-        sb.append("Map: ").append(getMap() == null ? "null" : getMap()).append(", ");
-        sb.append("Nested: ").append(getNested());
+        sb.append("JavaBean");
+        if (primitive != null) {
+        	sb.append(" primitive=").append(primitive);
+        }
+        if (date != null) {
+            sb.append(" date=").append(date);        	
+        }
+        if (list != null) {
+            sb.append(" list=").append(list);        	
+        }
+        if (formattedList != null) {
+            sb.append(" formattedList=").append(formattedList);        	
+        }
+        if (map != null) {
+            sb.append(" map=").append(map);       	
+        }
+        if (nested != null) {        	
+            sb.append(" nested=").append(nested);
+        }
         return sb.toString();
     }
 }

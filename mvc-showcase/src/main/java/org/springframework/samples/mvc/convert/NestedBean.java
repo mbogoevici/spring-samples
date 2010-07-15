@@ -18,10 +18,16 @@ public class NestedBean {
 
 	public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("NestedBean ");
-        sb.append("Foo: ").append(getFoo()).append(", ");
-        sb.append("List: ").append(getList() == null ? "null" : getList()).append(", ");
-        sb.append("Map: ").append(getMap() == null ? "null" : getMap());
+        sb.append("NestedBean");
+        if (foo != null) {
+        	sb.append(" foo=").append(foo);
+        }
+        if (list != null) {
+        	sb.append(" list=").append(list);
+        }
+        if (map != null) {
+        	sb.append(" map=").append(map);
+        }
         return sb.toString();
     }
 }
