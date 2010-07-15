@@ -34,7 +34,7 @@ public class ClasslevelMappingController {
 		return "Mapped by path + method + presence of header!";
 	}
 
-	@RequestMapping(value="/header", method=RequestMethod.GET, headers="!Accept=text/plain")
+	@RequestMapping(value="/notheader", method=RequestMethod.GET, headers="!FooHeader")
 	public @ResponseBody String byHeaderNegation() {
 		return "Mapped by path + method + not presence header!";
 	}

@@ -30,9 +30,6 @@
 				});
 			</script>
 		</li>
-		<li>
-			<a href="<c:url value="/simple/revisited" />">GET /simple/revisited</a> (Error due to Accept header not set to correct value)
-		</li>
 	</ul>
 </div>
 <div id="mapping">
@@ -66,14 +63,10 @@
 			</script>
 		</li>
 		<li>
-			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/header" />">By not presence of header</a> <span id="mappingByHeaderNegationTextResponse" class="responseMessage"></span> (<a href="http://jira.springframework.org/browse/SPR-7346">SPR-7346</a>)			
+			<a id="mappingByHeaderNegation" href="<c:url value="/mapping/notheader" />">By not presence of header</a> <span id="mappingByHeaderNegationTextResponse" class="responseMessage"></span>			
 			<script type="text/javascript">
 				$("#mappingByHeaderNegation").click(function(){
-					$.ajax({ url: this.href, dataType: "text",
-						beforeSend: function(req) {
-							req.setRequestHeader("Accept", "text/foo");
-						}, 
-						success: function(text) {
+					$.ajax({ url: this.href, dataType: "text", success: function(text) {
 							$("#mappingByHeaderNegationTextResponse").text("").fadeIn().text(text); 
 						}
 					});					
@@ -408,7 +401,7 @@
 				<a href="<c:url value="/convert/bean?list[0]=1&list[1]=2&list[2]=3" />">List Elements</a>
 			</li>
 			<li>
-				<a href="<c:url value="/convert/bean?formattedList[0]=2010-07-04&formattedList[1]=2011-07-04" />">@Formatted List Elements</a> (<a href="http://jira.springframework.org/browse/SPR-7348">SPR-7348</a>)
+				<a href="<c:url value="/convert/bean?formattedList[0]=2010-07-04&formattedList[1]=2011-07-04" />">@Formatted List Elements</a>
 			</li>
 			<li>
 				<a href="<c:url value="/convert/bean?map[0]=apple&map[1]=pear" />">Map Elements</a>
