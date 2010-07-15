@@ -17,7 +17,10 @@ public class JavaBean {
 	
 	@DateTimeFormat(iso=ISO.DATE)
 	private Date date;
-	
+
+	@MaskFormat("(###) ###-####")
+	private String masked;
+
 	// list will auto-grow as its dereferenced e.g. list[0]=value
 	private List<Integer> list;
 
@@ -30,7 +33,7 @@ public class JavaBean {
 
 	// nested will be set when it is referenced e.g. nested.foo=value
 	private NestedBean nested;
-	
+		
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("JavaBean");
@@ -39,6 +42,9 @@ public class JavaBean {
         }
         if (date != null) {
             sb.append(" date=").append(date);        	
+        }
+        if (masked != null) {
+        	sb.append(" masked=").append(masked);
         }
         if (list != null) {
             sb.append(" list=").append(list);        	

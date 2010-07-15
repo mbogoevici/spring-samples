@@ -351,6 +351,9 @@
 		<li>
 			<a id="valueObject" class="textLink" href="<c:url value="/convert/value?value=123456789" />">Custom Value Object</a> <span id="valueObjectResponse"></span>
 		</li>
+		<li>
+			<a id="customConverter" class="textLink" href="<c:url value="/convert/custom?value=123-45-6789" />">Custom Converter</a> <span id="customConverterResponse"></span>
+		</li>		
 	</ul>
 	<div id="convert-bean">
 		<h3>JavaBean Property Binding</h3>
@@ -360,6 +363,9 @@
 			</li>	
 			<li>
 				<a id="dateProp" class="textLink" href="<c:url value="/convert/bean?date=2010-07-04" />">Date</a> <span id="datePropResponse"></span>
+			</li>	
+			<li>
+				<a id="maskedProp" class="textLink" href="<c:url value="/convert/bean?masked=(205) 333-3333" />">Masked</a> <span id="maskedPropResponse"></span>
 			</li>	
 			<li>
 				<a id="listProp" class="textLink" href="<c:url value="/convert/bean?list[0]=1&list[1]=2&list[2]=3" />">List Elements</a> <span id="listPropResponse"></span>

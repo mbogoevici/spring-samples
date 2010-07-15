@@ -46,4 +46,9 @@ public class ConvertController {
 		return "Converted value object " + value;
 	}
 
+	@RequestMapping("custom")
+	public @ResponseBody String customConverter(@RequestParam @MaskFormat("###-##-####") String value) {
+		return "Converted '" + value + "' with a custom converter";
+	}
+
 }

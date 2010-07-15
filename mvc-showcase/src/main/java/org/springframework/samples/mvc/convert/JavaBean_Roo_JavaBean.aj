@@ -25,6 +25,14 @@ privileged aspect JavaBean_Roo_JavaBean {
         this.date = date;
     }
     
+    public String JavaBean.getMasked() {
+        return this.masked;
+    }
+    
+    public void JavaBean.setMasked(String masked) {
+        this.masked = masked;
+    }
+    
     public List<Integer> JavaBean.getList() {
         return this.list;
     }
