@@ -26,7 +26,7 @@ public class MessageConvertersController {
 		return "Wrote a string";
 	}
 
-	// FormHttpMessageConverter 
+	// FormHttpMessageConverter (note: not recommended for reading browser form posts.  Use standard JavaBean form binding instead. see 'form' showcase/package).
 	
 	@RequestMapping(value="/form", method=RequestMethod.POST)
 	public @ResponseBody String readForm(@RequestBody MultiValueMap<String, String> form) {
@@ -41,7 +41,7 @@ public class MessageConvertersController {
 		return map;
 	}
 
-	// Jaxb2RootElementHttpMessageConverter (requires JAXB2 on the classpath)
+	// Jaxb2RootElementHttpMessageConverter (requires JAXB2 on the classpath - useful for serving clients that expect to work with XML)
 	
 	@RequestMapping(value="/xml", method=RequestMethod.POST)
 	public @ResponseBody String readXml(@RequestBody JavaBean bean) {
@@ -53,7 +53,7 @@ public class MessageConvertersController {
 		return new JavaBean();
 	}
 
-	// MappingJacksonHttpMessageConverter (requires Jackson on the classpath)
+	// MappingJacksonHttpMessageConverter (requires Jackson on the classpath - particularly useful for serving JavaScript clients that expect to work with JSON)
 	
 	@RequestMapping(value="/json", method=RequestMethod.POST)
 	public @ResponseBody String readJson(@RequestBody JavaBean bean) {
@@ -65,7 +65,7 @@ public class MessageConvertersController {
 		return new JavaBean();
 	}
 
-	// AtomFeedHttpMessageConverter (requires Rome on the classpath)
+	// AtomFeedHttpMessageConverter (requires Rome on the classpath - useful for serving Atom feeds)
 	
 	@RequestMapping(value="/atom", method=RequestMethod.GET)
 	public @ResponseBody Feed writeFeed() {
