@@ -46,19 +46,19 @@ public class FormBean {
 	
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("properties name='").append(getName()).append("', ");
-        sb.append("age=").append(getAge()).append(", ");
-        sb.append("date=").append(getDate()).append(", ");
-        sb.append("email='").append(getEmail()).append("', ");
-        sb.append("phone='").append(getPhone()).append("', ");
-        sb.append("currency=").append(getCurrency()).append(", ");
-        sb.append("percent=").append(getPercent()).append(", ");
-        sb.append("inquiry=").append(getInquiry()).append(", ");
-        sb.append("inquiryDetails=").append(getInquiryDetails()).append(", ");
-        sb.append("subscribeNewsletter=").append(isSubscribeNewsletter()).append(", ");
-        sb.append("additionalInfo=").append(getAdditionalInfo()).append(", ");
-        sb.append("password=").append(getPassword()).append(", ");
-        sb.append("confirmPassword=").append(getConfirmPassword());
+        sb.append("properties name='").append(name).append("', ");
+        sb.append("age=").append(age).append(", ");
+        sb.append("date=").append(date).append(", ");
+        sb.append("email='").append(email).append("', ");
+        sb.append("phone='").append(phone).append("', ");
+        sb.append("currency=").append(currency).append(", ");
+        sb.append("percent=").append(percent).append(", ");
+        sb.append("inquiry=").append(inquiry).append(", ");
+        sb.append("inquiryDetails=").append(inquiryDetails).append(", ");
+        sb.append("subscribeNewsletter=").append(subscribeNewsletter).append(", ");
+        sb.append("additionalInfo=").append(additionalInfo).append(", ");
+        sb.append("password=").append(password).append(", ");
+        sb.append("confirmPassword=").append(confirmPassword);
         return sb.toString();
     }
     
