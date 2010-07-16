@@ -400,7 +400,7 @@
 	<h2><a href="form">Form</a></h2>
 </div>
 <div id="fileupload">
-	<h2><a href="fileupload">File Upload (TODO)</a></h2>
+	<h2><a href="fileupload">File Upload</a></h2>
 </div>
 <div id="exceptions">
 	<h2>Exception Handling</h2>
