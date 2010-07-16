@@ -46,7 +46,7 @@ public class FormBean {
 	
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("name='").append(getName()).append("', ");
+        sb.append("properties name='").append(getName()).append("', ");
         sb.append("age=").append(getAge()).append(", ");
         sb.append("date=").append(getDate()).append(", ");
         sb.append("email='").append(getEmail()).append("', ");
