@@ -16,24 +16,24 @@ public class MessageConvertersController {
 
 	// StringHttpMessageConverter 
 
-	@RequestMapping(value="/string", method=RequestMethod.POST, headers={"Content-Type=text/*", "Accept=text/plain" })
+	@RequestMapping(value="/string", method=RequestMethod.POST)
 	public @ResponseBody String readString(@RequestBody String string) {
 		return "Read string '" + string + "'";
 	}
 	
-	@RequestMapping(value="/string", method=RequestMethod.GET, headers="Accept=text/plain")
+	@RequestMapping(value="/string", method=RequestMethod.GET)
 	public @ResponseBody String writeString() {
 		return "Wrote a string";
 	}
 
 	// FormHttpMessageConverter 
 	
-	@RequestMapping(value="/form", method=RequestMethod.POST, headers={"Content-Type=application/x-www-form-urlencoded", "Accept=text/plain" })
+	@RequestMapping(value="/form", method=RequestMethod.POST)
 	public @ResponseBody String readForm(@RequestBody MultiValueMap<String, String> form) {
 		return "Read form map " + form;
 	}
 	
-	@RequestMapping(value="/form", method=RequestMethod.GET, headers="Accept=application/x-www-form-urlencoded")
+	@RequestMapping(value="/form", method=RequestMethod.GET)
 	public @ResponseBody MultiValueMap<String, String> writeForm() {
 		MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
 		map.add("foo", "bar");
@@ -43,31 +43,31 @@ public class MessageConvertersController {
 
 	// Jaxb2RootElementHttpMessageConverter (requires JAXB2 on the classpath)
 	
-	@RequestMapping(value="/xml", method=RequestMethod.POST, headers={"Content-Type=application/xml", "Accept=text/plain" })
+	@RequestMapping(value="/xml", method=RequestMethod.POST)
 	public @ResponseBody String readXml(@RequestBody JavaBean bean) {
 		return "Read from xml " + bean;
 	}
 	
-	@RequestMapping(value="/xml", method=RequestMethod.GET, headers="Accept=application/xml")
+	@RequestMapping(value="/xml", method=RequestMethod.GET)
 	public @ResponseBody JavaBean writeXml() {
 		return new JavaBean();
 	}
 
 	// MappingJacksonHttpMessageConverter (requires Jackson on the classpath)
 	
-	@RequestMapping(value="/json", method=RequestMethod.POST, headers={"Content-Type=application/json", "Accept=text/plain" })
+	@RequestMapping(value="/json", method=RequestMethod.POST)
 	public @ResponseBody String readJson(@RequestBody JavaBean bean) {
 		return "Read from json " + bean;
 	}
 	
-	@RequestMapping(value="/json", method=RequestMethod.GET, headers="Accept=application/json")
+	@RequestMapping(value="/json", method=RequestMethod.GET)
 	public @ResponseBody JavaBean writeJson() {
 		return new JavaBean();
 	}
 
 	// AtomFeedHttpMessageConverter (requires Rome on the classpath)
 	
-	@RequestMapping(value="/atom", method=RequestMethod.GET, headers="Accept=application/atom+xml")
+	@RequestMapping(value="/atom", method=RequestMethod.GET)
 	public @ResponseBody Feed writeFeed() {
 		Feed feed = new Feed();
 		feed.setFeedType("atom_1.0");
