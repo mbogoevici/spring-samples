@@ -16,10 +16,10 @@ public class FormController {
 	public void form(HttpSession session, Model model) {
 		FormBean form = (FormBean) session.getAttribute("form");
 		if (form == null) {
-			// form has not yet been submitted - export a new instance
+			// form has not yet been submitted; export a new instance
 			model.addAttribute(new FormBean());
 		} else {
-			// we already submitted the form - export cached instance
+			// we already submitted the form; export the cached instance
 			model.addAttribute(form);
 			exportSubmitSuccessMessage(session, model);			
 		}
