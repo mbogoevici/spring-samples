@@ -40,7 +40,7 @@
 	  		<form:input path="age" />
 	  		
 	  		<form:label path="date">
-	  			Date <form:errors path="date" cssClass="error" />
+	  			Date (in form yyyy-mm-dd) <form:errors path="date" cssClass="error" />
 	 		</form:label>
 	  		<form:input path="date" />
 	  		
