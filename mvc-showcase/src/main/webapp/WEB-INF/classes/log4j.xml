@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="mytld.mycompany.myapp">
+	<logger name="org.springframework.samples.mvc">
 		<level value="info" />
 	</logger>
 	
@@ -28,11 +28,11 @@
 		<level value="info" />
 	</logger>
 
-	<logger name="org.springframework.web">
+	<logger name="org.springframework.http">
 		<level value="debug" />
 	</logger>
 
-	<logger name="org.springframework.http">
+	<logger name="org.springframework.web">
 		<level value="debug" />
 	</logger>
 
