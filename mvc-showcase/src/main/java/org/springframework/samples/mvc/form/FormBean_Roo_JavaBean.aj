@@ -4,7 +4,6 @@ import java.lang.String;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
-import org.springframework.samples.mvc.form.FormBean.InquiryType;
 
 privileged aspect FormBean_Roo_JavaBean {
     

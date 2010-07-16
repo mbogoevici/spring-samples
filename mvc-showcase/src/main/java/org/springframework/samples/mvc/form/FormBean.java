@@ -61,8 +61,4 @@ public class FormBean {
         sb.append("confirmPassword=").append(confirmPassword);
         return sb.toString();
     }
-    
-	public static enum InquiryType {
-		comment, feedback, suggestion;
-	}
 }
