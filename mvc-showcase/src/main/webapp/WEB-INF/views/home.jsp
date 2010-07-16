@@ -3,9 +3,9 @@
 <html>
 <head>
 	<title>mvc-showcase</title>
+	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.4.2.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/json2.js" />"></script>
 </head>
-<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.4.2.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/json2.js" />"></script>
 <body>
 <h1>mvc-showcase</h1>
 <p>Recommended: Using a Web Developer tool such a Firebug to inspect the client/server interaction</p>

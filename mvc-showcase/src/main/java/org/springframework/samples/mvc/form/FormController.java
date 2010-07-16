@@ -33,7 +33,7 @@ public class FormController {
 		// simply store form bean in the session for demo purposes, typically you would save form bean values to a db
 		session.setAttribute("form", form);
 		// cache a success message for rendering on the next request
-		session.setAttribute("formSubmitSuccessMessage", "Form submitted successfully.  Bound FormBean values = " + form);
+		session.setAttribute("formSubmitSuccessMessage", "Form submitted successfully.  Bound FormBean " + form);
 		// redirect back to the form to render the success message along with newly bound values
 		return "redirect:/form";
 	}

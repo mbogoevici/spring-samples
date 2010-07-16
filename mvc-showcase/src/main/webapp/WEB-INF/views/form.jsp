@@ -5,19 +5,22 @@
 <html>
 <head>
 	<title>form | mvc-showcase</title>
+	<link rel="stylesheet" href="<c:url value="/resources/form.css" />" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<c:url value="/resources/messages/messages.css" />" type="text/css" media="screen" />
+	<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.4.2.js" />"></script>
 </head>
-<script type="text/javascript" src="<c:url value="/resources/jquery/jquery-1.4.2.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/json2.js" />"></script>
 <body>
 <h1>form-showcase</h1>
 <p>
 	See the <code>org.springframework.samples.mvc.form</code> package for the @Controller code	
 </p>
-<div id="message">${message}</div>
 <div id="form">
 	<form:form id="form" method="post" modelAttribute="formBean">
 		<div class="header">
 	  		<h2>Form</h2>
+	  		<c:if test="${not empty message}">
+				<div class="success">${message}</div>	  		
+	  		</c:if>
 	  		<s:bind path="*">
 	  			<c:if test="${status.error}">
 			  		<div class="error">Form has errors</div>
