@@ -396,17 +396,11 @@
 		</li>
 	</ul>	
 </div>
-<div id="forms">
-	<h2>Forms</h2>
-	<p>
-		See the <code>org.springframework.samples.mvc.forms</code> package for the @Controller code	
-	</p>
+<div id="form">
+	<h2><a href="form">Form</a></h2>
 </div>
 <div id="fileupload">
-	<h2>File Upload</h2>
-	<p>
-		See the <code>org.springframework.samples.mvc.fileupload</code> package for the @Controller code	
-	</p>
+	<h2><a href="fileupload">File Upload (TODO)</a></h2>
 </div>
 <div id="exceptions">
 	<h2>Exception Handling</h2>
