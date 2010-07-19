@@ -32,7 +32,7 @@ public class FormBean {
 	private String phone;
 
 	@NumberFormat(pattern="$###,###.00")
-	private BigDecimal currency = new BigDecimal(0.00);
+	private BigDecimal currency;
 
 	@NumberFormat(style=Style.PERCENT)
 	private BigDecimal percent;
@@ -49,7 +49,7 @@ public class FormBean {
         StringBuilder sb = new StringBuilder();
         sb.append("properties name='").append(name).append("', ");
         sb.append("age=").append(age).append(", ");
-        sb.append("date=").append(birthDate).append(", ");
+        sb.append("birthDate=").append(birthDate).append(", ");
         sb.append("phone='").append(phone).append("', ");
         sb.append("currency=").append(currency).append(", ");
         sb.append("percent=").append(percent).append(", ");
