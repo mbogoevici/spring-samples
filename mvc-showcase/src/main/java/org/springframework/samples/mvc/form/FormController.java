@@ -27,7 +27,7 @@ public class FormController {
 		// simply store form bean in the session for demo purposes, typically you would save form bean values to a db
 		session.setAttribute("form", form);
 		// store a success message for rendering on the next request
-		FlashMap.setSuccessMessage("Form submitted successfully");
+		FlashMap.setSuccessMessage("Form submitted successfully.  Bound " + form);
 		// redirect back to the form to render the success message along with newly bound values
 		return "redirect:/form";
 	}
