@@ -19,7 +19,7 @@
 		<div class="header">
 	  		<h2>Form</h2>
 	  		<c:if test="${not empty message}">
-				<div class="success">${message}</div>	  		
+				<div class="${message.type}">${message.text}</div>	
 	  		</c:if>
 	  		<s:bind path="*">
 	  			<c:if test="${status.error}">
@@ -39,16 +39,11 @@
 	 		</form:label>
 	  		<form:input path="age" />
 	  		
-	  		<form:label path="date">
-	  			Date (in form yyyy-mm-dd) <form:errors path="date" cssClass="error" />
+	  		<form:label path="birthDate">
+	  			Birth Date (in form yyyy-mm-dd) <form:errors path="birthDate" cssClass="error" />
 	 		</form:label>
-	  		<form:input path="date" />
-	  		
-	  		<form:label path="email">
-	  			Email <form:errors path="email" cssClass="error" />
-	  		</form:label>
-	  		<form:input path="email" />
-
+	  		<form:input path="birthDate" />
+	  		 
 	  		<form:label path="phone">
 	  			Phone (in form (###) ###-####) <form:errors path="phone" cssClass="error" />
 	  		</form:label>
@@ -95,17 +90,6 @@
 			<label><form:radiobutton path="subscribeNewsletter" value="false" /> No</label>
 		</fieldset>
 
-		<fieldset>
-			<legend>Account</legend>
-	  		<form:label path="password">
-	  			Password (at least 6 characters) <form:errors path="password" cssClass="error" />
-	  		</form:label>
-	  		<form:password path="password" />
-
-	  		<form:label path="confirmPassword">Confirm Password</form:label>
-	  		<form:password path="confirmPassword" />
-		</fieldset>
-		
 		<input type="submit" value="Submit">
 	</form:form>	
 </div>

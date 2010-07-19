@@ -4,6 +4,7 @@ import java.lang.String;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
+import org.springframework.samples.mvc.form.InquiryType;
 
 privileged aspect FormBean_Roo_JavaBean {
     
@@ -23,20 +24,12 @@ privileged aspect FormBean_Roo_JavaBean {
         this.age = age;
     }
     
-    public Date FormBean.getDate() {
-        return this.date;
+    public Date FormBean.getBirthDate() {
+        return this.birthDate;
     }
     
-    public void FormBean.setDate(Date date) {
-        this.date = date;
-    }
-    
-    public String FormBean.getEmail() {
-        return this.email;
-    }
-    
-    public void FormBean.setEmail(String email) {
-        this.email = email;
+    public void FormBean.setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
     
     public String FormBean.getPhone() {
@@ -93,22 +86,6 @@ privileged aspect FormBean_Roo_JavaBean {
     
     public void FormBean.setAdditionalInfo(Map<String, String> additionalInfo) {
         this.additionalInfo = additionalInfo;
-    }
-    
-    public String FormBean.getPassword() {
-        return this.password;
-    }
-    
-    public void FormBean.setPassword(String password) {
-        this.password = password;
-    }
-    
-    public String FormBean.getConfirmPassword() {
-        return this.confirmPassword;
-    }
-    
-    public void FormBean.setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
     
 }

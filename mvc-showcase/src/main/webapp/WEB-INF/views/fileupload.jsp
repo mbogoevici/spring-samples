@@ -19,7 +19,7 @@
 		<div class="header">
 	  		<h2>Form</h2>
 	  		<c:if test="${not empty message}">
-				<div class="success">${message}</div>	  		
+				<div class="${message.type}">${message.text}</div>	  		
 	  		</c:if>
 		</div>
 		<label for="file">
