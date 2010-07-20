@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sun.syndication.feed.atom.Feed;
+import com.sun.syndication.feed.rss.Channel;
 
 @Controller
 @RequestMapping("messageconverters/*")
@@ -67,12 +68,31 @@ public class MessageConvertersController {
 
 	// AtomFeedHttpMessageConverter (requires Rome on the classpath - useful for serving Atom feeds)
 	
+	@RequestMapping(value="/atom", method=RequestMethod.POST)
+	public @ResponseBody String readFeed(@RequestBody Feed feed) {
+		return "Read feed " + feed.getTitle();
+	}
+	
 	@RequestMapping(value="/atom", method=RequestMethod.GET)
 	public @ResponseBody Feed writeFeed() {
 		Feed feed = new Feed();
 		feed.setFeedType("atom_1.0");
-		feed.setTitle("My feed");
+		feed.setTitle("My Atom feed");
 		return feed;
+	}
+
+	// RssChannelHttpMessageConverter (requires Rome on the classpath - useful for serving RSS feeds)
+	
+	@RequestMapping(value="/rss", method=RequestMethod.POST)
+	public @ResponseBody String readChannel(@RequestBody Channel channel) {
+		return "Read channel " + channel.getTitle();
+	}
+	
+	@RequestMapping(value="/rss", method=RequestMethod.GET)
+	public @ResponseBody Channel writeChannel() {
+		Channel channel = new Channel();
+		channel.setTitle("My RSS feed");
+		return channel;
 	}
 
 }
