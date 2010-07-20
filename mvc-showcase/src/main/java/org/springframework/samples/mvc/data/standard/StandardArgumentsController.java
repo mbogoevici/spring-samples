@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,16 +35,12 @@ public class StandardArgumentsController {
 
 	@RequestMapping(value="/data/standard/request/reader", method=RequestMethod.POST)
 	public @ResponseBody String requestReader(Reader requestBodyReader) throws IOException {
-		char[] buf = new char[1024];
-		requestBodyReader.read(buf);
-		return "Read char request body = " + new String(buf);
+		return "Read char request body = " + FileCopyUtils.copyToString(requestBodyReader);
 	}
 
 	@RequestMapping(value="/data/standard/request/is", method=RequestMethod.POST)
 	public @ResponseBody String requestReader(InputStream requestBodyIs) throws IOException {
-		byte[] buf = new byte[1024];
-		requestBodyIs.read(buf);
-		return "Read binary request body = " + new String(buf);
+		return "Read binary request body = " + new String(FileCopyUtils.copyToByteArray(requestBodyIs));
 	}
 	
 	// response related

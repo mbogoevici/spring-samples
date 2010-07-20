@@ -29,3 +29,15 @@ div.error {
 	background-color: #FFBABA;
 	background-image: url('error.png');
 }
+
+span {
+	margin: 5px 5px 5px 5px;
+}
+
+span.success {
+	color: #4F8A10;
+}
+
+span.error {
+	color: #D8000C;
+}
