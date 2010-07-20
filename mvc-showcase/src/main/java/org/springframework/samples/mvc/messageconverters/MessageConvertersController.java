@@ -46,7 +46,7 @@ public class MessageConvertersController {
 	
 	@RequestMapping(value="/xml", method=RequestMethod.POST)
 	public @ResponseBody String readXml(@RequestBody JavaBean bean) {
-		return "Read from xml " + bean;
+		return "Read from XML " + bean;
 	}
 	
 	@RequestMapping(value="/xml", method=RequestMethod.GET)
@@ -58,7 +58,7 @@ public class MessageConvertersController {
 	
 	@RequestMapping(value="/json", method=RequestMethod.POST)
 	public @ResponseBody String readJson(@RequestBody JavaBean bean) {
-		return "Read from json " + bean;
+		return "Read from JSON " + bean;
 	}
 	
 	@RequestMapping(value="/json", method=RequestMethod.GET)
@@ -70,7 +70,7 @@ public class MessageConvertersController {
 	
 	@RequestMapping(value="/atom", method=RequestMethod.POST)
 	public @ResponseBody String readFeed(@RequestBody Feed feed) {
-		return "Read feed " + feed.getTitle();
+		return "Read " + feed.getTitle();
 	}
 	
 	@RequestMapping(value="/atom", method=RequestMethod.GET)
@@ -85,13 +85,16 @@ public class MessageConvertersController {
 	
 	@RequestMapping(value="/rss", method=RequestMethod.POST)
 	public @ResponseBody String readChannel(@RequestBody Channel channel) {
-		return "Read channel " + channel.getTitle();
+		return "Read " + channel.getTitle();
 	}
 	
 	@RequestMapping(value="/rss", method=RequestMethod.GET)
 	public @ResponseBody Channel writeChannel() {
 		Channel channel = new Channel();
+		channel.setFeedType("rss_2.0");
 		channel.setTitle("My RSS feed");
+		channel.setDescription("Description");
+		channel.setLink("http://localhost:8080/mvc-showcase/rss");
 		return channel;
 	}
 

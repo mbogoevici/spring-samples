@@ -333,6 +333,49 @@
 				</script>								
 			</li>
 		</ul>
+		<h3>RssChannelHttpMessageConverter</h3>
+		<ul>
+			<li>
+				<form id="readRss" action="<c:url value="/messageconverters/rss" />" method="post">
+					<input type="submit" value="Read Rss" /> <span id="readRssResponse"></span>		
+				</form>
+				<script type="text/javascript">
+					$("#readRss").submit(function() {
+						$.ajax({ type: "POST", url: this.action, data: '<?xml version="1.0" encoding="UTF-8"?> <rss version="2.0"><channel><title>My RSS feed</title></channel></rss>', contentType: "application/rss+xml", dataType: "text",
+							success: function(text) {
+								$("#readRssResponse").text("").fadeIn().text(text); 
+							}
+						});					
+						return false;
+					});
+				</script>
+			</li>
+			<li>
+				<a id="writeRss" href="<c:url value="/messageconverters/rss" />">Write Rss</a> <span id="writeRssResponse"></span>
+				<script type="text/javascript">
+					$("#writeRss").click(function() {
+						$.ajax({ url: this.href,
+							beforeSend: function(req) { 
+								req.setRequestHeader("Accept", "application/rss+xml");
+							},
+							success: function(feed) {
+								//for IE 
+								var text;
+								if (window.ActiveXObject) {
+								    text = feed.xml;
+								 }
+								// for Mozilla, Firefox, Opera, etc.
+								else {
+								   text = (new XMLSerializer()).serializeToString(feed);
+								}
+								$("#writeRssResponse").text("").fadeIn().text(text);
+							}
+						});
+						return false;
+					});
+				</script>								
+			</li>
+		</ul>		
 	</div>
 </div>
 <div id="views">
