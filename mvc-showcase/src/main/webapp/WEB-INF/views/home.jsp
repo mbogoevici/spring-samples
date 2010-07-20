@@ -9,6 +9,21 @@
 <body>
 <h1>mvc-showcase</h1>
 <p>Recommended: Using a Web Developer tool such a Firebug to inspect the client/server interaction</p>
+<div id="tabs">
+	<ul>
+		<li><a href="#simple"><span>Simple</span></a></li>
+		<li><a href="#mapping"><span>Mapping Requests</span></a></li>
+		<li><a href="#data"><span>Obtaining Request Data</span></a></li>
+		<li><a href="#response"><span>Writing Responses</span></a></li>
+		<li><a href="#messageconverters"><span>Message Converters</span></a></li>
+		<li><a href="#views"><span>Rendering Views</span></a></li>
+		<li><a href="#convert"><span>Type Conversion</span></a></li>
+		<li><a href="#validation"><span>Validation</span></a></li>
+		<li><a href="#forms"><span>Forms</span></a></li>
+		<li><a href="#fileupload"><span>File Upload</span></a></li>
+		<li><a href="#exceptions"><span>Exception Handling</span></a></li>
+    </ul>
+</div>
 <div id="simple">
 	<h2>Simple</h2>
 	<p>
@@ -379,7 +394,7 @@
 	</div>
 </div>
 <div id="views">
-	<h2>Views</h2>
+	<h2>Rendering Views</h2>
 	<p>
 		See the <code>org.springframework.samples.mvc.views</code> package for the @Controller code
 	</p>
@@ -463,8 +478,8 @@
 		</li>
 	</ul>	
 </div>
-<div id="form">
-	<h2><a href="form">Form</a></h2>
+<div id="forms">
+	<h2><a href="form">Forms</a></h2>
 </div>
 <div id="fileupload">
 	<h2><a href="fileupload">File Upload</a></h2>
@@ -493,6 +508,11 @@ $("a[class=textLink]").click(function(){
 	});				
 	return false;
 });
+</script>
+<script type="text/javascript">
+$(document).ready() {
+	$("#tabs").tabs();
+};
 </script>
 </body>
 </html>
