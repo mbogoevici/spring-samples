@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>mvc-showcase</title>
-	<link href="<c:url value="/resources/messages/messages.css" />" rel="stylesheet"  type="text/css" />		
+	<link href="<c:url value="/resources/form.css" />" rel="stylesheet"  type="text/css" />		
 	<link href="<c:url value="/resources/jqueryui/1.8/themes/base/jquery.ui.all.css" />" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript" src="<c:url value="/resources/jquery/1.4/jquery.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/jqueryui/1.8/jquery.ui.core.js" />"></script>
@@ -24,8 +24,8 @@
 		<li><a href="#views">Rendering Views</a></li>
 		<li><a href="#convert">Type Conversion</a></li>
 		<li><a href="#validation">Validation</a></li>
-		<li><a href="#forms">Forms</a></li>
-		<li><a href="#fileupload">File Upload</a></li>
+		<li><a href="<c:url value="/form" />">Forms</a></li>
+		<li><a href="<c:url value="/fileupload" />">File Upload</a></li>
 		<li><a href="#exceptions">Exception Handling</a></li>
     </ul>
     <div id="simple">
@@ -441,12 +441,6 @@
 				<a id="validateErrors" class="textLink" href="<c:url value="/validate?number=3&date=2010-07-01" />">Validate, errors</a>
 			</li>
 		</ul>	
-	</div>
-	<div id="forms">
-		<h2><a href="form">Forms</a></h2>
-	</div>
-	<div id="fileupload">
-		<h2><a href="fileupload">File Upload</a></h2>
 	</div>
 	<div id="exceptions">
 		<h2>Exception Handling</h2>
