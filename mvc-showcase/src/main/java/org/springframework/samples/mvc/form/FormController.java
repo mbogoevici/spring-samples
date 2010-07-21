@@ -4,8 +4,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.samples.mvc.flash.FlashMap;
-import org.springframework.samples.mvc.flash.FlashMap.FlashMessage;
-import org.springframework.samples.mvc.flash.FlashMap.FlashMessageType;
+import org.springframework.samples.mvc.flash.FlashMap.Message;
+import org.springframework.samples.mvc.flash.FlashMap.MessageType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class FormController {
 
 	@RequestMapping(method=RequestMethod.GET)
-	public FormBean form(HttpSession session) {
+	public void form(@RequestHeader(value="X-Requested-With", required=false) String requestedWith, HttpSession session, Model model) {
 		FormBean form = (FormBean) session.getAttribute("form");
-		return form != null ? form : new FormBean();
+		model.addAttribute(form != null ? form : new FormBean());
+		model.addAttribute("ajaxRequest", isAjaxRequest(requestedWith));
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
@@ -34,7 +35,7 @@ public class FormController {
 		// success response handling
 		if (isAjaxRequest(requestedWith)) {
 			// prepare model for rendering success message in this request			
-			model.addAttribute("message", new FlashMessage(FlashMessageType.success, message));
+			model.addAttribute("message", new Message(MessageType.success, message));
 			return null;
 		} else {
 			// store a success message for rendering on the next request after redirect

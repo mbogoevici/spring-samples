@@ -33,19 +33,19 @@ public final class FlashMap {
 	}
 
 	public static void setInfoMessage(String info) {
-		put(MESSAGE_KEY, new FlashMessage(FlashMessageType.info, info));
+		put(MESSAGE_KEY, new Message(MessageType.info, info));
 	}
 
 	public static void setWarningMessage(String warning) {
-		put(MESSAGE_KEY, new FlashMessage(FlashMessageType.warning, warning));
+		put(MESSAGE_KEY, new Message(MessageType.warning, warning));
 	}
 
 	public static void setErrorMessage(String error) {
-		put(MESSAGE_KEY, new FlashMessage(FlashMessageType.error, error));
+		put(MESSAGE_KEY, new Message(MessageType.error, error));
 	}
 
 	public static void setSuccessMessage(String success) {
-		put(MESSAGE_KEY, new FlashMessage(FlashMessageType.success, success));
+		put(MESSAGE_KEY, new Message(MessageType.success, success));
 	}
 
 	private static HttpServletRequest getRequest(RequestAttributes requestAttributes) {
@@ -54,18 +54,18 @@ public final class FlashMap {
 
 	private static final String MESSAGE_KEY = "message";
 
-	public static final class FlashMessage {
+	public static final class Message {
 		
-		private final FlashMessageType type;
+		private final MessageType type;
 		
 		private final String text;
 
-		public FlashMessage(FlashMessageType type, String text) {
+		public Message(MessageType type, String text) {
 			this.type = type;
 			this.text = text;
 		}
 
-		public FlashMessageType getType() {
+		public MessageType getType() {
 			return type;
 		}
 
@@ -79,7 +79,7 @@ public final class FlashMap {
 	
 	}
 	
-	public static enum FlashMessageType {
+	public static enum MessageType {
 		info, success, warning, error
 	}
 	
