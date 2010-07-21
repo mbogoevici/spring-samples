@@ -41,3 +41,14 @@ span.success {
 span.error {
 	color: #D8000C;
 }
+
+body {
+	font-family: Lucida Grande, sans-serif;
+	font-size: .75em;
+	margin: 1em auto;
+	width: 763px;
+}
+
+ul li {
+	padding: 5px;
+}
