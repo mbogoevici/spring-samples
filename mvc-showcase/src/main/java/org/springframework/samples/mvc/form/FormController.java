@@ -3,6 +3,7 @@ package org.springframework.samples.mvc.form;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.samples.mvc.AjaxUtils;
 import org.springframework.samples.mvc.flash.FlashMap;
 import org.springframework.samples.mvc.flash.FlashMap.Message;
 import org.springframework.samples.mvc.flash.FlashMap.MessageType;
@@ -21,7 +22,7 @@ public class FormController {
 	public void form(@RequestHeader(value="X-Requested-With", required=false) String requestedWith, HttpSession session, Model model) {
 		FormBean form = (FormBean) session.getAttribute("form");
 		model.addAttribute(form != null ? form : new FormBean());
-		model.addAttribute("ajaxRequest", isAjaxRequest(requestedWith));
+		model.addAttribute("ajaxRequest", AjaxUtils.isAjaxRequest(requestedWith));
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
@@ -33,7 +34,7 @@ public class FormController {
 		session.setAttribute("form", form);
 		String message = "Form submitted successfully.  Bound " + form;
 		// success response handling
-		if (isAjaxRequest(requestedWith)) {
+		if (AjaxUtils.isAjaxRequest(requestedWith)) {
 			// prepare model for rendering success message in this request			
 			model.addAttribute("message", new Message(MessageType.success, message));
 			return null;
@@ -45,7 +46,4 @@ public class FormController {
 		}
 	}
 	
-	private boolean isAjaxRequest(String requestedWith) {
-		return requestedWith != null ? "XMLHttpRequest".equals(requestedWith) : false;
-	}
 }
