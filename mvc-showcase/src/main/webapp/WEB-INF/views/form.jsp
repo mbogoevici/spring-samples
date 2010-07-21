@@ -6,7 +6,7 @@
 	<p>
 		See the <code>org.springframework.samples.mvc.form</code> package for the @Controller code	
 	</p>
-	<form:form id="form" method="post" modelAttribute="formBean">
+	<form:form id="form" method="post" modelAttribute="formBean" cssClass="cleanform">
 		<div class="header">
 	  		<h2>Form</h2>
 	  		<c:if test="${not empty message}">
@@ -81,6 +81,6 @@
 			<label><form:radiobutton path="subscribeNewsletter" value="false" /> No</label>
 		</fieldset>
 
-		<input type="submit" value="Submit">
+		<p><button type="submit">Submit</button></p>
 	</form:form>	
 </div>

@@ -4,7 +4,7 @@
 	<p>
 		See the <code>org.springframework.samples.mvc.fileupload</code> package for the @Controller code	
 	</p>
-	<form action="fileupload" method="POST" enctype="multipart/form-data">
+	<form action="fileupload" method="POST" enctype="multipart/form-data" class="cleanForm">
 		<div class="header">
 	  		<h2>Form</h2>
 	  		<c:if test="${not empty message}">

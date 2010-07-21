@@ -371,14 +371,16 @@ $(document).ready(function() {
 	});
 	
 	$("form[class=textForm]").submit(function(event) {
-		var button = $(this).children(":first");
-		$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		var form = $(this);
+		var button = form.children(":first");
+		$.ajax({ type: "POST", url: form.attr("action"), data: "foo", contentType: "text/plain", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
 		return false;
 	});
 
 	$("#readForm").submit(function() {
-		var button = $(this).children(":first");
-		$.ajax({ type: "POST", url: this.action, data: "foo=bar&fruit=apple", contentType: "application/x-www-form-urlencoded", dataType: "text", success: function(text) { showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		var form = $(this);
+		var button = form.children(":first");
+		$.ajax({ type: "POST", url: form.attr("action"), data: "foo=bar&fruit=apple", contentType: "application/x-www-form-urlencoded", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
 		return false;
 	});
 
@@ -389,8 +391,9 @@ $(document).ready(function() {
 	});
 
 	$("#readXml").submit(function() {
-		var button = $(this).children(":first");
-		$.ajax({ type: "POST", url: this.action, data: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><javaBean><foo>bar</foo><fruit>apple</fruit></javaBean>", contentType: "application/xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		var form = $(this);
+		var button = form.children(":first");
+		$.ajax({ type: "POST", url: form.attr("action"), data: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><javaBean><foo>bar</foo><fruit>apple</fruit></javaBean>", contentType: "application/xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
 		return false;
 	});
 
@@ -401,7 +404,7 @@ $(document).ready(function() {
 				req.setRequestHeader("Accept", "application/application+xml");
 			},
 			success: function(xml) {
-				MvcUtil.showSuccessResponse(xmlencode(xml), link);
+				MvcUtil.showSuccessResponse(MvcUtil.xmlencode(xml), link);
 			},
 			error: function(xhr) { 
 				MvcUtil.showErrorResponse(xhr.responseText, link);
@@ -411,8 +414,9 @@ $(document).ready(function() {
 	});					
 
 	$("#readJson").submit(function() {
-		var button = $(this).children(":first");
-		$.ajax({ type: "POST", url: this.action, data: "{ \"foo\": \"bar\", \"fruit\": \"apple\" }", contentType: "application/json", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		var form = $(this);
+		var button = form.children(":first");	
+		$.ajax({ type: "POST", url: form.attr("action"), data: "{ \"foo\": \"bar\", \"fruit\": \"apple\" }", contentType: "application/json", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
 		return false;
 	});
 
@@ -423,14 +427,9 @@ $(document).ready(function() {
 	});
 
 	$("#readAtom").submit(function() {
-		var button = $(this).children(":first");
-		$.ajax({ type: "POST", url: this.action, data: '<?xml version="1.0" encoding="UTF-8"?> <feed xmlns="http://www.w3.org/2005/Atom">  <title>My Atom feed</title> </feed>', contentType: "application/atom+xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
-		return false;
-	});
-
-	$("#readRss").submit(function() {
-		var button = $(this).children(":first");
-		$.ajax({ type: "POST", url: this.action, data: '<?xml version="1.0" encoding="UTF-8"?> <rss version="2.0"><channel><title>My RSS feed</title></channel></rss>', contentType: "application/rss+xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		var form = $(this);
+		var button = form.children(":first");
+		$.ajax({ type: "POST", url: form.attr("action"), data: '<?xml version="1.0" encoding="UTF-8"?> <feed xmlns="http://www.w3.org/2005/Atom"><title>My Atom feed</title></feed>', contentType: "application/atom+xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
 		return false;
 	});
 
@@ -441,12 +440,19 @@ $(document).ready(function() {
 				req.setRequestHeader("Accept", "application/atom+xml");
 			},
 			success: function(feed) {
-				MvcUtil.showSuccessResponse(xmlencode(feed), link);
+				MvcUtil.showSuccessResponse(MvcUtil.xmlencode(feed), link);
 			},
 			error: function(xhr) { 
 				MvcUtil.showErrorResponse(xhr.responseText, link);
 			}
 		});
+		return false;
+	});
+	
+	$("#readRss").submit(function() {
+		var form = $(this);
+		var button = form.children(":first");
+		$.ajax({ type: "POST", url: form.attr("action"), data: '<?xml version="1.0" encoding="UTF-8"?> <rss version="2.0"><channel><title>My RSS feed</title></channel></rss>', contentType: "application/rss+xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
 		return false;
 	});
 
@@ -457,7 +463,7 @@ $(document).ready(function() {
 				req.setRequestHeader("Accept", "application/rss+xml");
 			},
 			success: function(feed) {
-				MvcUtil.showSuccessResponse(xmlencode(feed), link);
+				MvcUtil.showSuccessResponse(MvcUtil.xmlencode(feed), link);
 			},
 			error: function(xhr) { 
 				MvcUtil.showErrorResponse(xhr.responseText, link);
