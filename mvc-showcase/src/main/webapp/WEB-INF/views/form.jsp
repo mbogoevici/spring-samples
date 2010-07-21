@@ -10,11 +10,11 @@
 		<div class="header">
 	  		<h2>Form</h2>
 	  		<c:if test="${not empty message}">
-				<div class="${message.type}">${message.text}</div>	
+				<div id="message" class="${message.type}">${message.text}</div>	
 	  		</c:if>
 	  		<s:bind path="*">
 	  			<c:if test="${status.error}">
-			  		<div class="error">Form has errors</div>
+			  		<div id="message" class="error">Form has errors</div>
 	  			</c:if>
 	  		</s:bind>
 		</div>
@@ -82,5 +82,16 @@
 		</fieldset>
 
 		<p><button type="submit">Submit</button></p>
-	</form:form>	
+	</form:form>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#form").submit(function() {  
+				$.post($(this).attr("action"), $(this).serialize(), function(html) {
+					$("#forms").replaceWith(html);
+					$('html, body').animate({ scrollTop: $("#message").offset().top }, 500);
+				});
+				return false;  
+			});			
+		});
+	</script>
 </div>
