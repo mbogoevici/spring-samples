@@ -10,6 +10,39 @@
 	<script type="text/javascript" src="<c:url value="/resources/jqueryui/1.8/jquery.ui.widget.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/jqueryui/1.8/jquery.ui.tabs.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/json2.js" />"></script>
+	<script>
+		MvcUtil = {};
+		MvcUtil.showSuccessResponse = function (text, element) {
+			MvcUtil.showResponse("success", text, element);
+		};
+		MvcUtil.showErrorResponse = function showErrorResponse(text, element) {
+			MvcUtil.showResponse("error", text, element);
+		};
+		MvcUtil.showResponse = function(type, text, element) {
+			var responseElementId = element.attr("id") + "Response";
+			var responseElement = $("#" + responseElementId);
+			if (responseElement.length == 0) {
+				responseElement = $('<span id="' + responseElementId + '" class="' + type + '" style="display:none">' + text + '</span>').insertAfter(element);
+			} else {
+				responseElement.replaceWith('<span id="' + responseElementId + '" class="' + type + '" style="display:none">' + text + '</span>');
+				responseElement = $("#" + responseElementId);
+			}
+			responseElement.fadeIn("slow");
+		};
+		MvcUtil.xmlencode = function(xml) {
+			//for IE 
+			var text;
+			if (window.ActiveXObject) {
+			    text = xml.xml;
+			 }
+			// for Mozilla, Firefox, Opera, etc.
+			else {
+			   text = (new XMLSerializer()).serializeToString(xml);
+			}			
+		    return text.replace(/\&/g,'&'+'amp;').replace(/</g,'&'+'lt;')
+		        .replace(/>/g,'&'+'gt;').replace(/\'/g,'&'+'apos;').replace(/\"/g,'&'+'quot;');
+		};
+	</script>	
 </head>
 <body>
 <h1>mvc-showcase</h1>
@@ -179,23 +212,9 @@
 					<form id="readForm" action="<c:url value="/messageconverters/form" />" method="post">
 						<input id="readFormSubmit" type="submit" value="Read a Form" />		
 					</form>
-					<script type="text/javascript">
-						$("#readForm").submit(function() {
-							var button = $(this).children(":first");
-							$.ajax({ type: "POST", url: this.action, data: "foo=bar&fruit=apple", contentType: "application/x-www-form-urlencoded", dataType: "text", success: function(text) { showSuccessResponse(text, button); }, error: function(xhr) { showErrorResponse(xhr.responseText, button); }});
-							return false;
-						});
-					</script>
 				</li>
 				<li>
 					<a id="writeForm" href="<c:url value="/messageconverters/form" />">Write a Form</a>
-					<script type="text/javascript">
-						$("#writeForm").click(function() {
-							var link = $(this);
-							$.ajax({ url: this.href, dataType: "text", beforeSend: function(req) { req.setRequestHeader("Accept", "application/x-www-form-urlencoded"); }, success: function(form) { showSuccessResponse(form, link); }, error: function(xhr) { showErrorResponse(xhr.responseText, link); }});					
-							return false;
-						});
-					</script>								
 				</li>
 			</ul>
 			<h3>Jaxb2RootElementHttpMessageConverter</h3>
@@ -204,42 +223,9 @@
 					<form id="readXml" action="<c:url value="/messageconverters/xml" />" method="post">
 						<input id="readXmlSubmit" type="submit" value="Read XML" />		
 					</form>
-					<script type="text/javascript">
-						$("#readXml").submit(function() {
-							var button = $(this).children(":first");
-							$.ajax({ type: "POST", url: this.action, data: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><javaBean><foo>bar</foo><fruit>apple</fruit></javaBean>", contentType: "application/xml", dataType: "text", success: function(text) { showSuccessResponse(text, button); }, error: function(xhr) { showErrorResponse(xhr.responseText, button); }});
-							return false;
-						});
-					</script>
 				</li>
 				<li>
 					<a id="writeXml" href="<c:url value="/messageconverters/xml" />">Write XML</a>
-					<script type="text/javascript">
-						$("#writeXml").click(function() {
-							var link = $(this);
-							$.ajax({ url: link.attr("href"),
-								beforeSend: function(req) { 
-									req.setRequestHeader("Accept", "application/application+xml");
-								},
-								success: function(xml) {
-									//for IE 
-									var text;
-									if (window.ActiveXObject) {
-									    text = xml.xml;
-									 }
-									// for Mozilla, Firefox, Opera, etc.
-									else {
-									   text = (new XMLSerializer()).serializeToString(xml);
-									}
-									showSuccessResponse(xmlencode(text), link);
-								},
-								error: function(xhr) { 
-									showErrorResponse(xhr.responseText, link);
-								}
-							});
-							return false;
-						});					
-					</script>					
 				</li>
 			</ul>
 			<h3>MappingJacksonHttpMessageConverter</h3>
@@ -248,23 +234,9 @@
 					<form id="readJson" action="<c:url value="/messageconverters/json" />" method="post">
 						<input id="readJsonSubmit" type="submit" value="Read JSON" />	
 					</form>
-					<script type="text/javascript">
-						$("#readJson").submit(function() {
-							var button = $(this).children(":first");
-							$.ajax({ type: "POST", url: this.action, data: "{ \"foo\": \"bar\", \"fruit\": \"apple\" }", contentType: "application/json", dataType: "text", success: function(text) { showSuccessResponse(text, button); }, error: function(xhr) { showErrorResponse(xhr.responseText, button); }});
-							return false;
-						});
-					</script>
 				</li>
 				<li>
 					<a id="writeJson" href="<c:url value="/messageconverters/json" />">Write JSON</a>
-					<script type="text/javascript">
-						$("#writeJson").click(function() {
-							var link = $(this);
-							$.ajax({ url: this.href, dataType: "json", success: function(json) { showSuccessResponse(JSON.stringify(json), link); }, error: function(xhr) { showErrorResponse(xhr.responseText, link); }});					
-							return false;
-						});
-					</script>								
 				</li>
 			</ul>
 			<h3>AtomFeedHttpMessageConverter</h3>
@@ -273,42 +245,9 @@
 					<form id="readAtom" action="<c:url value="/messageconverters/atom" />" method="post">
 						<input id="readAtomSubmit" type="submit" value="Read Atom" />		
 					</form>
-					<script type="text/javascript">
-						$("#readAtom").submit(function() {
-							var button = $(this).children(":first");
-							$.ajax({ type: "POST", url: this.action, data: '<?xml version="1.0" encoding="UTF-8"?> <feed xmlns="http://www.w3.org/2005/Atom">  <title>My Atom feed</title> </feed>', contentType: "application/atom+xml", dataType: "text", success: function(text) { showSuccessResponse(text, button); }, error: function(xhr) { showErrorResponse(xhr.responseText, button); }});
-							return false;
-						});
-					</script>
 				</li>
 				<li>
 					<a id="writeAtom" href="<c:url value="/messageconverters/atom" />">Write Atom</a>
-					<script type="text/javascript">
-						$("#writeAtom").click(function() {
-							var link = $(this);
-							$.ajax({ url: link.attr("href"),
-								beforeSend: function(req) { 
-									req.setRequestHeader("Accept", "application/atom+xml");
-								},
-								success: function(feed) {
-									//for IE 
-									var text;
-									if (window.ActiveXObject) {
-									    text = feed.xml;
-									 }
-									// for Mozilla, Firefox, Opera, etc.
-									else {
-									   text = (new XMLSerializer()).serializeToString(feed);
-									}
-									showSuccessResponse(xmlencode(text), link);
-								},
-								error: function(xhr) { 
-									showErrorResponse(xhr.responseText, link);
-								}
-							});
-							return false;
-						});
-					</script>								
 				</li>
 			</ul>
 			<h3>RssChannelHttpMessageConverter</h3>
@@ -317,42 +256,9 @@
 					<form id="readRss" action="<c:url value="/messageconverters/rss" />" method="post">
 						<input id="readRssSubmit" type="submit" value="Read Rss" />	
 					</form>
-					<script type="text/javascript">
-						$("#readRss").submit(function() {
-							var button = $(this).children(":first");
-							$.ajax({ type: "POST", url: this.action, data: '<?xml version="1.0" encoding="UTF-8"?> <rss version="2.0"><channel><title>My RSS feed</title></channel></rss>', contentType: "application/rss+xml", dataType: "text", success: function(text) { showSuccessResponse(text, button); }, error: function(xhr) { showErrorResponse(xhr.responseText, button); }});
-							return false;
-						});
-					</script>
 				</li>
 				<li>
 					<a id="writeRss" href="<c:url value="/messageconverters/rss" />">Write Rss</a>
-					<script type="text/javascript">
-						$("#writeRss").click(function() {
-							var link = $(this);	
-							$.ajax({ url: link.attr("href"),
-								beforeSend: function(req) { 
-									req.setRequestHeader("Accept", "application/rss+xml");
-								},
-								success: function(feed) {
-									//for IE 
-									var text;
-									if (window.ActiveXObject) {
-									    text = feed.xml;
-									 }
-									// for Mozilla, Firefox, Opera, etc.
-									else {
-									   text = (new XMLSerializer()).serializeToString(feed);
-									}
-									showSuccessResponse(xmlencode(text), link);
-								},
-								error: function(xhr) { 
-									showErrorResponse(xhr.responseText, link);
-								}
-							});
-							return false;
-						});
-					</script>								
 				</li>
 			</ul>		
 		</div>
@@ -455,46 +361,112 @@
 	</div>
 </div>
 <script type="text/javascript">
-$("a[class=textLink]").click(function(){
-	var link = $(this);
-	$.ajax({ url: link.attr("href"), dataType: "text", success: function(text) { showSuccessResponse(text, link); }, error: function(xhr) { showErrorResponse(xhr.responseText, link); }});
-	return false;
-});
-$("form[class=textForm]").submit(function(event) {
-	var button = $(this).children(":first");
-	$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text", success: function(text) { showSuccessResponse(text, button); }, error: function(xhr) { showErrorResponse(xhr.responseText, button); }});
-	return false;
-});
-
-function showSuccessResponse(text, element) {
-	showResponse("success", text, element);
-}
-
-function showErrorResponse(text, element) {
-	showResponse("error", text, element);
-}
-
-function showResponse(type, text, element) {
-	var responseElementId = element.attr("id") + "Response";
-	var responseElement = $("#" + responseElementId);
-	if (responseElement.length == 0) {
-		responseElement = $('<span id="' + responseElementId + '" class="' + type + '" style="display:none">' + text + '</span>').insertAfter(element);
-	} else {
-		responseElement.replaceWith('<span id="' + responseElementId + '" class="' + type + '" style="display:none">' + text + '</span>');
-		responseElement = $("#" + responseElementId);
-	}
-	responseElement.fadeIn("slow");
-}
-
-function xmlencode(string) {
-    return string.replace(/\&/g,'&'+'amp;').replace(/</g,'&'+'lt;')
-        .replace(/>/g,'&'+'gt;').replace(/\'/g,'&'+'apos;').replace(/\"/g,'&'+'quot;');
-}
-
 $(document).ready(function() {
 	$("#tabs").tabs();
-});
 
+	$("a[class=textLink]").click(function(){
+		var link = $(this);
+		$.ajax({ url: link.attr("href"), dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, link); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, link); }});
+		return false;
+	});
+	
+	$("form[class=textForm]").submit(function(event) {
+		var button = $(this).children(":first");
+		$.ajax({ type: "POST", url: this.action, data: "foo", contentType: "text/plain", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		return false;
+	});
+
+	$("#readForm").submit(function() {
+		var button = $(this).children(":first");
+		$.ajax({ type: "POST", url: this.action, data: "foo=bar&fruit=apple", contentType: "application/x-www-form-urlencoded", dataType: "text", success: function(text) { showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		return false;
+	});
+
+	$("#writeForm").click(function() {
+		var link = $(this);
+		$.ajax({ url: this.href, dataType: "text", beforeSend: function(req) { req.setRequestHeader("Accept", "application/x-www-form-urlencoded"); }, success: function(form) { MvcUtil.showSuccessResponse(form, link); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, link); }});					
+		return false;
+	});
+
+	$("#readXml").submit(function() {
+		var button = $(this).children(":first");
+		$.ajax({ type: "POST", url: this.action, data: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><javaBean><foo>bar</foo><fruit>apple</fruit></javaBean>", contentType: "application/xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		return false;
+	});
+
+	$("#writeXml").click(function() {
+		var link = $(this);
+		$.ajax({ url: link.attr("href"),
+			beforeSend: function(req) { 
+				req.setRequestHeader("Accept", "application/application+xml");
+			},
+			success: function(xml) {
+				MvcUtil.showSuccessResponse(xmlencode(xml), link);
+			},
+			error: function(xhr) { 
+				MvcUtil.showErrorResponse(xhr.responseText, link);
+			}
+		});
+		return false;
+	});					
+
+	$("#readJson").submit(function() {
+		var button = $(this).children(":first");
+		$.ajax({ type: "POST", url: this.action, data: "{ \"foo\": \"bar\", \"fruit\": \"apple\" }", contentType: "application/json", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		return false;
+	});
+
+	$("#writeJson").click(function() {
+		var link = $(this);
+		$.ajax({ url: this.href, dataType: "json", success: function(json) { MvcUtil.showSuccessResponse(JSON.stringify(json), link); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, link); }});					
+		return false;
+	});
+
+	$("#readAtom").submit(function() {
+		var button = $(this).children(":first");
+		$.ajax({ type: "POST", url: this.action, data: '<?xml version="1.0" encoding="UTF-8"?> <feed xmlns="http://www.w3.org/2005/Atom">  <title>My Atom feed</title> </feed>', contentType: "application/atom+xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		return false;
+	});
+
+	$("#readRss").submit(function() {
+		var button = $(this).children(":first");
+		$.ajax({ type: "POST", url: this.action, data: '<?xml version="1.0" encoding="UTF-8"?> <rss version="2.0"><channel><title>My RSS feed</title></channel></rss>', contentType: "application/rss+xml", dataType: "text", success: function(text) { MvcUtil.showSuccessResponse(text, button); }, error: function(xhr) { MvcUtil.showErrorResponse(xhr.responseText, button); }});
+		return false;
+	});
+
+	$("#writeAtom").click(function() {
+		var link = $(this);
+		$.ajax({ url: link.attr("href"),
+			beforeSend: function(req) { 
+				req.setRequestHeader("Accept", "application/atom+xml");
+			},
+			success: function(feed) {
+				MvcUtil.showSuccessResponse(xmlencode(feed), link);
+			},
+			error: function(xhr) { 
+				MvcUtil.showErrorResponse(xhr.responseText, link);
+			}
+		});
+		return false;
+	});
+
+	$("#writeRss").click(function() {
+		var link = $(this);	
+		$.ajax({ url: link.attr("href"),
+			beforeSend: function(req) { 
+				req.setRequestHeader("Accept", "application/rss+xml");
+			},
+			success: function(feed) {
+				MvcUtil.showSuccessResponse(xmlencode(feed), link);
+			},
+			error: function(xhr) { 
+				MvcUtil.showErrorResponse(xhr.responseText, link);
+			}
+		});
+		return false;
+	});
+
+});
 </script>
 </body>
 </html>
