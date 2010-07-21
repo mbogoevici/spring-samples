@@ -1,4 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${!ajaxRequest}">
+<html>
+<head>
+	<title>fileupload | mvc-showcase</title>
+	<link href="<c:url value="/resources/form.css" />" rel="stylesheet"  type="text/css" />		
+	<script type="text/javascript" src="<c:url value="/resources/jquery/1.4/jquery.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/jqueryform/2.4/jquery.form.js" />"></script>	
+</head>
+<body>
+</c:if>
 	<div id="fileupload">
 		<h2>File Upload</h2>
 		<p>
@@ -11,14 +21,13 @@
 					<div id="message" class="${message.type}">${message.text}</div>	  		
 		  		</c:if>
 			</div>
-			<label for="file">
-				File
-			</label>
+			<label for="file">File</label>
 			<input id="file" type="file" name="file" />
 			<p><button type="submit">Upload</button></p>		
 		</form>
 		<script type="text/javascript">
 			$(document).ready(function() {
+				$('<input type="hidden" name="ajaxUpload" value="true" />').insertAfter($("#file"));
 				$("#fileuploadForm").ajaxForm({ success: function(html) {
 						$("#fileupload").replaceWith(html);
 					}
@@ -26,3 +35,7 @@
 			});
 		</script>	
 	</div>
+<c:if test="${!ajaxRequest}">
+</body>
+</html>
+</c:if>

@@ -28,6 +28,7 @@ public class FormController {
 	@RequestMapping(method=RequestMethod.POST)
 	public String processSubmit(@RequestHeader(value="X-Requested-With", required=false) String requestedWith, @Valid FormBean form, BindingResult result, HttpSession session, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("ajaxRequest", AjaxUtils.isAjaxRequest(requestedWith));
 			return null;
 		}
 		// simply store form bean in the session for demo purposes, typically you would save form bean values to a db
@@ -35,8 +36,9 @@ public class FormController {
 		String message = "Form submitted successfully.  Bound " + form;
 		// success response handling
 		if (AjaxUtils.isAjaxRequest(requestedWith)) {
-			// prepare model for rendering success message in this request			
+			// prepare model for rendering success message in this request
 			model.addAttribute("message", new Message(MessageType.success, message));
+			model.addAttribute("ajaxRequest", true);
 			return null;
 		} else {
 			// store a success message for rendering on the next request after redirect
