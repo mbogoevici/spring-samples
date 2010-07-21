@@ -4,7 +4,7 @@
 	<p>
 		See the <code>org.springframework.samples.mvc.fileupload</code> package for the @Controller code	
 	</p>
-	<form action="fileupload" method="POST" enctype="multipart/form-data" class="cleanForm">
+	<form action="fileupload" method="POST" enctype="multipart/form-data" class="cleanform">
 		<div class="header">
 	  		<h2>Form</h2>
 	  		<c:if test="${not empty message}">
@@ -15,6 +15,6 @@
 			File
 		</label>
 		<input id="file" type="file" name="file" />
-		<input type="submit" value="Upload">
+		<p><button type="submit">Upload</button></p>
 	</form>	
 </div>
