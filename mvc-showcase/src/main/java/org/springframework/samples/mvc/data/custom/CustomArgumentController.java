@@ -20,12 +20,16 @@ public class CustomArgumentController {
 	// request related
 	
 	@Autowired
-	public CustomArgumentController(AnnotationMethodHandlerAdapter controllerAdapter) {
-		// install custom argument resolver triggered by @RequestAttribute annotation
-		controllerAdapter.setCustomArgumentResolver(new WebArgumentResolver() {
-			public Object resolveArgument(MethodParameter methodParameter, NativeWebRequest webRequest) throws Exception {
-				RequestAttribute attr = methodParameter.getParameterAnnotation(RequestAttribute.class);
-				return attr != null ? webRequest.getAttribute(attr.value(), WebRequest.SCOPE_REQUEST) : WebArgumentResolver.UNRESOLVED;
+	public CustomArgumentController(AnnotationMethodHandlerAdapter controllerInvoker) {
+		// register a custom resolver for @RequestAttribute arguments
+		controllerInvoker.setCustomArgumentResolver(new WebArgumentResolver() {
+			public Object resolveArgument(MethodParameter param, NativeWebRequest request) throws Exception {
+				RequestAttribute attr = param.getParameterAnnotation(RequestAttribute.class);
+				if (attr != null) {
+					return request.getAttribute(attr.value(), WebRequest.SCOPE_REQUEST);
+				} else {
+					return WebArgumentResolver.UNRESOLVED;
+				}
 			}
 		});
 	}

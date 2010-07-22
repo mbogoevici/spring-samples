@@ -24,12 +24,11 @@ public class StandardArgumentsController {
 	// request related
 	
 	@RequestMapping(value="/data/standard/request", method=RequestMethod.GET)
-	public @ResponseBody String availableStandardRequestArguments(HttpServletRequest request,
-			Principal userPrincipal, Locale requestLocale) {
+	public @ResponseBody String standardRequestArgs(HttpServletRequest request, Principal user, Locale locale) {
 		StringBuilder buffer = new StringBuilder();
 		buffer.append("request = ").append(request).append(", ");
-		buffer.append("userPrincipal = ").append(userPrincipal).append(", ");
-		buffer.append("requestLocale = ").append(requestLocale);
+		buffer.append("userPrincipal = ").append(user).append(", ");
+		buffer.append("requestLocale = ").append(locale);
 		return buffer.toString();
 	}
 

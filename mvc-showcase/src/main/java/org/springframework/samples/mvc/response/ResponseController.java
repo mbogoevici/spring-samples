@@ -19,14 +19,16 @@ public class ResponseController {
 
 	@RequestMapping(value="/response/entity/status", method=RequestMethod.GET)
 	public ResponseEntity<String> responseEntityStatusCode() {
-		return new ResponseEntity<String>("The String ResponseBody with Forbidden (403) custom status code", HttpStatus.FORBIDDEN);
+		return new ResponseEntity<String>("The String ResponseBody with custom status code (403 Forbidden)",
+				HttpStatus.FORBIDDEN);
 	}
 
 	@RequestMapping(value="/response/entity/headers", method=RequestMethod.GET)
 	public ResponseEntity<String> responseEntityCustomHeaders() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.TEXT_PLAIN);
-		return new ResponseEntity<String>("The String ResponseBody with custom response header Content-Type=text/plain", headers, HttpStatus.OK);
+		return new ResponseEntity<String>("The String ResponseBody with custom header Content-Type=text/plain",
+				headers, HttpStatus.OK);
 	}
 
 }
