@@ -12,7 +12,28 @@
 	<annotation-driven conversion-service="conversionService" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources />
+	<!-- <resources /> -->
+	<!-- TODO - will restore namespace tag once its been brought up to date - using full bean definitions for now -->
+	<beans:bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+ 	
+ 	<beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+ 		<beans:property name="mappings"> 
+ 			<beans:value>
+ 				/resources/**=resourceHandler
+ 				/*=rootHandler
+ 			</beans:value>
+ 		</beans:property>
+ 	</beans:bean>
+ 	
+ 	<beans:bean id="resourceHandler" class="org.springframework.web.servlet.resources.ResourceHttpRequestHandler">
+ 		<beans:constructor-arg>
+ 			<beans:list>
+ 				<beans:value>/</beans:value>
+ 			</beans:list>
+ 		</beans:constructor-arg>
+ 	</beans:bean>
+ 	
+ 	<beans:bean id="rootHandler" class="org.springframework.web.servlet.resources.DefaultServletHttpRequestHandler"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
