@@ -9,9 +9,9 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>3.0.3.BUILD-SNAPSHOT</org.springframework-version>
-		<org.springframework.webflow-version>2.1.0.BUILD-SNAPSHOT</org.springframework.webflow-version>
-		<org.springframework.security-version>3.0.2.RELEASE</org.springframework.security-version>
+		<org.springframework-version>3.0.4.BUILD-SNAPSHOT</org.springframework-version>
+		<org.springwebflow-version>2.2.0.BUILD-SNAPSHOT</org.springwebflow-version>
+		<org.springsecurity-version>3.0.2.RELEASE</org.springsecurity-version>
 		<org.aspectj-version>1.6.8</org.aspectj-version>
 		<org.slf4j-version>1.5.10</org.slf4j-version>
 	</properties>
@@ -47,17 +47,17 @@
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-webflow</artifactId>
-			<version>${org.springframework.webflow-version}</version>
+			<version>${org.springwebflow-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-js</artifactId>
-			<version>${org.springframework.webflow-version}</version>
+			<version>${org.springwebflow-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>${org.springframework.security-version}</version>
+			<version>${org.springsecurity-version}</version>
 			<exclusions>
 				<!-- Exclude Commons Logging in favor of SLF4j -->
 				<exclusion>
@@ -69,12 +69,12 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>${org.springframework.security-version}</version>
+			<version>${org.springsecurity-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>${org.springframework.security-version}</version>
+			<version>${org.springsecurity-version}</version>
 			<exclusions>
 				<!-- Exclude Commons Logging in favor of SLF4j -->
 				<exclusion>
