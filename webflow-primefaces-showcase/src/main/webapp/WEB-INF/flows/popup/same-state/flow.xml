@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<var name="counter" class="org.springframework.samples.webflow.popup.Counter"/>
+
+	<view-state id="step1">
+		<transition on="confirm"/>
+		<transition on="continue" to="step2">
+			<evaluate expression="counter.incrementConfirmations()" />
+		</transition>
+		<transition on="cancel">
+			<evaluate expression="counter.incrementCancellations()" />
+		</transition>
+	</view-state>
+
+	<view-state id="step2">
+		<transition on="finish" to="end"/>
+		<transition on="return" to="step1"/>
+	</view-state>
+
+	<end-state id="end" view="externalRedirect:servletRelative:/home" />
+
+</flow>

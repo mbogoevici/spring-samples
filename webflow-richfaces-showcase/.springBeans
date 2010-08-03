@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[2.3.3.201005082200-CI-R3771-B737]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/controllers.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/appServlet/webflow.xml</config>
+	</configs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

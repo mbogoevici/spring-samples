@@ -1,0 +1,4 @@
+#Tue Apr 20 16:59:06 EDT 2010
+eclipse.preferences.version=1
+org.springframework.ide.eclipse.beans.core.ignoreMissingNamespaceHandler=false
+org.springframework.ide.eclipse.beans.core.loadNamespaceHandlerFromClasspath=false

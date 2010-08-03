@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webflow-project-description>
+	<version>1</version>
+	<pluginVersion><![CDATA[2.3.3.201005082200-CI-R3771-B737]]></pluginVersion>
+	<configs>
+		<config>
+			<file>src/main/webapp/WEB-INF/flows/primefaces/popup/same-state/same-state-flow.xml</file>
+			<name><![CDATA[same-state-flow]]></name>
+		</config>
+	</configs>
+</webflow-project-description>
