@@ -58,21 +58,14 @@
 	</servlet-mapping>
 
 	<!-- 
-		PRIMEFACES COMPONENT LIBRARY
+		PRIMEFACES
 	-->
-  	
-  	<!-- Serves static resource content from .jar files such as spring-faces.jar -->
-	<servlet>
-		<servlet-name>Resource Servlet</servlet-name>
-		<servlet-class>org.primefaces.resource.ResourceServlet</servlet-class>
-	</servlet>
 
-	<!-- Map all /resources requests to the Resource Servlet for handling -->
-	<servlet-mapping>
-		<servlet-name>Resource Servlet</servlet-name>
-		<url-pattern>/primefaces_resource/*</url-pattern>
-	</servlet-mapping>
-
+    <context-param>
+        <param-name>primefaces.skin</param-name>
+        <param-value>none</param-value>
+    </context-param>
+    
 	<!-- 
 		SPRING MVC
 	-->
