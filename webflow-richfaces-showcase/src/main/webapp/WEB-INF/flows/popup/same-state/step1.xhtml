@@ -18,13 +18,14 @@
 		<h:messages />
 		<h:panelGroup id="panel">
 			<p>Confirmations: ${counter.confirmations}, Cancellations: ${counter.cancellations}</p>
-		    <a4j:commandButton value="Next &gt;&gt;" action="confirm" oncomplete="#{rich:component('confirmation')}.show()" />  
+		    <a4j:commandButton value="Next &gt;&gt;" action="confirm" reRender="confirmation" oncomplete="#{rich:component('confirmation')}.show()" />  
 		</h:panelGroup>
 		<rich:modalPanel id="confirmation">
 			<f:facet name="header">
 	           	<h:outputText value="Confirmation" />
 	       	</f:facet>
 			<p><h:outputText value="Please, confirm you would like to continue" /></p>
+			<p>Confirmations: ${counter.confirmations}, Cancellations: ${counter.cancellations}</p>
 			<a4j:commandButton type="button" value="Yes" action="continue" />
 			<a4j:commandButton type="button" value="No" action="cancel" reRender="panel" oncomplete="#{rich:component('confirmation')}.hide()" />
 		</rich:modalPanel>
