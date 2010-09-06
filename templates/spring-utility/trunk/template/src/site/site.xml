@@ -2,7 +2,7 @@
 <project name="Spring Batch: ${project.name}">
 
 	<bannerLeft>
-		<name>Spring Batch: ${project.name}</name>
+		<name>Spring Sample: ${project.name}</name>
     	<href>index.html</href>
 	</bannerLeft>
 
