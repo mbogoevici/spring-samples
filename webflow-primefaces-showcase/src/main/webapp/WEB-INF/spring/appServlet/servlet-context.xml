@@ -1,54 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:faces="http://www.springframework.org/schema/faces"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/faces http://www.springframework.org/schema/faces/spring-faces-2.0.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!--
+		DispatcherServlet Context: defines this servlet's request-processing infrastructure
+	-->
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 
-	<!-- Maps JSF 2 resource requests to an instance of org.springframework.faces.webflow.FacesJsfResourceRequestHandler  -->
-	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-		<property name="order" value="-2"/>
-		<property name="mappings">
-			<value>
-				/javax.faces.resource/**=jsfResourceHandler
-			</value>
-		</property>
-	</bean>
+	<!-- 
+		Enable serving of classpath with Spring 3 resource serving mechanism.
+		Example: 
+		...
+	-->
+	<mvc:resources location="/" mapping="/resources/**" />
 
-	<!-- Maps request paths to flows in the flowRegistry; e.g. a path of /hotels/booking looks for a flow with id "hotels/booking" -->
+	<!-- 
+		Enable processing of JSF 2 resource requests.
+		Example:
+		...
+	-->
+	<faces:resources />
+
+	<!--
+		Maps request paths to flows in the flowRegistry; e.g. a path of
+		/hotels/booking looks for a flow with id "hotels/booking"
+	-->
 	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
-		<property name="order" value="-2"/>
 		<property name="flowRegistry" ref="flowRegistry" />
 	</bean>
 
-	<!-- Resolves views selected for rendering by @Controllers to .xhtml resources in the /WEB-INF/views directory -->
+	<!--
+		Resolves views selected for rendering by @Controllers to .xhtml
+		resources in the /WEB-INF/views directory
+	-->
 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass" value="org.springframework.faces.mvc.JsfView"/>
+		<property name="viewClass" value="org.springframework.faces.mvc.JsfView" />
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".xhtml" />
 	</bean>
 
-	<!-- Dispatches requests mapped to flows to FlowHandler implementations -->
-	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+	<!--
+		Dispatches requests mapped to flows to FlowHandler implementations
+	-->
+	<bean class="org.springframework.faces.webflow.JsfFlowHandlerAdapter">
 		<property name="flowExecutor" ref="flowExecutor" />
-		<property name="ajaxHandler">
-			<bean class="org.springframework.faces.webflow.JsfAjaxHandler"/>
-		</property>
 	</bean>
 
-	<!-- Dispatches requests mapped to org.springframework.web.HttpRequestHandler implementations -->	
-	<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter" />
-
-	<!-- Delegates to the JSF ResourceHandler to serve web application resources such as images, .css and .js files. -->	
-	<bean id="jsfResourceHandler" class="org.springframework.faces.webflow.FacesJsfResourceRequestHandler"/>
-	
-	<!-- Imports user-defined @Controller beans that process client requests -->
+	<!--
+		Imports user-defined @Controller beans that process client requests
+	-->
 	<import resource="controllers.xml" />
 	<import resource="webflow.xml" />
 

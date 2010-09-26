@@ -1,21 +1,52 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<f:view xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      contentType="text/html" encoding="UTF-8">
-<html>
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>webflow-primefaces-showcase</title>
-</h:head>
-<body>
-	<h1>webflow-primefaces-showcase</h1>
-	<p>Tip: Using a Web Developer tool such a Firebug to monitor client/server interaction</p>
-	<hr />
-	<ul>
-		<li><a href="popup/same-state">Popup In Same State</a></li>
-		<li><a href="popup/state-transition">Popup With State Transition</a></li>
-	</ul>
-</body>
-</html>
-</f:view>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/WEB-INF/layouts/standard.xhtml">
+
+<ui:define name="title"></ui:define>
+
+<ui:define name="notes">
+</ui:define>
+
+<ui:define name="content">
+
+	<p:tabView>
+
+		<p:tab title="Popup">
+			<ul>
+				<li>
+					<h:outputLink id="modalDialogInView" value="modal-dialog-in-view" >
+						<h:outputText value="Modal Dialog In View" />
+					</h:outputLink>
+					<p:tooltip for="modalDialogInView" 
+						value="Display a modal dialog without leaving the current view state" /> 
+				</li>
+				<li>
+					<h:outputLink id="springSecurityTaglib" value="spring-security-taglib" >
+						<h:outputText value="Spring Security Facelets Tag Library" />
+					</h:outputLink>
+					<p:tooltip for="springSecurityTaglib" 
+						value="Demonstrates use of the authorize Facelets tag and Unified EL functions for Spring Security." /> 
+				</li>
+			</ul>
+		</p:tab>
+
+		<p:tab title="TODO">
+			<ul>
+				<li>popup with form validation</li>
+				<li>popup with multiple state transitions</li>
+				<li>breadcrumb(http://forum.springsource.org/showthread.php?t=94207)</li>
+				<li>custom jsf component</li>
+				<li>jsr-303 validation</li>
+				<li>jpa persistence</li>
+				<li>file upload</li>
+			</ul>
+		</p:tab>
+
+	</p:tabView>
+
+</ui:define>
+</ui:composition>

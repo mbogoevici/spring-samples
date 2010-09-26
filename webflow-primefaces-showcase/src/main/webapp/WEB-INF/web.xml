@@ -16,6 +16,20 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+
+	<!-- 
+		SPRING SECURITY
+	-->
+	<filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+	 
+    <filter-mapping>
+      <filter-name>springSecurityFilterChain</filter-name>
+      <servlet-name>Spring MVC Servlet</servlet-name>
+    </filter-mapping>
+
 	<!-- 
 		JSF 2 IMPLEMENTATION
 	-->
@@ -37,12 +51,6 @@
   		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
   		<param-value>1</param-value>
   	</context-param>
-	
-  	<!-- Disables partial state saving -->
-  	<context-param>
-  		<param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
-  		<param-value>false</param-value>
-  	</context-param>
 
 	<!-- Just here so the JSF implementation can initialize, *not* used at runtime -->
 	<servlet>
@@ -56,15 +64,6 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.faces</url-pattern>
 	</servlet-mapping>
-
-	<!-- 
-		PRIMEFACES
-	-->
-
-    <context-param>
-        <param-name>primefaces.skin</param-name>
-        <param-value>none</param-value>
-    </context-param>
     
 	<!-- 
 		SPRING MVC
@@ -84,6 +83,14 @@
 		<servlet-name>Spring MVC Servlet</servlet-name>
 		<url-pattern>/app/*</url-pattern>
 	</servlet-mapping>
+
+  	<!-- 
+  		Spring Security Facelets tag library declaration 
+  	-->
+  	<context-param>
+  		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+  		<param-value>/WEB-INF/springsecurity.taglib.xml</param-value>
+  	</context-param>
 
 	<!-- 
 		DEFAULT PAGE

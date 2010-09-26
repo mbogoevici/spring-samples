@@ -7,8 +7,14 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<!-- Maps '/' requests to the 'home' view -->
+	<!-- 
+		URL mappings for views without controller logic.
+		Example: 
+			Incoming path '/home' is mapped maps to the view name 'home'
+			UrlBasedViewResolver in servlet-context resolves 'home' to /WEB-INF/views/home.xhtml 
+	-->
 	<mvc:view-controller path="/home" />
+	<mvc:view-controller path="/login" />
 	
 	<context:component-scan base-package="org.springframework.samples.webflow" />
 	 
