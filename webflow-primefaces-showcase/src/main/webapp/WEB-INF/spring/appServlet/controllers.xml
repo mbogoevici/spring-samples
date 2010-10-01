@@ -13,7 +13,6 @@
 			Incoming path '/home' is mapped maps to the view name 'home'
 			UrlBasedViewResolver in servlet-context resolves 'home' to /WEB-INF/views/home.xhtml 
 	-->
-	<mvc:view-controller path="/home" />
 	<mvc:view-controller path="/login" />
 	
 	<context:component-scan base-package="org.springframework.samples.webflow" />

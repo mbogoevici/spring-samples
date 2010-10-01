@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:faces="http://www.springframework.org/schema/faces"
-	xsi:schemaLocation="
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/faces http://www.springframework.org/schema/faces/spring-faces-2.0.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/faces http://www.springframework.org/schema/faces/spring-faces-2.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
 	<!--
 		DispatcherServlet Context: defines this servlet's request-processing infrastructure
 	-->
 
+	<!-- Imports user-defined @Controller beans that process client requests -->
+	<import resource="controllers.xml" />
+	<import resource="webflow.xml" />
+
+	<!-- Scan for Spring beans declared via annotations. -->
+	<context:component-scan base-package="org.springframework.samples.webflow"/>
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 
 	<!-- 
-		Enable serving of classpath with Spring 3 resource serving mechanism.
-		Example: 
-		...
+		Enable serving of classpath with Spring 3 resource serving mechanism. For example:
+		/webflow-primefaces-showcase/app/resources/styles/blueprint/print.css
 	-->
 	<mvc:resources location="/" mapping="/resources/**" />
 
 	<!-- 
-		Enable processing of JSF 2 resource requests.
-		Example:
-		...
+		Enable processing of JSF 2 resource requests. For example:
+		/webflow-primefaces-showcase/app/javax.faces.resource/jsf.js?ln=javax.faces
 	-->
 	<faces:resources />
 
@@ -52,11 +59,5 @@
 	<bean class="org.springframework.faces.webflow.JsfFlowHandlerAdapter">
 		<property name="flowExecutor" ref="flowExecutor" />
 	</bean>
-
-	<!--
-		Imports user-defined @Controller beans that process client requests
-	-->
-	<import resource="controllers.xml" />
-	<import resource="webflow.xml" />
 
 </beans>

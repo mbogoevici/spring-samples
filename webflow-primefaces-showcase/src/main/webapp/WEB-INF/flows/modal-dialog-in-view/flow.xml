@@ -21,6 +21,6 @@
 		<transition on="exit" to="end"/>
 	</view-state>
 
-	<end-state id="end" view="externalRedirect:servletRelative:/home" />
+	<end-state id="end" view="externalRedirect:servletRelative:/home?activeTab=modal" />
 
 </flow>

@@ -13,23 +13,57 @@
 
 <ui:define name="content">
 
-	<p:tabView>
+	<p:tabView activeIndex="${activeTabIndex}">
 
-		<p:tab title="Popup">
+		<p:tab title="Ajax">
+			<ul>
+				<li>
+					<h:outputLink id="ajaxJsf" value="ajax-jsf" >
+						<h:outputText value="JSF 2 commandButton with f:ajax" />
+					</h:outputLink><br/>
+					<span class="alt">Ajax request and responses with h:commandButton + nested f:ajax tag.</span>
+				</li>
+				<li>
+					<h:outputLink id="ajaxPrimeFaces" value="ajax-primefaces" >
+						<h:outputText value="PrimeFaces commandButton" />
+					</h:outputLink><br/>
+					<span class="alt">Ajax request and response with the PrimeFaces commandButton.</span> 
+				</li>
+				<li>
+					<h:outputLink id="polling" value="poller" >
+						<h:outputText value="Polling" />
+					</h:outputLink><br/>
+					<span class="alt">Shows PrimeFaces poller component accesses server-side Web Flow data.</span> 
+				</li>
+			</ul>
+		</p:tab>
+
+		<p:tab title="Modal">
 			<ul>
 				<li>
 					<h:outputLink id="modalDialogInView" value="modal-dialog-in-view" >
 						<h:outputText value="Modal Dialog In View" />
-					</h:outputLink>
-					<p:tooltip for="modalDialogInView" 
-						value="Display a modal dialog without leaving the current view state" /> 
+					</h:outputLink><br/>
+					<span class="alt">Display a modal dialog without leaving the current view state.</span> 
 				</li>
+			</ul>
+		</p:tab>
+
+		<p:tab title="Spring Security">
+			<h5>Comments: </h5>
+			<p>
+				The flow definitions on this tab are protected with Spring Security. Flow definitions contain the 
+				<span class="alt">&lt;secured attributes="ROLE_USER" /&gt;</span> attribute, which raises 
+				an <span class="alt">AccessDeniedException</span> if you're not logged in and redirects you to 
+				the Login page. Use the Logout button on every flow to log out and log back in as a different 
+				user with different permissions.
+			</p>
+			<ul>
 				<li>
 					<h:outputLink id="springSecurityTaglib" value="spring-security-taglib" >
 						<h:outputText value="Spring Security Facelets Tag Library" />
-					</h:outputLink>
-					<p:tooltip for="springSecurityTaglib" 
-						value="Demonstrates use of the authorize Facelets tag and Unified EL functions for Spring Security." /> 
+					</h:outputLink><br/>
+					<span class="alt">Demonstration of the authorize Facelets tag and Unified EL functions for Spring Security.</span> 
 				</li>
 			</ul>
 		</p:tab>
@@ -45,7 +79,7 @@
 				<li>file upload</li>
 			</ul>
 		</p:tab>
-
+		
 	</p:tabView>
 
 </ui:define>

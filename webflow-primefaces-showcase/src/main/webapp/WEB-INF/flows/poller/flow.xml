@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<var name="message" class="java.lang.String" />
+	
+	<on-start>
+		<set name="flashScope.message" value="'Press Start to begin polling...'" />
+	</on-start>
+
+	<view-state id="view">
+		<transition on="poll">
+			<set name="requestScope.message" value="new java.util.Date()" />
+		</transition>
+		<transition on="start">
+			<set name="requestScope.message" value="'Starting...'" />
+		</transition>
+		<transition on="stop">
+			<set name="requestScope.message" value="'Stopped...'" />
+		</transition>
+		<transition on="exit" to="end" />
+	</view-state>
+
+	<end-state id="end" view="externalRedirect:servletRelative:/home?activeTab=ajax" />
+
+</flow>
