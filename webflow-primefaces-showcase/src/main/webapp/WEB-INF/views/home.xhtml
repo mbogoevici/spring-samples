@@ -18,19 +18,19 @@
 		<p:tab title="Ajax">
 			<ul>
 				<li>
-					<h:outputLink id="ajaxJsf" value="ajax-jsf" >
+					<h:outputLink value="ajax-jsf" >
 						<h:outputText value="JSF 2 commandButton with f:ajax" />
 					</h:outputLink><br/>
 					<span class="alt">Ajax request and responses with h:commandButton + nested f:ajax tag.</span>
 				</li>
 				<li>
-					<h:outputLink id="ajaxPrimeFaces" value="ajax-primefaces" >
+					<h:outputLink value="ajax-primefaces" >
 						<h:outputText value="PrimeFaces commandButton" />
 					</h:outputLink><br/>
 					<span class="alt">Ajax request and response with the PrimeFaces commandButton.</span> 
 				</li>
 				<li>
-					<h:outputLink id="polling" value="poller" >
+					<h:outputLink value="poller" >
 						<h:outputText value="Polling" />
 					</h:outputLink><br/>
 					<span class="alt">Shows PrimeFaces poller component accesses server-side Web Flow data.</span> 
@@ -41,10 +41,27 @@
 		<p:tab title="Modal">
 			<ul>
 				<li>
-					<h:outputLink id="modalDialogInView" value="modal-dialog-in-view" >
+					<h:outputLink value="modal-dialog-in-view" >
 						<h:outputText value="Modal Dialog In View" />
 					</h:outputLink><br/>
 					<span class="alt">Display a modal dialog without leaving the current view state.</span> 
+				</li>
+			</ul>
+		</p:tab>
+
+		<p:tab title="Validation">
+			<ul>
+				<li>
+					<h:outputLink value="validation-bean" >
+						<h:outputText value="Bean Validation" />
+					</h:outputLink><br/>
+					<span class="alt">JSR-303 Bean Validation Annotations.</span> 
+				</li>
+				<li>
+					<h:outputLink value="validation-model" >
+						<h:outputText value="Model Validation" />
+					</h:outputLink><br/>
+					<span class="alt">Web Flow specific mechanism with validation methods in the model object.</span> 
 				</li>
 			</ul>
 		</p:tab>
@@ -60,7 +77,7 @@
 			</p>
 			<ul>
 				<li>
-					<h:outputLink id="springSecurityTaglib" value="spring-security-taglib" >
+					<h:outputLink value="spring-security-taglib" >
 						<h:outputText value="Spring Security Facelets Tag Library" />
 					</h:outputLink><br/>
 					<span class="alt">Demonstration of the authorize Facelets tag and Unified EL functions for Spring Security.</span> 
@@ -74,7 +91,6 @@
 				<li>popup with multiple state transitions</li>
 				<li>breadcrumb(http://forum.springsource.org/showthread.php?t=94207)</li>
 				<li>custom jsf component</li>
-				<li>jsr-303 validation</li>
 				<li>jpa persistence</li>
 				<li>file upload</li>
 			</ul>

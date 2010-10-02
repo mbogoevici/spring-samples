@@ -16,7 +16,8 @@ public class HomeController {
 	static {
 		tabNameToIndex.put("ajax", 0);
 		tabNameToIndex.put("modal", 1);
-		tabNameToIndex.put("springSecurity", 2);
+		tabNameToIndex.put("validate", 2);
+		tabNameToIndex.put("springSecurity", 3);
 	}
 	
 	@RequestMapping("/home")
