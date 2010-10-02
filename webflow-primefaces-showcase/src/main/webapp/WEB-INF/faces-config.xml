@@ -5,9 +5,7 @@
         version="2.0">
 
 	<application>
-		<message-bundle>
-			org.springframework.samples.webflow.JsfMessageResources
-		</message-bundle>
+		<message-bundle>JsfMessageResources</message-bundle>
 	</application>
 
 </faces-config>
