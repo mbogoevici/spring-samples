@@ -12,6 +12,7 @@
 		<flow-execution-listeners>
 			<listener ref="facesContextListener"/>
 			<listener ref="securityListener"/>
+			<listener ref="primeRenderListener"/>			
 		</flow-execution-listeners>
 	</flow-executor>
 
@@ -23,10 +24,13 @@
 	<!-- Configures the Spring Web Flow JSF integration -->
 	<faces:flow-builder-services id="flowBuilderServices" development="true" />
 
-	<!-- Installs a listener to create and release a FacesContext -->
+	<!-- A listener to create and release a FacesContext -->
 	<beans:bean id="facesContextListener" class="org.springframework.faces.webflow.FlowFacesContextLifecycleListener"/>
 
-	<!-- Installs a listener to apply Spring Security authorities -->
+	<!-- A listener to apply Spring Security authorities -->
 	<beans:bean id="securityListener" class="org.springframework.webflow.security.SecurityFlowExecutionListener" />
+
+	<!--  A listener to integrate the render action with PrimeFaces partial rendering -->
+	<beans:bean id="primeRenderListener" class="org.springframework.faces.primefaces.PrimeRenderFragmentsListener"/>
 		
 </beans:beans>
