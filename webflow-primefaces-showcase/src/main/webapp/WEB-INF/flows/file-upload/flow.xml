@@ -8,14 +8,6 @@
 		Also see ../parent-flow.xml. 
 	-->
 
-	<var name="account" class="org.springframework.samples.webflow.validation.Account" />
-
-	<view-state id="edit" model="account">
-		<transition on="next" to="review"/>
-	</view-state>
-
-	<view-state id="review">
-		<transition on="back" to="edit"/>
-	</view-state>
+	<view-state id="view" />
 
 </flow>

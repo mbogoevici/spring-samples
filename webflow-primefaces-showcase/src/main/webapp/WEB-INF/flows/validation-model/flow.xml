@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/webflow
-        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	parent="parent-flow">
+
+	<!--
+		Also see ../parent-flow.xml. 
+	-->
 
 	<var name="reservation" class="org.springframework.samples.webflow.validation.Reservation" />
 
@@ -15,11 +19,5 @@
 	<view-state id="review">
 		<transition on="back" to="edit"/>
 	</view-state>
-
-	<end-state id="end" view="externalRedirect:servletRelative:/home?activeTab=validate" />
-
-	<global-transitions>
-		<transition on="exit" to="end"/>
-	</global-transitions>
 
 </flow>

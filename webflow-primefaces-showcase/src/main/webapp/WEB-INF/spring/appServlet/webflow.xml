@@ -19,6 +19,7 @@
 	<!-- The registry of executable flow definitions -->
 	<flow-registry id="flowRegistry" flow-builder-services="flowBuilderServices" base-path="/WEB-INF/flows">
 		<flow-location-pattern value="/**/flow.xml" />
+		<flow-location id="parent-flow" path="parent-flow.xml"/>
 	</flow-registry>
 
 	<!-- Configures the Spring Web Flow JSF integration -->

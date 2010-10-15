@@ -9,7 +9,7 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 
 	<properties>
-		<java-version>1.6</java-version>
+		<java-version>1.5</java-version>
 		<springframework-version>3.0.5.BUILD-SNAPSHOT</springframework-version>
 		<springwebflow-version>2.2.0.BUILD-SNAPSHOT</springwebflow-version>
 		<springsecurity-version>3.0.3.RELEASE</springsecurity-version>
@@ -108,7 +108,7 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.0.3</version>
 		</dependency>
-		<!-- PrimeFaces components -->
+		<!-- PrimeFaces component library -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
