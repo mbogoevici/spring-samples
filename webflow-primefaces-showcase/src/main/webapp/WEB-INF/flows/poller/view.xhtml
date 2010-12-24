@@ -26,13 +26,13 @@
 	</h:panelGroup>
 	<br/>
 	<p>
-		<p:poll widgetVar="poller" interval="3" action="poll" update="content" autoStart="false" />
+		<p:poll widgetVar="poller" interval="1" action="poll" update="content" autoStart="false" />
 		<p:commandButton value="Start" action="start" update="content" onclick="poller.start()" />
 		<p:commandButton value="Stop" action="stop" update="content" onclick="poller.stop()" />
 		<p:commandButton value="Exit" action="exit" /><br/>
 	<hr/>
 <pre>
-<span class="alt">&lt;p:poll widgetVar="poller" interval="3" action="poll" update="content" autoStart="false"/&gt;</span>
+<span class="alt">&lt;p:poll widgetVar="poller" interval="1" action="poll" update="content" autoStart="false"/&gt;</span>
 <span class="alt">&lt;p:commandButton value="Start" action="start" update="content" onclick="poller.start()"/&gt;</span>
 <span class="alt">&lt;p:commandButton value="Stop" action="stop" update="content" onclick="poller.stop()"/&gt;</span>
 </pre>		
