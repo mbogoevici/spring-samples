@@ -9,11 +9,11 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
-		<org.springframework-version>3.0.4.RELEASE</org.springframework-version>
-		<org.springwebflow-version>2.2.0.BUILD-SNAPSHOT</org.springwebflow-version>
-		<org.springsecurity-version>3.0.2.RELEASE</org.springsecurity-version>
-		<org.aspectj-version>1.6.8</org.aspectj-version>
-		<org.slf4j-version>1.5.10</org.slf4j-version>
+		<org.springframework-version>3.0.5.RELEASE</org.springframework-version>
+		<org.springwebflow-version>2.2.1.RELEASE</org.springwebflow-version>
+		<org.springsecurity-version>3.0.5.RELEASE</org.springsecurity-version>
+		<org.aspectj-version>1.6.9</org.aspectj-version>
+		<org.slf4j-version>1.6.1</org.slf4j-version>
 	</properties>
 	<dependencies>	
 		<!-- Spring -->
@@ -82,12 +82,12 @@
 					<artifactId>commons-logging</artifactId>
 				 </exclusion>
 			</exclusions>						
-        </dependency>	
+        </dependency>
 		<!-- ROO dependencies -->
 		<dependency>
 			<groupId>org.springframework.roo</groupId>
 			<artifactId>org.springframework.roo.annotations</artifactId>
-			<version>1.0.2.RELEASE</version>
+			<version>1.1.0.RELEASE</version>
 			<scope>provided</scope>
 		</dependency>
 				
@@ -118,25 +118,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.15</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.mail</groupId>
-					<artifactId>mail</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.jms</groupId>
-					<artifactId>jms</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jdmk</groupId>
-					<artifactId>jmxtools</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.sun.jmx</groupId>
-					<artifactId>jmxri</artifactId>
-				</exclusion>
-			</exclusions>
+			<version>1.2.16</version>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -178,7 +160,7 @@
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
-			<version>2.1.3</version>
+			<version>2.2.2</version>
 			<exclusions>
 				<!-- Exclude Commons Logging in favor of SLF4j -->
 				<exclusion>
@@ -192,7 +174,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.5.0-Final</version>
+			<version>3.6.0.Final</version>
 		</dependency>
 		
 		<!-- JSR 303 with Hibernate Validator -->
@@ -204,14 +186,14 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.0.2.GA</version>
+			<version>4.1.0.Final</version>
 		</dependency>
 				
 		<!--  Joda Time -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-			<version>1.6</version>
+			<version>1.6.2</version>
 		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -255,29 +237,20 @@
 			<name>Spring Maven Milestone Repository</name>
 			<url>http://maven.springframework.org/milestone</url>
 			<snapshots><enabled>false</enabled></snapshots>
-		</repository>		
-		<!-- Maven Central -->
+		</repository>
+		<!-- For Roo -->
+        <repository>
+            <id>spring-roo-repository</id>
+            <name>Spring Roo Repository</name>
+            <url>http://spring-roo-repository.springsource.org/release</url>
+        </repository>           
+        <!-- For Hibernate -->
 		<repository>
-			<id>org.maven.central</id>
-			<name>Maven Central Repository</name>
-			<url>http://repo1.maven.org/maven2</url>
+			<id>org.jboss.repository.releases</id>
+			<name>JBoss Maven Release Repository</name>                     
+			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
 			<snapshots><enabled>false</enabled></snapshots>
-		</repository>
-		<!-- For released artifacts not in Maven Central -->
-		<!-- Needed for roo annotations until it is added to central -->
-		<repository>
-			<id>com.springsource.repository.bundles.release</id>
-			<name>SpringSource Bundle Repository</name>
-			<url>http://repository.springsource.com/maven/bundles/release</url>
-	   		<snapshots><enabled>false</enabled></snapshots>
-		</repository>
-		<!-- Needed for Hibernate, which is not published to central -->
-		<repository>
-			<id>org.jboss.repository</id>
-			<name>JBoss Maven Repository</name>
-            <url>http://repository.jboss.org/maven2</url>
-	   		<snapshots><enabled>false</enabled></snapshots>
-		</repository>
+		</repository>		
 	</repositories>
 	<build>
 		<plugins>
