@@ -4,3 +4,4 @@ derby*
 target
 nohup.out
 integration-repo
+template/.settings/org.springframework.ide.eclipse*

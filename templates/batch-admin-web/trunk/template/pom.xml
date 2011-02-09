@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>spring-batch-admin-parent</artifactId>
 		<groupId>org.springframework.batch</groupId>
-		<version>1.2.0.RC1</version>
+		<version>1.2.0.RELEASE</version>
 		<relativePath>../spring-batch-admin-parent</relativePath>
 	</parent>
 	<packaging>war</packaging>
@@ -82,15 +82,6 @@
 			<artifactId>freemarker</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-taglibs</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.batch</groupId>
 			<artifactId>spring-batch-core</artifactId>
 		</dependency>
@@ -101,12 +92,12 @@
 		<dependency>
 			<groupId>org.springframework.batch</groupId>
 			<artifactId>spring-batch-admin-manager</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.batch</groupId>
 			<artifactId>spring-batch-admin-resources</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -115,7 +106,7 @@
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
 				<configuration>
-					<contextPath>/contributor</contextPath>
+					<contextPath>/spring-batch-admin-sample</contextPath>
 				</configuration>
 			</plugin>
 			<plugin>
