@@ -12,9 +12,8 @@
 
 	<view-state id="view">
 		<transition on="suggest" >
-			<evaluate expression="userBean.createEmailSuggestion(flowRequestContext)"
-				result="viewScope.emailSuggestion" />
-			<render fragments="@flow"/>
+			<set name="viewScope.emailSuggestion" value="userBean.createEmailSuggestion(flowRequestContext)"/>
+			<render fragments="emailForm" />
 		</transition>
 	</view-state>
 

@@ -12,14 +12,12 @@
 	<h5>Files to review:</h5>
 	<p>
 	  	Flow definition and view.xhtml in <span class="alt">src/main/webapp/WEB-INF/flows/ajax-render-action</span><br/>
-	  	Java class <span class="alt">org.springframework.faces.primefaces.PrimeRenderFragmentsListener</span><br/>
-	  	Registration of listener in <span class="alt">src/main/webapp/WEB-INF/spring/appServlet/webflow.xml</span>
 	</p>
 	<hr/>
 </ui:define>
 
 <ui:define name="content">
-<h:form>
+<h:form id="emailForm">
 	<p:fieldset legend="User Details">
 		<h:panelGroup layout="block" styleClass="success" rendered="${not empty emailSuggestion}">
 			<h:outputLabel for="email">Email suggestion: </h:outputLabel>
@@ -36,7 +34,7 @@
 		</p>
 		<p>
 			<p:commandButton value="Suggest" action="suggest" execute="@form" update="@form"/>&nbsp;
-			<p:commandButton value="Exit" action="exit" />
+			<p:commandButton value="Exit" action="exit" immediate="true" />
 		</p>
 		<hr/>
 <pre>

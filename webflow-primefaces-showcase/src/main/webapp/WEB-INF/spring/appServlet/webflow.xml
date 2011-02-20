@@ -12,7 +12,6 @@
 		<flow-execution-listeners>
 			<listener ref="facesContextListener"/>
 			<listener ref="securityListener"/>
-			<listener ref="primeRenderListener"/>			
 		</flow-execution-listeners>
 	</flow-executor>
 
@@ -31,7 +30,4 @@
 	<!-- A listener to apply Spring Security authorities -->
 	<beans:bean id="securityListener" class="org.springframework.webflow.security.SecurityFlowExecutionListener" />
 
-	<!--  A listener to integrate the render action with PrimeFaces partial rendering -->
-	<beans:bean id="primeRenderListener" class="org.springframework.faces.primefaces.PrimeRenderFragmentsListener"/>
-		
 </beans:beans>
