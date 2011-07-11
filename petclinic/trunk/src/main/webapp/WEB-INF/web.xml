@@ -108,16 +108,6 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	-->
-	<!--
-	 - Map static resources to the default servlet
-	 - examples:
-	 -     http://localhost:8080/static/images/pets.png
-	 -     http://localhost:8080/static/styles/petclinic.css
-	-->
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>/static/*</url-pattern>
-	</servlet-mapping>
 	
 	<!--
 		- Servlet that dispatches request to registered handlers (Controller implementations).
