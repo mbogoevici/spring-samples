@@ -35,6 +35,15 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
 		<property name="order" value="1" />
 	</bean>
+    <!--
+		- This bean processes annotated handler methods, applying PetClinic-specific PropertyEditors
+		- for request parameter binding. It overrides the default AnnotationMethodHandlerAdapter.
+	-->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="org.springframework.samples.petclinic.web.ClinicBindingInitializer"/>
+		</property>
+	</bean>
 	<!--
 		- This bean resolves specific types of exceptions to corresponding logical 
 		- view names for error views. The default behaviour of DispatcherServlet 
