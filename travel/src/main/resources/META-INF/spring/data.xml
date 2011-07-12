@@ -18,6 +18,7 @@
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 		</property>
+        <property name="persistenceXmlLocation" value="classpath*:META-INF/jpa-persistence.xml"/>
 	</bean>
 
 	<!-- Creates an in-memory HSQLDB Database -->
