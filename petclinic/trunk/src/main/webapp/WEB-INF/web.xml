@@ -37,11 +37,9 @@
 	-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/applicationContext-jdbc.xml</param-value>
-        <!--
-		<param-value>/WEB-INF/spring/applicationContext-hibernate.xml</param-value>
-		<param-value>/WEB-INF/spring/applicationContext-jpa.xml</param-value>
-		-->
+		<!--<param-value>/WEB-INF/spring/applicationContext-jdbc.xml</param-value>-->
+        <!--<param-value>/WEB-INF/spring/applicationContext-hibernate.xml</param-value>-->
+        <param-value>/WEB-INF/spring/applicationContext-jpa.xml</param-value>
 
 		<!--
 			To use the JPA variant above, you will need to enable Spring load-time
