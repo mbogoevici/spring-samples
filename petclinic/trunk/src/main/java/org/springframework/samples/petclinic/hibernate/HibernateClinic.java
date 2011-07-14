@@ -92,6 +92,7 @@ public class HibernateClinic implements Clinic {
 
 	public void deletePet(int id) throws DataAccessException {
 		Pet pet = loadPet(id);
+        pet.getOwner().removePet(pet);
 		sessionFactory.getCurrentSession().delete(pet);
 	}
 
