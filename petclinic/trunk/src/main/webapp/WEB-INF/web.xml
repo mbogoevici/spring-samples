@@ -37,11 +37,9 @@
 	-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/applicationContext-jdbc.xml</param-value>
-        <!--
-		<param-value>/WEB-INF/spring/applicationContext-hibernate.xml</param-value>
-		<param-value>/WEB-INF/spring/applicationContext-jpa.xml</param-value>
-		-->
+		<!--<param-value>/WEB-INF/spring/applicationContext-jdbc.xml</param-value>-->
+        <!--<param-value>/WEB-INF/spring/applicationContext-hibernate.xml</param-value>-->
+        <param-value>/WEB-INF/spring/applicationContext-jpa.xml</param-value>
 
 		<!--
 			To use the JPA variant above, you will need to enable Spring load-time
@@ -108,16 +106,6 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	-->
-	<!--
-	 - Map static resources to the default servlet
-	 - examples:
-	 -     http://localhost:8080/static/images/pets.png
-	 -     http://localhost:8080/static/styles/petclinic.css
-	-->
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>/static/*</url-pattern>
-	</servlet-mapping>
 	
 	<!--
 		- Servlet that dispatches request to registered handlers (Controller implementations).
